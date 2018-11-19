@@ -6,7 +6,7 @@
 /*   By: myener <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 13:57:15 by myener            #+#    #+#             */
-/*   Updated: 2018/11/15 11:35:58 by myener           ###   ########.fr       */
+/*   Updated: 2018/11/19 18:25:20 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char	*ft_strdup(const char *str);
 int     ft_strequ(char const *s1, char const *s2);
 void    ft_striter(char *s, void (*f)(char*));
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
+char	*ft_strjoin(char const *s1, char const *s2);
 size_t	*ft_strlcat(char *src, const char *dest, size_t n);
 size_t	ft_strlen(char *str);
 char	*ft_strmap(char const *s, char (*f)(char));
@@ -54,14 +55,16 @@ char    *ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strncat(char *src, const char *dest, size_t n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strncpy(const char *src, char *dest, size_t n);
-int	ft_strnequ(char const *s1, char const *s2, size_t n);
+int		ft_strnequ(char const *s1, char const *s2, size_t n);
 char    *ft_strnew(size_t size);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char    *ft_strrchr(const char *s, int c);
 char	*ft_strrev(char *str);
 char	*ft_strstr(const char *str, const char *find);
-int             ft_tolower(int c);
-int             ft_toupper(int c);
+char	*ft_strsub(char const *s, unsigned int start, size_t len);
+char	*ft_strtrim(char const *s);
+int		ft_tolower(int c);
+int		ft_toupper(int c);
 
 
 #endif

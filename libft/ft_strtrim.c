@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strequ.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/19 13:57:15 by myener            #+#    #+#             */
-/*   Updated: 2018/11/19 17:28:05 by myener           ###   ########.fr       */
+/*   Created: 2018/11/19 18:03:15 by myener            #+#    #+#             */
+/*   Updated: 2018/11/19 18:24:10 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strequ(char const *s1, char const *s2)
-{	
-	if (ft_strcmp(s1, s2) != 0)
-		return (1);
-	return (0);
+char    *ft_strtrim(char const *s)
+{
+	int		i;
+	int		j;
+	char	*t;
+
+	t = (char*)s;
+	i = 0;
+	while (t[i] && (t[i] == ' ' || t[i] == '\n' || t[i] == '\t'))
+		i++;
+	j = (ft_strlen(t[i]) - 1);
+	while (t[j] > 0 && (t[j] == ' ' || t[j] == '\n' || t[j] == '\t'))
+		j--;
+	ft_strdup(t);
+	return (ft_strsub(t, i, t[j - i]))
 }

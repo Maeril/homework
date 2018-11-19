@@ -1,20 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strequ.c                                        :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/19 13:57:15 by myener            #+#    #+#             */
-/*   Updated: 2018/11/19 17:28:05 by myener           ###   ########.fr       */
+/*   Created: 2018/11/19 15:50:30 by myener            #+#    #+#             */
+/*   Updated: 2018/11/19 17:23:51 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strequ(char const *s1, char const *s2)
-{	
-	if (ft_strcmp(s1, s2) != 0)
-		return (1);
-	return (0);
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
+{
+	char	*str;
+	int		i;
+
+	if (!(str = malloc(sizeof(*s) * (len + 1))))
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == start)
+		{
+			while (s[i] <= len)
+			{
+				str[i] = s[i]
+				i++;
+			}
+		}
+		i++;
+	}
+	return (str);
 }

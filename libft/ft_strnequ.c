@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strequ.c                                        :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/19 13:57:15 by myener            #+#    #+#             */
-/*   Updated: 2018/11/19 17:28:05 by myener           ###   ########.fr       */
+/*   Created: 2018/11/19 15:31:07 by myener            #+#    #+#             */
+/*   Updated: 2018/11/19 17:29:45 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strequ(char const *s1, char const *s2)
-{	
-	if (ft_strcmp(s1, s2) != 0)
-		return (1);
+int		ft_strnequ(char const *s1, char const *s2, size_t n)
+{
+	int	i;
+
+	i = 0;
+	while ((s1[i] <= n && s2[i] <= n) || (s1[i] != '\0' && s2[i] != '\0')
+	{
+		ft_strequ(s1, s2);
+	}	
 	return (0);
 }
