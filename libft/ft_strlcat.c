@@ -6,10 +6,10 @@
 /*   By: myener <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 15:51:44 by myener            #+#    #+#             */
-/*   Updated: 2018/11/14 14:37:32 by myener           ###   ########.fr       */
+/*   Updated: 2018/11/21 18:48:56 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+/*
 #include "libft.h"
 
 size_t	*ft_strlcat(char *src, const char *dest, size_t n)
@@ -18,7 +18,7 @@ size_t	*ft_strlcat(char *src, const char *dest, size_t n)
 	int j;
 
 	i = 0;
-	j = 0
+	j = 0;
 	while (dest[i])
 		i++;
 	while (src[j])
@@ -28,5 +28,5 @@ size_t	*ft_strlcat(char *src, const char *dest, size_t n)
 		j++;
 	}
 	dest[i] = '\0';
-	return (i + ft_strlen(src));
-}
+	return (i + ft_strlen((const char*)src));
+}*/

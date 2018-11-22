@@ -6,7 +6,7 @@
 /*   By: myener <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/17 17:38:41 by myener            #+#    #+#             */
-/*   Updated: 2018/11/17 18:53:03 by myener           ###   ########.fr       */
+/*   Updated: 2018/11/21 18:27:24 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	ft_strrev(s);
-	return (&ft_strchr(s, c));
+	ft_strrev((char*)s);
+	return (ft_strchr(((char*)s), c));
 }

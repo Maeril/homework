@@ -6,7 +6,7 @@
 /*   By: myener <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 12:52:20 by myener            #+#    #+#             */
-/*   Updated: 2018/11/15 11:25:50 by myener           ###   ########.fr       */
+/*   Updated: 2018/11/22 15:01:19 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,31 @@
 
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	int				i;
+	const char	*src2;
+	char		*dst2;
 
-	i = 0;
-	while ((const char*)src[i] && i < n)
+	src2 = (const char*)src;
+	dst2 = (char*)dst;
+	while (*src2 && n--)
 	{
-		if ((const char*)src[i] == (unsigned char)c)
-			return (dst[i + 1]);
-		(char*)dst[i] = (const char*)src[i];
-		i++;
+		*dst2++ = *src2;
+		if (*src2 == c)
+			return (dst2);
+		src2++;
 	}
-	return (NULL);
+	return (0);
 }
 
-int		main(void)
+int		main()
 {
-	const char	src[5] = "test";
-	char		dst[5];
+	char	s[] = "bonjour";
+	size_t	n;
+	char	*dst; 
 
-	printf("Before ft_memcpy dest = %s\n", dst);
-	ft_memccpy(dst, src, 0 strlen(src) + 1);
-	printf("After ft_memcpy dest = %s\n", dst);
+	n = 5;
+	if (!(dst = (char*)malloc(sizeof(*s) * (n + 1))))
+		return (0);
 
-	char	dstx[5];
-
-	printf("Before memccpy dest = %s\n", dstx);
-	memccpy(dstx, src, strlen(src) + 1);
-	printf("After memccpy dest = %s\n", dstx);
-	return (0);
+	printf("the excerpt is %s\n", ft_memccpy(dst, s, 'j', n));
+	printf("the excerpt is %s\n", memccpy(dst, s, 'j', n));
 }

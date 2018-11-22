@@ -6,7 +6,7 @@
 /*   By: myener <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 17:18:19 by myener            #+#    #+#             */
-/*   Updated: 2018/11/19 17:22:38 by myener           ###   ########.fr       */
+/*   Updated: 2018/11/20 18:15:56 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ size_t	ft_strlen(const char *len)
 char	*ft_strndup(const char *str, size_t n)
 {
 	int		i;
-	char 	*dest;
+	char	*dest;
 
-	if (!(dest = malloc (sizeof(*str) * (ft_strlen(str) + 1))))
+	if (!(dest = malloc(sizeof(*str) * (ft_strlen(str) + 1))))
 		return (0);
 	i = 0;
 	while (str[i] <= n)

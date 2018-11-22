@@ -6,7 +6,7 @@
 /*   By: myener <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/15 14:36:17 by myener            #+#    #+#             */
-/*   Updated: 2018/11/15 14:55:30 by myener           ###   ########.fr       */
+/*   Updated: 2018/11/20 15:10:19 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,5 @@
 
 int		ft_isalnum(int c)
 {
-	if ((ft_isalpha((unsigned char)c) == 1) || (ft_isdigit((unsigned char)c) == 1))
-		return (1);
-	return (0);	
+	return (ft_isalpha(c) || ft_isdigit(c) ? 1 : 0);
 }

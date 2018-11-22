@@ -6,7 +6,7 @@
 /*   By: myener <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/17 18:38:41 by myener            #+#    #+#             */
-/*   Updated: 2018/11/17 19:29:03 by myener           ###   ########.fr       */
+/*   Updated: 2018/11/21 18:27:41 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strrev(char *str)
 {
-	int	min;
-	int	max;
+	int		min;
+	int		max;
 	char	temp;
 
 	min = 0;

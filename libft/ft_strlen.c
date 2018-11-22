@@ -6,18 +6,18 @@
 /*   By: myener <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 15:10:09 by myener            #+#    #+#             */
-/*   Updated: 2018/11/14 14:30:37 by myener           ###   ########.fr       */
+/*   Updated: 2018/11/21 13:53:49 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(char *str)
+size_t	ft_strlen(const char *str)
 {
 	int	i;
 
 	i = 0;
 	while (str[i])
 		i++;
-	return(i);
+	return (i);
 }

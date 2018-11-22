@@ -6,18 +6,18 @@
 /*   By: myener <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 13:57:15 by myener            #+#    #+#             */
-/*   Updated: 2018/11/18 14:05:58 by myener           ###   ########.fr       */
+/*   Updated: 2018/11/21 15:03:52 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    *ft_putstr(char *str)
+void	*ft_putstr(char *str)
 {
 	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		ft_putchar(str[i]);
 		i++;

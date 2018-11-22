@@ -6,29 +6,27 @@
 /*   By: myener <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 14:07:20 by myener            #+#    #+#             */
-/*   Updated: 2018/11/18 14:10:15 by myener           ###   ########.fr       */
+/*   Updated: 2018/11/20 18:53:49 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.c"
+#include "libft.h"
 
 void	ft_putnbr(int nb)
 {
 	if (nb == -2147483648)
 	{
-		write (1, "-2147483648", 11);
-		return (0);
+		ft_putchar('-');
+		ft_putchar('2');
+		nb = 147483648;
 	}
 	if (nb < 0)
-	{
-		ft_putchar('-');
-		ft_putnbr(nb * (-1);
-	}
-	else if (nb >= 0 && nb <= 9)
-		ft_putchar (nb + '0');
-	else
+		nb = -nb;
+	if (nb >= 10)
 	{
 		ft_putnbr(nb / 10);
 		ft_putnbr(nb % 10);
 	}
+	else
+		ft_putchar(nb + '0');
 }

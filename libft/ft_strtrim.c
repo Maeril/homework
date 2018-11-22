@@ -6,25 +6,24 @@
 /*   By: myener <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 18:03:15 by myener            #+#    #+#             */
-/*   Updated: 2018/11/19 18:24:10 by myener           ###   ########.fr       */
+/*   Updated: 2018/11/21 16:03:35 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char    *ft_strtrim(char const *s)
+char	*ft_strtrim(char const *s)
 {
 	int		i;
 	int		j;
-	char	*t;
 
-	t = (char*)s;
+	if (!s)
+		return (NULL);
 	i = 0;
-	while (t[i] && (t[i] == ' ' || t[i] == '\n' || t[i] == '\t'))
+	while (s[i] && (s[i] == ' ' || s[i] == '\n' || s[i] == '\t'))
 		i++;
-	j = (ft_strlen(t[i]) - 1);
-	while (t[j] > 0 && (t[j] == ' ' || t[j] == '\n' || t[j] == '\t'))
+	j = (ft_strlen((char*)s) - 1);
+	while (j > 0 && (s[j] == ' ' || s[j] == '\n' || s[j] == '\t'))
 		j--;
-	ft_strdup(t);
-	return (ft_strsub(t, i, t[j - i]))
+	return (ft_strsub(s, i, ((j - i) + 1)));
 }

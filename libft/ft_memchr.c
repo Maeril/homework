@@ -6,7 +6,7 @@
 /*   By: myener <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 16:26:39 by myener            #+#    #+#             */
-/*   Updated: 2018/11/15 11:26:07 by myener           ###   ########.fr       */
+/*   Updated: 2018/11/21 17:41:03 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,14 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	void			*dst;
+	size_t	i;
 
-	return (&ft_memccpy(dst, s, c, n));
+	i = 0;
+	while (i < n)
+	{
+		if (((char*)s)[i] == (unsigned char)c)
+			return (((char*)s) + i);
+		i++;
+	}
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: myener <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 13:57:15 by myener            #+#    #+#             */
-/*   Updated: 2018/11/15 11:35:58 by myener           ###   ########.fr       */
+/*   Updated: 2018/11/22 13:54:56 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ char	*ft_strnew(size_t size)
 {
 	char *str;
 
-	ft_memalloc(str[size]);
-	str[size] = '\0';
-	return (str);
+	if (!(str = (char*)malloc(sizeof(*tab) * (size + 1))))
+		return (NULL);
+	ft_bzero((void*)str, size);
+		return(str);
 }

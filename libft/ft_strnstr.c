@@ -6,7 +6,7 @@
 /*   By: myener <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 19:30:15 by myener            #+#    #+#             */
-/*   Updated: 2018/11/15 20:25:08 by myener           ###   ########.fr       */
+/*   Updated: 2018/11/21 13:57:11 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ char	*ft_strnstr(const char *str, const char *find, size_t len)
 		}
 		i++;
 	}
-	return (0);	
+	return (0);
 }
