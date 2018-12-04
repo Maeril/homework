@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 14:14:42 by myener            #+#    #+#             */
-/*   Updated: 2018/12/03 22:48:05 by myener           ###   ########.fr       */
+/*   Updated: 2018/12/04 16:23:21 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@
 
 # include <unistd.h>
 # include <stdio.h>
+# include <stdlib.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include "libft/libft.h"
 
 int     get_next_line(const int fd, char **line);
 
