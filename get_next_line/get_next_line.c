@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 14:14:37 by myener            #+#    #+#             */
-/*   Updated: 2018/12/06 17:16:49 by myener           ###   ########.fr       */
+/*   Updated: 2018/12/06 23:41:42 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char	*ft_free_strdup(const char *str)
 	int		i;
 	char	*dest;
 
-	if (!(dest = malloc(sizeof(*str) * (ft_strlen((char*)str) + 1))))
+	if (!(dest = malloc(sizeof(str) * (ft_strlen((char*)str) + 1))))
 		return (0);
 	i = 0;
 	while (str[i])
@@ -53,11 +53,10 @@ int			get_next_line(const int fd, char **line)
 	char			buffer[BUFF_SIZE + 1];
 	static char		*stock;
 
-	if (fd == -1 || !line || !BUFF_SIZE)
+	if (fd < 0 || fd > 4658 || !line || !BUFF_SIZE || read(fd, stock, 0) < 0 ||
+		!(stock = ft_strnew(1)))
 		return (-1);
 	i = 0;
-	if (!stock)
-		stock = ft_strnew(1);
 	while ((readsize = read(fd, buffer, BUFF_SIZE)))
 	{
 		buffer[readsize] = '\0';
