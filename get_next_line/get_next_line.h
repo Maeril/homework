@@ -6,19 +6,17 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 14:14:42 by myener            #+#    #+#             */
-/*   Updated: 2018/12/06 16:16:53 by myener           ###   ########.fr       */
+/*   Updated: 2018/12/07 15:19:06 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # define BUFF_SIZE 32
+# define MAX_FD 8192
 
 # include <unistd.h>
-# include <stdio.h>
 # include <stdlib.h>
-# include <sys/types.h>
-# include <sys/stat.h>
 # include <fcntl.h>
 # include "libft/libft.h"
 
