@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 14:14:42 by myener            #+#    #+#             */
-/*   Updated: 2018/12/07 15:19:06 by myener           ###   ########.fr       */
+/*   Updated: 2018/12/10 15:23:43 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include <fcntl.h>
 # include "libft/libft.h"
 
