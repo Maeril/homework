@@ -6,13 +6,13 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 16:43:29 by myener            #+#    #+#             */
-/*   Updated: 2018/12/05 16:44:38 by myener           ###   ########.fr       */
+/*   Updated: 2018/12/11 13:28:07 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./get_next_line/get_next_line.h"
 
-int     get_next_line(const int fd, char **line);
+int		get_next_line(const int fd, char **line);
 
 int		main(int argc, char **argv)
 {

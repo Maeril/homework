@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 14:14:37 by myener            #+#    #+#             */
-/*   Updated: 2018/12/10 17:12:26 by myener           ###   ########.fr       */
+/*   Updated: 2018/12/12 13:48:09 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,6 @@ static char		*ft_free_join(char *s1, const char *s2)
 	return (s3);
 }
 
-static char		*fr_strdup(char *str)
-{
-	int		i;
-	char	*dest;
-
-	if (!(dest = ft_strnew(ft_strlen(str))))
-		return (0);
-	i = 0;
-	while (str[i])
-	{
-		dest[i] = str[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-
 char			*ft_free_strndup(char *str, char *dest, size_t n)
 {
 	size_t	i;
@@ -73,17 +56,24 @@ char			*ft_free_strndup(char *str, char *dest, size_t n)
 	return (dest);
 }
 
+void			ft_spacesaver(char **stock, char **tmp, size_t i)
+{
+	*tmp = *stock;
+	*stock = ft_strdup(*stock + i + 1);
+	free(*tmp);
+}
+
 int				get_next_line(const int fd, char **line)
 {
 	size_t			i;
 	int				readsize;
 	char			buffer[BUFF_SIZE + 1];
-	static char		*stock;
+	static char		*stock = NULL;
+	char			*tmp;
 
 	if (fd < 0 || fd > MAX_FD || !line || !BUFF_SIZE || read(fd, stock, 0) < 0)
 		return (-1);
-	if (!stock)
-		stock = ft_strnew(0);
+	(!stock) ? stock = ft_strnew(0) : 0;
 	i = 0;
 	while ((readsize = read(fd, buffer, BUFF_SIZE)) > 0)
 	{
@@ -93,14 +83,10 @@ int				get_next_line(const int fd, char **line)
 			break ;
 	}
 	if ((readsize < BUFF_SIZE) && (ft_strlen(stock) == 0))
-		{
-			ft_strdel(&stock);
-			stock = NULL;
-			return (0);
-		}
+		return (0);
 	while (stock[i] != '\n' && stock[i])
 		i++;
 	*line = ft_free_strndup(stock, *line, i);
-	i < ft_strlen(stock) ? stock = fr_strdup(stock + i + 1) : ft_strclr(stock);
+	(i < ft_strlen(stock)) ? ft_spacesaver(&stock, &tmp, i) : ft_strdel(&stock);
 	return (1);
 }
