@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 14:14:37 by myener            #+#    #+#             */
-/*   Updated: 2018/12/12 13:48:09 by myener           ###   ########.fr       */
+/*   Updated: 2018/12/17 18:37:26 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char		*ft_free_join(char *s1, const char *s2)
 	return (s3);
 }
 
-char			*ft_free_strndup(char *str, char *dest, size_t n)
+char			*ft_n_strndup(char *str, char *dest, size_t n)
 {
 	size_t	i;
 
@@ -86,7 +86,7 @@ int				get_next_line(const int fd, char **line)
 		return (0);
 	while (stock[i] != '\n' && stock[i])
 		i++;
-	*line = ft_free_strndup(stock, *line, i);
+	*line = ft_n_strndup(stock, *line, i);
 	(i < ft_strlen(stock)) ? ft_spacesaver(&stock, &tmp, i) : ft_strdel(&stock);
 	return (1);
 }
