@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 14:14:37 by myener            #+#    #+#             */
-/*   Updated: 2018/12/17 18:37:26 by myener           ###   ########.fr       */
+/*   Updated: 2018/12/19 16:21:24 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ int				get_next_line(const int fd, char **line)
 	while ((readsize = read(fd, buffer, BUFF_SIZE)) > 0)
 	{
 		buffer[readsize] = '\0';
-		stock = ft_free_join(stock, buffer);
+		if (!(stock = ft_free_join(stock, buffer)))
+			return (-1);
 		if (ft_strchr(stock, '\n'))
 			break ;
 	}
