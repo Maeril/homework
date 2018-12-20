@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 14:14:37 by myener            #+#    #+#             */
-/*   Updated: 2018/12/19 16:21:24 by myener           ###   ########.fr       */
+/*   Updated: 2018/12/20 14:33:51 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ int				get_next_line(const int fd, char **line)
 	if (fd < 0 || fd > MAX_FD || !line || !BUFF_SIZE || read(fd, stock, 0) < 0)
 		return (-1);
 	(!stock) ? stock = ft_strnew(0) : 0;
-	i = 0;
 	while ((readsize = read(fd, buffer, BUFF_SIZE)) > 0)
 	{
 		buffer[readsize] = '\0';
@@ -85,6 +84,7 @@ int				get_next_line(const int fd, char **line)
 	}
 	if ((readsize < BUFF_SIZE) && (ft_strlen(stock) == 0))
 		return (0);
+	i = 0;
 	while (stock[i] != '\n' && stock[i])
 		i++;
 	*line = ft_n_strndup(stock, *line, i);
