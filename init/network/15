@@ -1,0 +1,1 @@
+Il faut modifier le fichier hosts en conséquence, c'est à dire y ajouter l'intra et lui assigner l'IP demandée. (Flush DNS afterwards?)

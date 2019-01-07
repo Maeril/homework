@@ -1,0 +1,1 @@
+cat /etc/passwd (OU pour seulement les noms: awk -F':' '{print $1}' /etc/passwd)

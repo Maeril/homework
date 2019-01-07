@@ -1,0 +1,8 @@
+1) S'assurer de bien être en mode SU.
+2) Entrer "useradd [login du nouvel utilisateur]"
+3) Créer et confirmer le mot de passe
+4) Editer /etc/ssh/sshd_config pour ajouter l'utilisateur comme suit:
+	- Port #### (où # représente le numéro de port)
+	- PermitRoot [login] Y/N
+	- AllowUsers [login]
+5) Ne pas oublier de redémarrer SSH !
