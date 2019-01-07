@@ -1,1 +1,1 @@
-cat /etc/resolv.conf
+ipconfig getpacket en0 | awk '/yi/{print $3}'

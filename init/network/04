@@ -1,1 +1,1 @@
-route -n get default
+route -n get default | awk '/gateway/{print $2}'
