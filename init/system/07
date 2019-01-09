@@ -1,1 +1,1 @@
-2538 (cat /var/run/sshd.pid)
+ps aux | grep ssh

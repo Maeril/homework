@@ -1,1 +1,4 @@
-Il faut modifier le fichier hosts en conséquence, c'est à dire y ajouter l'intra et lui assigner l'IP demandée. (Flush DNS afterwards?)
+Il faut modifier le fichier hosts (/etc/hosts) en conséquence.
+Ajouter l'intra et lui assigner l'IP demandée comme suit:
+46.19.122.85 intra.42.fr
+(Optionnel: flush le DNS après?)

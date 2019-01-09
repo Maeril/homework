@@ -1,1 +1,1 @@
-[resultat de systemctl list-units --type service (--all) (service upstart)]
+[resultat de systemctl list-units --type service --all]

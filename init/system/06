@@ -1,1 +1,1 @@
-/etc/init.d/ssh restart
+sudo service ssh restart
