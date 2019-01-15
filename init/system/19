@@ -1,1 +1,16 @@
-[resultat de systemctl list-units --type service --all]
+autovt@.service
+console-setup.service
+cron.service
+getty@.service
+keyboard-setup.service
+networking.service
+rsyslog.service
+ssh.service
+sshd.service
+syslog.service
+systemd-timesyncd.service
+remote-fs.target
+apt-daily-upgrade.timer
+apt-daily.timer
+
+daemon
