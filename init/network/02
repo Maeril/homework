@@ -1,0 +1,3 @@
+a: ifconfig en0 | awk -F"broadcast" '{print $2}'
+
+b: ping 10.13.255.255 -c 5 | grep "64 bytes from" | awk -F'[: ]' '{print $4}' | sort | uniq
