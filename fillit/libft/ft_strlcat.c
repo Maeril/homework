@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/22 21:45:59 by myener            #+#    #+#             */
-/*   Updated: 2019/01/23 18:31:16 by myener           ###   ########.fr       */
+/*   Created: 2018/11/13 15:51:44 by myener            #+#    #+#             */
+/*   Updated: 2018/11/27 16:11:53 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <stdio.h>
-
-typedef struct	s_block
+size_t	ft_strlcat(char *dst, const char *src, size_t n)
 {
-	int 		x;
-	int 		y;
-} 				t_block;
+	size_t	dst_ln;
+	size_t	src_ln;
 
-x
-
-typedef	struct			s_forme
-{
-	t_block				*block_tab;
-	char				letter;
-	struct s_forme		*next;
-}						t_forme;
-
-
-
-
-#endif
+	src_ln = ft_strlen(src);
+	dst_ln = ft_strnlen(dst, n);
+	if (dst_ln == n)
+		return (n + src_ln);
+	if ((src_ln + dst_ln) < n)
+		ft_memcpy((dst + dst_ln), src, (src_ln + 1));
+	else
+	{
+		ft_memcpy((dst + dst_ln), src, ((n - dst_ln) - 1));
+		dst[n - 1] = '\0';
+	}
+	return (dst_ln + src_ln);
+}

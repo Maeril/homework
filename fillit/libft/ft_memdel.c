@@ -1,37 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_memdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/22 21:45:59 by myener            #+#    #+#             */
-/*   Updated: 2019/01/23 18:31:16 by myener           ###   ########.fr       */
+/*   Created: 2018/11/14 13:57:15 by myener            #+#    #+#             */
+/*   Updated: 2018/11/27 16:13:08 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <stdio.h>
-
-typedef struct	s_block
+void	ft_memdel(void **ap)
 {
-	int 		x;
-	int 		y;
-} 				t_block;
-
-x
-
-typedef	struct			s_forme
-{
-	t_block				*block_tab;
-	char				letter;
-	struct s_forme		*next;
-}						t_forme;
-
-
-
-
-#endif
+	if (ap)
+	{
+		free(*ap);
+		*ap = NULL;
+	}
+}

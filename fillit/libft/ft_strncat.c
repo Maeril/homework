@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/22 21:45:59 by myener            #+#    #+#             */
-/*   Updated: 2019/01/23 18:31:16 by myener           ###   ########.fr       */
+/*   Created: 2018/11/13 15:47:45 by myener            #+#    #+#             */
+/*   Updated: 2018/11/27 16:11:31 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <stdio.h>
-
-typedef struct	s_block
+char	*ft_strncat(char *dest, const char *src, size_t n)
 {
-	int 		x;
-	int 		y;
-} 				t_block;
+	size_t	i;
+	size_t	j;
 
-x
-
-typedef	struct			s_forme
-{
-	t_block				*block_tab;
-	char				letter;
-	struct s_forme		*next;
-}						t_forme;
-
-
-
-
-#endif
+	i = 0;
+	while (dest[i])
+		i++;
+	j = 0;
+	while (src[j] && j < n)
+	{
+		dest[i] = src[j];
+		i++;
+		j++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
