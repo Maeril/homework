@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/22 21:45:59 by myener            #+#    #+#             */
-/*   Updated: 2019/01/23 17:19:30 by myener           ###   ########.fr       */
+/*   Created: 2018/11/14 13:57:15 by myener            #+#    #+#             */
+/*   Updated: 2018/11/27 16:11:42 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <stdio.h>
-
-typedef struct	s_block
+char	*ft_strnew(size_t size)
 {
-	int 		x;
-	int 		y;
-} 				t_block;
+	char *str;
 
-x
-
-typedef	struct			s_tetri
-{
-	t_block				*block_tab;
-	char				letter;
-	struct s_tetri		*next;
-}						t_tetri;
-
-
-
-
-#endif
+	if (!(str = (char*)malloc(size + 1)))
+		return (NULL);
+	ft_bzero(((void*)str), (size + 1));
+	return (str);
+}

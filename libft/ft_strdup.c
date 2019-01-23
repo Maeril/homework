@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/22 21:45:59 by myener            #+#    #+#             */
-/*   Updated: 2019/01/23 17:19:30 by myener           ###   ########.fr       */
+/*   Created: 2018/11/13 15:13:22 by myener            #+#    #+#             */
+/*   Updated: 2018/11/27 16:12:41 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <stdio.h>
-
-typedef struct	s_block
+char	*ft_strdup(const char *str)
 {
-	int 		x;
-	int 		y;
-} 				t_block;
+	int		i;
+	char	*dest;
 
-x
-
-typedef	struct			s_tetri
-{
-	t_block				*block_tab;
-	char				letter;
-	struct s_tetri		*next;
-}						t_tetri;
-
-
-
-
-#endif
+	if (!(dest = malloc(sizeof(*str) * (ft_strlen((char*)str) + 1))))
+		return (0);
+	i = 0;
+	while (str[i])
+	{
+		dest[i] = str[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}

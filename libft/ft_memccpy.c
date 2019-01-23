@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/22 21:45:59 by myener            #+#    #+#             */
-/*   Updated: 2019/01/23 17:19:30 by myener           ###   ########.fr       */
+/*   Created: 2018/11/14 12:52:20 by myener            #+#    #+#             */
+/*   Updated: 2018/11/27 16:14:06 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <stdio.h>
-
-typedef struct	s_block
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	int 		x;
-	int 		y;
-} 				t_block;
+	const unsigned char		*src2;
+	unsigned char			*dst2;
+	size_t					i;
 
-x
-
-typedef	struct			s_tetri
-{
-	t_block				*block_tab;
-	char				letter;
-	struct s_tetri		*next;
-}						t_tetri;
-
-
-
-
-#endif
+	i = 0;
+	src2 = (const unsigned char*)src;
+	dst2 = (unsigned char*)dst;
+	while (i < n)
+	{
+		dst2[i] = src2[i];
+		if (src2[i] == ((unsigned char)c))
+			return (dst2 + i + 1);
+		i++;
+	}
+	return (0);
+}

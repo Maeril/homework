@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/22 21:45:59 by myener            #+#    #+#             */
-/*   Updated: 2019/01/23 17:19:30 by myener           ###   ########.fr       */
+/*   Created: 2018/11/28 12:48:26 by myener            #+#    #+#             */
+/*   Updated: 2018/11/29 12:58:06 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <stdio.h>
-
-typedef struct	s_block
+void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	int 		x;
-	int 		y;
-} 				t_block;
-
-x
-
-typedef	struct			s_tetri
-{
-	t_block				*block_tab;
-	char				letter;
-	struct s_tetri		*next;
-}						t_tetri;
-
-
-
-
-#endif
+	if (lst)
+	{
+		while (lst)
+		{
+			f(lst);
+			lst = lst->next;
+		}
+	}
+}

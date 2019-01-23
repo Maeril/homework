@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/22 21:45:59 by myener            #+#    #+#             */
-/*   Updated: 2019/01/23 17:19:30 by myener           ###   ########.fr       */
+/*   Created: 2018/11/28 12:50:37 by myener            #+#    #+#             */
+/*   Updated: 2018/11/29 12:48:23 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <stdio.h>
-
-typedef struct	s_block
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	int 		x;
-	int 		y;
-} 				t_block;
+	t_list		*new;
+	t_list		*tmp;
 
-x
-
-typedef	struct			s_tetri
-{
-	t_block				*block_tab;
-	char				letter;
-	struct s_tetri		*next;
-}						t_tetri;
-
-
-
-
-#endif
+	tmp = f(lst);
+	new = tmp;
+	if (lst)
+	{
+		while (lst->next && (tmp->next = f(lst)))
+		{
+			lst = lst->next;
+			if (!(tmp->next = f(lst)))
+			{
+				free(tmp->next);
+				return (NULL);
+			}
+			tmp = tmp->next;
+		}
+	}
+	return (new);
+}
