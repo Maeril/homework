@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 14:16:32 by mpicard           #+#    #+#             */
-/*   Updated: 2019/01/23 15:54:10 by myener           ###   ########.fr       */
+/*   Updated: 2019/01/24 15:14:00 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,42 +50,42 @@ re: fclean all
 
 #include "fillit.h"
 
-int		add_y(t_coord *coord_tab, int k, int j)
+int		add_y(t_block *block_tab, int k, int j)
 {
 	int res;
 
-	res = coord_tab[k].y - coord_tab[j].y;
+	res = block_tab[k].y - block_tab[j].y;
 	if (res < 0)
 		res = -res;
 	return (res);
 }
 
-int		add_x(t_coord *coord_tab, int k, int j)
+int		add_x(t_block *block_tab, int k, int j)
 {
 	int res;
 
-	res = coord_tab[k].x - coord_tab[j].x;
+	res = block_tab[k].x - block_tab[j].x;
 	if (res < 0)
 		res = -res;
 	return (res);
 }
 
-int		check_connection(t_coord *coord_tab, t_liste *liste)
+int		check_connection(t_block *block_tab, t_liste *liste)
 {
 	int tmp;
 
 	tmp = 0;
-	if (add_x(coord_tab, 0, 1) + (add_y(coord_tab, 0, 1)) == 1)
+	if (add_x(block_tab, 0, 1) + (add_y(block_tab, 0, 1)) == 1)
 		tmp++;
-	if (add_x(coord_tab, 0, 2) + (add_y(coord_tab, 0, 2)) == 1)
+	if (add_x(block_tab, 0, 2) + (add_y(block_tab, 0, 2)) == 1)
 		tmp++;
-	if (add_x(coord_tab, 0, 3) + (add_y(coord_tab, 0, 3)) == 1)
+	if (add_x(block_tab, 0, 3) + (add_y(block_tab, 0, 3)) == 1)
 		tmp++;
-	if (add_x(coord_tab, 1, 2) + (add_y(coord_tab, 1, 2)) == 1)
+	if (add_x(block_tab, 1, 2) + (add_y(block_tab, 1, 2)) == 1)
 		tmp++;
-	if (add_x(coord_tab, 1, 3) + (add_y(coord_tab, 1, 3)) == 1)
+	if (add_x(block_tab, 1, 3) + (add_y(block_tab, 1, 3)) == 1)
 		tmp++;
-	if (add_x(coord_tab, 2, 3) + (add_y(coord_tab, 2, 3)) == 1)
+	if (add_x(block_tab, 2, 3) + (add_y(block_tab, 2, 3)) == 1)
 		tmp++;
 	if (tmp >= 3)
 		return (2);
@@ -258,15 +258,15 @@ int			main(int argc, char *argv[])
 # include "libft/libft.h"
 # include <stdio.h>
 
-typedef struct			s_coord
+typedef struct			s_block
 {
 	int					x;
 	int					y;
-}						t_coord;
+}						t_block;
 
 typedef	struct			s_tetris
 {
-	t_coord				*coord_tab;
+	t_block				*block_tab;
 	char				letter;
 	struct s_tetris		*next;
 }						t_tetris;
@@ -280,9 +280,9 @@ typedef	struct			s_liste
 
 char					**init_grid(int size);
 char					**solve_fillit(t_liste *liste);
-int						add_y(t_coord *coord_tab, int k, int j);
-int						add_x(t_coord *coord_tab, int k, int j);
-int						check_connection(t_coord *coord_tab, t_liste *liste);
+int						add_y(t_block *block_tab, int k, int j);
+int						add_x(t_block *block_tab, int k, int j);
+int						check_connection(t_block *block_tab, t_liste *liste);
 int						check_dot(char tab[5][5]);
 int						check_line(char *line);
 int						check_sharp(char tab[5][5]);
@@ -296,7 +296,7 @@ int						read_file(int fd, t_liste *liste);
 int						space_for_tetri(t_tetris *tetri, char ***grid,
 		int i_grid,
 		int j_grid);
-t_coord					*parse_tetri(char tab[5][5], t_liste *liste);
+t_block					*parse_tetri(char tab[5][5], t_liste *liste);
 t_liste					*list_init(void);
 void					write_error_message(int i);
 void					line_break(int line_tetri, char tetri[5][5], t_liste *liste);
@@ -305,7 +305,7 @@ void					erase_tetri(t_tetris *tetri, char ***grid,
 void					free_grid(char ***grid);
 void   					 free_list(t_liste *liste);
 void					ft_putchar(char c);
-void					list_add_last(t_liste *liste, t_coord *coord_tab);
+void					list_add_last(t_liste *liste, t_block *block_tab);
 void					list_print(t_liste *liste);
 void					print_grid(char **grid);
 void					write_tetri(t_tetris *tetri, char ***grid,
@@ -360,7 +360,7 @@ void		write_error_message(int i)
 	exit(EXIT_FAILURE);
 }
 
-void		end_pars(t_coord *coord_tab, t_liste *liste)
+void		end_pars(t_block *block_tab, t_liste *liste)
 {
 	int k;
 	int mini;
@@ -371,34 +371,34 @@ void		end_pars(t_coord *coord_tab, t_liste *liste)
 	minj = 6;
 	while (k < 3)
 	{
-		if (coord_tab[k].x < mini)
-			mini = coord_tab[k].x;
-		if (coord_tab[k].y < minj)
-			minj = coord_tab[k].y;
+		if (block_tab[k].x < mini)
+			mini = block_tab[k].x;
+		if (block_tab[k].y < minj)
+			minj = block_tab[k].y;
 		k++;
 	}
 	k = 0;
 	while (k < 4)
 	{
-		coord_tab[k].x -= mini;
-		coord_tab[k].y -= minj;
+		block_tab[k].x -= mini;
+		block_tab[k].y -= minj;
 		k++;
 	}
-	if (check_connection(coord_tab, liste) == 0)
+	if (check_connection(block_tab, liste) == 0)
 	{
 		free_list(liste);
 		write_error_message(1);
 	}
 }
 
-t_coord		*parse_tetri(char tab[5][5], t_liste *liste)
+t_block		*parse_tetri(char tab[5][5], t_liste *liste)
 {
-	t_coord		*coord_tab;
+	t_block		*block_tab;
 	int			i;
 	int			j;
 	int			k;
 
-	coord_tab = (t_coord*)malloc(sizeof(t_coord) * 4);
+	block_tab = (t_block*)malloc(sizeof(t_block) * 4);
 	i = 0;
 	k = 0;
 	while (i < 4)
@@ -408,16 +408,16 @@ t_coord		*parse_tetri(char tab[5][5], t_liste *liste)
 		{
 			if (tab[i][j] == '#')
 			{
-				coord_tab[k].x = i;
-				coord_tab[k].y = j;
+				block_tab[k].x = i;
+				block_tab[k].y = j;
 				k++;
 			}
 			j++;
 		}
 		i++;
 	}
-	end_pars(coord_tab, liste);
-	return (coord_tab);
+	end_pars(block_tab, liste);
+	return (block_tab);
 }
 
 void		line_break(int line_tetri, char tetri[5][5], t_liste *liste)
@@ -463,14 +463,14 @@ t_liste		*list_init(void)
 		exit(EXIT_FAILURE);
 	element->letter = 'A';
 	element->next = NULL;
-	element->coord_tab = NULL;
+	element->block_tab = NULL;
 	liste->first = element;
 	liste->last = element;
 	liste->size_liste = 0;
 	return (liste);
 }
 
-void		list_add_last(t_liste *liste, t_coord *coord_tab)
+void		list_add_last(t_liste *liste, t_block *block_tab)
 {
 	t_tetris	*new;
 
@@ -479,7 +479,7 @@ void		list_add_last(t_liste *liste, t_coord *coord_tab)
 	{
 		exit(EXIT_FAILURE);
 	}
-	new->coord_tab = coord_tab;
+	new->block_tab = block_tab;
 	liste->last->next = new;
 	new->letter = (liste->last->letter) + 1;
 	new->next = NULL;
@@ -496,7 +496,7 @@ void	free_list(t_liste *liste)
 	actuel = liste->first;
 	while (actuel != NULL)
 	{
-		free(actuel->coord_tab);
+		free(actuel->block_tab);
 		tmp = actuel->next;
 		free(actuel);
 		actuel = tmp;
@@ -655,8 +655,8 @@ void	erase_tetri(t_tetris *tetri, char ***grid, int i_grid, int j_grid)
 	k = 0;
 	while (k < 4)
 	{
-		x = tetri->coord_tab[k].x + i_grid;
-		y = tetri->coord_tab[k].y + j_grid;
+		x = tetri->block_tab[k].x + i_grid;
+		y = tetri->block_tab[k].y + j_grid;
 		(*grid)[x][y] = '.';
 		k++;
 	}
@@ -671,8 +671,8 @@ void	write_tetri(t_tetris *tetri, char ***grid, int i_grid, int j_grid)
 	k = 0;
 	while (k < 4)
 	{
-		x = tetri->coord_tab[k].x + i_grid;
-		y = tetri->coord_tab[k].y + j_grid;
+		x = tetri->block_tab[k].x + i_grid;
+		y = tetri->block_tab[k].y + j_grid;
 		(*grid)[x][y] = tetri->letter;
 		k++;
 	}
@@ -691,8 +691,8 @@ int		space_for_tetri(t_tetris *tetri, char ***grid, int i_grid, int j_grid)
 	k = 0;
 	while (k < 4)
 	{
-		x = tetri->coord_tab[k].x + i_grid;
-		y = tetri->coord_tab[k].y + j_grid;
+		x = tetri->block_tab[k].x + i_grid;
+		y = tetri->block_tab[k].y + j_grid;
 		if (x >= size || y >= size)
 			return (0);
 		else if ((*grid)[x][y] != '.')

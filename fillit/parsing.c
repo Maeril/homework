@@ -6,13 +6,13 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 14:10:30 by myener            #+#    #+#             */
-/*   Updated: 2019/01/24 14:16:42 by myener           ###   ########.fr       */
+/*   Updated: 2019/01/24 16:39:29 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_block     *parsing_block(char tab[5][5], t_block *block_tab, char **line)
+t_block     *parsing_block(char tab[5][5], t_block *forme, char **line)
 {
 	int     i;
 	int     j;
@@ -31,16 +31,16 @@ t_block     *parsing_block(char tab[5][5], t_block *block_tab, char **line)
 		    {
                 if (tab[i][j] == '#')
                 {
-                    block_tab[k].x = i;
-                    block_tab[k].y = j;
+                    forme[k].x = i;
+                    forme[k].y = j;
                     k++;
                 }
                 j++;
 		    }
 		    i++;
 	    }
-        tmp = block_tab;
-        block_tab = block_tab->next;
+        tmp = forme;
+        forme = forme->next;
         return (tmp);
     }
     return (error);
@@ -49,7 +49,7 @@ t_block     *parsing_block(char tab[5][5], t_block *block_tab, char **line)
 int counter_forme
 {
     char    *tab
-    while (parsing_block
+    while (parsing_block()
     {
       c++;
     }
