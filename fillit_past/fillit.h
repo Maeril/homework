@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 21:45:59 by myener            #+#    #+#             */
-/*   Updated: 2019/01/24 16:38:45 by myener           ###   ########.fr       */
+/*   Updated: 2019/01/27 21:46:56 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,10 @@ typedef struct			s_block
 	int 				y;
 } 						t_block;
 
-typedef	struct			s_list
+struct					s_list
 {
 	t_block				*forme;
 	char				letter;
 	struct s_list		*next;
 }						t_list;
-
-
 #endif
