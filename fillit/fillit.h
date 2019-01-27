@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 15:45:54 by mribouch          #+#    #+#             */
-/*   Updated: 2019/01/27 22:05:56 by myener           ###   ########.fr       */
+/*   Updated: 2019/01/27 22:17:23 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int				ft_num_tetri(char *str);
 t_tetri			*ft_get_tetriminos(char *str);
 int				ft_sqrt_fillit(int nb);
 void			ft_print_map(char **map);
-char			**ft_create_map(int nbt, char *str);
+char			**ft_create_map(int nbt);
 int				ft_get_map_size(char *str);
 t_tetri			*ft_put_up_left(t_tetri *begin);
 char			**ft_solve(char **map, t_tetri *begin, int s_map);
