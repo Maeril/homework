@@ -6,22 +6,22 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/15 16:21:39 by mribouch          #+#    #+#              #
-#    Updated: 2019/01/27 22:38:05 by myener           ###   ########.fr        #
+#    Updated: 2019/01/28 00:10:54 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 
-FLAGS = -Wall -Wextra -Werror
-
 SRCS = main.c ../get_next_line/get_next_line.c check.c check_neighbour.c \
 		tools.c get.c map.c put_up_left.c solver.c
+
+FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
 $(NAME):
 	gcc $(FLAGS) -c $(SRCS)
-	gcc -Wall -Wextra -Werror check.o check_neighbour.o main.o get_next_line.o \
+	gcc $(FLAGS) check.o check_neighbour.o main.o get_next_line.o \
 	libft/libft.a tools.o get.o map.o put_up_left.o solver.o -o $(NAME)
 
 clean:
@@ -30,4 +30,5 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+
 re: fclean all
