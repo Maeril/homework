@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mribouch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 14:44:51 by mribouch          #+#    #+#             */
-/*   Updated: 2019/01/27 22:17:28 by myener           ###   ########.fr       */
+/*   Updated: 2019/01/25 14:36:57 by mribouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdio.h>
 
-void	ft_print_all_lst(t_tetri *tetris)
+/*void	ft_print_all_lst(t_tetri *tetris)
 {
 	int	i;
 	int	nbt;
@@ -46,9 +46,9 @@ void	ft_print_all_lst(t_tetri *tetris)
 		ft_putendl("SUIVANT");
 		tetris = tetris->next;
 	}
-}
+}*/
 
-int	main(int ac, char **av)
+int		main(int ac, char **av)
 {
 	int		fd;
 	char	*all;

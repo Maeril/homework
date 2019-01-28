@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_neighbour.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mribouch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 14:09:32 by mribouch          #+#    #+#             */
-/*   Updated: 2019/01/27 22:32:51 by myener           ###   ########.fr       */
+/*   Updated: 2019/01/24 14:27:59 by mribouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	ft_check_neighbour(char *str)
 	i = 0;
 	nbl = 1;
 	while (str[i] != '\0')
-	{
+	{	
 		if (str[i] == '\n')
 			nbl++;
 		 if (i == 0 && str[i] == '#')

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solver.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mribouch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 13:06:53 by mribouch          #+#    #+#             */
-/*   Updated: 2019/01/27 22:17:32 by myener           ###   ########.fr       */
+/*   Updated: 2019/01/25 13:27:27 by mribouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,15 @@ int		ft_check_place(t_tetri *begin, char **map, int s_map)
 
 	i = 0;
 	j = 0;
-	//ft_putstr("CECI EST SMAP : ");
-	//ft_putnbr(s_map);
-	//ft_putchar('\n');
 	while (i < 4)
 	{
 		while (j < 4)
 		{
-			if ((begin->tetri[i][j] == '#') && (i + begin->y >= s_map || j + begin->x >= s_map))
+			if ((begin->tetri[i][j] == '#') && \
+					(i + begin->y >= s_map || j + begin->x >= s_map))
 				return (0);
-			if (begin->tetri[i][j] == '#' && map[i + begin->y][j + begin->x] != '.')
+			if (begin->tetri[i][j] == '#' && \
+					map[i + begin->y][j + begin->x] != '.')
 				return (0);
 			j++;
 		}
