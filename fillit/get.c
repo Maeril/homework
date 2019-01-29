@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mribouch <mribouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 12:51:34 by mribouch          #+#    #+#             */
-/*   Updated: 2019/01/29 16:51:22 by mribouch         ###   ########.fr       */
+/*   Updated: 2019/01/29 17:54:24 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_get_height(char *str)
+/*int		ft_get_height(char *str)
 {
 	int	i;
 	int	line;
@@ -36,9 +36,9 @@ int		ft_get_height(char *str)
 		}
 	}
 	return (max - min + 1);
-}
+}*/
 
-int		ft_get_width(char *str)
+/*int		ft_get_width(char *str)
 {
 	int	i;
 	int	min;
@@ -63,7 +63,7 @@ int		ft_get_width(char *str)
 		lim++;
 	}
 	return (max - min + 1);
-}
+}*/
 
 char	**ft_get_str(char *str)
 {
@@ -134,14 +134,16 @@ t_tetri	*ft_get_tetriminos(char *str)
 
 	letter = 'A';
 	nbt = ft_num_tetri(str) - 1;
-	tetris = ft_create_tetri(ft_get_str(str), letter++, ft_get_width(str),
-		ft_get_height(str));
+	//tetris = ft_create_tetri(ft_get_str(str), letter++, ft_get_width(str),
+	//	ft_get_height(str));
+	tetris = ft_create_tetri(ft_get_str(str), letter++);
 	ret = tetris;
 	str += 21;
 	while (nbt-- > 0)
 	{
-		tetris->next = ft_create_tetri(ft_get_str(str), letter++,
-				ft_get_width(str), ft_get_height(str));
+		//tetris->next = ft_create_tetri(ft_get_str(str), letter++,
+		//		ft_get_width(str), ft_get_height(str));
+		tetris->next = ft_create_tetri(ft_get_str(str), letter++);
 		tetris = tetris->next;
 		str += 21;
 	}
