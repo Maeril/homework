@@ -13,5 +13,11 @@
 			"path": "/Users/Maeril/Documents/42/42work",
 			"name": "42work"
 		}
-	]
+	],
+	"settings": {
+		"files.associations": {
+			"errno.h": "c",
+			"stdio.h": "c"
+		}
+	}
 }
