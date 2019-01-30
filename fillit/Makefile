@@ -3,31 +3,41 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
+#    By: mribouch <mribouch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/15 16:21:39 by mribouch          #+#    #+#              #
-#    Updated: 2019/01/29 21:32:07 by myener           ###   ########.fr        #
+#    Updated: 2019/01/30 18:51:54 by mribouch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 
-SRCS = main.c check.c check_neighbour.c \
-		tools.c get.c map.c put_up_left.c solver.c
+SRCS	=	main.c				\
+			check.c				\
+			check_neighbour.c	\
+			tools.c				\
+			get.c				\
+			map.c				\
+			put_up_left.c		\
+			solver.c
+OBJS	=	$(SRCS:.c=.o)
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS			=	-Wall -Wextra -Werror
+LIBFT_FOLDER	=	libft
 
-all: $(NAME)
+all: libft $(NAME)
 
-$(NAME):
-	make -C libft/
-	gcc $(FLAGS) -c $(SRCS)
-	gcc $(FLAGS) check.o check_neighbour.o main.o \
-	libft/libft.a tools.o get.o map.o put_up_left.o solver.o -o $(NAME)
+$(NAME): $(OBJS)
+	gcc $(FLAGS) $(OBJS) -o $(NAME) -I $(LIBFT_FOLDER) $(LIBFT_FOLDER)/libft.a
+
+.c.o: $(SRCS)
+	gcc -c $< -o $@ $(FLAGS)
+
+libft:
+	make -C libft
 
 clean:
-	rm -f check.o check_neighbour.o main.o tools.o get.o map.o \
-	put_up_left.o solver.o
+	rm -f $(OBJS)
 	make clean -C libft/
 
 fclean: clean
@@ -35,3 +45,5 @@ fclean: clean
 	make fclean -C libft/
 
 re: fclean all
+
+.PHONY: libft clean fclean re

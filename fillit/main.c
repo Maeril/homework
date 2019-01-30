@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mribouch <mribouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 14:44:51 by mribouch          #+#    #+#             */
-/*   Updated: 2019/01/29 20:59:48 by myener           ###   ########.fr       */
+/*   Updated: 2019/01/30 18:52:39 by mribouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int		main(int ac, char **av)
 			ft_put_up_left(lsttetris);
 			ft_print_map(ft_solve((map = ft_create_map(ft_get_map_size(all))),
 						lsttetris, ft_get_map_size(all)));
-			ft_free_map(map);
 			ft_free_list(lsttetris);
+			ft_free_map(map);
 			free(all);
 		}
 	}
