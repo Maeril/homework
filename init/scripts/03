@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-#!/bin/bash
+#!/bin/zsh
 
 clear
 sleep 1
@@ -28,9 +28,9 @@ case $ans in
    echo "Did u know ?"
    echo " "
    echo " "
-	echo "Your best trait is: CREATIVITY"
+   printf "Your best trait is: CREATIVITY"
    echo " "
-	echo "Your worst trait is: CRITICALITY"
+   printf "Your worst trait is: CRITICALITY"
    echo " "
    sleep 4
    clear
@@ -48,9 +48,9 @@ case $ans in
    echo "Did u know ?"
    echo " "
    echo " "
-	echo "Your best trait is: WARMNESS"
+	printf "Your best trait is: WARMNESS"
    echo " "
-	echo "Your worst trait is: OBSESSIVENESS"
+	printf "Your worst trait is: OBSESSIVENESS"
    echo " "
    sleep 4
    clear
@@ -68,9 +68,9 @@ case $ans in
    echo "Did u know ?"
    echo " "
    echo " "
-	echo "Your best trait is: PASSION"
+	printf "Your best trait is: PASSION"
    echo " "
-	echo "Your worst trait is: IRRESPONSIBILITY"
+	printf "Your worst trait is: IRRESPONSIBILITY"
    echo " "
    sleep 4
    clear
@@ -88,9 +88,9 @@ case $ans in
    echo "Did u know ?"
    echo " "
    echo " "
-	echo "Your best trait is: SELF-DETERMINATION"
+	printf "Your best trait is: SELF-DETERMINATION"
    echo " "
-	echo "Your worst trait is: ARROGANCE"
+	printf "Your worst trait is: ARROGANCE"
    echo " "
    sleep 4
    clear
@@ -104,7 +104,7 @@ case $ans in
    ;;
 
    *)
-	echo "Sorry, I didn't catch that... Please relaunch the script uwu"
+	printf "Sorry, I didn't catch that... ;w; Please relaunch the script uwu"
    echo " "
    sleep 3
    exit
