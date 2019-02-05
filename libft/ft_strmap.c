@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 13:57:15 by myener            #+#    #+#             */
-/*   Updated: 2018/11/27 16:12:28 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/04 15:43:55 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*ft_strmap(const char *s, char (*f)(char))
 {
 	char	*str;
-	int		i;
+	size_t	i;
 
 	if (!s)
 		return (NULL);

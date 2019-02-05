@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mribouch <mribouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 13:57:15 by myener            #+#    #+#             */
-/*   Updated: 2018/11/29 13:24:52 by myener           ###   ########.fr       */
+/*   Updated: 2019/01/29 16:41:54 by mribouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# define BUFF_SIZE 4096
+# define MAX_FD 8192
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -87,5 +89,6 @@ char			*ft_strsub(const char *s, unsigned int start, size_t len);
 char			*ft_strtrim(const char *s);
 int				ft_tolower(int c);
 int				ft_toupper(int c);
+int				get_next_line(const int fd, char **line);
 
 #endif

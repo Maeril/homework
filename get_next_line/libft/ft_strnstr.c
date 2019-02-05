@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 19:30:15 by myener            #+#    #+#             */
-/*   Updated: 2018/11/29 16:14:05 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/04 15:43:19 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 char	*ft_strnstr(const char *str, const char *find, size_t len)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	if (!*find)
 		return ((char *)str);
