@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/02 15:52:45 by myener            #+#    #+#             */
-/*   Updated: 2019/02/06 16:46:09 by myener           ###   ########.fr       */
+/*   Created: 2018/11/28 12:48:06 by myener            #+#    #+#             */
+/*   Updated: 2018/11/28 18:20:17 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#ifndef FT_PRINTF_H
-
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <stdio.h>
-
-typedef struct	s_tetri
+void	ft_lstadd(t_list **alst, t_list *new)
 {
-	char			**tetri;
-	char			key;
-	int				x;
-	int				y;
-	struct s_tetri	*next;
-}				t_tetri;
-
-int		ft_printf(const char *format);
-
-#endif
+	if (alst && new)
+	{
+		new->next = *alst;
+		*alst = new;
+	}
+}

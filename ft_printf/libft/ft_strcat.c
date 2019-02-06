@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/02 15:52:45 by myener            #+#    #+#             */
-/*   Updated: 2019/02/06 16:46:09 by myener           ###   ########.fr       */
+/*   Created: 2018/11/13 15:42:40 by myener            #+#    #+#             */
+/*   Updated: 2018/11/27 16:12:51 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#ifndef FT_PRINTF_H
-
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <stdio.h>
-
-typedef struct	s_tetri
+char	*ft_strcat(char *dest, const char *src)
 {
-	char			**tetri;
-	char			key;
-	int				x;
-	int				y;
-	struct s_tetri	*next;
-}				t_tetri;
+	int	i;
+	int j;
 
-int		ft_printf(const char *format);
-
-#endif
+	i = 0;
+	j = 0;
+	while (dest[i])
+		i++;
+	while (src[j])
+	{
+		dest[i] = src[j];
+		i++;
+		j++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}

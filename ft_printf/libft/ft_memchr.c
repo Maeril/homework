@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/02 15:52:45 by myener            #+#    #+#             */
-/*   Updated: 2019/02/06 16:46:09 by myener           ###   ########.fr       */
+/*   Created: 2018/11/14 16:26:39 by myener            #+#    #+#             */
+/*   Updated: 2018/11/27 16:14:04 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#ifndef FT_PRINTF_H
-
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <stdio.h>
-
-typedef struct	s_tetri
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	char			**tetri;
-	char			key;
-	int				x;
-	int				y;
-	struct s_tetri	*next;
-}				t_tetri;
+	size_t	i;
 
-int		ft_printf(const char *format);
-
-#endif
+	i = 0;
+	while (i < n)
+	{
+		if (((unsigned char*)s)[i] == (unsigned char)c)
+			return (((unsigned char*)s) + i);
+		i++;
+	}
+	return (NULL);
+}

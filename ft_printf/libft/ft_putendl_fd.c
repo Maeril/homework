@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/02 15:52:45 by myener            #+#    #+#             */
-/*   Updated: 2019/02/06 16:46:09 by myener           ###   ########.fr       */
+/*   Created: 2018/11/26 00:57:10 by myener            #+#    #+#             */
+/*   Updated: 2018/11/27 16:13:00 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#ifndef FT_PRINTF_H
-
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <stdio.h>
-
-typedef struct	s_tetri
+void	ft_putendl_fd(char const *s, int fd)
 {
-	char			**tetri;
-	char			key;
-	int				x;
-	int				y;
-	struct s_tetri	*next;
-}				t_tetri;
+	int	i;
 
-int		ft_printf(const char *format);
-
-#endif
+	if (!s)
+		return ;
+	i = 0;
+	while (s[i])
+	{
+		ft_putchar_fd(s[i], fd);
+		if (s[i + 1] == '\0')
+			ft_putchar_fd('\n', fd);
+		i++;
+	}
+}

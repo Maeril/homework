@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/02 15:52:45 by myener            #+#    #+#             */
-/*   Updated: 2019/02/06 16:46:09 by myener           ###   ########.fr       */
+/*   Created: 2018/11/14 13:57:15 by myener            #+#    #+#             */
+/*   Updated: 2018/11/27 16:11:45 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#ifndef FT_PRINTF_H
-
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <stdio.h>
-
-typedef struct	s_tetri
+char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 {
-	char			**tetri;
-	char			key;
-	int				x;
-	int				y;
-	struct s_tetri	*next;
-}				t_tetri;
+	char			*str;
+	unsigned int	i;
 
-int		ft_printf(const char *format);
-
-#endif
+	if (!s)
+		return (NULL);
+	if (!(str = malloc(sizeof(char) * (ft_strlen(s) + 1))))
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		str[i] = f(i, s[i]);
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}

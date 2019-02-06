@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/02 15:52:45 by myener            #+#    #+#             */
-/*   Updated: 2019/02/06 16:46:09 by myener           ###   ########.fr       */
+/*   Created: 2018/11/28 12:50:37 by myener            #+#    #+#             */
+/*   Updated: 2018/11/29 12:48:23 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#ifndef FT_PRINTF_H
-
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <stdio.h>
-
-typedef struct	s_tetri
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	char			**tetri;
-	char			key;
-	int				x;
-	int				y;
-	struct s_tetri	*next;
-}				t_tetri;
+	t_list		*new;
+	t_list		*tmp;
 
-int		ft_printf(const char *format);
-
-#endif
+	tmp = f(lst);
+	new = tmp;
+	if (lst)
+	{
+		while (lst->next && (tmp->next = f(lst)))
+		{
+			lst = lst->next;
+			if (!(tmp->next = f(lst)))
+			{
+				free(tmp->next);
+				return (NULL);
+			}
+			tmp = tmp->next;
+		}
+	}
+	return (new);
+}

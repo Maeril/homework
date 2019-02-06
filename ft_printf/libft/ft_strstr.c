@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/02 15:52:45 by myener            #+#    #+#             */
-/*   Updated: 2019/02/06 16:46:09 by myener           ###   ########.fr       */
+/*   Created: 2018/11/13 16:41:44 by myener            #+#    #+#             */
+/*   Updated: 2018/11/23 16:58:30 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#ifndef FT_PRINTF_H
-
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <stdio.h>
-
-typedef struct	s_tetri
+char	*ft_strstr(const char *str, const char *find)
 {
-	char			**tetri;
-	char			key;
-	int				x;
-	int				y;
-	struct s_tetri	*next;
-}				t_tetri;
+	int	i;
+	int	j;
 
-int		ft_printf(const char *format);
-
-#endif
+	if (!*find)
+		return ((char *)str);
+	i = 0;
+	while (str[i])
+	{
+		j = 1;
+		if (str[i] == find[0])
+		{
+			while (find[j] != '\0' && str[i + j] == find[j])
+				j++;
+			if (find[j] == '\0')
+				return ((char *)str + i);
+		}
+		i++;
+	}
+	return (0);
+}

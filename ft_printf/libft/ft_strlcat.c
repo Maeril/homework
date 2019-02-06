@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/02 15:52:45 by myener            #+#    #+#             */
-/*   Updated: 2019/02/06 16:46:09 by myener           ###   ########.fr       */
+/*   Created: 2018/11/13 15:51:44 by myener            #+#    #+#             */
+/*   Updated: 2018/11/27 16:11:53 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#ifndef FT_PRINTF_H
-
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <stdio.h>
-
-typedef struct	s_tetri
+size_t	ft_strlcat(char *dst, const char *src, size_t n)
 {
-	char			**tetri;
-	char			key;
-	int				x;
-	int				y;
-	struct s_tetri	*next;
-}				t_tetri;
+	size_t	dst_ln;
+	size_t	src_ln;
 
-int		ft_printf(const char *format);
-
-#endif
+	src_ln = ft_strlen(src);
+	dst_ln = ft_strnlen(dst, n);
+	if (dst_ln == n)
+		return (n + src_ln);
+	if ((src_ln + dst_ln) < n)
+		ft_memcpy((dst + dst_ln), src, (src_ln + 1));
+	else
+	{
+		ft_memcpy((dst + dst_ln), src, ((n - dst_ln) - 1));
+		dst[n - 1] = '\0';
+	}
+	return (dst_ln + src_ln);
+}

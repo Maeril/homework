@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/02 15:52:45 by myener            #+#    #+#             */
-/*   Updated: 2019/02/06 16:46:09 by myener           ###   ########.fr       */
+/*   Created: 2018/11/14 12:52:20 by myener            #+#    #+#             */
+/*   Updated: 2018/11/27 16:14:06 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#ifndef FT_PRINTF_H
-
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <stdio.h>
-
-typedef struct	s_tetri
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	char			**tetri;
-	char			key;
-	int				x;
-	int				y;
-	struct s_tetri	*next;
-}				t_tetri;
+	const unsigned char		*src2;
+	unsigned char			*dst2;
+	size_t					i;
 
-int		ft_printf(const char *format);
-
-#endif
+	i = 0;
+	src2 = (const unsigned char*)src;
+	dst2 = (unsigned char*)dst;
+	while (i < n)
+	{
+		dst2[i] = src2[i];
+		if (src2[i] == ((unsigned char)c))
+			return (dst2 + i + 1);
+		i++;
+	}
+	return (0);
+}

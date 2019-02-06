@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/02 15:52:45 by myener            #+#    #+#             */
-/*   Updated: 2019/02/06 16:46:09 by myener           ###   ########.fr       */
+/*   Created: 2018/11/13 18:40:23 by myener            #+#    #+#             */
+/*   Updated: 2018/11/27 16:14:20 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#ifndef FT_PRINTF_H
-
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <stdio.h>
-
-typedef struct	s_tetri
+int		ft_atoi(const char *str)
 {
-	char			**tetri;
-	char			key;
-	int				x;
-	int				y;
-	struct s_tetri	*next;
-}				t_tetri;
+	int	i;
+	int	nb;
+	int	neg;
 
-int		ft_printf(const char *format);
-
-#endif
+	i = 0;
+	nb = 0;
+	neg = 0;
+	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
+		i++;
+	if (str[i] == '-')
+		neg = 1;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nb = nb * 10;
+		nb += (str[i] - '0');
+		i++;
+	}
+	return (neg == 1) ? -nb : nb;
+}
