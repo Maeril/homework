@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/15 16:21:39 by myener            #+#    #+#              #
-#    Updated: 2019/02/02 17:09:58 by myener           ###   ########.fr        #
+#    Updated: 2019/02/07 19:36:48 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,7 @@ NAME = libftprintf.a
 
 FLAGS = -Wall -Wextra -Werror
 
-SRC =	main.c		\
-		ft_printf.c \
+SRC =	ft_printf.c \
 
 HEADER = ft_printf.h
 

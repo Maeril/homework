@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 09:52:42 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/07 15:35:30 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/07 23:01:31 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ t_data		parse_flags(char *instructions, t_data data, int i)
 		data.space = (instructions[i] == ' ');
 		data.sharp = (instructions[i] == '#');
 		/*Je gere les cas ou un caractere en exclut un autre: */
-
+		data.minus == 1 ? data.zero = 0 : 0;
+		data.plus == 1 ? data.space = 0 : 0;
 		i++;
 	}
 	return (data);
@@ -102,6 +103,9 @@ char		*take_instructions(const char *format, int i)
 {
 	int     tmp;
 	char    *instructions;
+	char	*str;
+	int		k;
+	int		j;
 
 	i++;
 	tmp = i;
@@ -110,11 +114,25 @@ char		*take_instructions(const char *format, int i)
 			format[i] != 'u' && format[i] != 'x' && format[i] != 'X'
 			&& format[i])
 		i++;
-	instructions = ft_strsub(format, tmp, i - tmp + 1);
+	/*instructions = ft_strsub(format, tmp, i - tmp + 1);*/
+	if (!format)
+		return (NULL);
+	if (!(str = malloc(sizeof(*format) * ((i - tmp + 1) + 1))))
+		return (NULL);
+	k = tmp;
+	j = 0;
+	while (format[k] && k < tmp + (i - tmp + 1))
+	{
+		str[j] = format[k];
+		j++;
+		k++;
+	}
+	str[j] = '\0';
+	instructions = str;
 	return (instructions);
 }
 
-void		put_text(va_list ap, const char *format)
+void		put_text(/*va_list ap,*/ const char *format)
 {
 	//afficher format tant que ce n'est pas %
 	int i;
@@ -171,11 +189,14 @@ int			ft_printf(const char *format, ...)
 	va_list ap;
 
 	va_start(ap, format);
-	put_text(ap, format);
+	put_text(/*ap, */format);
 	va_end(ap);
 	return (1); // retourner la bonne valeur
 }
 
+/* il faudra mettre ce main en commentaire pour que le testeur fonctionne;
+ensuite faire make, puis copier coller libftprintf.a dans le dossier du testeur,
+et refaire make.*/
 int			main(void)
 {
 	char 	*format;
@@ -206,7 +227,7 @@ int			main(void)
   - il faut trouver un moyen de ne pas affichers les instructions venant juste apres le %
   (les caracteres qui sont dans la chaine de caractere instructions.
 
-  - je vais enlever de la fonction PUT TEXT l'argent ap parce que je ne l'utilise pas encore
+  - je vais enlever de la fonction PUT TEXT l'argument ap parce que je ne l'utilise pas encore
   et que ca empeche le Makefile de fonctionner
 
   - a reparer : le cas ou la width ou precision est une etoile
