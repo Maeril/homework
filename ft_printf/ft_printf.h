@@ -5,27 +5,39 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/02 15:52:45 by myener            #+#    #+#             */
-/*   Updated: 2019/02/06 16:46:09 by myener           ###   ########.fr       */
+/*   Created: 2019/02/07 10:32:38 by mpicard           #+#    #+#             */
+/*   Updated: 2019/02/07 13:40:28 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef FT_PRINTF_H
 
 # define FT_PRINTF_H
-# include <stdarg.h>
+
 # include <stdio.h>
 
-typedef struct	s_tetri
+typedef struct      s_data
 {
-	char			**tetri;
-	char			key;
+	int             minus;
+	int             plus;
+	int             zero;
+	int             space;
+	int             sharp;
+	int             width;
+	int             precision;
+	int             h;
+	int             ll;
+	int             l;
+	int             hh;
+	int				c;
+	int				s;
+	int				p;
+	int				d;
+	int				i;
+	int				o;
+	int				u;
 	int				x;
-	int				y;
-	struct s_tetri	*next;
-}				t_tetri;
-
-int		ft_printf(const char *format);
+	int				X;
+}                   t_data;
 
 #endif
