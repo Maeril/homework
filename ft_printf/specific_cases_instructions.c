@@ -6,12 +6,53 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 14:14:03 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/08 15:17:59 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/08 16:23:56 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "ft_printf.h"
+
+t_data		find_arg_type(va_list ap, t_data data, char *instructions, int i)
+{
+	int index;
+
+	ft_putchar(instructions[i]);
+	index = 0;
+	if (data.d == 1 || data.i == 1 || data.o == 1 || data.x == 1 || data.X == 1)
+		data.integer = 1;
+	if (data.c == 1)
+		data.car = 1;
+	if (data.s == 1 || data.p == 1)
+		data.str = 1;
+	if (data.u == 1)
+		data.unint = 1;
+	if ((data.d == 1 || data.i == 1) && (data.hh == 1))
+		data.signcar = 1;
+	if ((data.d == 1 || data.i == 1) && (data.h == 1))
+		data.sh = 1;
+	if ((data.d == 1 || data.i == 1) && (data.l == 1))
+		data.lg = 1;
+	if ((data.d == 1 || data.i == 1) && (data.ll == 1))
+		data.lglg = 1;
+	if ((data.o == 1 || data.u == 1 || data.x == 1 || data.X == 1) && (data.hh == 1))
+		data.unsigncar = 1;
+	if ((data.o == 1 || data.u == 1 || data.x == 1 || data.X == 1) && (data.h == 1))
+		data.unsignsh = 1;
+	if ((data.o == 1 || data.u == 1 || data.x == 1 || data.X == 1) && (data.ll == 1))
+		data.unsignlglg = 1;
+	if ((data.o == 1 || data.u == 1 || data.x == 1 || data.X == 1) && (data.l == 1))
+		data.unsignlg = 1;
+
+	printf("a la fin de find arg type, data.integer = %d\n", data.integer);
+
+	if (data.integer == 1)
+	{
+		data = ft_typeis_int(ap, data);
+	}
+
+	return (data);
+}
 
 t_data		check_unsigned(t_data data)
 {
@@ -21,14 +62,6 @@ t_data		check_unsigned(t_data data)
 					 data.ll == 1)) || (data.X == 1 && (data.h == 1 ||
 					 data.hh == 1 || data.l == 1 || data.ll == 1)))
 		data.unsign = 1;
-	return(data);
-}
-
-t_data		check_zero(t_data data)
-{
-	if (data.d == 1 || data.i == 1 || data.o == 1 || data.u == 1 ||
-	 	data.x == 1 || data.X == 1)
-		data.zero = 0;
 	return(data);
 }
 

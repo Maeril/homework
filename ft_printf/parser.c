@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 13:40:00 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/08 15:18:02 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/08 15:21:56 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-/*J'ai simplifie l'ecriture ici: */
 t_data		parse_size(char *instructions, t_data data, unsigned int i)
 {
 	if ((data.l = (instructions[i] == 'l')))
@@ -30,14 +29,8 @@ t_data		parse_size(char *instructions, t_data data, unsigned int i)
 
 t_data		parse_precision(char *instructions, t_data data, int i)
 {
-//	printf("instructions[i] == . ? %c\n", instructions[i]);
-//	printf("instructions[i -1] == 5 ? %c\n", instructions[i - 1]);
 	if (instructions[i - 1] && instructions[i - 1] >= '0' && instructions[i - 1] <= '9')
-	{
-//		printf("OUI J ENTRE ICI LIGNE 70\n\n");
 		data.width = 1;
-//		printf("data.width = 1 ? %d\n", data.width);
-	}
 	if (instructions[i + 1] >= '0' && instructions[i + 1] <= '9')
 		data.precision = 1;
 	while (instructions[i + 1] >= '0' && instructions[i + 1] <= '9')
@@ -57,7 +50,6 @@ t_data		parse_width(char *instructions, t_data data, int i)
 
 t_data		parse_flags(char *instructions, t_data data, int i)
 {
-	/*J'ai simplifie l'ecriture ici: */
 	while (instructions[i] == '-' || instructions[i] == '+' ||
 			instructions[i] == '0' || instructions[i] == ' ' ||
 			instructions[i] == '#')
