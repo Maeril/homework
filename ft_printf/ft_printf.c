@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 09:52:42 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/08 15:17:58 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/08 17:44:46 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 
 char		*take_instructions(const char *format, int i)
 {
-	int     tmp;
-	char    *instructions;
+	int		tmp;
+	char	*instruc;
 	char	*str;
 	int		k;
 	int		j;
@@ -31,7 +31,6 @@ char		*take_instructions(const char *format, int i)
 			format[i] != 'u' && format[i] != 'x' && format[i] != 'X'
 			&& format[i])
 		i++;
-	/*instructions = ft_strsub(format, tmp, i - tmp + 1);*/
 	if (!format)
 		return (NULL);
 	if (!(str = malloc(sizeof(*format) * ((i - tmp + 1) + 1))))
@@ -39,21 +38,16 @@ char		*take_instructions(const char *format, int i)
 	k = tmp;
 	j = 0;
 	while (format[k] && k < tmp + (i - tmp + 1))
-	{
-		str[j] = format[k];
-		j++;
-		k++;
-	}
+		str[j++] = format[k++];
 	str[j] = '\0';
-	instructions = str;
-	return (instructions);
+	instruc = str;
+	return (instruc);
 }
 
-void		put_text(/*va_list ap,*/ const char *format)
+void		put_text(/*va_list ap,*/const char *format)
 {
-	//afficher format tant que ce n'est pas %
-	int i;
-	char	*instructions;
+	int		i;
+	char	*instruc;
 	t_data	data;
 
 	//j'affiche data avant de modifier
@@ -74,12 +68,10 @@ void		put_text(/*va_list ap,*/ const char *format)
 	i = 0;
 	while (format[i])
 	{
-		//		if (format[i] != '%')
-		//			ft_putchar(format[i]);
-		if  (format[i] == '%')
+		if (format[i] == '%')
 		{
-			instructions = take_instructions(format, i);
-			data = parse_instructions(instructions, data);
+			instruc = take_instructions(format, i);
+			data = parse_instructions(instruc, data);
 		}
 		i++;
 	}
@@ -96,8 +88,7 @@ void		put_text(/*va_list ap,*/ const char *format)
 	printf("data.ll = %d\n", data.ll);
 	printf("data.l = %d\n", data.l);
 	printf("data.hh = %d\n", data.hh);
-
-	printf("instructions = %s\n", instructions);
+	printf("instruc = %s\n", instruc);
 }
 
 
@@ -144,8 +135,8 @@ int			main(void)
   - a faire : gerer le cas ou il y a plusieurs points dans une precision, alors qu il
   n'est cense n'y en avoir qu'un.
 
-  - il faut trouver un moyen de ne pas affichers les instructions venant juste apres le %
-  (les caracteres qui sont dans la chaine de caractere instructions.
+  - il faut trouver un moyen de ne pas affichers les instruc venant juste apres le %
+  (les caracteres qui sont dans la chaine de caractere instruc.
 
   - je vais enlever de la fonction PUT TEXT l'argument ap parce que je ne l'utilise pas encore
   et que ca empeche le Makefile de fonctionner

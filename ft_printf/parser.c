@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 13:40:00 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/08 15:21:56 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/08 17:40:37 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,31 @@
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-t_data		parse_size(char *instructions, t_data data, unsigned int i)
+t_data		parse_size(char *instruc, t_data data, unsigned int i)
 {
-	if ((data.l = (instructions[i] == 'l')))
-		data.ll = (instructions[++i] == 'l');
-	else if ((data.h = (instructions[i] == 'h')))
-		data.hh = (instructions[++i] == 'h');
+	if ((data.l = (instruc[i] == 'l')))
+		data.ll = (instruc[++i] == 'l');
+	else if ((data.h = (instruc[i] == 'h')))
+		data.hh = (instruc[++i] == 'h');
 	i++;
 	printf("data.ll = %d\n", data.ll);
 	return (data);
 }
 
-t_data		parse_precision(char *instructions, t_data data, int i)
+t_data		parse_precision(char *instruc, t_data data, int i)
 {
-	if (instructions[i - 1] && instructions[i - 1] >= '0' && instructions[i - 1] <= '9')
+	if (instruc[i - 1] && instruc[i - 1] >= '0' && instruc[i - 1] <= '9')
 		data.width = 1;
-	if (instructions[i + 1] >= '0' && instructions[i + 1] <= '9')
+	if (instruc[i + 1] >= '0' && instruc[i + 1] <= '9')
 		data.precision = 1;
-	while (instructions[i + 1] >= '0' && instructions[i + 1] <= '9')
-        i++;
+	while (instruc[i + 1] >= '0' && instruc[i + 1] <= '9')
+		i++;
 	return (data);
 }
 
-t_data		parse_width(char *instructions, t_data data, int i)
+t_data		parse_width(char *instruc, t_data data, int i)
 {
-	while (instructions[i] >= '0' && instructions[i] <= '9')
+	while (instruc[i] >= '0' && instruc[i] <= '9')
 	{
 		data.width = 1;
 		i++;
@@ -48,41 +48,41 @@ t_data		parse_width(char *instructions, t_data data, int i)
 	return (data);
 }
 
-t_data		parse_flags(char *instructions, t_data data, int i)
+t_data		parse_flags(char *instruc, t_data data, int i)
 {
-	while (instructions[i] == '-' || instructions[i] == '+' ||
-			instructions[i] == '0' || instructions[i] == ' ' ||
-			instructions[i] == '#')
+	while (instruc[i] == '-' || instruc[i] == '+' ||
+			instruc[i] == '0' || instruc[i] == ' ' ||
+			instruc[i] == '#')
 	{
-		data.minus = (instructions[i] == '-');
-		data.plus = (instructions[i] == '+');
-		data.zero = (instructions[i] == '0');
-		data.space = (instructions[i] == ' ');
-		data.sharp = (instructions[i] == '#');
+		data.minus = (instruc[i] == '-');
+		data.plus = (instruc[i] == '+');
+		data.zero = (instruc[i] == '0');
+		data.space = (instruc[i] == ' ');
+		data.sharp = (instruc[i] == '#');
 		i++;
 	}
 	return (data);
 }
 
-t_data		parse_instructions(char *instructions, t_data data)
+t_data		parse_instructions(char *instruc, t_data data)
 {
 	int i;
 
 	i = 0;
-	while (instructions[i])
+	while (instruc[i])
 	{
-		if (instructions[i] == '-' || instructions[i] == '+' ||
-				instructions[i] == '0' || instructions[i] == ' ' ||
-				instructions[i] == '#')
-			data = parse_flags(instructions, data, i);// i est sur le dernier'flag'
+		if (instruc[i] == '-' || instruc[i] == '+' ||
+				instruc[i] == '0' || instruc[i] == ' ' ||
+				instruc[i] == '#')
+			data = parse_flags(instruc, data, i);/*i est sur le dernier'flag'*/
 		i++;
-		if (instructions[i] >= '0' && instructions[i] <= '9')
-			data = parse_width(instructions, data, i);
+		if (instruc[i] >= '0' && instruc[i] <= '9')
+			data = parse_width(instruc, data, i);
 		i++;
-		if (instructions[i] == '.')
-			data = parse_precision(instructions, data, i);
-		if (instructions[i] == 'h' || instructions[i] == 'l')
-			data = parse_size(instructions, data, i);
+		if (instruc[i] == '.')
+			data = parse_precision(instruc, data, i);
+		if (instruc[i] == 'h' || instruc[i] == 'l')
+			data = parse_size(instruc, data, i);
 	}
 	return (data);
 }
