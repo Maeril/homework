@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpicard <mpicard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 13:40:00 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/08 14:04:26 by mpicard          ###   ########.fr       */
+/*   Updated: 2019/02/08 15:18:02 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,19 +57,16 @@ t_data		parse_width(char *instructions, t_data data, int i)
 
 t_data		parse_flags(char *instructions, t_data data, int i)
 {
+	/*J'ai simplifie l'ecriture ici: */
 	while (instructions[i] == '-' || instructions[i] == '+' ||
 			instructions[i] == '0' || instructions[i] == ' ' ||
 			instructions[i] == '#')
-	/*J'ai simplifie l'ecriture ici: */
 	{
 		data.minus = (instructions[i] == '-');
 		data.plus = (instructions[i] == '+');
 		data.zero = (instructions[i] == '0');
 		data.space = (instructions[i] == ' ');
 		data.sharp = (instructions[i] == '#');
-		/*Je gere les cas ou un caractere en exclut un autre: */
-		data.minus == 1 ? data.zero = 0 : 0;
-		data.plus == 1 ? data.space = 0 : 0;
 		i++;
 	}
 	return (data);

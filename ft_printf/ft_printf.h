@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/07 13:40:28 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/08 15:18:03 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 typedef struct      s_data
 {
+	int				unsign;
 	int             minus;
 	int             plus;
 	int             zero;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpicard <mpicard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 09:52:42 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/08 13:40:41 by mpicard          ###   ########.fr       */
+/*   Updated: 2019/02/08 15:17:58 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,9 +111,13 @@ int			ft_printf(const char *format, ...)
 	return (1); // retourner la bonne valeur
 }
 
+
+
 /* il faudra mettre ce main en commentaire pour que le testeur fonctionne;
 ensuite faire make, puis copier coller libftprintf.a dans le dossier du testeur,
 et refaire make.
+
+
 int			main(void)
 {
 	char 	*format;
