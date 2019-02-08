@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/08 17:45:01 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/08 18:22:10 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ typedef struct			s_data
 	int					x;
 	int					big_x;
 	int					integer;
-	char				car;
 	int					str;
+	char				car;
 	unsigned int		unint;
 	signed char			signcar;
 	short				sh;
