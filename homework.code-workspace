@@ -14,7 +14,9 @@
 	"settings": {
 		"files.associations": {
 			"errno.h": "c",
-			"stdio.h": "c"
+			"stdio.h": "c",
+			"stdarg.h": "c",
+			"libft.h": "c"
 		}
 	}
 }
