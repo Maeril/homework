@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/08 18:22:10 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/10 19:44:24 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct			s_data
 
 char					*take_instructions(const char *format, int i);
 int						ft_printf(const char *format, ...);
-void					put_text(/*va_list ap, */const char *format);
+void					put_text(va_list ap, const char *format);
 t_data					ft_typeis_int(va_list ap, t_data data);
 t_data					check_plus_flag(t_data data);
 t_data					check_zero(t_data data);

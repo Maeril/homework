@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 09:52:42 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/08 17:44:46 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/11 11:32:21 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,26 +44,11 @@ char		*take_instructions(const char *format, int i)
 	return (instruc);
 }
 
-void		put_text(/*va_list ap,*/const char *format)
+void		put_text(va_list ap, const char *format)
 {
 	int		i;
 	char	*instruc;
 	t_data	data;
-
-	//j'affiche data avant de modifier
-	printf("avant\n");
-	printf("data.minus = %d\n", data.minus);
-	printf("data.plus = %d\n", data.plus);
-	printf("data.zero = %d\n", data.zero);
-	printf("data.space = %d\n", data.space);
-	printf("data.sharp = %d\n", data.sharp);
-	printf("data.width = %d\n", data.width);
-	printf("data.precision = %d\n", data.precision);
-	printf("data.h = %d\n", data.h);
-	printf("data.ll = %d\n", data.ll);
-	printf("data.l = %d\n", data.l);
-	printf("data.hh = %d\n", data.hh);
-	printf("fin de avant \n");
 
 	i = 0;
 	while (format[i])
@@ -72,23 +57,13 @@ void		put_text(/*va_list ap,*/const char *format)
 		{
 			instruc = take_instructions(format, i);
 			data = parse_instructions(instruc, data);
+            data = finalize_instructions(data);
+            data = find_arg_type(ap, data, instruc, i);
+            data = clean_data(data);
+            i++;
 		}
 		i++;
 	}
-	// j'affiche data apres
-	printf("apres\n");
-	printf("data.minus = %d\n", data.minus);
-	printf("data.plus = %d\n", data.plus);
-	printf("data.zero = %d\n", data.zero);
-	printf("data.space = %d\n", data.space);
-	printf("data.sharp = %d\n", data.sharp);
-	printf("data.width = %d\n", data.width);
-	printf("data.precision = %d\n", data.precision);
-	printf("data.h = %d\n", data.h);
-	printf("data.ll = %d\n", data.ll);
-	printf("data.l = %d\n", data.l);
-	printf("data.hh = %d\n", data.hh);
-	printf("instruc = %s\n", instruc);
 }
 
 
@@ -97,7 +72,7 @@ int			ft_printf(const char *format, ...)
 	va_list ap;
 
 	va_start(ap, format);
-	put_text(/*ap, */format);
+	put_text(ap, format);
 	va_end(ap);
 	return (1); // retourner la bonne valeur
 }
@@ -106,7 +81,7 @@ int			ft_printf(const char *format, ...)
 
 /* il faudra mettre ce main en commentaire pour que le testeur fonctionne;
 ensuite faire make, puis copier coller libftprintf.a dans le dossier du testeur,
-et refaire make.
+et refaire make.*/
 
 
 int			main(void)
@@ -114,14 +89,12 @@ int			main(void)
 	char 	*format;
 
 	format = "j'essaie de creer un argument valide %-+0 #45.10hs est-ce que je vais bien jusque la ?";
-//	printf("j'essaie de creer un argument valide %-#08.5lld\n", 42);
 	ft_printf(format);
-//	printf(" un %###3d\n", 2);
 	return (0);
 }
 
 
-
+/*
    - c'est repare : si je donne l'instruction %.10s -> data voit
    a la fois une precision ET une width, alors qu'il n y a
    qu'une precision. je vais mettre dans parse_width le fait

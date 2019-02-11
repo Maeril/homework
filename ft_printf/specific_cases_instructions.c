@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 14:14:03 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/08 17:39:03 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/11 12:05:51 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_data		find_arg_type(va_list ap, t_data data, char *instruc, int i)
 	}
 	printf("a la fin de find arg type, data.integer = %d\n", data.integer);
 	if (data.integer == 1)
-		data = ft_typeis_int(ap, data);
+		data = typeis_int(ap, data);
 	return (data);
 }
 
@@ -51,7 +51,7 @@ t_data		check_unsigned(t_data data)
 	return (data);
 }
 
-t_data		finalize_instructions(t_data data)
+t_data		spec_instructions(t_data data)
 {
 	data.unsign == 1 ? data.plus == 0 : 0;
 	data.plus == 1 ? data.space = 0 : 0;
@@ -68,20 +68,10 @@ t_data		finalize_instructions(t_data data)
 }
 
 /*ELEMENTS A STOCKER DANS LA STRUCTURE
- - width
- - precision
- - ce qu'il y a dans va_arg ?
-   - FAIT : si le flag '+' est utilise avec un unsigned, on a un warning et
-	le resultat n'affiche pas le signe. (unsigned = u, et hh, ll, l, h avec
-	o,u,x,X)
-   - FAIT : s'il y a un flag 0 ET une precision ET un type ENTIER (diouxX),
    alors le 0 est ignore.
 	- A FAIRE AVEC LE FLAG ESPACE :
-		- FAIT : le flag marche avec un d ou un i.
-		- FAIT : le flag espace est ignore si c'est avec un plus ou un moins
 		- le flag ne marche pas si le resultat est negatif
    - les DIESES # :
-   - FAIT le diese est ignore quand il est utilise avec d, c et s, u et i.
    - avec un o => le # met un 0 devant le resultat
    - avec un x => le # met un 0x devant le resultat
    - avec un X => le # met un 0X devant le resultat
