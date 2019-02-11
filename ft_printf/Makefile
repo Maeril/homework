@@ -6,7 +6,7 @@
 #    By: mpicard <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/07 14:07:28 by mpicard           #+#    #+#              #
-#    Updated: 2019/02/08 14:19:51 by mpicard          ###   ########.fr        #
+#    Updated: 2019/02/08 17:51:13 by mpicard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,15 @@ SRC = 		ft_printf.c \
 			libft/ft_putchar.c \
 			libft/ft_strsub.c \
 			specific_cases_instructions.c \
-			find_type.c
+			find_type.c \
+			clean_data.c
 
 OBJ = 		ft_printf.o \
 			libft/ft_putchar.o \
 			libft/ft_strsub.c \
 			specific_cases_instructions.o \
-			find_type.o
+			find_type.o \
+			clean_data.o
 
 all: $(NAME)
 

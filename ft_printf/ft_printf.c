@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 09:52:42 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/11 11:32:21 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/11 14:32:35 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,16 @@ void		put_text(va_list ap, const char *format)
 	i = 0;
 	while (format[i])
 	{
-		if (format[i] == '%')
+		if (format[i] != '%')
+			ft_putchar(format[i]);
+		if  (format[i] == '%')
 		{
 			instruc = take_instructions(format, i);
 			data = parse_instructions(instruc, data);
-            data = finalize_instructions(data);
-            data = find_arg_type(ap, data, instruc, i);
-            data = clean_data(data);
-            i++;
+			data = finalize_instructions(data);
+			data = find_arg_type(ap, data/*, instruc, i*/);
+			data = clean_data(data);
+			i++;
 		}
 		i++;
 	}
@@ -77,24 +79,17 @@ int			ft_printf(const char *format, ...)
 	return (1); // retourner la bonne valeur
 }
 
-
-
-/* il faudra mettre ce main en commentaire pour que le testeur fonctionne;
-ensuite faire make, puis copier coller libftprintf.a dans le dossier du testeur,
-et refaire make.*/
-
-
 int			main(void)
 {
 	char 	*format;
 
-	format = "j'essaie de creer un argument valide %-+0 #45.10hs est-ce que je vais bien jusque la ?";
-	ft_printf(format);
+	ft_printf("un, deux, %d, %c, %d, %c\n", 3, 'A', 5, 'E');
 	return (0);
 }
 
 
 /*
+
    - c'est repare : si je donne l'instruction %.10s -> data voit
    a la fois une precision ET une width, alors qu'il n y a
    qu'une precision. je vais mettre dans parse_width le fait
@@ -111,7 +106,7 @@ int			main(void)
   - il faut trouver un moyen de ne pas affichers les instruc venant juste apres le %
   (les caracteres qui sont dans la chaine de caractere instruc.
 
-  - je vais enlever de la fonction PUT TEXT l'argument ap parce que je ne l'utilise pas encore
+  - je vais enlever de la fonction PUT TEXT l'argent ap parce que je ne l'utilise pas encore
   et que ca empeche le Makefile de fonctionner
 
   - a reparer : le cas ou la width ou precision est une etoile
