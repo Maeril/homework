@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 14:14:03 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/11 12:05:51 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/11 13:47:58 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ t_data		spec_instructions(t_data data)
 }
 
 /*ELEMENTS A STOCKER DANS LA STRUCTURE
-   alors le 0 est ignore.
 	- A FAIRE AVEC LE FLAG ESPACE :
 		- le flag ne marche pas si le resultat est negatif
    - les DIESES # :
@@ -82,9 +81,5 @@ t_data		spec_instructions(t_data data)
    - si width est inferieur a precision ?
    - on met des zero a la pace des espaces.
    - la precision :
-   		- FAIT : c : la precision n'a pas d'effet
-		- RIEN A FAIRE : diouxXX : precision ne tronque pas le resultat.
-		met des zero (ras quoi)
 		- s : tronque si le resultat plus long que precision.
-
 */
