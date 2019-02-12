@@ -6,15 +6,16 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/11 14:57:01 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/12 11:34:40 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 
 # define FT_PRINTF_H
-
+# include <stdarg.h>
 # include <stdio.h>
+# include "libft/libft.h"
 
 typedef struct			s_data
 {
@@ -57,8 +58,7 @@ t_data					check_zero(t_data data);
 t_data					check_sharp(t_data data);
 t_data					clean_data(t_data data);
 t_data					finalize_instructions(t_data data);
-t_data					find_arg_type(va_list ap, t_data data, char *instruc,
-						int i);
+t_data					find_arg_type(va_list ap, t_data data);
 int						ft_printf(const char *format, ...);
 t_data					parse_flags(char *instruc, t_data data, int i);
 t_data					parse_instructions(char *instruc, t_data data);
@@ -66,7 +66,7 @@ t_data					parse_precision(char *instruc, t_data data, int i);
 t_data					parse_size(char *instruc, t_data data, int i);
 t_data					parse_type(char *instruc, t_data data, int i);
 t_data					parse_width(char *instruc, t_data data, int i);
-void					put_text(va_list ap, const char *format);
+int						put_text(va_list ap, const char *format);
 char					*take_instructions(const char *format, int i);
 t_data					typeis_int(va_list ap, t_data data);
 t_data					typeis_char(va_list ap, t_data data);

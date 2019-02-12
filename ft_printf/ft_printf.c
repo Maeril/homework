@@ -6,14 +6,11 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 09:52:42 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/11 14:32:35 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/12 15:05:39 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <stdarg.h>
-#include <stdio.h>
-#include "libft/libft.h"
 #include "ft_printf.h"
 
 char		*take_instructions(const char *format, int i)
@@ -35,6 +32,7 @@ char		*take_instructions(const char *format, int i)
 		return (NULL);
 	if (!(str = malloc(sizeof(*format) * ((i - tmp + 1) + 1))))
 		return (NULL);
+
 	k = tmp;
 	j = 0;
 	while (format[k] && k < tmp + (i - tmp + 1))
@@ -44,52 +42,66 @@ char		*take_instructions(const char *format, int i)
 	return (instruc);
 }
 
-void		put_text(va_list ap, const char *format)
+int			put_text(va_list ap, const char *format)
 {
 	int		i;
 	char	*instruc;
 	t_data	data;
+	int		nb;
 
 	i = 0;
+	nb = 0;
 	while (format[i])
 	{
 		if (format[i] != '%')
-			ft_putchar(format[i]);
-		if  (format[i] == '%')
 		{
-			instruc = take_instructions(format, i);
-			data = parse_instructions(instruc, data);
-			data = finalize_instructions(data);
-			data = find_arg_type(ap, data/*, instruc, i*/);
-			data = clean_data(data);
+			ft_putchar(format[i]);
+			nb++;
+		}
+		else if (format[i] == '%')
+		{
+			if (format[i + 1] == '%')
+			{
+				ft_putchar('%');
+				nb++;
+			}
+			else
+			{
+				instruc = take_instructions(format, i);
+				data = parse_instructions(instruc, data);
+				data = finalize_instructions(data);
+				data = find_arg_type(ap, data);
+				data = clean_data(data);
+				i++;
+			}
 			i++;
 		}
 		i++;
 	}
+	return (nb);
 }
 
 
 int			ft_printf(const char *format, ...)
 {
 	va_list ap;
+	int		nb;
 
 	va_start(ap, format);
-	put_text(ap, format);
+	nb = put_text(ap, format);
 	va_end(ap);
-	return (1); // retourner la bonne valeur
+	return (nb);
 }
+
+
 
 int			main(void)
 {
-	char 	*format;
-
-	ft_printf("un, deux, %d, %c, %d, %c\n", 3, 'A', 5, 'E');
+	ft_printf("un, deux,%d", 3);
 	return (0);
 }
 
-
 /*
-
    - c'est repare : si je donne l'instruction %.10s -> data voit
    a la fois une precision ET une width, alors qu'il n y a
    qu'une precision. je vais mettre dans parse_width le fait

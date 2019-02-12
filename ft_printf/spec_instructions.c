@@ -6,50 +6,46 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 14:14:03 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/11 14:57:27 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/12 16:40:26 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "ft_printf.h"
 
 t_data		check_zero(t_data data)
 {
-	if (data.d == 1 || data.i == 1 || data.o == 1 || data.u == 1 || data.x == 1 ||
-			data.big_x == 1)
+	if (data.d || data.i || data.o || data.u || data.x || data.big_x)
 		data.zero = 0;
 	return(data);
 }
 
 t_data		check_sharp(t_data data)
 {
-	if (data.d == 1 || data.c == 1 || data.s == 1 || data.u == 1 || data.i == 1)
+	if (data.d || data.c || data.s || data.u || data.i)
 		data.sharp = 0;
 	return (data);
 }
 
 t_data		check_unsigned(t_data data)
 {
-	if ((data.u == 1) || (data.o == 1 && (data.h == 1 || data.hh == 1 ||
-		data.l == 1 || data.ll == 1)) || (data.x == 1 && (data.h == 1 ||
-		data.hh == 1 || data.l == 1 || data.ll == 1)) || (data.big_x == 1
-		&& (data.h == 1 || data.hh == 1 || data.l == 1 || data.ll == 1)))
+	if (data.u || (data.o && (data.h || data.hh || data.l || data.ll))
+		|| (data.x && (data.h || data.hh || data.l || data.ll )) || (data.big_x
+		&& (data.h || data.hh || data.l || data.ll )))
 		data.unsign = 1;
 	return (data);
 }
 
-t_data		spec_instructions(t_data data)
+t_data		finalize_instructions(t_data data)
 {
-	data.unsign == 1 ? data.plus == 0 : 0;
-	data.plus == 1 ? data.space = 0 : 0;
-	data.minus == 1 ? data.zero = 0 : 0;
-	(data.d != 1 || data.i != 1) ? data.space = 0 : 0;
-	data.c == 1 ? data.precision = 0 : 0;
-	if (data.precision == 1 && (data.d == 1 || data.i == 1 || data.o == 1 ||
-		data.u == 1 || data.x == 1 || data.big_x == 1))
+	data.plus = (data.plus && !data.unsign);
+	data.space = (data.space && !data.plus);/*ecriture super-simplifiee. dis moi si tu comprends pas ! -mae*/
+	data.zero = (data.zero && !data.minus);
+	data.space = (data.space && (data.d || data.i));
+	data.precision = (data.precision && !data.c);
+	if (data.precision && (data.d || data.i || data.o || data.u || data.x
+		|| data.big_x))
 		data.zero = 0;
-	if (data.sharp == 1 && (data.d == 1 || data.c == 1 || data.s == 1 ||
-		data.u == 1 || data.i == 1))
+	if (data.sharp && (data.d || data.c || data.s || data.u || data.i))
 		data.sharp = 0;
 	return (data);
 }
