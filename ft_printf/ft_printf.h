@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/12 11:34:40 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/13 12:07:36 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,25 @@
 
 typedef struct			s_data
 {
+	/* Gestion des Flags : 1 ou 0*/
 	int					unsign;
 	int					minus;
 	int					plus;
 	int					zero;
 	int					space;
 	int					sharp;
+
+	/* Gestion de la longueur de champs : longueur donnee. */
 	int					width;
 	int					precision;
+
+	/* Gestion de Size */
 	int					h;
 	int					ll;
 	int					l;
 	int					hh;
+
+	/* Gestion du type  cspdiouxX*/
 	int					c;
 	int					s;
 	int					p;
@@ -40,6 +47,9 @@ typedef struct			s_data
 	int					u;
 	int					x;
 	int					big_x;
+
+	/* Gestion du type s'il y a une size : signed char, short, long
+	 * long long, unsigned char/short/long/longlong*/
 	int					integer;
 	int					str;
 	char				car;
@@ -52,6 +62,18 @@ typedef struct			s_data
 	unsigned short		unsignsh;
 	unsigned long		unsignlg;
 	unsigned long long	unsignlglg;
+	char				*str_tp;
+
+	/* Nombre de caracteres imprimes */
+	int					nb_printed;
+
+	/* cas special : si on a "%%" et qu'il y a des instructions entre les %*/
+	int					perc;
+
+	/* Pour gerer data.width on a besoin de l'index i  */
+	int					index;
+
+
 }						t_data;
 
 t_data					check_zero(t_data data);
@@ -71,5 +93,7 @@ char					*take_instructions(const char *format, int i);
 t_data					typeis_int(va_list ap, t_data data);
 t_data					typeis_char(va_list ap, t_data data);
 t_data					typeis_unsign(va_list ap, t_data data);
+t_data					print_all(t_data data);
+t_data 					flag_minus(t_data data, int size_of_integer);
 
 #endif

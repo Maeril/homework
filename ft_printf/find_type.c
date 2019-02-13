@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 16:56:58 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/12 16:26:53 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/13 11:21:01 by mpicard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_data		typeis_int(va_list ap, t_data data)
 	if (data.integer)
 	{
 		i = va_arg(ap, int);
-		ft_putnbr(i);
+		data.integer = i;
 	}
 	else if (data.sh)
 	{
@@ -54,15 +54,15 @@ t_data		typeis_char(va_list ap, t_data data)
 	char		c;
 	char	*str;
 
-	if (data.car)
+	if (data.c)
 	{
 		c = va_arg(ap, int);
-		ft_putchar(c);
+		data.car = c;
 	}
-	else if (data.str)
+	else if (data.s)
 	{
 		str = va_arg(ap, char *);
-		ft_putstr(str);
+		data.str_tp = str;
 	}
 	return (data);
 }
@@ -108,6 +108,22 @@ t_data		typeis_unsign(va_list ap, t_data data)
 	return (data);
 }
 
+t_data		typeis_perc(t_data data)
+{
+	if (data.width)
+	{
+		data.nb_printed = data.width;
+		while (data.width > 1)
+		{
+			ft_putchar(' ');
+			data.width--;
+		}
+		ft_putchar('%');
+	}
+	data.width = 0;
+	return (data);
+}
+
 t_data		find_arg_type(va_list ap, t_data data)
 {
 	if (data.space && (data.d || data.i))
@@ -116,12 +132,16 @@ t_data		find_arg_type(va_list ap, t_data data)
 		ft_putchar('+');
 	if (data.zero)
 		ft_putnbr('0');
-	if (data.minus && data.width)
+//	if (data.minus && data.width) // 
 
-	if (data.d || data.i || data.o || data.x || data.big_x)
+	if (data.d == 1 || data.i == 1 || data.o == 1 || data.x == 1 || data.big_x == 1)
+	{
 		data.integer = 1;
-	data.car = (data.car && data.c);
-	data.str = (data.str && (data.s || data.p));
+	}
+	data.car = (data.c && data.c); // est ce qu'on peut reduire cette ligne ? data.car = data.c ?
+
+//	data.str = (data.str && (data.s || data.p)); je met en sourdine en attendant 
+	data.str = (data.s || data.p);
 	data.unint = (data.unint && data.u);
 	if (data.d || data.i)
 	{
@@ -139,9 +159,12 @@ t_data		find_arg_type(va_list ap, t_data data)
 	}
 	if (data.integer || data.sh || data.lg || data.lglg)
 		data = typeis_int(ap, data);
-	if (data.car || data.str)
+	if (data.car || data.s)
 		data = typeis_char(ap, data);
 	if (data.unsigncar || data.unsignsh || data.unsignlg || data.unsignlglg || data.unint)
 		data = typeis_unsign(ap, data);
+
+	if (data.perc)
+		data = typeis_perc(data);
 	return (data);
 }

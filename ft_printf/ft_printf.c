@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 09:52:42 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/12 15:05:39 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/13 14:56:56 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char		*take_instructions(const char *format, int i)
 	while (format[i] != 'c' && format[i] != 's' && format[i] != 'p' &&
 			format[i] != 'd' && format[i] != 'i' && format[i] != 'o' &&
 			format[i] != 'u' && format[i] != 'x' && format[i] != 'X'
-			&& format[i])
+			&& format[i] != '%' && format[i])
 		i++;
 	if (!format)
 		return (NULL);
@@ -51,6 +51,7 @@ int			put_text(va_list ap, const char *format)
 
 	i = 0;
 	nb = 0;
+	data.integer = 0;
 	while (format[i])
 	{
 		if (format[i] != '%')
@@ -58,7 +59,7 @@ int			put_text(va_list ap, const char *format)
 			ft_putchar(format[i]);
 			nb++;
 		}
-		else if (format[i] == '%')
+		if (format[i] == '%')
 		{
 			if (format[i + 1] == '%')
 			{
@@ -71,6 +72,7 @@ int			put_text(va_list ap, const char *format)
 				data = parse_instructions(instruc, data);
 				data = finalize_instructions(data);
 				data = find_arg_type(ap, data);
+				data = print_all(data);
 				data = clean_data(data);
 				i++;
 			}
@@ -78,9 +80,12 @@ int			put_text(va_list ap, const char *format)
 		}
 		i++;
 	}
+	if (data.nb_printed)
+		nb = data.nb_printed;
+	if (data.width)
+		nb = data.width;
 	return (nb);
 }
-
 
 int			ft_printf(const char *format, ...)
 {
@@ -93,33 +98,11 @@ int			ft_printf(const char *format, ...)
 	return (nb);
 }
 
-
-
 int			main(void)
 {
-	ft_printf("un, deux,%d", 3);
+	ft_putchar('\n');
+	ft_printf("%d is one", 1);
+	ft_putchar('\n');
+	printf("%d is one", 1);
 	return (0);
 }
-
-/*
-   - c'est repare : si je donne l'instruction %.10s -> data voit
-   a la fois une precision ET une width, alors qu'il n y a
-   qu'une precision. je vais mettre dans parse_width le fait
-   quil faut verifier quand on voit un chiffre que sil y
-   a un point AVANT, alors on ne compte pas le width.
-
-   - c'est repare : si il y a la fois width ET precision, data ne compte QUE precision.
-   je vais modifier parse_precision et dire que sil y a des chiffres avant le point, alors
-   on compte les deux.
-
-  - a faire : gerer le cas ou il y a plusieurs points dans une precision, alors qu il
-  n'est cense n'y en avoir qu'un.
-
-  - il faut trouver un moyen de ne pas affichers les instruc venant juste apres le %
-  (les caracteres qui sont dans la chaine de caractere instruc.
-
-  - je vais enlever de la fonction PUT TEXT l'argent ap parce que je ne l'utilise pas encore
-  et que ca empeche le Makefile de fonctionner
-
-  - a reparer : le cas ou la width ou precision est une etoile
-*/

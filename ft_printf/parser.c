@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 13:40:00 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/12 16:28:54 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/13 14:42:38 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@ t_data		parse_type(char *instruc, t_data data, int i)
 	data.u = (instruc[i] == 'u');
 	data.x = (instruc[i] == 'x');
 	data.big_x = (instruc[i] == 'X');
+	data.perc = (instruc[i] == '%');
 
 	return (data);
 }
 
 t_data		parse_size(char *instruc, t_data data, int i)
 {
-	if (data.l = (instruc[i] == 'l'))
+	if (data.l == (instruc[i] == 'l'))
 		data.ll = (instruc[++i] == 'l');
 	else if ((data.h = (instruc[i] == 'h')))
 		data.hh = (instruc[++i] == 'h');
@@ -50,11 +51,21 @@ t_data		parse_precision(char *instruc, t_data data, int i)
 
 t_data		parse_width(char *instruc, t_data data, int i)
 {
+	int		len;
+	int		start;
+	char	*width_ins;
+
+	len = 0;
+	start = i;
 	while (instruc[i] >= '0' && instruc[i] <= '9')
 	{
 		data.width = 1;
+		len++;
 		i++;
 	}
+	data.index = i;
+	width_ins = ft_strsub(instruc, start, len);
+	data.width = ft_atoi(width_ins);
 	return (data);
 }
 
@@ -86,14 +97,18 @@ t_data		parse_instructions(char *instruc, t_data data)
 				instruc[i] == '#')
 			data = parse_flags(instruc, data, i);
 		if (instruc[i] >= '0' && instruc[i] <= '9')
+		{
+			data.index = i;
 			data = parse_width(instruc, data, i);
+			i = data.index;
+		}
 		if (instruc[i] == '.')
 			data = parse_precision(instruc, data, i);
 		if (instruc[i] == 'h' || instruc[i] == 'l')
 			data = parse_size(instruc, data, i);
 		if (instruc[i] == 'c' || instruc[i] == 's' || instruc[i] == 'p' ||
 			instruc[i] == 'd' || instruc[i] == 'i' || instruc[i] == 'o' ||
-			instruc[i] == 'u' || instruc[i] == 'x' || instruc[i] == 'X')
+			instruc[i] == 'u' || instruc[i] == 'x' || instruc[i] == 'X' || instruc[i] == '%')
 			data = parse_type(instruc, data, i);
 		i++;
 	}
