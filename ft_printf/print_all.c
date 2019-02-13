@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 09:26:34 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/13 15:04:40 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/13 20:35:16 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ t_data		prt_int_width(t_data data) /* bon modele a reproduire */
 	return (data);
 }
 
-/* pas encore ajoutee a print_all 
 t_data		prt_unint_width(t_data data)
 {
 	char	*str;
@@ -70,7 +69,7 @@ t_data		prt_unint_width(t_data data)
 		ft_putnbr(data.unint);
 	}
 	return (data);
-}*/
+}
 
 t_data		prt_str_width(t_data data)
 {
@@ -122,5 +121,29 @@ t_data		print_all(t_data data)
 		(data.width && data.width > 1) ?
 		data = prt_car_width(data) : ft_putchar(data.car);
 	}
+	if (data.unint)
+		data.width ? data = prt_unint_width(data) : ft_putnbr(data.unint);
+	if (data.signcar)
+	{
+		(data.width && data.width > 1) ?
+		data = : ft_putchar(data.signcar);
+	}
+	if (data.sh)
+		data.width ? data = : ft_putnbr(data.sh);
+	if (data.lg)
+		data.width ? data = : ft_putnbr(data.lg);
+	if (data.lglg)
+		data.width ? data = : ft_putnbr(data.lglg);
+	if (data.unsigncar)
+	{
+		(data.width && data.width > 1) ?
+		data = : ft_putnbr(data.unsigncar);
+	}
+	if (data.unsignsh)
+		data.width ? data = : ft_putnbr(data.unsignsh);
+	if (data.unsignlg)
+		data.width ? data = : ft_putnbr(data.unsignlg);
+	if (data.unsignlglg)
+		data.width ? data = : ft_putnbr(data.unsignlglg);
 	return (data);
 }
