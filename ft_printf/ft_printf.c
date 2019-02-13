@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 09:52:42 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/13 14:56:56 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/13 15:48:38 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int			ft_printf(const char *format, ...)
 	va_end(ap);
 	return (nb);
 }
-
+/*
 int			main(void)
 {
 	ft_putchar('\n');
@@ -106,3 +106,4 @@ int			main(void)
 	printf("%d is one", 1);
 	return (0);
 }
+*/
