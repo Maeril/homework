@@ -6,13 +6,13 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 13:40:00 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/15 16:37:09 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/15 18:42:49 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		parse_type(char *instruc, t_type *type, int i)
+void		parse_type(char *instruc, t_type *type, t_tool *tool, int i)
 {
 	type->c = (instruc[i] == 'c');
 	type->s = (instruc[i] == 's');
@@ -26,7 +26,7 @@ void		parse_type(char *instruc, t_type *type, int i)
 	tool->perc = (instruc[i] == '%');
 }
 
-void		parse_size(char *instruc, t_data *data, int i)
+void		parse_size(char *instruc, t_size *size, int i)
 {
 	if (size->l == (instruc[i] == 'l'))
 		size->ll = (instruc[++i] == 'l');
@@ -36,7 +36,7 @@ void		parse_size(char *instruc, t_data *data, int i)
 }
 
 
-void		parse_precision(char *instruc, t_data *data, int i)
+void		parse_precision(char *instruc, t_lngt *lngt, t_tool *tool, int i)
 {
 	int len;
 	int start;
@@ -64,7 +64,7 @@ void		parse_precision(char *instruc, t_data *data, int i)
 }
 
 // j'ai refait cette fonction ci dessous. J'ai l'impression qu'elle fonctionne
-// mieux. Si ca te va, on supprime la fonction mise en sourdine ci dessous :) 
+// mieux. Si ca te va, on supprime la fonction mise en sourdine ci dessous :)
 //t_data		parse_precision(char *instruc, t_data data, int i)
 //{
 //	if (instruc[i - 1] && instruc[i - 1] >= '0' && instruc[i - 1] <= '9')
@@ -76,7 +76,7 @@ void		parse_precision(char *instruc, t_data *data, int i)
 //	return (data);
 //}
 
-void		parse_width(char *instruc, t_data *data, int i)
+void		parse_width(char *instruc, t_lngt *lngt, t_tool *tool, int i)
 {
 	int		len;
 	int		start;
@@ -97,7 +97,7 @@ void		parse_width(char *instruc, t_data *data, int i)
 	lngt->width = ft_atoi(width_ins);
 }
 
-void		parse_flags(char *instruc, t_data *data, int i)
+void		parse_flags(char *instruc, t_flag *flag, int i)
 {
 	while (instruc[i] == '-' || instruc[i] == '+' ||
 			instruc[i] == '0' || instruc[i] == ' ' ||
@@ -125,23 +125,23 @@ void		parse_instructions(char *instruc, t_data *data)
 		if (instruc[i] == '-' || instruc[i] == '+' ||
 				instruc[i] == '0' || instruc[i] == ' ' ||
 				instruc[i] == '#')
-			parse_flags(instruc, data, i);
+			parse_flags(instruc, data->flag, i);
 		if (instruc[i] >= '0' && instruc[i] <= '9')
 		{
-			tool->index = i;
-			parse_width(instruc, data, i);
-			i = tool->index;
+			data->tool->index = i;
+			parse_width(instruc, data->lngt, data->tool, i);
+			i = data->tool->index;
 		}
 		if (instruc[i] == '.')
-			parse_precision(instruc, data, i);
+			parse_precision(instruc, data->lngt, data->tool, i);
 		if (instruc[i] == 'h' || instruc[i] == 'l')
-			parse_size(instruc, data, i);
+			parse_size(instruc, data->size, i);
 		if (instruc[i] == 'c' || instruc[i] == 's' || instruc[i] == 'p' ||
 			instruc[i] == 'd' || instruc[i] == 'i' || instruc[i] == 'o' ||
 			instruc[i] == 'u' || instruc[i] == 'x' || instruc[i] == 'X' || instruc[i] == '%')
-			parse_type(instruc, data, i);
+			parse_type(instruc, data->type, data->tool, i);
 		if (instruc[i] == '%')
-			type->pourcentage = 1;
+			data->type->pourcentage = 1;
 		i++;
 	}
 }

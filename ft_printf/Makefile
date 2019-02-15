@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/15 13:04:05 by myener            #+#    #+#              #
-#    Updated: 2019/02/15 13:51:31 by myener           ###   ########.fr        #
+#    Updated: 2019/02/15 19:52:32 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRCS    :=	clean_data.c \
 			ft_printf.c \
 			parser.c \
 			spec_instructions.c \
-			print_width.c \
+			print_all.c \
 			flag_minus.c \
 			width_and_precision.c \
 			print_octal.c \

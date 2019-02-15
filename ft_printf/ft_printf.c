@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 11:22:42 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/15 16:38:28 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/15 19:44:06 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int			put_text(va_list ap, const char *format)
 {
 	int		i;
 	char	*instruc;
-	t_data	data;
+	t_data	*data;
 	int		index;
 	int		tmp;
 	int		len;
@@ -64,9 +64,10 @@ int			put_text(va_list ap, const char *format)
 	index = 0;
 	tmp = 0;
 	i = 0;
-	spec->integer = 0;
+	data = 0;
+	data->spec->integer = 0;
 	len = 0;
-	data = clean_data(data);
+	clean_data(data);
 	while (format[i])
 	{
 		if (format[i] != '%')
@@ -79,12 +80,12 @@ int			put_text(va_list ap, const char *format)
 			instruc = take_instructions(format, i);
 			len = ft_strlen(instruc);
 			i = i + len;
-			parse_instructions(instruc, &data);
-			data = finalize_instructions(data);
-			data = find_arg_type(ap, data);
-			data = print_all(data);
-			tmp = tool->nb_a;
-			data = clean_data(data);
+			parse_instructions(instruc, data);
+			finalize_instructions(data);
+			find_arg_type(ap, data);
+			print_all(data);
+			tmp = data->tool->nb_a;
+			clean_data(data);
 		}
 		i++;
 	}
@@ -105,9 +106,6 @@ int			ft_printf(const char *format, ...)
 
 int			main(void)
 {
-	printf("taille de t_data = %lu\n\n", sizeof(t_data) * 8);
-	printf("taille de *t_data = %lu\n\n", sizeof(t_data*) * 8);
-	printf("taille de **t_data = %lu\n\n", sizeof(t_data**) * 8);
 
 	ft_printf("%o\n", 9);
 
@@ -116,16 +114,16 @@ int			main(void)
 	// ft_printf("%s\n", "abc");
 
 	// width et sharp
-	printf("%#10->5o\n", 7);
-	ft_printf("%#10->5o\n", 7);
+	printf("%#10.5o\n", 7);
+	ft_printf("%#10.5o\n", 7);
 
 	// width et sharp
 	printf("%#5o\n", 5);
 	ft_printf("%#5o\n", 5);
 
 	// sharp precision
-	printf("%#->2o\n", 987);
-	ft_printf("%#->2o\n", 987);
+	printf("%#.2o\n", 987);
+	ft_printf("%#.2o\n", 987);
 
 	// sharp simple
 	printf("%#o\n", 100);
@@ -140,23 +138,23 @@ int			main(void)
 	// printf("%-10.5o\n", 55);
 
 	// Octal Precision && Width
-	ft_printf("%10->5o\n", 55);
-	printf("%10->5o\n", 55);
+	ft_printf("%10.5o\n", 55);
+	printf("%10.5o\n", 55);
 
 	// Octal Width
 	ft_printf("%5o\n", 36);
 	printf("%5o\n", 36);
 
 	// Octal Precision
-	ft_printf("%->5o\n", 36);
-	printf("%->5o\n", 36);
+	ft_printf("%.5o\n", 36);
+	printf("%.5o\n", 36);
 
 	// Octal Basique
 	ft_printf("%o\n", 500);
 	printf("%o\n", 500);
 
-	printf("%#5->o\n", 5);
-	ft_printf("%5->o\n", 5);
+	printf("%#5.o\n", 5);
+	ft_printf("%5.o\n", 5);
 
 	return (0);
 }

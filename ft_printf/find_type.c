@@ -6,16 +6,15 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 16:56:58 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/15 16:33:58 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/15 19:36:23 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include "ft_printf.h"
 
-t_data		typeis_int(va_list ap, t_spec spec)
+void		typeis_int(va_list ap, t_spec *spec)
 {
-
 	int 		i;
 	short		j;
 	long		k;
@@ -25,7 +24,6 @@ t_data		typeis_int(va_list ap, t_spec spec)
 	j = 0;
 	k = 0;
 	l = 0;
-
 	if (spec->integer)
 	{
 		i = va_arg(ap, int);
@@ -47,28 +45,26 @@ t_data		typeis_int(va_list ap, t_spec spec)
 		l = va_arg(ap, long long);
 		ft_putnbr(l);
 	}
-	return (data);
 }
 
-t_data		typeis_char(va_list ap, t_data data)
+void		typeis_char(va_list ap, t_data *data)
 {
 	char		c;
 	char	*str;
 
-	if (type->c)
+	if (data->type->c)
 	{
 		c = va_arg(ap, int);
-		spec->car = c;
+		data->spec->car = c;
 	}
-	else if (type->s)
+	else if (data->type->s)
 	{
 		str = va_arg(ap, char *);
-		tool->str_tp = str;
+		data->tool->str_tp = str;
 	}
-	return (data);
 }
 
-t_data		typeis_unsign(va_list ap, t_data data)
+void		typeis_unsign(va_list ap, t_tool *tool, t_spec *spec)
 {
 	unsigned char 			uchar;
 	unsigned short			ush;
@@ -106,10 +102,9 @@ t_data		typeis_unsign(va_list ap, t_data data)
 		n = va_arg(ap, unsigned int);
 		ft_putnbr(n);
 	}
-	return (data);
 }
 
-t_data		typeis_perc(t_data data)
+void		typeis_perc(t_lngt *lngt, t_tool *tool)
 {
 	if (lngt->width)
 	{
@@ -122,63 +117,61 @@ t_data		typeis_perc(t_data data)
 		ft_putchar('%');
 	}
 	lngt->width = 0;
-	return (data);
 }
 
-t_data		find_arg_type(va_list ap, t_data data)
+void		find_arg_type(va_list ap, t_data *data)
 {
-	if (flag->space && (type->d || type->i))
-		ft_putchar(' '); // je  pense qu'il faudra enlever cette condition et ligne-> 
-	if (flag->plus && !tool->unsign)
+	if (data->flag->space && (data->type->d || data->type->i))
+		ft_putchar(' '); // je  pense qu'il faudra enlever cette condition et ligne
+	if (data->flag->plus && !data->tool->unsign)
 	{
 	}
 		// Je suis en train de tester le fait d'enlever la ligne en dessous et je pense que ca va aussi etre necessaire->->-> :) 
 	//	ft_putchar('+');
 //	}
-//	if (data->zero)
-//		ft_putnbr('0'); --> ML : je pense qu'il faut supprimer ces lignes-> 
+//	if (data->flag->zero)
+//		ft_putnbr('0'); --> ML : je pense qu'il faut supprimer ces lignes
 
-//	if (data->minus && data->width) // j'ai mis la ligne en sourdine car je pense quelle est pas finie ^^ 
+//	if (data->flag->minus && data->lngt->width) // j'ai mis la ligne en sourdine car je pense quelle est pas finie ^^ 
 
-	if (type->d == 1 || type->i == 1 || type->o == 1 || type->x == 1 || type->big_x == 1)
+	if (data->type->d == 1 || data->type->i == 1 || data->type->o == 1
+		|| data->type->x == 1 || data->type->big_x == 1)
 	{
-		spec->integer = 1;
+		data->spec->integer = 1;
 	}
-	spec->car = (type->c && type->c); // est ce qu'on peut reduire cette ligne ? data->car = data->c ?
-//	data->str = (data->str && (data->s || data->p)); je met en sourdine en attendant (voir ligne ci dessus)
-	spec->str = (type->s || type->p);
-	spec->unint = (spec->unint && type->u);
+	data->spec->car = (data->spec->car && data->type->c); // est ce qu'on peut reduire cette ligne ? data->car = data->c ?
+//	data->spec->str = (data->spec->str && (data->type->s || data->type->p)); je met en sourdine en attendant (voir ligne ci dessus)
+	data->spec->str = (data->type->s || data->type->p);
+	data->spec->unint = (data->spec->unint && data->type->u);
 
 
 // je teste l'affichage de o ici
-	if (type->o)
-		data = print_octal(data, ap);
+	if (data->type->o)
+		print_octal(data, ap);
 
-	if (type->d || type->i)
+	if (data->type->d || data->type->i)
 	{
-		spec->signcar = (spec->signcar && size->hh);
-		spec->sh = (spec->sh && size->h);
-		spec->lg = (spec->lg && size->l);
-		spec->lglg = (spec->lglg && size->ll);
+		data->spec->signcar = (data->spec->signcar && data->size->hh);
+		data->spec->sh = (data->spec->sh && data->size->h);
+		data->spec->lg = (data->spec->lg && data->size->l);
+		data->spec->lglg = (data->spec->lglg && data->size->ll);
 	}
-	if (type->o || type->u || type->x || type->big_x)
+	if (data->type->o || data->type->u || data->type->x || data->type->big_x)
 	{
-		spec->unsigncar = (spec->unsigncar && size->hh);
-		spec->unsignsh = (spec->unsignsh && size->h);
-		spec->unsignlglg = (spec->unsignlglg && size->ll);
-		spec->unsignlg = (spec->unsignlg && size->l);
+		data->spec->unsigncar = (data->spec->unsigncar && data->size->hh);
+		data->spec->unsignsh = (data->spec->unsignsh && data->size->h);
+		data->spec->unsignlglg = (data->spec->unsignlglg && data->size->ll);
+		data->spec->unsignlg = (data->spec->unsignlg && data->size->l);
 	}
-	if (spec->integer || spec->sh || spec->lg || spec->lglg)
-		data = typeis_int(ap, data);
-	if (spec->car || type->s)
-		data = typeis_char(ap, data);
-	if (spec->unsigncar || spec->unsignsh || spec->unsignlg || spec->unsignlglg || spec->unint)
-		data = typeis_unsign(ap, data);
-
-	if (type->pourcentage)
-		data = pourcentage(data);
-
-//	if (data->perc)
-//		data = typeis_perc(data);
-	return (data);
+	if (data->spec->integer || data->spec->sh || data->spec->lg || data->spec->lglg)
+		typeis_int(ap, data->spec);
+	if (data->spec->car || data->type->s)
+		typeis_char(ap, data);
+	if (data->spec->unsigncar || data->spec->unsignsh || data->spec->unsignlg
+		|| data->spec->unsignlglg || data->spec->unint)
+		typeis_unsign(ap, data->tool, data->spec);
+	if (data->type->pourcentage)
+		pourcentage(data);
+//	if (data->tool->perc)
+//		typeis_perc(data);
 }

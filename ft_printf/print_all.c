@@ -6,13 +6,13 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 09:26:34 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/15 16:40:22 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/15 19:50:05 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_data		prt_width(t_data data, char *str)
+void		prt_width(t_lngt *lngt, char *str)
 {
 	int		size;
 	int		space_to_add;
@@ -28,11 +28,10 @@ t_data		prt_width(t_data data, char *str)
 			space_to_add--;
 		}
 	}
-	return (data);
 }
 
-t_data		prt_int_width(t_data data) /* bon modele a reproduire */
-{
+void		prt_int_width(t_spec *spec, t_lngt *lngt, t_flag *flag)
+{ /* bon modele a reproduire */
 	char	*str;
 	int		lgt;
 
@@ -41,17 +40,16 @@ t_data		prt_int_width(t_data data) /* bon modele a reproduire */
 	if (flag->minus)
 	{
 		ft_putnbr(spec->integer);
-		data = flag_minus(data, lgt);
+		flag_minus(lngt, lgt);
 	}
 	else if (!flag->minus)
 	{
-		prt_width(data, str);
+		prt_width(lngt, str);
 		ft_putnbr(spec->integer);
 	}
-	return (data);
 }
 
-t_data		prt_unint_width(t_data data)
+void		prt_unint_width(t_spec *spec, t_lngt *lngt, t_flag *flag)
 {
 	char	*str;
 	int		lgt;
@@ -61,17 +59,16 @@ t_data		prt_unint_width(t_data data)
 	if (flag->minus)
 	{
 		ft_putnbr(spec->unint);
-		data = flag_minus(data, lgt);
+		flag_minus(lngt, lgt);
 	}
 	else if (!flag->minus)
 	{
-		prt_width(data, str);
+		prt_width(lngt, str);
 		ft_putnbr(spec->unint);
 	}
-	return (data);
 }
 
-t_data		prt_str_width(t_data data)
+void		prt_str_width(t_tool *tool, t_lngt *lngt, t_flag *flag)
 {
 	int		lgt;
 
@@ -80,23 +77,22 @@ t_data		prt_str_width(t_data data)
 	if (flag->minus)
 	{
 		ft_putstr(tool->str_tp);
-		data = flag_minus(data, lgt);
+		flag_minus(lngt, lgt);
 	}
 	else if (!flag->minus)
 	{
-		prt_width(data, tool->str_tp);
+		prt_width(lngt, tool->str_tp);
 		ft_putstr(tool->str_tp);
 	}
-	return (data);
 }
 
-t_data		prt_car_width(t_data data)
+void		prt_car_width(t_spec *spec, t_lngt *lngt, t_flag *flag)
 {
 	lngt->width = lngt->width - 1;
 	if (flag->minus)
 	{
 		ft_putchar(spec->car);
-		data = flag_minus(data, 1);
+		flag_minus(lngt, 1);
 	}
 	else if (!flag->minus)
 	{
@@ -107,43 +103,41 @@ t_data		prt_car_width(t_data data)
 		}
 		ft_putchar(spec->car);
 	}
-	return (data);
 }
 
-t_data		print_all(t_data data)
+void		print_all(t_data *data)
 {
-	if (spec->integer)
-		lngt->width ? data = prt_int_width(data) : ft_putnbr(spec->integer);
-	if (spec->str)
-		lngt->width ? data = prt_str_width(data) : ft_putstr(tool->str_tp);
-	if (spec->car)
+	if (data->spec->integer)
+		data->lngt->width ? prt_int_width(data->spec, data->lngt, data->flag) : ft_putnbr(data->spec->integer);
+	if (data->spec->str)
+		data->lngt->width ? prt_str_width(data->tool, data->lngt, data->flag) : ft_putstr(data->tool->str_tp);
+	if (data->spec->car)
 	{
-		(spec->width && data->width > 1) ?
-		spec = prt_car_width(data) : ft_putchar(spec->car);
+		(data->spec->car && data->lngt->width > 1) ?
+		prt_car_width(data->spec, data->lngt, data->flag) : ft_putchar(data->spec->car);
 	}
-	if (spec->unint)
-		lngt->width ? data = prt_unint_width(data) : ft_putnbr(spec->unint);
-	if (spec->signcar)
+	if (data->spec->unint)
+		data->lngt->width ? prt_unint_width(data->spec, data->lngt, data->flag) : ft_putnbr(data->spec->unint);
+	/*if (data->spec->signcar)
 	{
-		(spec->width && lngt->width > 1) ?
-		spec = : ft_putchar(spec->signcar);
+		(data->spec->signcar && data->lngt->width > 1) ?
+		data->spec = : ft_putchar(data->spec->signcar);
 	}
-	if (spec->sh)
-		lngt->width ? data = : ft_putnbr(spec->sh);
-	if (spec->lg)
-		lngt->width ? data = : ft_putnbr(spec->lg);
-	if (spec->lglg)
-		lngt->width ? data = : ft_putnbr(spec->lglg);
-	if (spec->unsigncar)
+	if (data->spec->sh)
+		data->lngt->width ? : ft_putnbr(data->spec->sh);
+	if (data->spec->lg)
+		data->lngt->width ? : ft_putnbr(data->spec->lg);
+	if (data->spec->lglg)
+		data->lngt->width ? : ft_putnbr(data->spec->lglg);
+	if (data->spec->unsigncar)
 	{
-		(spec->width && data->width > 1) ?
-		spec = : ft_putnbr(data->unsigncar);
+		(data->spec->unsigncar && data->lngt->width > 1) ?
+		data->spec = : ft_putnbr(data->unsigncar);
 	}
-	if (spec->unsignsh)
-		lngt->width ? data = : ft_putnbr(spec->unsignsh);
-	if (spec->unsignlg)
-		lngt->width ? data = : ft_putnbr(spec->unsignlg);
-	if (spec->unsignlglg)
-		lngt->width ? data = : ft_putnbr(spec->unsignlglg);
-	return (data);
+	if (data->spec->unsignsh)
+		data->lngt->width ? : ft_putnbr(data->spec->unsignsh);
+	if (data->spec->unsignlg)
+		data->lngt->width ? : ft_putnbr(data->spec->unsignlg);
+	if (data->spec->unsignlglg)
+		data->lngt->width ? : ft_putnbr(data->spec->unsignlglg);*/
 }

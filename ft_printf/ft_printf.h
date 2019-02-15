@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/15 16:51:18 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/15 19:54:04 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,6 @@ typedef struct			s_spec
 	unsigned long		unsignlg;
 	unsigned long long	unsignlglg;
 }						t_spec;
-
-typedef struct			s_tool
-{
-	int					unsign;
-	char				*str_tp;
-	/* Nombre de caracteres imprimes */
-	int					nb_a; // compteur pour chaque caractere imprimes de l argument
-	int					nb_printed;
-	int					perc;/* cas special : si on a "%%" et qu'il y a des instructions entre les %*/
-	int					index;/* Pour gerer data.width on a besoin de l'index i  */
-	int					index2;/* pour gerer data.precision on a besoin de l'index j */
-	/* data */
-}						t_tool;
-
 
 typedef struct			s_flag
 {
@@ -94,6 +80,19 @@ typedef struct			s_type
 	int					pourcentage;
 }						t_type;
 
+typedef struct			s_tool
+{
+	int					unsign;
+	char				*str_tp;
+	/* Nombre de caracteres imprimes */
+	int					nb_a; // compteur pour chaque caractere imprimes de l argument
+	int					nb_printed;
+	int					perc;/* cas special : si on a "%%" et qu'il y a des instructions entre les %*/
+	int					index;/* Pour gerer data.width on a besoin de l'index i  */
+	int					index2;/* pour gerer data.precision on a besoin de l'index j */
+	/* data */
+}						t_tool;
+
 typedef struct			s_data
 {
 	t_spec 				*spec;
@@ -104,29 +103,30 @@ typedef struct			s_data
 	t_tool				*tool;
 }						t_data;
 
-t_data					check_zero(t_data data);
-t_data					check_sharp(t_data data);
-t_data					clean_data(t_data data);
-t_data					finalize_instructions(t_data data);
-t_data					find_arg_type(va_list ap, t_data data);
+void					check_zero(t_type *type, t_flag *flag);
+void					check_sharp(t_type *type, t_flag *flag);
+void					check_unsigned(t_type *type, t_size *size, t_tool *tool);
+void					clean_data(t_data *data);
+int	    				conv_octal(int nb);
+void					finalize_instructions(t_data *data);
+void					find_arg_type(va_list ap, t_data *data);
+void 					flag_minus(t_lngt *lngt, int size);
 int						ft_printf(const char *format, ...);
-void					parse_flags(char *instruc, t_data *data, int i);
+void					parse_flags(char *instruc, t_flag *flag, int i);
 void					parse_instructions(char *instruc, t_data *data);
-void					parse_precision(char *instruc, t_data *data, int i);
-void					parse_size(char *instruc, t_data *data, int i);
-void					parse_type(char *instruc, t_data *data, int i);
-void					parse_width(char *instruc, t_data *data, int i);
+void					parse_precision(char *instruc, t_lngt *lngt, t_tool *tool, int i);
+void					parse_size(char *instruc, t_size *size, int i);
+void					parse_type(char *instruc, t_type *type, t_tool *tool, int i);
+void					parse_width(char *instruc, t_lngt *lngt, t_tool *tool, int i);
+void					print_all(t_data *data);
 int						put_text(va_list ap, const char *format);
 char					*take_instructions(const char *format, int i);
-t_data					typeis_int(va_list ap, t_data data);
-t_data					typeis_char(va_list ap, t_data data);
-t_data					typeis_unsign(va_list ap, t_data data);
-t_data					print_all(t_data data);
-t_data 					flag_minus(t_data data, int size_of_integer);
-t_data					width_and_precision(t_data data);
-t_data					prt_precision(t_data data);
-t_data					print_octal(t_data data, va_list ap);
-int						conv_octal(int i);
-t_data					pourcentage(t_data data);
+void					typeis_int(va_list ap, t_spec *spec);
+void					typeis_char(va_list ap, t_data *data);
+void					typeis_unsign(va_list ap, t_tool *tool, t_spec *spec);
+void					width_and_precision(t_lngt *lngt);
+void					prt_precision(t_lngt *lngt, t_flag *flag, t_spec *spec);
+void					print_octal(t_data *data, va_list ap);
+void					pourcentage(t_data *data);
 
 #endif

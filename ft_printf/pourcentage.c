@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 14:49:58 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/15 16:38:53 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/15 18:44:27 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // rajouter dans ft_printf.h un int pourcentage avec la gestion des types;
 
-t_data          clean_pourcentage(t_data data)
+void          clean_pourcentage(t_size *size, t_flag *flag, t_lngt *lngt)
 {
     if (size->l)
         size->l = 0;
@@ -28,10 +28,9 @@ t_data          clean_pourcentage(t_data data)
         flag->space = 0;
     if (lngt->precision)
         lngt->precision = 0;
-    return (data);
 }
 
-t_data          printf_perc(t_data data)
+void          printf_perc(t_tool *tool, t_flag *flag, t_lngt *lngt)
 {
     if (lngt->width && flag->zero)
     {
@@ -51,30 +50,27 @@ t_data          printf_perc(t_data data)
             tool->nb_a++;
         }
     }
-    return (data);
 }
 
-t_data          pourcentage(t_data data)
+void          pourcentage(t_data *data)
 {
-
-    if (size->l || size->ll || size->h || size->hh || flag->space || lngt->precision)
-        data = clean_pourcentage(data);
-
-    if (lngt->precision_zero)
-        data->precision_zero = 0;
-    if (!lngt->width && flag->zero)
-        flag->zero = 0;
-    if (flag->sharp)
-        flag->sharp = 0;
-    if (flag->plus)
-        flag->plus = 0;
-    if (lngt->width)
-        lngt->width = lngt->width - 1;
-    if (flag->minus)
+    if (data->size->l || data->size->ll || data->size->h || data->size->hh
+        || data->flag->space || data->lngt->precision)
+        clean_pourcentage(data->size, data->flag, data->lngt);
+    if (data->lngt->precision_zero)
+        data->lngt->precision_zero = 0;
+    if (!data->lngt->width && data->flag->zero)
+        data->flag->zero = 0;
+    if (data->flag->sharp)
+        data->flag->sharp = 0;
+    if (data->flag->plus)
+        data->flag->plus = 0;
+    if (data->lngt->width)
+        data->lngt->width = data->lngt->width - 1;
+    if (data->flag->minus)
         ft_putchar('%');
-    data = printf_perc(data);
-    if (!flag->minus)
+        printf_perc(data->tool, data->flag, data->lngt);
+    if (!data->flag->minus)
         ft_putchar('%');
-    tool->nb_a++;
-    return (data);
+    data->tool->nb_a++;
 }

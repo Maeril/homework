@@ -6,13 +6,13 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 11:26:34 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/15 15:59:51 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/15 18:41:15 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_data		flag_minus(t_data data, int size)
+void		flag_minus(t_lngt *lngt, int size)
 {
 	int space_to_add;
 
@@ -26,5 +26,4 @@ t_data		flag_minus(t_data data, int size)
 			space_to_add--;
 		}
 	}
-	return (data);
 }

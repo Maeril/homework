@@ -6,17 +6,17 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 17:27:54 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/15 16:48:31 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/15 19:54:23 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int				measure_width_len(t_data data, int len)
+int				measure_width_len(t_lngt *lngt, t_flag *flag, int len)
 {
 	if (lngt->precision && lngt->precision > 0)
 		lngt->width = lngt->width - lngt->precision;
-	if (lngt->precision && data->zero)
+	if (lngt->precision && flag->zero)
 	{
 		lngt->precision = lngt->width; // a ameliorer
 		lngt->width = 0;
@@ -26,7 +26,7 @@ int				measure_width_len(t_data data, int len)
 	return (lngt->width);
 }
 
-int				measure_precision_len(t_data data, int len)
+int				measure_precision_len(t_lngt *lngt, int len)
 {
 	if (len >= lngt->precision)
 		lngt->precision = 0;
@@ -36,42 +36,37 @@ int				measure_precision_len(t_data data, int len)
 }
 
 
-t_data			cancel_stuff(t_data data)
+void			cancel_stuff(t_flag *flag)
 {
 	if (flag->plus)
 		flag->plus = 0;
 	if (flag->space)
 		flag->space = 0;
-	return (data);
 }
 
-void			go_width(t_data data)
+void			go_width(t_lngt *lngt, t_tool *tool)
 {
 	if (lngt->width)
-	{
 		while (lngt->width)
 		{
 			ft_putchar(' ');
 			lngt->width = lngt->width - 1;
 			tool->nb_a = tool->nb_a + 1;
 		}
-	}
 }
 
-void			go_precision(t_data data)
+void			go_precision(t_lngt *lngt, t_tool *tool)
 {
 	if (lngt->precision)
-	{
 		while (lngt->precision)
 		{
 			ft_putchar('0');
 			lngt->precision = lngt->precision - 1;
 			tool->nb_a = tool->nb_a + 1;
 		}
-	}
 }
 
-t_data			print_octal(t_data data, va_list ap)
+void			print_octal(t_data *data, va_list ap)
 {
 
 	/* A finir pour terminer la conversion de o :
@@ -80,50 +75,49 @@ t_data			print_octal(t_data data, va_list ap)
 	 */
 	int len;
 
-	type->o = va_arg(ap, int);
-	type->o = conv_octal(type->o);
-	len = ft_strlen(ft_itoa(type->o));
+	data->type->o = va_arg(ap, int);
+	data->type->o = conv_octal(data->type->o);
+	len = ft_strlen(ft_itoa(data->type->o));
 
-	if (lngt->width)
+	if (data->lngt->width)
 	{
-		lngt->width = measure_width_len(data, len);
-		if (flag->zero)
+		data->lngt->width = measure_width_len(data->lngt, data->flag, len);
+		if (data->flag->zero)
 		{
-			lngt->precision = lngt->width;
-			lngt->width = 0;
+			data->lngt->precision = data->lngt->width;
+			data->lngt->width = 0;
 		}
-		if (flag->sharp)
+		if (data->flag->sharp)
 		{
-			if (lngt->precision)
-				flag->sharp = 0;
-			else if (!lngt->precision)
-				lngt->width -= 1;
+			if (data->lngt->precision)
+				data->flag->sharp = 0;
+			else if (!data->lngt->precision)
+				data->lngt->width -= 1;
 		}
 	}
-	if (lngt->precision)
-		lngt->precision = measure_precision_len(data, len);
-	if (lngt->precision_dot && flag->zero)
-		flag->zero = 0;
-	if (flag->plus || flag->space)
-		data = cancel_stuff(data);
-	if (!flag->minus)
+	if (data->lngt->precision)
+		measure_precision_len(data->lngt, len);
+	if (data->lngt->precision_dot && data->flag->zero)
+		data->flag->zero = 0;
+	if (data->flag->plus || data->flag->space)
+		cancel_stuff(data->flag);
+	if (!data->flag->minus)
 	{
-		go_width(data);
-		go_precision(data);
-		if (flag->sharp)
+		go_width(data->lngt, data->tool);
+		go_precision(data->lngt, data->tool);
+		if (data->flag->sharp)
 		{
 			ft_putchar('0');
-			tool->nb_a += 1;
+			data->tool->nb_a += 1;
 		}
-		tool->nb_a += len;
+		data->tool->nb_a += len;
 	}
-	else if (flag->minus)
+	else if (data->flag->minus)
 	{
-		go_precision(data);
-		if (flag->sharp)
+		go_precision(data->lngt, data->tool);
+		if (data->flag->sharp)
 			ft_putchar('0');
-		go_width(data);
+		go_width(data->lngt, data->tool);
 	}
-	ft_putnbr(type->o);
-	return (data);
+	ft_putnbr(data->type->o);
 }
