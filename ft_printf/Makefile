@@ -5,74 +5,75 @@
 #                                                     +:+ +:+         +:+      #
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/02/11 22:13:37 by myener            #+#    #+#              #
-#    Updated: 2019/02/14 21:20:44 by myener           ###   ########.fr        #
+#    Created: 2019/02/15 13:04:05 by myener            #+#    #+#              #
+#    Updated: 2019/02/15 13:05:33 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+MAKE	:= make
+CC		:= gcc
+LD		:= gcc
+RM		:= rm -rf
 
+SRCDIR	:=	./
+OBJDIR	:=	./objs
 INCLDIR	:=	-I./libft
+LIBDIR 	:=	libft/
 
-SRC = clean_data.c \
-	  find_type.c \
-	  ft_printf.c \
-	  parser.c \
-	  spec_instructions.c \
-	  print_width.c \
-	  flag_minus.c \
-	  width_and_precision.c \
-	  print_octal.c \
-	  conv_octal.c \
-	  pourcentage.c \
-	  libft/ft_putchar.c \
-	  libft/ft_putstr.c \
-	  libft/ft_putnbr.c \
-	  libft/ft_strsub.c \
-	  libft/ft_atoi.c \
-	  libft/ft_itoa.c \
-	  libft/ft_strlen.c \
-	  libft/ft_intlen.c \
-	  libft/ft_strdup.c
+CFLAGS	:=	-Wall -Wextra -Werror $(INCLDIR)
+LDFLAGS	:=	-L$(LIBDIR) -lft
 
-FLAGS = -Wall -Werror -Wextra $(INCLDIR)
+SRCS    :=	clean_data.c \
+			find_type.c \
+			ft_printf.c \
+			parser.c \
+			spec_instructions.c \
+			print_width.c \
+			flag_minus.c \
+			width_and_precision.c \
+			print_octal.c \
+			conv_octal.c \
+			pourcentage.c \
+			libft/ft_putchar.c \
+			libft/ft_putstr.c \
+			libft/ft_putnbr.c \
+			libft/ft_strsub.c \
+			libft/ft_atoi.c \
+			libft/ft_itoa.c \
+			libft/ft_strlen.c \
+			libft/ft_intlen.c \
+			libft/ft_strdup.c
+
+OBJS	:=	$(addprefix $(OBJDIR)/,$(SRCS:.c=.o))
+SRCS	:=	$(addprefix $(SRCDIR)/,$(SRCS))
+LIB		:=	$(LIBDIR)/libft.a
+NAME	:=	libftprintf.a
+
+$(NAME): $(LIB) $(OBJS)
+	@printf "\e[32m  Creating: \e[0m$(NAME)\n"
+	@$(LD) $(LDFLAGS) -o $(NAME) $(OBJS)
 
 all: $(NAME)
 
-OBJ = clean_data.o \
-	  find_type.o \
-	  ft_printf.o \
-	  parser.o \
-	  spec_instructions.o \
-	  print_width.o \
-	  flag_minus.o \
-	  width_and_precision.o \
-	  print_octal.o \
-	  conv_octal.o \
-	  pourcentage.o \
-	  libft/ft_putchar.o \
-	  libft/ft_putstr.o \
-	  libft/ft_putnbr.o \
-	  libft/ft_strsub.o \
-	  libft/ft_atoi.o \
-	  libft/ft_itoa.o \
-	  libft/ft_strlen.o \
-	  libft/ft_intlen.o \
-	  libft/ft_strdup.o
+$(LIB):
+	$(MAKE) -C libft/
 
-%.o: %.c
-	gcc $(FLAGS) -o $@ -c $<
-
-$(NAME): $(OBJ)
-	ar -rc $(NAME) $(OBJ)
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@printf "\e[32m Compiling: \e[0m$< -> $@\n"
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJ)
-	make clean -C libft/
+	@printf "\e[32m  Cleaning: \e[0m$(OBJDIR)\e[0m\n"
+	@$(RM) $(OBJDIR)
+	$(MAKE) -C libft clean
 
 fclean: clean
-	/bin/rm -f $(NAME)
-	make fclean -C libft/
+	@printf "\e[32m  Removing: \e[0m"
+	@find . -name "fillit" -exec sh -c 'basename {}' \; | tr "\n" " "
+	@echo ""
+	@$(RM) $(NAME)
+	$(MAKE) -C libft fclean
 
 re: fclean all
 
