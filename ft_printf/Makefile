@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/11 22:13:37 by myener            #+#    #+#              #
-#    Updated: 2019/02/13 12:38:48 by myener           ###   ########.fr        #
+#    Updated: 2019/02/14 21:20:44 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,12 @@ SRC = clean_data.c \
 	  ft_printf.c \
 	  parser.c \
 	  spec_instructions.c \
-	  print_all.c \
+	  print_width.c \
 	  flag_minus.c \
+	  width_and_precision.c \
+	  print_octal.c \
+	  conv_octal.c \
+	  pourcentage.c \
 	  libft/ft_putchar.c \
 	  libft/ft_putstr.c \
 	  libft/ft_putnbr.c \
@@ -40,8 +44,12 @@ OBJ = clean_data.o \
 	  ft_printf.o \
 	  parser.o \
 	  spec_instructions.o \
-	  print_all.o \
+	  print_width.o \
 	  flag_minus.o \
+	  width_and_precision.o \
+	  print_octal.o \
+	  conv_octal.o \
+	  pourcentage.o \
 	  libft/ft_putchar.o \
 	  libft/ft_putstr.o \
 	  libft/ft_putnbr.o \

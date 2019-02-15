@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 14:14:03 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/12 16:40:26 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/13 18:23:20 by mpicard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_data		finalize_instructions(t_data data)
 	data.space = (data.space && !data.plus);/*ecriture super-simplifiee. dis moi si tu comprends pas ! -mae*/
 	data.zero = (data.zero && !data.minus);
 	data.space = (data.space && (data.d || data.i));
-	data.precision = (data.precision && !data.c);
+//	data.precision = (data.precision && !data.c); > pb avec cette phrase :( elle met precision a 1.... -ML
 	if (data.precision && (data.d || data.i || data.o || data.u || data.x
 		|| data.big_x))
 		data.zero = 0;

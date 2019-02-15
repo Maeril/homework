@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flag_minus.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/13 11:26:34 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/13 18:43:04 by mpicard          ###   ########.fr       */
+/*   Created: 2019/02/14 14:41:32 by myener            #+#    #+#             */
+/*   Updated: 2019/02/14 19:11:43 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-t_data		flag_minus(t_data data, int size)
+void	ft_putnbr_base(int nb, const char *base)
 {
-	int space_to_add;
+	long	n;
+	int		bl;
 
-	space_to_add = 0;
-	if (size < data.width)
+	n = nb;
+	bl = ft_strlen(base);
+	if (n < 0)
 	{
-		space_to_add = data.width - size;
-		while (space_to_add)
-		{
-			ft_putchar(' ');
-			space_to_add--;
-		}
+		ft_putchar('-');
+		n = -n;
 	}
-	return (data);
+	if (n >= bl)
+		ft_putnbr(n / bl);
+	ft_putchar(base[n % bl]);
 }

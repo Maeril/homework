@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_type.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpicard <mpicard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 16:56:58 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/13 11:21:01 by mpicard          ###   ########.fr       */
+/*   Updated: 2019/02/14 18:24:46 by mpicard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_data		typeis_int(va_list ap, t_data data)
 	{
 		i = va_arg(ap, int);
 		data.integer = i;
+		ft_putnbr(data.integer);
 	}
 	else if (data.sh)
 	{
@@ -127,22 +128,32 @@ t_data		typeis_perc(t_data data)
 t_data		find_arg_type(va_list ap, t_data data)
 {
 	if (data.space && (data.d || data.i))
-		ft_putchar(' ');
+		ft_putchar(' '); // je  pense qu'il faudra enlever cette condition et ligne. 
 	if (data.plus && !data.unsign)
-		ft_putchar('+');
-	if (data.zero)
-		ft_putnbr('0');
-//	if (data.minus && data.width) // 
+	{
+	}
+		// Je suis en train de tester le fait d'enlever la ligne en dessous et je pense que ca va aussi etre necessaire... :) 
+	//	ft_putchar('+');
+//	}
+//	if (data.zero)
+//		ft_putnbr('0'); --> ML : je pense qu'il faut supprimer ces lignes. 
+
+//	if (data.minus && data.width) // j'ai mis la ligne en sourdine car je pense quelle est pas finie ^^ 
 
 	if (data.d == 1 || data.i == 1 || data.o == 1 || data.x == 1 || data.big_x == 1)
 	{
 		data.integer = 1;
 	}
 	data.car = (data.c && data.c); // est ce qu'on peut reduire cette ligne ? data.car = data.c ?
-
-//	data.str = (data.str && (data.s || data.p)); je met en sourdine en attendant 
+//	data.str = (data.str && (data.s || data.p)); je met en sourdine en attendant (voir ligne ci dessus)
 	data.str = (data.s || data.p);
 	data.unint = (data.unint && data.u);
+
+
+// je teste l'affichage de o ici 
+	if (data.o)
+		data = print_octal(data, ap);
+
 	if (data.d || data.i)
 	{
 		data.signcar = (data.signcar && data.hh);
@@ -164,7 +175,10 @@ t_data		find_arg_type(va_list ap, t_data data)
 	if (data.unsigncar || data.unsignsh || data.unsignlg || data.unsignlglg || data.unint)
 		data = typeis_unsign(ap, data);
 
-	if (data.perc)
-		data = typeis_perc(data);
+	if (data.pourcentage)
+		data = pourcentage(data);
+
+//	if (data.perc)
+//		data = typeis_perc(data);
 	return (data);
 }

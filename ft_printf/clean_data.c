@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 17:48:05 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/12 18:28:05 by mpicard          ###   ########.fr       */
+/*   Updated: 2019/02/14 18:27:39 by mpicard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ t_data		clean_data(t_data data)
 		data.unsignsh = 0;
 		data.unsignlg = 0;
 		data.unsignlglg = 0;
+		data.index = 0;
+		data.index2 = 0;
+		data.nb_a = 0;
 
 	return (data);
 }
