@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_all.c                                        :+:      :+:    :+:   */
+/*   print_width.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 09:26:34 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/15 19:57:28 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/15 21:40:56 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,55 +35,37 @@ void		prt_int_width(t_spec *spec, t_lngt *lngt, t_flag *flag)
 	char	*str;
 	int		lgt;
 
-	str = ft_itoa(spec->integer);
-	lgt = ft_strlen(str);
-	if (flag->minus)
+	if (spec->unint)
 	{
-		ft_putnbr(spec->integer);
-		flag_minus(lngt, lgt);
+		str = ft_itoa(spec->integer);
+		lgt = ft_strlen(str);
+		if (flag->minus)
+		{
+			ft_putnbr(spec->integer);
+			flag_minus(lngt, lgt);
+		}
+		else if (!flag->minus)
+		{
+			prt_width(lngt, str);
+			ft_putnbr(spec->integer);
+		}
 	}
-	else if (!flag->minus)
+	else if (spec->integer)
 	{
-		prt_width(lngt, str);
-		ft_putnbr(spec->integer);
+		str = ft_itoa(spec->unint);
+		lgt = ft_strlen(str);
+		if (flag->minus)
+		{
+			ft_putnbr(spec->unint);
+			flag_minus(lngt, lgt);
+		}
+		else if (!flag->minus)
+		{
+			prt_width(lngt, str);
+			ft_putnbr(spec->unint);
+		}
 	}
-}
 
-void		prt_unint_width(t_spec *spec, t_lngt *lngt, t_flag *flag)
-{
-	char	*str;
-	int		lgt;
-
-	str = ft_itoa(spec->unint);
-	lgt = ft_strlen(str);
-	if (flag->minus)
-	{
-		ft_putnbr(spec->unint);
-		flag_minus(lngt, lgt);
-	}
-	else if (!flag->minus)
-	{
-		prt_width(lngt, str);
-		ft_putnbr(spec->unint);
-	}
-}
-
-void		prt_str_width(t_tool *tool, t_lngt *lngt, t_flag *flag)
-{
-	int		lgt;
-
-	lgt = ft_strlen(tool->str_tp);
-
-	if (flag->minus)
-	{
-		ft_putstr(tool->str_tp);
-		flag_minus(lngt, lgt);
-	}
-	else if (!flag->minus)
-	{
-		prt_width(lngt, tool->str_tp);
-		ft_putstr(tool->str_tp);
-	}
 }
 
 void		prt_car_width(t_spec *spec, t_lngt *lngt, t_flag *flag)
@@ -105,19 +87,48 @@ void		prt_car_width(t_spec *spec, t_lngt *lngt, t_flag *flag)
 	}
 }
 
-void		print_all(t_data *data)
+void		prt_str_width(t_tool *tool, t_lngt *lngt, t_flag *flag)
+{
+	int		lgt;
+
+	lgt = ft_strlen(tool->str_tp);
+
+	if (flag->minus)
+	{
+		ft_putstr(tool->str_tp);
+		flag_minus(lngt, lgt);
+	}
+	else if (!flag->minus)
+	{
+		prt_width(lngt, tool->str_tp);
+		ft_putstr(tool->str_tp);
+	}
+}
+
+
+void		print_width(t_data *data)
 {
 	if (data->spec->integer)
-		data->lngt->width ? prt_int_width(data->spec, data->lngt, data->flag) : ft_putnbr(data->spec->integer);
+	{
+		data->lngt->width ? prt_int_width(data->spec, data->lngt, data->flag) :
+		ft_putnbr(data->spec->integer);
+	}
 	if (data->spec->str)
-		data->lngt->width ? prt_str_width(data->tool, data->lngt, data->flag) : ft_putstr(data->tool->str_tp);
+	{
+		data->lngt->width ? prt_str_width(data->tool, data->lngt, data->flag) :
+		ft_putstr(data->tool->str_tp);
+	}
 	if (data->spec->car)
 	{
 		(data->spec->car && data->lngt->width > 1) ?
-		prt_car_width(data->spec, data->lngt, data->flag) : ft_putchar(data->spec->car);
+		prt_car_width(data->spec, data->lngt, data->flag) :
+		ft_putchar(data->spec->car);
 	}
 	if (data->spec->unint)
-		data->lngt->width ? prt_unint_width(data->spec, data->lngt, data->flag) : ft_putnbr(data->spec->unint);
+	{
+		data->lngt->width ? prt_int_width(data->spec, data->lngt, data->flag) :
+		ft_putnbr(data->spec->unint);
+	}
 	/*if (data->spec->signcar)
 	{
 		(data->spec->signcar && data->lngt->width > 1) ?

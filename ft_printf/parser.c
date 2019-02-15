@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 13:40:00 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/15 19:57:22 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/15 20:59:44 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,19 +62,6 @@ void		parse_precision(char *instruc, t_lngt *lngt, t_tool *tool, int i)
 	precision_ins = ft_strsub(instruc, start, len);
 	lngt->precision = ft_atoi(precision_ins);
 }
-
-// j'ai refait cette fonction ci dessous. J'ai l'impression qu'elle fonctionne
-// mieux. Si ca te va, on supprime la fonction mise en sourdine ci dessous :)
-//t_data		parse_precision(char *instruc, t_data data, int i)
-//{
-//	if (instruc[i - 1] && instruc[i - 1] >= '0' && instruc[i - 1] <= '9')
-//		data.width = 1;
-//	if (instruc[i + 1] >= '0' && instruc[i + 1] <= '9')
-//		data.precision = 1;
-//	while (instruc[i + 1] >= '0' && instruc[i + 1] <= '9')
-//		i++;
-//	return (data);
-//}
 
 void		parse_width(char *instruc, t_lngt *lngt, t_tool *tool, int i)
 {

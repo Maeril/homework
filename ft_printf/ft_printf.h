@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/15 19:57:27 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/15 21:06:52 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,8 @@ void					parse_precision(char *instruc, t_lngt *lngt, t_tool *tool, int i);
 void					parse_size(char *instruc, t_size *size, int i);
 void					parse_type(char *instruc, t_type *type, t_tool *tool, int i);
 void					parse_width(char *instruc, t_lngt *lngt, t_tool *tool, int i);
-void					print_all(t_data *data);
-int						put_text(va_list ap, const char *format);
+void					print_width(t_data *data);
+int						put_text(va_list ap, const char *format, char *instruc);
 char					*take_instructions(const char *format, int i);
 void					typeis_int(va_list ap, t_spec *spec);
 void					typeis_char(va_list ap, t_data *data);
