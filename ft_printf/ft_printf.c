@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 11:22:42 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/15 19:44:06 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/15 20:36:52 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,6 @@ int			main(void)
 {
 
 	ft_printf("%o\n", 9);
-
-	// // string simple (parce que bah si ca marche plus, que le reste marche ne sert a rien)
-	// printf("%s\n", "abc");
-	// ft_printf("%s\n", "abc");
-
 	// width et sharp
 	printf("%#10.5o\n", 7);
 	ft_printf("%#10.5o\n", 7);
