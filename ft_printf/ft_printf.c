@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 11:22:42 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/14 22:16:23 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/15 16:38:28 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int			put_text(va_list ap, const char *format)
 	index = 0;
 	tmp = 0;
 	i = 0;
-	data.integer = 0;
+	spec->integer = 0;
 	len = 0;
 	data = clean_data(data);
 	while (format[i])
@@ -83,7 +83,7 @@ int			put_text(va_list ap, const char *format)
 			data = finalize_instructions(data);
 			data = find_arg_type(ap, data);
 			data = print_all(data);
-			tmp = data.nb_a;
+			tmp = tool->nb_a;
 			data = clean_data(data);
 		}
 		i++;
@@ -116,16 +116,16 @@ int			main(void)
 	// ft_printf("%s\n", "abc");
 
 	// width et sharp
-	printf("%#10.5o\n", 7);
-	ft_printf("%#10.5o\n", 7);
+	printf("%#10->5o\n", 7);
+	ft_printf("%#10->5o\n", 7);
 
 	// width et sharp
 	printf("%#5o\n", 5);
 	ft_printf("%#5o\n", 5);
 
 	// sharp precision
-	printf("%#.2o\n", 987);
-	ft_printf("%#.2o\n", 987);
+	printf("%#->2o\n", 987);
+	ft_printf("%#->2o\n", 987);
 
 	// sharp simple
 	printf("%#o\n", 100);
@@ -140,23 +140,23 @@ int			main(void)
 	// printf("%-10.5o\n", 55);
 
 	// Octal Precision && Width
-	ft_printf("%10.5o\n", 55);
-	printf("%10.5o\n", 55);
+	ft_printf("%10->5o\n", 55);
+	printf("%10->5o\n", 55);
 
 	// Octal Width
 	ft_printf("%5o\n", 36);
 	printf("%5o\n", 36);
 
 	// Octal Precision
-	ft_printf("%.5o\n", 36);
-	printf("%.5o\n", 36);
+	ft_printf("%->5o\n", 36);
+	printf("%->5o\n", 36);
 
 	// Octal Basique
 	ft_printf("%o\n", 500);
 	printf("%o\n", 500);
 
-	printf("%#5.o\n", 5);
-	ft_printf("%5.o\n", 5);
+	printf("%#5->o\n", 5);
+	ft_printf("%5->o\n", 5);
 
 	return (0);
 }

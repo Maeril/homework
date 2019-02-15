@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 17:52:35 by myener            #+#    #+#              #
-#    Updated: 2019/02/15 12:56:49 by myener           ###   ########.fr        #
+#    Updated: 2019/02/15 13:47:51 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,8 @@ SRC		=	ft_strdup.c \
 			ft_lstdel.c \
 			ft_lstadd.c \
 			ft_lstiter.c \
-			ft_lstmap.c
+			ft_lstmap.c	\
+			ft_intlen.c
 
 
 
@@ -81,13 +82,13 @@ all: $(NAME)
 OBJ = $(SRC:.c=.o)
 
 $(NAME):
-	gcc -c $(FLAGS) $(SRC)
-	ar -rc $(NAME) $(OBJ)
+	@gcc -c $(FLAGS) $(SRC)
+	@ar -rc $(NAME) $(OBJ)
 
 clean :
-		rm -rf $(OBJ)
+		@rm -rf $(OBJ)
 
 fclean : clean
-		/bin/rm -f $(NAME)
+		@/bin/rm -f $(NAME)
 
 re : fclean all

@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 14:14:03 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/13 18:23:20 by mpicard          ###   ########.fr       */
+/*   Updated: 2019/02/15 16:51:19 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,39 @@
 
 t_data		check_zero(t_data data)
 {
-	if (data.d || data.i || data.o || data.u || data.x || data.big_x)
-		data.zero = 0;
+	if (type->d || type->i || type->o || type->u || type->x || type->big_x)
+		flag->zero = 0;
 	return(data);
 }
 
 t_data		check_sharp(t_data data)
 {
-	if (data.d || data.c || data.s || data.u || data.i)
-		data.sharp = 0;
+	if (type->d || type->c || type->s || type->u || type->i)
+		flag->sharp = 0;
 	return (data);
 }
 
 t_data		check_unsigned(t_data data)
 {
-	if (data.u || (data.o && (data.h || data.hh || data.l || data.ll))
-		|| (data.x && (data.h || data.hh || data.l || data.ll )) || (data.big_x
-		&& (data.h || data.hh || data.l || data.ll )))
-		data.unsign = 1;
+	if (type->u || (type->o && (size->h || size->hh || size->l || size->ll))
+		|| (type->x && (size->h || size->hh || size->l || size->ll )) || (type->big_x
+		&& (size->h || size->hh || size->l || size->ll )))
+		tool->unsign = 1;
 	return (data);
 }
 
 t_data		finalize_instructions(t_data data)
 {
-	data.plus = (data.plus && !data.unsign);
-	data.space = (data.space && !data.plus);/*ecriture super-simplifiee. dis moi si tu comprends pas ! -mae*/
-	data.zero = (data.zero && !data.minus);
-	data.space = (data.space && (data.d || data.i));
-//	data.precision = (data.precision && !data.c); > pb avec cette phrase :( elle met precision a 1.... -ML
-	if (data.precision && (data.d || data.i || data.o || data.u || data.x
-		|| data.big_x))
-		data.zero = 0;
-	if (data.sharp && (data.d || data.c || data.s || data.u || data.i))
-		data.sharp = 0;
+	flag->plus = (flag->plus && !tool->unsign);
+	flag->space = (flag->space && !flag->plus);/*ecriture super-simplifiee. dis moi si tu comprends pas ! -mae*/
+	flag->zero = (flag->zero && !flag->minus);
+	flag->space = (flag->space && (type->d || type->i));
+//	data->precision = (data->precision && !data->c); > pb avec cette phrase :( elle met precision a 1... -ML
+	if (lngt->precision && (type->d || type->i || type->o || data->u || data->x
+		|| data->big_x))
+		data->zero = 0;
+	if (data->sharp && (data->d || data->c || data->s || data->u || data->i))
+		data->sharp = 0;
 	return (data);
 }
 

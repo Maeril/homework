@@ -6,50 +6,48 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 17:48:05 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/14 18:27:39 by mpicard          ###   ########.fr       */
+/*   Updated: 2019/02/15 16:29:08 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_data		clean_data(t_data data)
+void		clean_data(t_data *data)
 {
-		data.unsign = 0;
-		data.minus = 0;
-		data.plus = 0;
-		data.zero = 0;
-		data.space = 0;
-		data.width = 0;
-		data.precision = 0;
-		data.h = 0;
-		data.ll = 0;
-		data.l = 0;
-		data.hh = 0;
-		data.c = 0;
-		data.s = 0;
-		data.p = 0;
-		data.d = 0;
-		data.i = 0;
-		data.o = 0;
-		data.u = 0;
-		data.x = 0;
-		data.big_x = 0;
-		data.integer = 0;
-		data.str = 0;
-		data.car = 0;
-		data.unint = 0;
-		data.signcar = 0;
-		data.sh = 0;
-		data.lg = 0;
-		data.lglg = 0;
-		data.unsigncar = 0;
-		data.unsignsh = 0;
-		data.unsignlg = 0;
-		data.unsignlglg = 0;
-		data.index = 0;
-		data.index2 = 0;
-		data.nb_a = 0;
-
-	return (data);
+		data->flag->minus = 0;
+		data->flag->plus = 0;
+		data->flag->zero = 0;
+		data->flag->space = 0;
+		data->lngt->width = 0;
+		data->lngt->precision = 0;
+		data->size->h = 0;
+		data->size->ll = 0;
+		data->size->l = 0;
+		data->size->hh = 0;
+		data->type->c = 0;
+		data->type->s = 0;
+		data->type->p = 0;
+		data->type->d = 0;
+		data->type->i = 0;
+		data->type->o = 0;
+		data->type->u = 0;
+		data->type->x = 0;
+		data->type->big_x = 0;
+		data->spec->integer = 0;
+		data->spec->str = 0;
+		data->spec->car = 0;
+		data->spec->unint = 0;
+		data->spec->signcar = 0;
+		data->spec->sh = 0;
+		data->spec->lg = 0;
+		data->spec->lglg = 0;
+		data->spec->unsigncar = 0;
+		data->spec->unsignsh = 0;
+		data->spec->unsignlg = 0;
+		data->spec->unsignlglg = 0;
+		data->tool->unsign = 0;
+		data->tool->index = 0;
+		data->tool->index2 = 0;
+		data->tool->nb_a = 0;
 }
 

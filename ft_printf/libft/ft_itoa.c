@@ -6,12 +6,11 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:36:30 by myener            #+#    #+#             */
-/*   Updated: 2019/02/13 09:35:40 by mpicard          ###   ########.fr       */
+/*   Updated: 2019/02/15 13:42:01 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 char	*ft_itoa(int n)
 {

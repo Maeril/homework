@@ -6,32 +6,32 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 13:40:00 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/14 22:13:30 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/15 16:37:09 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		parse_type(char *instruc, t_data *data, int i)
+void		parse_type(char *instruc, t_type *type, int i)
 {
-	data->c = (instruc[i] == 'c');
-	data->s = (instruc[i] == 's');
-	data->p = (instruc[i] == 'p');
-	data->d = (instruc[i] == 'd');
-	data->i = (instruc[i] == 'i');
-	data->o = (instruc[i] == 'o');
-	data->u = (instruc[i] == 'u');
-	data->x = (instruc[i] == 'x');
-	data->big_x = (instruc[i] == 'X');
-	data->perc = (instruc[i] == '%');
+	type->c = (instruc[i] == 'c');
+	type->s = (instruc[i] == 's');
+	type->p = (instruc[i] == 'p');
+	type->d = (instruc[i] == 'd');
+	type->i = (instruc[i] == 'i');
+	type->o = (instruc[i] == 'o');
+	type->u = (instruc[i] == 'u');
+	type->x = (instruc[i] == 'x');
+	type->big_x = (instruc[i] == 'X');
+	tool->perc = (instruc[i] == '%');
 }
 
 void		parse_size(char *instruc, t_data *data, int i)
 {
-	if (data->l == (instruc[i] == 'l'))
-		data->ll = (instruc[++i] == 'l');
-	else if ((data->h = (instruc[i] == 'h')))
-		data->hh = (instruc[++i] == 'h');
+	if (size->l == (instruc[i] == 'l'))
+		size->ll = (instruc[++i] == 'l');
+	else if ((size->h = (instruc[i] == 'h')))
+		size->hh = (instruc[++i] == 'h');
 	i++;
 }
 
@@ -47,20 +47,20 @@ void		parse_precision(char *instruc, t_data *data, int i)
 	start = i;
 	if (instruc[i] == '0')
 	{
-		data->precision_zero = 1;
+		lngt->precision_zero = 1;
 		i++;
 	}
 	while (instruc[i] >= '0' && instruc[i] <= '9')
 	{
-		data->precision = 1;
+		lngt->precision = 1;
 		len++;
 		i++;
 	}
 	if (len == 0)
-		data->precision_dot = 1;;
-	data->index2 = i;
+		lngt->precision_dot = 1;;
+	tool->index2 = i;
 	precision_ins = ft_strsub(instruc, start, len);
-	data->precision = ft_atoi(precision_ins);
+	lngt->precision = ft_atoi(precision_ins);
 }
 
 // j'ai refait cette fonction ci dessous. J'ai l'impression qu'elle fonctionne
@@ -88,13 +88,13 @@ void		parse_width(char *instruc, t_data *data, int i)
 	start = i;
 	while (instruc[i] >= '0' && instruc[i] <= '9')
 	{
-		data->width = 1;
+		lngt->width = 1;
 		len++;
 		i++;
 	}
-	data->index = i;
+	tool->index = i;
 	width_ins = ft_strsub(instruc, start, len);
-	data->width = ft_atoi(width_ins);
+	lngt->width = ft_atoi(width_ins);
 }
 
 void		parse_flags(char *instruc, t_data *data, int i)
@@ -106,11 +106,11 @@ void		parse_flags(char *instruc, t_data *data, int i)
 	/*	data.minus = (instruc[i] == '-');  J'ai eu un bug avec cette ligne... du coup jai mis celle en dessous
 	en attendant de comprendre pourquoi y a eu un probleme */
 		if (instruc[i] == '-')
-			data->minus = 1;
-		data->plus = (instruc[i] == '+');
-		data->zero = (instruc[i] == '0');
-		data->space = (instruc[i] == ' ');
-		data->sharp = (instruc[i] == '#');
+			flag->minus = 1;
+		flag->plus = (instruc[i] == '+');
+		flag->zero = (instruc[i] == '0');
+		flag->space = (instruc[i] == ' ');
+		flag->sharp = (instruc[i] == '#');
 		i++;
 	}
 }
@@ -128,9 +128,9 @@ void		parse_instructions(char *instruc, t_data *data)
 			parse_flags(instruc, data, i);
 		if (instruc[i] >= '0' && instruc[i] <= '9')
 		{
-			data->index = i;
+			tool->index = i;
 			parse_width(instruc, data, i);
-			i = data->index;
+			i = tool->index;
 		}
 		if (instruc[i] == '.')
 			parse_precision(instruc, data, i);
@@ -141,7 +141,7 @@ void		parse_instructions(char *instruc, t_data *data)
 			instruc[i] == 'u' || instruc[i] == 'x' || instruc[i] == 'X' || instruc[i] == '%')
 			parse_type(instruc, data, i);
 		if (instruc[i] == '%')
-			data->pourcentage = 1;
+			type->pourcentage = 1;
 		i++;
 	}
 }

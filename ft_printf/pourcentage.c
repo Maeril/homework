@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pourcentage.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpicard <mpicard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 14:49:58 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/14 18:19:38 by mpicard          ###   ########.fr       */
+/*   Updated: 2019/02/15 16:38:53 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,39 +16,39 @@
 
 t_data          clean_pourcentage(t_data data)
 {
-    if (data.l)
-        data.l = 0;
-    if (data.ll)
-        data.ll = 0;
-    if (data.h)
-        data.h = 0;
-    if (data.hh)
-        data.hh = 0;
-    if (data.space)
-        data.space = 0;
-    if (data.precision)
-        data.precision = 0;
+    if (size->l)
+        size->l = 0;
+    if (size->ll)
+        size->ll = 0;
+    if (size->h)
+        size->h = 0;
+    if (size->hh)
+        size->hh = 0;
+    if (flag->space)
+        flag->space = 0;
+    if (lngt->precision)
+        lngt->precision = 0;
     return (data);
 }
 
 t_data          printf_perc(t_data data)
 {
-    if (data.width && data.zero)
+    if (lngt->width && flag->zero)
     {
-        while (data.width)
+        while (lngt->width)
         {
             ft_putchar('0');
-            data.width = data.width - 1;
-            data.nb_a++;
+            lngt->width = lngt->width - 1;
+            tool->nb_a++;
         }
     }
-    if (data.width && !data.zero)
+    if (lngt->width && !flag->zero)
     {
-        while (data.width)
+        while (lngt->width)
         {
             ft_putchar(' ');
-            data.width = data.width - 1;
-            data.nb_a++;
+            lngt->width = lngt->width - 1;
+            tool->nb_a++;
         }
     }
     return (data);
@@ -57,29 +57,24 @@ t_data          printf_perc(t_data data)
 t_data          pourcentage(t_data data)
 {
 
-    if (data.l || data.ll || data.h || data.hh || data.space || data.precision)
+    if (size->l || size->ll || size->h || size->hh || flag->space || lngt->precision)
         data = clean_pourcentage(data);
 
-    if (data.precision_zero)
-        data.precision_zero = 0;
-
-    if (!data.width && data.zero)
-        data.zero = 0;
-
-    if (data.sharp)
-        data.sharp = 0;
-
-    if (data.plus)
-        data.plus = 0;
-
-    if (data.width)
-        data.width = data.width - 1;
-
-    if (data.minus)
+    if (lngt->precision_zero)
+        data->precision_zero = 0;
+    if (!lngt->width && flag->zero)
+        flag->zero = 0;
+    if (flag->sharp)
+        flag->sharp = 0;
+    if (flag->plus)
+        flag->plus = 0;
+    if (lngt->width)
+        lngt->width = lngt->width - 1;
+    if (flag->minus)
         ft_putchar('%');
     data = printf_perc(data);
-    if (!data.minus)
+    if (!flag->minus)
         ft_putchar('%');
-    data.nb_a++;
+    tool->nb_a++;
     return (data);
 }

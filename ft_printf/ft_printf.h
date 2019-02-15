@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/14 22:11:44 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/15 16:51:18 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,42 +22,8 @@
 # define HEXA "0123456789abcdef"
 # define HEXU "0123456789ABCDEF"
 
-typedef struct			s_data
+typedef struct			s_spec
 {
-	/* Gestion des Flags : 1 ou 0*/
-	int					unsign;
-	int					minus;
-	int					plus;
-	int					zero;
-	int					space;
-	int					sharp;
-
-	/* Gestion de la longueur de champs : longueur donnee. */
-	int					width;
-	int					precision;
-	int					precision_dot;
-	int					precision_zero; /*  ML cette variable sert dans un cas precis : quand on a une 
-											precision egale a zero. si on ne fait rien, ca cree un
-											cas d'erreur je te montrerai */
-
-	/* Gestion de Size */
-	int					h;
-	int					ll;
-	int					l;
-	int					hh;
-
-	/* Gestion du type  cspdiouxX*/
-	int					c;
-	int					s;
-	int					p;
-	int					d;
-	int					i;
-	int					o;
-	int					u;
-	int					x;
-	int					big_x;
-	int					pourcentage;
-
 	/* Gestion du type s'il y a une size : signed char, short, long
 	 * long long, unsigned char/short/long/longlong*/
 	int					integer;
@@ -72,21 +38,70 @@ typedef struct			s_data
 	unsigned short		unsignsh;
 	unsigned long		unsignlg;
 	unsigned long long	unsignlglg;
-	char				*str_tp;
+}						t_spec;
 
+typedef struct			s_tool
+{
+	int					unsign;
+	char				*str_tp;
 	/* Nombre de caracteres imprimes */
 	int					nb_a; // compteur pour chaque caractere imprimes de l argument
-//	int					nb_b; // compteur pour chaque caractere de format hors arguments.
 	int					nb_printed;
-	/* cas special : si on a "%%" et qu'il y a des instructions entre les %*/
-	int					perc;
-
-	/* Pour gerer data.width on a besoin de l'index i  */
-	int					index;
-	/* pour gerer data.precision on a besoin de l'index j */
-	int					index2;
+	int					perc;/* cas special : si on a "%%" et qu'il y a des instructions entre les %*/
+	int					index;/* Pour gerer data.width on a besoin de l'index i  */
+	int					index2;/* pour gerer data.precision on a besoin de l'index j */
+	/* data */
+}						t_tool;
 
 
+typedef struct			s_flag
+{
+	int					minus;
+	int					plus;
+	int					zero;
+	int					space;
+	int					sharp;
+}						t_flag;
+
+typedef struct			s_lngt
+{
+	int					width;
+	int					precision;
+	int					precision_dot;
+	int					precision_zero;/* Quand on a une precision egale a zero.*/
+
+}						t_lngt;
+
+typedef struct			s_size
+{
+	int					h;
+	int					ll;
+	int					l;
+	int					hh;
+}						t_size;
+
+typedef struct			s_type
+{
+	int					c;
+	int					s;
+	int					p;
+	int					d;
+	int					i;
+	int					o;
+	int					u;
+	int					x;
+	int					big_x;
+	int					pourcentage;
+}						t_type;
+
+typedef struct			s_data
+{
+	t_spec 				*spec;
+	t_flag 				*flag;
+	t_lngt 				*lngt;
+	t_size 				*size;
+	t_type 				*type;
+	t_tool				*tool;
 }						t_data;
 
 t_data					check_zero(t_data data);

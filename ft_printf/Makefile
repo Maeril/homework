@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/15 13:04:05 by myener            #+#    #+#              #
-#    Updated: 2019/02/15 13:05:33 by myener           ###   ########.fr        #
+#    Updated: 2019/02/15 13:51:31 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,16 +33,7 @@ SRCS    :=	clean_data.c \
 			width_and_precision.c \
 			print_octal.c \
 			conv_octal.c \
-			pourcentage.c \
-			libft/ft_putchar.c \
-			libft/ft_putstr.c \
-			libft/ft_putnbr.c \
-			libft/ft_strsub.c \
-			libft/ft_atoi.c \
-			libft/ft_itoa.c \
-			libft/ft_strlen.c \
-			libft/ft_intlen.c \
-			libft/ft_strdup.c
+			pourcentage.c
 
 OBJS	:=	$(addprefix $(OBJDIR)/,$(SRCS:.c=.o))
 SRCS	:=	$(addprefix $(SRCDIR)/,$(SRCS))
@@ -50,30 +41,29 @@ LIB		:=	$(LIBDIR)/libft.a
 NAME	:=	libftprintf.a
 
 $(NAME): $(LIB) $(OBJS)
-	@printf "\e[32m  Creating: \e[0m$(NAME)\n"
+	@printf "\e[94m  Creating: \e[0m$(NAME)\n"
 	@$(LD) $(LDFLAGS) -o $(NAME) $(OBJS)
 
 all: $(NAME)
 
 $(LIB):
-	$(MAKE) -C libft/
+	@$(MAKE) -C libft/
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
-	@printf "\e[32m Compiling: \e[0m$< -> $@\n"
+	@printf "\e[94m Compiling: \e[0m$< -> $@\n"
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@printf "\e[32m  Cleaning: \e[0m$(OBJDIR)\e[0m\n"
+	@printf "\e[94m  Cleaning: \e[0m$(OBJDIR)\e[0m\n"
 	@$(RM) $(OBJDIR)
-	$(MAKE) -C libft clean
+	@$(MAKE) -C libft clean
 
 fclean: clean
-	@printf "\e[32m  Removing: \e[0m"
-	@find . -name "fillit" -exec sh -c 'basename {}' \; | tr "\n" " "
+	@printf "\e[94m  Removing:\e[0m libftprintf.a"
 	@echo ""
 	@$(RM) $(NAME)
-	$(MAKE) -C libft fclean
+	@$(MAKE) -C libft fclean
 
 re: fclean all
 

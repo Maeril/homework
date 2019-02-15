@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 11:26:34 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/13 18:43:04 by mpicard          ###   ########.fr       */
+/*   Updated: 2019/02/15 15:59:51 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ t_data		flag_minus(t_data data, int size)
 	int space_to_add;
 
 	space_to_add = 0;
-	if (size < data.width)
+	if (size < lngt->width)
 	{
-		space_to_add = data.width - size;
+		space_to_add = lngt->width - size;
 		while (space_to_add)
 		{
 			ft_putchar(' ');
