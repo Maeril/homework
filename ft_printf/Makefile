@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/15 13:04:05 by myener            #+#    #+#              #
-#    Updated: 2019/02/15 21:06:27 by myener           ###   ########.fr        #
+#    Updated: 2019/02/16 22:40:47 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,16 +23,16 @@ LIBDIR 	:=	libft/
 CFLAGS	:=	-Wall -Wextra -Werror $(INCLDIR)
 LDFLAGS	:=	-L$(LIBDIR) -lft
 
-SRCS    :=	clean_data.c \
-			find_type.c \
-			ft_printf.c \
-			parser.c \
-			spec_instructions.c \
-			print_width.c \
-			flag_minus.c \
-			width_and_precision.c \
-			print_octal.c \
-			conv_octal.c \
+SRCS    :=	clean_data.c			\
+			find_type.c				\
+			ft_printf.c				\
+			parser.c				\
+			spec_instructions.c		\
+			print_width.c 			\
+			flag_minus.c 			\
+			width_and_precision.c	\
+			print_octal.c			\
+			conv_octal.c			\
 			pourcentage.c
 
 OBJS	:=	$(addprefix $(OBJDIR)/,$(SRCS:.c=.o))

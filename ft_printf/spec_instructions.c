@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 14:14:03 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/15 18:50:12 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/16 17:54:32 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,9 @@ void		finalize_instructions(t_data *data)
 }
 
 /* ELEMENTS A STOCKER DANS LA STRUCTURE
- - width
- - precision
- - ce qu'il y a dans va_arg ?
-	- A FAIRE AVEC LE FLAG ESPACE :
-		- le flag ne marche pas si le resultat est negatif
+ 	- precision
+ 	- ce qu'il y a dans va_arg ?
+	- le flag ne marche pas si le resultat est negatif
    - les DIESES # :
    - avec un o => le # met un 0 devant le resultat
    - avec un x => le # met un 0x devant le resultat

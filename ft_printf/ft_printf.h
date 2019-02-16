@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/15 21:06:52 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/16 23:30:43 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct			s_type
 	int					u;
 	int					x;
 	int					big_x;
+	int					f;
 	int					pourcentage;
 }						t_type;
 
