@@ -12,7 +12,8 @@
 			"errno.h": "c",
 			"stdio.h": "c",
 			"stdarg.h": "c",
-			"libft.h": "c"
+			"libft.h": "c",
+			"ft_printf.h": "c"
 		}
 	}
 }

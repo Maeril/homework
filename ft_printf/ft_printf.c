@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 11:22:42 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/16 22:40:55 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/18 00:06:10 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ char		*take_instructions(const char *format, int i)
 		return (NULL);
 	if (!(str = malloc(sizeof(*format) * ((i - tmp + 1) + 1))))
 		return (NULL);
-
 	k = tmp;
 	j = 0;
 	while (format[k] && k < tmp + (i - tmp + 1))
@@ -63,10 +62,10 @@ int			put_text(va_list ap, const char *format, char *instruc)
 	index = 0;
 	tmp = 0;
 	i = 0;
-	data = 0;
-	data->spec->integer = 0;
+	data = NULL;
+	// data->spec->integer = 0;
 	len = 0;
-	clean_data(data);
+	// clean_data(data);
 	while (format[i])
 	{
 		if (format[i] != '%')
@@ -103,54 +102,4 @@ int			ft_printf(const char *format, ...)
 	nb = put_text(ap, format, instruc);
 	va_end(ap);
 	return (nb);
-}
-
-int			main(void)
-{
-
-	ft_printf("%o\n", 9);
-	// width et sharp
-	printf("%#10.5o\n", 7);
-	ft_printf("%#10.5o\n", 7);
-
-	// width et sharp
-	printf("%#5o\n", 5);
-	ft_printf("%#5o\n", 5);
-
-	// sharp precision
-	printf("%#.2o\n", 987);
-	ft_printf("%#.2o\n", 987);
-
-	// sharp simple
-	printf("%#o\n", 100);
-	ft_printf("%#o\n", 100);
-
-//	Plus Precision
-//	ft_printf("%+.6o\n", 76);
-//	printf("%+.6o\n", 76); mis en com car provoque une erreur lors de make - si undefined on ne doit pas le gerer !!
-
-	// Minus Precision Width
-	// ft_printf("%-10.5o\n", 55);
-	// printf("%-10.5o\n", 55);
-
-	// Octal Precision && Width
-	ft_printf("%10.5o\n", 55);
-	printf("%10.5o\n", 55);
-
-	// Octal Width
-	ft_printf("%5o\n", 36);
-	printf("%5o\n", 36);
-
-	// Octal Precision
-	ft_printf("%.5o\n", 36);
-	printf("%.5o\n", 36);
-
-	// Octal Basique
-	ft_printf("%o\n", 500);
-	printf("%o\n", 500);
-
-	printf("%#5.o\n", 5);
-	ft_printf("%5.o\n", 5);
-
-	return (0);
 }
