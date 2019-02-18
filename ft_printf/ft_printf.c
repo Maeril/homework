@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 11:22:42 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/18 17:04:48 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/18 22:21:13 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,6 @@ char		*take_instructions(const char *format, int i)
 	return (instruc);
 }
 
-int			is_type(const char *format, int i)
-{
-	if (format[i] == 'c' || format[i] == 'p' || format[i] == 's' ||
-			format[i] == 'd' || format[i] == 'i' || format[i] == 'o' ||
-			format[i] == 'u' || format[i] == 'x' || format[i] == 'X')
-		return (0);
-	else
-		return (1);
-}
-
 int			put_text(va_list ap, const char *format, char *instruc)
 {
 	int		i;
@@ -79,7 +69,6 @@ int			put_text(va_list ap, const char *format, char *instruc)
 			finalize_instructions(&data);
 			find_arg_type(ap, &data);
 			print_all(&data);
-			tmp = data.tool.nb_a;
 			clean_data(&data);
 		}
 		i++;
