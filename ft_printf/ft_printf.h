@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/18 00:06:23 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/18 17:14:24 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,6 @@
 # define HEXA "0123456789abcdef"
 # define HEXU "0123456789ABCDEF"
 
-typedef struct			s_spec
-{
-	/* Gestion du type s'il y a une size : signed char, short, long
-	 * long long, unsigned char/short/long/longlong*/
-	int					integer;
-	int					str;
-	char				car;
-	unsigned int		unint;
-	signed char			signcar;
-	short				sh;
-	long				lg;
-	long long			lglg;
-	unsigned char		unsigncar;
-	unsigned short		unsignsh;
-	unsigned long		unsignlg;
-	unsigned long long	unsignlglg;
-}						t_spec;
 
 typedef struct			s_flag
 {
@@ -53,56 +36,47 @@ typedef struct			s_lngt
 {
 	int					width;
 	int					precision;
-	int					precision_dot;
-	int					precision_zero;/* Quand on a une precision egale a zero.*/
-
 }						t_lngt;
-
-typedef struct			s_size
-{
-	int					h;
-	int					ll;
-	int					l;
-	int					hh;
-}						t_size;
-
-typedef struct			s_type
-{
-	int					c;
-	int					s;
-	int					p;
-	int					d;
-	int					i;
-	int					o;
-	int					u;
-	int					x;
-	int					big_x;
-	int					f;
-	int					pourcentage;
-}						t_type;
-
-typedef struct			s_tool
-{
-	int					unsign;
-	char				*str_tp;
-	/* Nombre de caracteres imprimes */
-	int					nb_a; // compteur pour chaque caractere imprimes de l argument
-	int					nb_printed;
-	int					perc;/* cas special : si on a "%%" et qu'il y a des instructions entre les %*/
-	int					index;/* Pour gerer data.width on a besoin de l'index i  */
-	int					index2;/* pour gerer data.precision on a besoin de l'index j */
-	/* data */
-}						t_tool;
 
 typedef struct			s_data
 {
-	t_spec 				*spec;
-	t_flag 				*flag;
-	t_lngt 				*lngt;
-	t_size 				*size;
-	t_type 				*type;
-	t_tool				*tool;
+	t_flag 				flag;
+	t_lngt 				lngt;
+	int					typ;
+	int					len;
 }						t_data;
+
+int						convert_percent(va_list ap, t_data *data);
+int						convert_int(va_list ap, t_data *data);
+int						convert_uint(va_list ap, t_data *data);
+int						convert_uhexd(va_list ap, t_data *data);
+int						convert_uhexu(va_list ap, t_data *data);
+int						convert_uoctal(va_list ap, t_data *data);
+int						convert_char(va_list ap, t_data *data);
+int						convert_string(va_list ap, t_data *data);
+int						convert_pointer(va_list ap, t_data *data);
+
+typedef struct			s_convert
+{
+	char				car;
+	int					(*func)(va_list ap, t_data *data);
+}						t_convert;
+
+static const t_convert	g_conversions[] = {
+	{'%', convert_percent},
+	{'d', convert_int},
+	{'i', convert_int},
+	{'u', convert_uint},
+	{'x', convert_uhexd},
+	{'X', convert_uhexu},
+	{'o', convert_uoctal},
+	{'c', convert_char},
+	{'s', convert_string},
+	{'p', convert_pointer},
+	NULL
+}
+
+g_conversions[data->typ].func(ap, data);
 
 void					check_zero(t_type *type, t_flag *flag);
 void					check_sharp(t_type *type, t_flag *flag);
@@ -119,7 +93,7 @@ void					parse_precision(char *instruc, t_lngt *lngt, t_tool *tool, int i);
 void					parse_size(char *instruc, t_size *size, int i);
 void					parse_type(char *instruc, t_type *type, t_tool *tool, int i);
 void					parse_width(char *instruc, t_lngt *lngt, t_tool *tool, int i);
-void					print_width(t_data *data);
+void					print_all(t_data *data);
 int						put_text(va_list ap, const char *format, char *instruc);
 char					*take_instructions(const char *format, int i);
 void					typeis_int(va_list ap, t_spec *spec);

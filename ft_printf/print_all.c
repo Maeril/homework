@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_width.c                                      :+:      :+:    :+:   */
+/*   print_all.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 09:26:34 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/15 21:40:56 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/18 16:44:52 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ void		prt_width(t_lngt *lngt, char *str)
 }
 
 void		prt_int_width(t_spec *spec, t_lngt *lngt, t_flag *flag)
-{ /* bon modele a reproduire */
+{
 	char	*str;
 	int		lgt;
 
-	if (spec->unint)
+	if (spec->integer)
 	{
 		str = ft_itoa(spec->integer);
 		lgt = ft_strlen(str);
@@ -50,7 +50,7 @@ void		prt_int_width(t_spec *spec, t_lngt *lngt, t_flag *flag)
 			ft_putnbr(spec->integer);
 		}
 	}
-	else if (spec->integer)
+	else if (spec->unint)
 	{
 		str = ft_itoa(spec->unint);
 		lgt = ft_strlen(str);
@@ -106,13 +106,14 @@ void		prt_str_width(t_tool *tool, t_lngt *lngt, t_flag *flag)
 }
 
 
-void		print_width(t_data *data)
+void		print_all(t_data *data)
 {
-	if (data->spec->integer)
+	/*if (data->spec->integer)
 	{
-		data->lngt->width ? prt_int_width(data->spec, data->lngt, data->flag) :
+		if(data->lngt->width)
+			prt_int_width(data->spec, data->lngt, data->flag);
 		ft_putnbr(data->spec->integer);
-	}
+	}*/
 	if (data->spec->str)
 	{
 		data->lngt->width ? prt_str_width(data->tool, data->lngt, data->flag) :
@@ -124,11 +125,11 @@ void		print_width(t_data *data)
 		prt_car_width(data->spec, data->lngt, data->flag) :
 		ft_putchar(data->spec->car);
 	}
-	if (data->spec->unint)
+	/*if (data->spec->unint)
 	{
 		data->lngt->width ? prt_int_width(data->spec, data->lngt, data->flag) :
 		ft_putnbr(data->spec->unint);
-	}
+	}*/
 	/*if (data->spec->signcar)
 	{
 		(data->spec->signcar && data->lngt->width > 1) ?

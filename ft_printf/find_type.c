@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 16:56:58 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/15 19:57:21 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/18 15:35:44 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ void		typeis_perc(t_lngt *lngt, t_tool *tool)
 
 void		find_arg_type(va_list ap, t_data *data)
 {
+
 	if (data->flag->space && (data->type->d || data->type->i))
 		ft_putchar(' '); // je  pense qu'il faudra enlever cette condition et ligne
 	if (data->flag->plus && !data->tool->unsign)
@@ -139,6 +140,10 @@ void		find_arg_type(va_list ap, t_data *data)
 	{
 		data->spec->integer = 1;
 	}
+
+	// ft_putnbr(data->spec->integer);
+	// ft_putchar('\n');
+	// ft_putchar('\n');
 	data->spec->car = (data->spec->car && data->type->c); // est ce qu'on peut reduire cette ligne ? data->car = data->c ?
 //	data->spec->str = (data->spec->str && (data->type->s || data->type->p)); je met en sourdine en attendant (voir ligne ci dessus)
 	data->spec->str = (data->type->s || data->type->p);
