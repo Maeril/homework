@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 23:34:58 by myener            #+#    #+#             */
-/*   Updated: 2019/02/18 15:48:49 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/17 21:38:18 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,48 +20,46 @@
  	// printf("%#10.5o\n", 7);
  	// ft_printf("%#10.5o\n", 7);
 
- 	printf("String simple s:\n");
- 	ft_printf("%s\n", "bjr");
+ 	// width et sharp
  	printf("%s\n", "bjr");
-	printf("-------------------------\n\n");
+ 	ft_printf("%s\n", "bjr");
 
-	printf("Decimal simple d:\n");
- 	ft_printf("%d\n", 24);
- 	printf("%d\n", 24);
-	printf("-------------------------\n\n");
+ 	// sharp precision
+//  	printf("%#.2o\n", 987);
+//  	ft_printf("%#.2o\n", 987);
 
- 	// printf("Sharp # et precision:\n");
- 	// ft_printf("%#.2o\n", 987);
- 	// printf("%#.2o\n", 987);
-	// printf("-------------------------\n\n");
+//  	// sharp simple
+//  	printf("%#o\n", 100);
+//  	ft_printf("%#o\n", 100);
 
- 	// printf("Sharp # simple:\n");
- 	// ft_printf("%#o\n", 100);
- 	// printf("%#o\n", 100);
-	// printf("-------------------------\n\n");
+//  //	Plus Precision
+//  //	ft_printf("%+.6o\n", 76);
+//  //	printf("%+.6o\n", 76); mis en com car provoque une erreur lors de make - si undefined on ne doit pas le gerer !!
+//  	// Minus Precision Width
+//  	// ft_printf("%-10.5o\n", 55);
+//  	// printf("%-10.5o\n", 55);
 
-	// printf("Minus Precision Width:\n");
-	// ft_printf("%-10.5o\n", 55);
-	// printf("%-10.5o\n", 55);
+//  	// // Octal Precision && Width
+//  	ft_printf("%10.5o\n", 55);
+//  	printf("%10.5o\n", 55);
 
- 	// printf("Octal Precision && Width:\n");
- 	// ft_printf("%10.5o\n", 55);
- 	// printf("%10.5o\n", 55);
-	// printf("-------------------------\n\n");
+//  	// // Octal Width
+//  	ft_printf("%5o\n", 36);
+//  	printf("%5o\n", 36);
 
- 	// printf("Octal Width:\n");
- 	// ft_printf("%5o\n", 36);
- 	// printf("%5o\n", 36);
-	// printf("-------------------------\n\n");
+//  	// // Octal Precision
+//  	ft_printf("%.5o\n", 36);
+//  	printf("%.5o\n", 36);
 
- 	// printf("Octal Precision:\n");
- 	// ft_printf("%.5o\n", 36);
- 	// printf("%.5o\n", 36);
-	// printf("-------------------------\n\n");
+//  	// // Octal Basique
+//  	ft_printf("%o\n", 500);
+//  	printf("%o\n", 500);
 
- 	// printf("Octal Basique:\n");
- 	// ft_printf("%o\n", 500);
- 	// printf("%o\n", 500);
+//  	ft_printf("%5.o\n", 9);
+//  	printf("%#5.o\n", 9);
 
- 	return (0);
+// 	// ft_printf("%.9c", 'b'); undefined !!
+// 	// printf("%.9c", 'b');
+
+//  	return (0);
  }

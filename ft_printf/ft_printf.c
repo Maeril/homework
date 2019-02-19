@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 11:22:42 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/18 22:21:13 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/18 00:06:10 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,20 @@ char		*take_instructions(const char *format, int i)
 	return (instruc);
 }
 
+int			is_type(const char *format, int i)
+{
+	if (format[i] == 'c' || format[i] == 'p' || format[i] == 's' ||
+			format[i] == 'd' || format[i] == 'i' || format[i] == 'o' ||
+			format[i] == 'u' || format[i] == 'x' || format[i] == 'X')
+		return (0);
+	else
+		return (1);
+}
+
 int			put_text(va_list ap, const char *format, char *instruc)
 {
 	int		i;
-	t_data	data;
+	t_data	*data;
 	int		index;
 	int		tmp;
 	int		len;
@@ -52,7 +62,10 @@ int			put_text(va_list ap, const char *format, char *instruc)
 	index = 0;
 	tmp = 0;
 	i = 0;
+	data = NULL;
+	// data->spec->integer = 0;
 	len = 0;
+	// clean_data(data);
 	while (format[i])
 	{
 		if (format[i] != '%')
@@ -65,11 +78,12 @@ int			put_text(va_list ap, const char *format, char *instruc)
 			instruc = take_instructions(format, i);
 			len = ft_strlen(instruc);
 			i = i + len;
-			parse_instructions(instruc, &data);
-			finalize_instructions(&data);
-			find_arg_type(ap, &data);
-			print_all(&data);
-			clean_data(&data);
+			parse_instructions(instruc, data);
+			finalize_instructions(data);
+			find_arg_type(ap, data);
+			print_width(data);
+			tmp = data->tool->nb_a;
+			clean_data(data);
 		}
 		i++;
 	}
