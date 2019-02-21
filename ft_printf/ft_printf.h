@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/19 18:40:04 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/21 14:57:16 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define DECI "0123456789"
 # define HEXL "0123456789abcdef"
 # define HEXU "0123456789ABCDEF"
+# define UINT_MAX 4294967296
 
 typedef struct			s_spec
 {
@@ -120,13 +121,13 @@ void					parse_precision(char *instruc, t_lngt *lngt, t_tool *tool, int i);
 void					parse_size(char *instruc, t_size *size, int i);
 void					parse_type(char *instruc, t_type *type, t_tool *tool, int i);
 void					parse_width(char *instruc, t_lngt *lngt, t_tool *tool, int i);
-void					print_all(t_data *data);
 int						put_text(va_list ap, const char *format, char *instruc);
 char					*take_instructions(const char *format, int i);
 void					typeis_int(va_list ap, t_spec *spec);
 void					typeis_str(va_list ap, t_data *data);
+void					typeis_ptr(va_list ap, t_data *data);
 void					typeis_char(va_list ap, t_data *data);
-void					typeis_unsign(va_list ap, t_tool *tool, t_spec *spec);
+void					typeis_unsign(va_list ap, t_data *data);
 void					typeis_octal(va_list ap, t_data *data);
 void					typeis_hexl(va_list ap, t_data *data);
 void					typeis_hexu(va_list ap, t_data *data);

@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 16:56:58 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/19 18:26:03 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/21 14:57:34 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,22 @@ void		find_type(va_list ap, t_data *data)
 	if (data->type->d || data->type->i|| data->type->o || data->type->x
 		|| data->type->big_x)
 		data->spec->integer = 1;
-	if (data->type->c)
+	if (data->type->d || data->type->i)
+		typeis_int(ap, data->spec);
+	else if (data->type->c)
 		typeis_char(ap, data);
 	else if (data->type->s)
 		typeis_str(ap, data);
-	else if (data->type->d || data->type->i)
-		typeis_int(ap, data->spec);
 	else if (data->type->o)
 		typeis_octal(ap, data);
 	else if (data->type->x)
 		typeis_hexl(ap, data);
 	else if (data->type->big_x)
 		typeis_hexu(ap, data);
-	/*else if (data->type->p)
+	else if (data->type->p)
 		typeis_ptr(ap, data);
 	else if (data->type->u)
-		typeis_unsign(ap, data->tool, data->spec);*/
+		typeis_unsign(ap, data);
 
 	/*_____________________ BORDEL A TRIER _____________________*/
 

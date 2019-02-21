@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   typeis_ptr.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_long.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/19 15:51:32 by myener            #+#    #+#             */
-/*   Updated: 2019/02/21 14:41:03 by myener           ###   ########.fr       */
+/*   Created: 2019/02/21 15:08:08 by myener            #+#    #+#             */
+/*   Updated: 2019/02/21 15:35:55 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void		typeis_ptr(va_list ap, t_data *data)
+void	ft_putnbr_long(long int nb)
 {
-    size_t  addr;
-
-	if (data->type->p)
+	if (nb < 0)
 	{
-        addr = ((int)&(data->type->p));
-		addr = va_arg(ap, int);
-        ft_putstr("0x10");
-		ft_putnbr_base(addr, HEXL);
+		ft_putchar('-');
+		nb = -nb;
 	}
+	if (nb >= 10)
+		ft_putnbr(nb / 10);
+	ft_putchar(nb % 10 + '0');
 }

@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 23:34:58 by myener            #+#    #+#             */
-/*   Updated: 2019/02/19 18:24:40 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/21 15:27:39 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,19 @@
 
 	// Hexl simple x
  	printf("%x\n", 10);
-	ft_printf("mine: %o\n", 10);
+	ft_printf("mine: %x\n", 10);
 
  	// Hexu simple X
  	printf("%X\n", 10);
-	ft_printf("mine: %o\n", 10);
+	ft_printf("mine: %X\n", 10);
 
 	// Unsign simple u
-	printf("%u\n", 14);
-	printf("%p\n", "str");
+	printf("%u\n", -42);
+	ft_printf("mine: %u\n", -42);
+
+	// Ptr simple p
+	printf("%p\n", "test");
+	ft_printf("mine: %p\n", "test");
 
 // sharp precision
 //  	printf("%#.2o\n", 987);

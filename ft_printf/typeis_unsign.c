@@ -6,48 +6,26 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:53:22 by myener            #+#    #+#             */
-/*   Updated: 2019/02/19 15:56:02 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/21 15:38:23 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		typeis_unsign(va_list ap, t_tool *tool, t_spec *spec)
+void		typeis_unsign(va_list ap, t_data *data)
 {
-	unsigned char 			uchar;
-	unsigned short			ush;
-	unsigned long			ulong;
-	unsigned long long 		ulonglong;
-	unsigned int			n;
+	long	out;
 
-	if (spec->unsigncar)
+	if (data->type->u)
 	{
-		tool->unsign = 1;
-		uchar = va_arg(ap, int);
-		ft_putchar(uchar);
-	}
-	else if (spec->unsignsh)
-	{
-		tool->unsign = 1;
-		ush = va_arg(ap, int);
-		ft_putnbr(ush);
-	}
-	else if (spec->unsignlg)
-	{
-		tool->unsign = 1;
-		ulong = va_arg(ap, unsigned long);
-		ft_putnbr(ulong);
-	}
-	else if (spec->unsignlglg)
-	{
-		tool->unsign = 1;
-		ulonglong = va_arg(ap, unsigned long long);
-		ft_putnbr(ulonglong);
-	}
-	else if (spec->unint)
-	{
-		tool->unsign = 1;
-		n = va_arg(ap, unsigned int);
-		ft_putnbr(n);
+		out = va_arg(ap, int);
+		if (out < 0)
+		{
+			out = -out;
+			out = (UINT_MAX - out);
+			ft_putnbr_long(out);
+		}
+		else if (out >= 0)
+			ft_putnbr_long(out);
 	}
 }
