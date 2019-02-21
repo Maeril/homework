@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 13:40:00 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/17 22:27:07 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/19 17:35:11 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void		parse_size(char *instruc, t_size *size, int i)
 
 void		parse_type(char *instruc, t_type *type, t_tool *tool, int i)
 {
+	// data.type = (instruc[i] == 'c');
 	type->c = (instruc[i] == 'c');
 	type->s = (instruc[i] == 's');
 	type->p = (instruc[i] == 'p');

@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flag_minus.c                                       :+:      :+:    :+:   */
+/*   typeis_perc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/13 11:26:34 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/15 19:57:26 by myener           ###   ########.fr       */
+/*   Created: 2019/02/19 15:57:23 by myener            #+#    #+#             */
+/*   Updated: 2019/02/19 15:58:03 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		flag_minus(t_lngt *lngt, int size)
+void		typeis_perc(t_lngt *lngt, t_tool *tool)
 {
-	int space_to_add;
-
-	space_to_add = 0;
-	if (size < lngt->width)
+	if (lngt->width)
 	{
-		space_to_add = lngt->width - size;
-		while (space_to_add)
+		tool->nb_printed = lngt->width;
+		while (lngt->width > 1)
 		{
 			ft_putchar(' ');
-			space_to_add--;
+			lngt->width--;
 		}
+		ft_putchar('%');
 	}
+	lngt->width = 0;
 }

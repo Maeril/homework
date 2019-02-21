@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main2.c                                            :+:      :+:    :+:   */
+/*   typeis_char.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/17 21:40:21 by myener            #+#    #+#             */
-/*   Updated: 2019/02/19 14:01:06 by myener           ###   ########.fr       */
+/*   Created: 2019/02/19 15:51:42 by myener            #+#    #+#             */
+/*   Updated: 2019/02/19 17:36:14 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		main()
+void		typeis_char(va_list ap, t_data *data)
 {
-	ft_printf("bonjour %s", "hey");
-	return (0);
+	char		c;
+
+	if (data->type->c)
+	{
+		c = va_arg(ap, int);
+		data->spec->car = c;
+		ft_putchar(data->spec->car);
+	}
 }

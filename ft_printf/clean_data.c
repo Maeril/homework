@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 17:48:05 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/15 18:32:14 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/19 16:44:15 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ void		clean_data(t_data *data)
 		data->tool->index = 0;
 		data->tool->index2 = 0;
 		data->tool->nb_a = 0;
+		data->tool->str_tp = NULL;
 }
 

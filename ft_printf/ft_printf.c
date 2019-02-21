@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 11:22:42 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/18 00:06:10 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/19 16:57:28 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,26 @@ int			is_type(const char *format, int i)
 		return (1);
 }
 
+void	struct_malloc(t_data *data)
+{
+	if (!(data->spec = malloc(sizeof(t_spec))))
+		return ;
+	if (!(data->flag = malloc(sizeof(t_flag))))
+		return ;
+	if (!(data->lngt = malloc(sizeof(t_lngt))))
+		return ;
+	if (!(data->size = malloc(sizeof(t_size))))
+		return ;
+	if (!(data->type = malloc(sizeof(t_type))))
+		return ;
+	if (!(data->tool = malloc(sizeof(t_tool))))
+		return ;
+}
+
 int			put_text(va_list ap, const char *format, char *instruc)
 {
 	int		i;
-	t_data	*data;
+	t_data	data;
 	int		index;
 	int		tmp;
 	int		len;
@@ -62,12 +78,11 @@ int			put_text(va_list ap, const char *format, char *instruc)
 	index = 0;
 	tmp = 0;
 	i = 0;
-	data = NULL;
-	// data->spec->integer = 0;
 	len = 0;
-	// clean_data(data);
+	// printf("base0\n");
 	while (format[i])
 	{
+		// printf("base1\n");
 		if (format[i] != '%')
 		{
 			ft_putchar(format[i]);
@@ -75,15 +90,20 @@ int			put_text(va_list ap, const char *format, char *instruc)
 		}
 		if (format[i] == '%')
 		{
+			// printf("base2\n");
 			instruc = take_instructions(format, i);
+			// printf("base3\n");
 			len = ft_strlen(instruc);
 			i = i + len;
-			parse_instructions(instruc, data);
-			finalize_instructions(data);
-			find_arg_type(ap, data);
-			print_width(data);
-			tmp = data->tool->nb_a;
-			clean_data(data);
+			struct_malloc(&data);
+			// printf("base4\n");
+			parse_instructions(instruc, &data);
+			// printf("base5\n");
+			find_type(ap, &data);
+			// printf("base6\n");
+			tmp = data.tool->nb_a;
+			clean_data(&data);
+			// printf("base7\n");
 		}
 		i++;
 	}

@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   width_and_precision.c                              :+:      :+:    :+:   */
+/*   typeis_octal.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/13 15:58:14 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/15 17:27:10 by myener           ###   ########.fr       */
+/*   Created: 2019/02/19 15:59:01 by myener            #+#    #+#             */
+/*   Updated: 2019/02/19 18:00:56 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-
-void		prt_precision(t_lngt *lngt, t_flag *flag, t_spec *spec)
+void		typeis_octal(va_list ap, t_data *data)
 {
-	while (lngt->precision)
+	if (data->type->o)
 	{
-		ft_putchar('0');
-		lngt->precision = lngt->precision - 1;
+		data->type->o = va_arg(ap, int);
+		ft_putnbr_base(data->type->o, OCT);
 	}
-	if (flag->minus)
-		return ;
-	else
-		ft_putnbr(spec->integer);
-}
-
-void		width_and_precision(t_lngt *lngt)
-{
-	if (lngt->width <= lngt->precision)
-		lngt->width = 0;
-	if (lngt->width > lngt->precision)
-		lngt->width = lngt->precision - lngt->width;
 }

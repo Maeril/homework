@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main2.c                                            :+:      :+:    :+:   */
+/*   typeis_hexu.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/17 21:40:21 by myener            #+#    #+#             */
-/*   Updated: 2019/02/19 14:01:06 by myener           ###   ########.fr       */
+/*   Created: 2019/02/19 18:06:08 by myener            #+#    #+#             */
+/*   Updated: 2019/02/19 18:27:01 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		main()
+void		typeis_hexu(va_list ap, t_data *data)
 {
-	ft_printf("bonjour %s", "hey");
-	return (0);
+	if (data->type->big_x)
+	{
+		data->type->big_x = va_arg(ap, int);
+		ft_putnbr_base(data->type->big_x, HEXU);
+	}
 }
