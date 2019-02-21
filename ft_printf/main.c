@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 23:34:58 by myener            #+#    #+#             */
-/*   Updated: 2019/02/21 15:27:39 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/21 17:52:06 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@
 	// Ptr simple p
 	printf("%p\n", "test");
 	ft_printf("mine: %p\n", "test");
+
+	// Pourcentage simple %
+	printf("%%\n");
+	ft_printf("mine: %%\n");
 
 // sharp precision
 //  	printf("%#.2o\n", 987);
