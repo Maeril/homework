@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/17 21:20:38 by myener            #+#    #+#              #
-#    Updated: 2019/02/21 14:22:48 by myener           ###   ########.fr        #
+#    Updated: 2019/02/22 18:51:28 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ SRC		=	clean_data.c			\
 			parser.c				\
 			spec_instructions.c		\
 			flag_minus.c 			\
-			width_and_precision.c	\
 			typeis_int.c			\
 			typeis_char.c			\
 			typeis_unsign.c			\
@@ -27,8 +26,7 @@ SRC		=	clean_data.c			\
 			typeis_octal.c			\
 			typeis_hexl.c			\
 			typeis_hexu.c			\
-			conv_octal.c			\
-			pourcentage.c
+			typeis_perc.c
 
 FLAGS	=	-Wall -Werror -Wextra
 

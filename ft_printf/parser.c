@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 13:40:00 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/19 17:35:11 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/22 18:44:25 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void		parse_flags(char *instruc, t_flag *flag, int i)
 			instruc[i] == '0' || instruc[i] == ' ' ||
 			instruc[i] == '#')
 	{
-		if (instruc[i] == '-')
-			flag->minus = 1;
+		flag->minus = (instruc[i] == '-');
 		flag->plus = (instruc[i] == '+');
 		flag->zero = (instruc[i] == '0');
 		flag->space = (instruc[i] == ' ');

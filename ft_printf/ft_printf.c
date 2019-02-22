@@ -6,42 +6,15 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 11:22:42 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/21 17:52:08 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/22 18:39:38 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include "ft_printf.h"
 
-char		*take_instructions(const char *format, int i)
-{
-	int		tmp;
-	char	*instruc;
-	char	*str;
-	int		k;
-	int		j;
 
-	i++;
-	tmp = i;
-	while (format[i] != 'c' && format[i] != 's' && format[i] != 'p' &&
-			format[i] != 'd' && format[i] != 'i' && format[i] != 'o' &&
-			format[i] != 'u' && format[i] != 'x' && format[i] != 'X'
-			&& format[i] != '%' && format[i])
-		i++;
-	if (!format)
-		return (NULL);
-	if (!(str = malloc(sizeof(*format) * ((i - tmp + 1) + 1))))
-		return (NULL);
-	k = tmp;
-	j = 0;
-	while (format[k] && k < tmp + (i - tmp + 1))
-		str[j++] = format[k++];
-	str[j] = '\0';
-	instruc = str;
-	return (instruc);
-}
-
-int			is_type(const char *format, int i)
+int		is_type(const char *format, int i)
 {
 	if (format[i] == 'c' || format[i] == 'p' || format[i] == 's' ||
 			format[i] == 'd' || format[i] == 'i' || format[i] == 'o' ||
@@ -50,6 +23,30 @@ int			is_type(const char *format, int i)
 	else
 		return (1);
 }
+
+char	*take_instructions(const char *format, int i)
+{
+	int		tmp;
+	char	*str;
+	int		k;
+	int		j;
+
+	i++;
+	tmp = i;
+	if (!format)
+		return (NULL);
+	while (is_type(format, i) && format[i] != '%' && format[i])
+		i++;
+	if (!(str = malloc(sizeof(*format) * ((i - tmp + 1) + 1))))
+		return (NULL);
+	k = tmp;
+	j = 0;
+	while (format[k] && k < tmp + (i - tmp + 1))
+		str[j++] = format[k++];
+	str[j] = '\0';
+	return (str);
+}
+
 
 void	struct_malloc(t_data *data)
 {
@@ -67,7 +64,7 @@ void	struct_malloc(t_data *data)
 		return ;
 }
 
-int			put_text(va_list ap, const char *format, char *instruc)
+int		put_text(va_list ap, const char *format, char *instruc)
 {
 	int		i;
 	t_data	data;
@@ -79,10 +76,8 @@ int			put_text(va_list ap, const char *format, char *instruc)
 	tmp = 0;
 	i = 0;
 	len = 0;
-	// printf("base0\n");
 	while (format[i])
 	{
-		// printf("base1\n");
 		if (format[i] != '%')
 		{
 			ft_putchar(format[i]);
@@ -90,20 +85,14 @@ int			put_text(va_list ap, const char *format, char *instruc)
 		}
 		if (format[i] == '%')
 		{
-			// printf("base2\n");
 			instruc = take_instructions(format, i);
-			// printf("base3\n");
 			len = ft_strlen(instruc);
 			i = i + len;
 			struct_malloc(&data);
-			// printf("base4\n");
 			parse_instructions(instruc, &data);
-			// printf("base5\n");
 			find_type(ap, &data);
-			// printf("base6\n");
 			tmp = data.tool->nb_a;
 			clean_data(&data);
-			// printf("base7\n");
 		}
 		i++;
 	}
@@ -111,7 +100,7 @@ int			put_text(va_list ap, const char *format, char *instruc)
 	return (index);
 }
 
-int			ft_printf(const char *format, ...)
+int		ft_printf(const char *format, ...)
 {
 	va_list ap;
 	int		nb;

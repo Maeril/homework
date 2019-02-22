@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 16:56:58 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/21 14:57:34 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/22 18:50:23 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void		find_type(va_list ap, t_data *data)
 		typeis_ptr(ap, data);
 	else if (data->type->u)
 		typeis_unsign(ap, data);
+	else if (data->tool->perc)
+		typeis_perc(ap, data);
 
 	/*_____________________ BORDEL A TRIER _____________________*/
 
@@ -48,7 +50,6 @@ void		find_type(va_list ap, t_data *data)
 	data->spec->str = (data->spec->str && (data->type->s || data->type->p)); je met en sourdine en attendant (voir ligne ci dessus)
 
 	data->spec->unint = (data->spec->unint && data->type->u);
-je teste l'affichage de o ici
 
 	if (data->spec->car)
 		typeis_char(ap, data);
@@ -71,9 +72,5 @@ je teste l'affichage de o ici
 
 	if (data->spec->unsigncar || data->spec->unsignsh || data->spec->unsignlg
 		|| data->spec->unsignlglg || data->spec->unint)
-		typeis_unsign(ap, data->tool, data->spec);
-	if (data->type->pourcentage)
-		pourcentage(data);
-	if (data->tool->perc)
-		typeis_perc(data);*/
+		typeis_unsign(ap, data->tool, data->spec);*/
 }
