@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 23:34:58 by myener            #+#    #+#             */
-/*   Updated: 2019/02/22 18:38:13 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/22 20:08:45 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
  	ft_printf("mine: %i\n\n", 1056);
 
  	// Octal simple o
- 	printf("syst: %o\n", 500);
-	ft_printf("mine: %o\n\n", 500);
+ 	printf("syst: %o\n", 8);
+	ft_printf("mine: %o\n\n", 8);
 
 	// Hexl simple x
  	printf("syst: %x\n", 10);

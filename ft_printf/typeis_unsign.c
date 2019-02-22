@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:53:22 by myener            #+#    #+#             */
-/*   Updated: 2019/02/21 15:38:23 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/22 21:49:47 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void		typeis_unsign(va_list ap, t_data *data)
 
 	if (data->type->u)
 	{
-		out = va_arg(ap, int);
+		out = va_arg(ap, unsigned int);
 		if (out < 0)
 		{
 			out = -out;

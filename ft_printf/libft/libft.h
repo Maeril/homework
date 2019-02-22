@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 13:57:15 by myener            #+#    #+#             */
-/*   Updated: 2019/02/21 15:36:06 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/22 21:44:02 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ typedef struct	s_list
 
 int				ft_atoi(const char *str);
 void			ft_bzero(void *s, size_t n);
-int				ft_intlen(int n);
+int				ft_intlen(long long int n);
+int				ft_uintlen(unsigned long long int n);
+int				ft_octlen(unsigned long long int n);
+int				ft_hexlen(unsigned long long int n);
 int				ft_isalnum(int c);
 int				ft_isalpha(int c);
 int				ft_isascii(int c);

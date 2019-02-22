@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 16:56:58 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/22 18:50:23 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/22 21:11:25 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void		find_type(va_list ap, t_data *data)
 		|| data->type->big_x)
 		data->spec->integer = 1;
 	if (data->type->d || data->type->i)
-		typeis_int(ap, data->spec);
+		typeis_int(ap, data);
 	else if (data->type->c)
 		typeis_char(ap, data);
 	else if (data->type->s)

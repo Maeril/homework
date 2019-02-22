@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/22 18:48:56 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/22 21:11:31 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct			s_flag
 
 typedef struct			s_lngt
 {
+	int					arg_len;
 	int					width;
 	int					precision;
 	int					precision_dot;
@@ -122,7 +123,7 @@ void					parse_type(char *instruc, t_type *type, t_tool *tool, int i);
 void					parse_width(char *instruc, t_lngt *lngt, t_tool *tool, int i);
 int						put_text(va_list ap, const char *format, char *instruc);
 char					*take_instructions(const char *format, int i);
-void					typeis_int(va_list ap, t_spec *spec);
+void					typeis_int(va_list ap, t_data *data);
 void					typeis_perc(va_list ap, t_data *data);
 void					typeis_str(va_list ap, t_data *data);
 void					typeis_ptr(va_list ap, t_data *data);

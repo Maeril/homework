@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   typeis_str.c                                       :+:      :+:    :+:   */
+/*   ft_uintlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/19 15:51:38 by myener            #+#    #+#             */
-/*   Updated: 2019/02/22 21:10:07 by myener           ###   ########.fr       */
+/*   Created: 2019/02/22 21:39:13 by myener            #+#    #+#             */
+/*   Updated: 2019/02/22 21:41:51 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void		typeis_str(va_list ap, t_data *data)
+int		ft_uintlen(unsigned long long int n)
 {
-	if (data->tool->str_tp || data->type->s)
+	int	e;
+
+	e = 1;
+	while ((n / 10) > 0)
 	{
-		data->tool->str_tp = va_arg(ap, char*);
-		ft_putstr(data->tool->str_tp);
+		n /= 10;
+		e++;
 	}
+	return (e);
 }

@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 13:40:00 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/22 18:44:25 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/22 19:07:54 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		parse_width(char *instruc, t_lngt *lngt, t_tool *tool, int i)
 {
 	int		len;
 	int		start;
-	char	*width_ins;
+	char	*width_len;
 
 	if (instruc[i - 1] == '.')
 		return ;
@@ -44,8 +44,8 @@ void		parse_width(char *instruc, t_lngt *lngt, t_tool *tool, int i)
 		i++;
 	}
 	tool->index = i;
-	width_ins = ft_strsub(instruc, start, len);
-	lngt->width = ft_atoi(width_ins);
+	width_len = ft_strsub(instruc, start, len);
+	lngt->width = ft_atoi(width_len);
 }
 
 void		parse_precision(char *instruc, t_lngt *lngt, t_tool *tool, int i)

@@ -6,13 +6,13 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 23:58:45 by myener            #+#    #+#             */
-/*   Updated: 2018/11/27 16:14:18 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/22 21:38:56 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_intlen(int n)
+int		ft_intlen(long long int n)
 {
 	int	e;
 

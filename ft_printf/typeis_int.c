@@ -6,42 +6,24 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:51:47 by myener            #+#    #+#             */
-/*   Updated: 2019/02/19 17:23:59 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/22 21:34:43 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		typeis_int(va_list ap, t_spec *spec)
+void		typeis_int(va_list ap, t_data *data)
 {
 	int 		i;
-	short		j;
-	long		k;
-	long long	l;
 
-	i = 0;
-	j = 0;
-	k = 0;
-	l = 0;
-	if (spec->integer)
+	if (data->spec->integer || data->spec->sh)
 	{
 		i = va_arg(ap, int);
-		spec->integer = i;
-		ft_putnbr(spec->integer);
+		ft_putnbr(i);
 	}
-	else if (spec->sh)
+	else if (data->spec->lg || data->spec->lglg)
 	{
-		j = va_arg(ap, int);
-		ft_putnbr(j);
-	}
-	else if (spec->lg)
-	{
-		k = va_arg(ap, long);
-		ft_putnbr(k);
-	}
-	else if (spec->lglg)
-	{
-		l = va_arg(ap, long long);
-		ft_putnbr(l);
+		data->spec->lg ? (i = va_arg(ap, long)) : (i = va_arg(ap, long long));
+		ft_putnbr(i);
 	}
 }
