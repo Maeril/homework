@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_type.c                                        :+:      :+:    :+:   */
+/*   print_type.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 16:56:58 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/22 21:11:25 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/23 20:56:48 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		find_type(va_list ap, t_data *data)
+void		print_type(va_list ap, t_data *data)
 {
+	if (data->lngt->width)
+	{
+		width_printer(ap, data);
+	}
 	if (data->type->d || data->type->i|| data->type->o || data->type->x
 		|| data->type->big_x)
 		data->spec->integer = 1;

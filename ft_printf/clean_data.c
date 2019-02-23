@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 17:48:05 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/19 16:44:15 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/23 20:37:40 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void		clean_data(t_data *data)
 		data->flag->space = 0;
 		data->lngt->width = 0;
 		data->lngt->precision = 0;
+		data->lngt->arg_len = 0;
 		data->size->h = 0;
 		data->size->ll = 0;
 		data->size->l = 0;

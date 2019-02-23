@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 13:40:00 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/22 19:07:54 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/23 21:13:54 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,24 @@ void		parse_flags(char *instruc, t_flag *flag, int i)
 
 void		parse_width(char *instruc, t_lngt *lngt, t_tool *tool, int i)
 {
-	int		len;
+	int		j;
 	int		start;
-	char	*width_len;
+	char	*width_value;
 
+	printf("entre dans parse width");
+	width_value = NULL;
 	if (instruc[i - 1] == '.')
 		return ;
-	len = 0;
+	j = -1;
 	start = i;
-	while (instruc[i] >= '0' && instruc[i] <= '9')
-	{
-		lngt->width = 1;
-		len++;
-		i++;
-	}
+	lngt->width = 1;
+	while (instruc[i])
+		while (instruc[i] >= '0' && instruc[i] <= '9')
+			width_value[j++] = instruc[i++];
+	width_value[j] = '\0';
 	tool->index = i;
-	width_len = ft_strsub(instruc, start, len);
-	lngt->width = ft_atoi(width_len);
+	lngt->width_value = ft_atoi(width_value);
+	printf("valeur de width_value: %d", lngt->width_value);
 }
 
 void		parse_precision(char *instruc, t_lngt *lngt, t_tool *tool, int i)
@@ -111,7 +112,7 @@ void		parse_instructions(char *instruc, t_data *data)
 				instruc[i] == '0' || instruc[i] == ' ' ||
 				instruc[i] == '#')
 			parse_flags(instruc, data->flag, i);
-		if (instruc[i] >= '0' && instruc[i] <= '9')
+		if ((instruc[i] >= '0' && instruc[i] <= '9') && (instruc[i - 1] = '%'))
 		{
 			data->tool->index = i;
 			parse_width(instruc, data->lngt, data->tool, i);

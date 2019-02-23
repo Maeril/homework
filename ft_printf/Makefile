@@ -6,18 +6,17 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/17 21:20:38 by myener            #+#    #+#              #
-#    Updated: 2019/02/22 18:51:28 by myener           ###   ########.fr        #
+#    Updated: 2019/02/23 20:35:03 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	libftprintf.a
 
 SRC		=	clean_data.c			\
-			find_type.c				\
 			ft_printf.c				\
 			parser.c				\
+			print_type.c			\
 			spec_instructions.c		\
-			flag_minus.c 			\
 			typeis_int.c			\
 			typeis_char.c			\
 			typeis_unsign.c			\
@@ -26,7 +25,8 @@ SRC		=	clean_data.c			\
 			typeis_octal.c			\
 			typeis_hexl.c			\
 			typeis_hexu.c			\
-			typeis_perc.c
+			typeis_perc.c			\
+			width_printer.c
 
 FLAGS	=	-Wall -Werror -Wextra
 
