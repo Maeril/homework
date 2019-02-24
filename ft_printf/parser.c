@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 13:40:00 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/23 21:13:54 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/24 23:54:43 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 void		parse_flags(char *instruc, t_flag *flag, int i)
 {
-	while (instruc[i] == '-' || instruc[i] == '+' ||
-			instruc[i] == '0' || instruc[i] == ' ' ||
-			instruc[i] == '#')
+	while (instruc[i])
 	{
 		flag->minus = (instruc[i] == '-');
 		flag->plus = (instruc[i] == '+');
@@ -30,23 +28,23 @@ void		parse_flags(char *instruc, t_flag *flag, int i)
 void		parse_width(char *instruc, t_lngt *lngt, t_tool *tool, int i)
 {
 	int		j;
-	int		start;
 	char	*width_value;
 
-	printf("entre dans parse width");
-	width_value = NULL;
+	width_value = ft_strnew(ft_strlen(instruc));
 	if (instruc[i - 1] == '.')
 		return ;
-	j = -1;
-	start = i;
+	i = 0;
+	j = 0;
 	lngt->width = 1;
-	while (instruc[i])
-		while (instruc[i] >= '0' && instruc[i] <= '9')
-			width_value[j++] = instruc[i++];
-	width_value[j] = '\0';
-	tool->index = i;
+	while ((instruc[i] >= '0' && instruc[i] <= '9') && instruc[i])
+	{
+		width_value[j] = instruc[i];
+		i++;
+		j++;
+	}
 	lngt->width_value = ft_atoi(width_value);
-	printf("valeur de width_value: %d", lngt->width_value);
+	tool->index = i;
+
 }
 
 void		parse_precision(char *instruc, t_lngt *lngt, t_tool *tool, int i)
@@ -88,7 +86,6 @@ void		parse_size(char *instruc, t_size *size, int i)
 
 void		parse_type(char *instruc, t_type *type, t_tool *tool, int i)
 {
-	// data.type = (instruc[i] == 'c');
 	type->c = (instruc[i] == 'c');
 	type->s = (instruc[i] == 's');
 	type->p = (instruc[i] == 'p');
@@ -101,17 +98,20 @@ void		parse_type(char *instruc, t_type *type, t_tool *tool, int i)
 	tool->perc = (instruc[i] == '%');
 }
 
-void		parse_instructions(char *instruc, t_data *data)
+void		parser(char *instruc, t_data *data)
 {
 	int i;
 
 	i = 0;
-	while (instruc[i])
+	while (instruc[i] != '\0')
 	{
-		if (instruc[i] == '-' || instruc[i] == '+' ||
-				instruc[i] == '0' || instruc[i] == ' ' ||
-				instruc[i] == '#')
+		printf("boucle I, valeur de i = %i", i);
+		if (instruc[i] == '-' && (instruc[i+1] > '0' && instruc[i+1] <= '9') /*|| instruc[i] == '+' || instruc[i] == '0'
+			|| instruc[i] == ' ' || instruc[i] == '#'*/)
+		{
+			printf("boucle II, valeur de i = %i", i);
 			parse_flags(instruc, data->flag, i);
+		}
 		if ((instruc[i] >= '0' && instruc[i] <= '9') && (instruc[i - 1] = '%'))
 		{
 			data->tool->index = i;

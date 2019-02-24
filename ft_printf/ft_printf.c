@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 11:22:42 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/23 20:36:31 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/24 21:59:55 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,10 @@ int		put_text(va_list ap, const char *format, char *instruc)
 			len = ft_strlen(instruc);
 			i = i + len;
 			struct_malloc(&data);
-			parse_instructions(instruc, &data);
-			print_type(ap, &data);
+			parser(instruc, &data);
+			dispatcher(ap, &data);
 			tmp = data.tool->nb_a;
-			clean_data(&data);
+			cleaner(&data);
 		}
 		i++;
 	}

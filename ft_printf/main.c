@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 23:34:58 by myener            #+#    #+#             */
-/*   Updated: 2019/02/23 20:27:53 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/24 23:19:17 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@
 	ft_printf("mine: %%\n\n");
 
 	// Width simple
- 	printf("syst: %5d\n", 10);
- 	ft_printf("mine: %5d\n\n", 10);
+ 	printf("syst: %-5c\n", 'c');
+ 	ft_printf("mine: %-5c\n\n", 'c');
 
 	// // Sharp simple #
  	// printf("syst: %#o\n", 100);

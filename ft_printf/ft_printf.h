@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/23 21:03:25 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/24 21:59:01 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ typedef struct			s_flag
 
 typedef struct			s_lngt
 {
-	int					arg_len;
 	int					width;
 	int					width_value;
 	int					precision;
@@ -111,19 +110,19 @@ typedef struct			s_data
 void					check_zero(t_type *type, t_flag *flag);
 void					check_sharp(t_type *type, t_flag *flag);
 void					check_unsigned(t_type *type, t_size *size, t_tool *tool);
-void					clean_data(t_data *data);
+void					cleaner(t_data *data);
 void					finalize_instructions(t_data *data);
 int						ft_printf(const char *format, ...);
 void					get_arg_len(va_list ap, t_data *data);
 void					parse_flags(char *instruc, t_flag *flag, int i);
-void					parse_instructions(char *instruc, t_data *data);
 void					parse_precision(char *instruc, t_lngt *lngt, t_tool *tool, int i);
 void					parse_size(char *instruc, t_size *size, int i);
 void					parse_type(char *instruc, t_type *type, t_tool *tool, int i);
 void					parse_width(char *instruc, t_lngt *lngt, t_tool *tool, int i);
-void					print_type(va_list ap, t_data *data);
+void					parser(char *instruc, t_data *data);
 void					prt_precision(t_lngt *lngt, t_flag *flag, t_spec *spec);
 int						put_text(va_list ap, const char *format, char *instruc);
+void					dispatcher(va_list ap, t_data *data);
 char					*take_instructions(const char *format, int i);
 void					typeis_int(va_list ap, t_data *data);
 void					typeis_perc(va_list ap, t_data *data);
@@ -134,6 +133,5 @@ void					typeis_unsign(va_list ap, t_data *data);
 void					typeis_octal(va_list ap, t_data *data);
 void					typeis_hexl(va_list ap, t_data *data);
 void					typeis_hexu(va_list ap, t_data *data);
-void					width_printer(va_list ap, t_data *data);
 
 #endif
