@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/24 21:59:01 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/25 15:35:02 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void					check_zero(t_type *type, t_flag *flag);
 void					check_sharp(t_type *type, t_flag *flag);
 void					check_unsigned(t_type *type, t_size *size, t_tool *tool);
 void					cleaner(t_data *data);
-void					finalize_instructions(t_data *data);
+void					finalizer(t_data *data);
 int						ft_printf(const char *format, ...);
 void					get_arg_len(va_list ap, t_data *data);
 void					parse_flags(char *instruc, t_flag *flag, int i);

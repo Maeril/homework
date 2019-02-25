@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 13:40:00 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/24 23:54:43 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/25 18:14:17 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,20 @@
 
 void		parse_flags(char *instruc, t_flag *flag, int i)
 {
+	// printf("entre dans parse_flags, valeur de instruc[i] = %c\n", instruc[i]);
 	while (instruc[i])
 	{
-		flag->minus = (instruc[i] == '-');
-		flag->plus = (instruc[i] == '+');
-		flag->zero = (instruc[i] == '0');
-		flag->space = (instruc[i] == ' ');
-		flag->sharp = (instruc[i] == '#');
+		if (instruc[i] == '-')
+			flag->minus = 1;
+		if (instruc[i] == '+')
+			flag->plus = 1;
+		if (instruc[i] == '0' && !(instruc[i - 1] >= '0'
+			&& instruc[i - 1] <= '9'))
+			flag->zero = 1;
+		if (instruc[i] == ' ')
+			flag->space = 1;
+		if (instruc[i] == '#')
+			flag->sharp = 1;
 		i++;
 	}
 }
@@ -33,7 +40,6 @@ void		parse_width(char *instruc, t_lngt *lngt, t_tool *tool, int i)
 	width_value = ft_strnew(ft_strlen(instruc));
 	if (instruc[i - 1] == '.')
 		return ;
-	i = 0;
 	j = 0;
 	lngt->width = 1;
 	while ((instruc[i] >= '0' && instruc[i] <= '9') && instruc[i])
@@ -103,25 +109,26 @@ void		parser(char *instruc, t_data *data)
 	int i;
 
 	i = 0;
-	while (instruc[i] != '\0')
+	while (instruc[i])
 	{
-		printf("boucle I, valeur de i = %i", i);
-		if (instruc[i] == '-' && (instruc[i+1] > '0' && instruc[i+1] <= '9') /*|| instruc[i] == '+' || instruc[i] == '0'
-			|| instruc[i] == ' ' || instruc[i] == '#'*/)
+		// printf("I, valeur de i = %i", i);
+		// printf("I, contenu de instruc[i] = %c", instruc[i]);
+		if ((instruc[i] == '-' || instruc[i] == '+' || instruc[i] == '0'
+			|| instruc[i] == ' ' || instruc[i] == '#'))
 		{
-			printf("boucle II, valeur de i = %i", i);
+			// printf("II, valeur de i = %i", i);
+			// printf("II, contenu de instruc[i] = %c", instruc[i]);
 			parse_flags(instruc, data->flag, i);
 		}
-		if ((instruc[i] >= '0' && instruc[i] <= '9') && (instruc[i - 1] = '%'))
+		if ((instruc[i] >= '0' && instruc[i] <= '9') && !(instruc[i - 1] >= '0' && instruc[i - 1] <= '9')) /*|| (instruc[i] >= 0 && instruc[i] <= 9) && (instruc[i - 1] == '%' || instruc[i - 1] == '-' || instruc[i - 1] == '+'))*/
 		{
-			data->tool->index = i;
+			// printf("valeur de i - 1 = %c", instruc[i - 1]);
 			parse_width(instruc, data->lngt, data->tool, i);
-			i = data->tool->index;
 		}
 		if (instruc[i] == '.')
 		{
-			if ((instruc[i-1] > '0' && instruc[i] <= '9')
-				&& (instruc[i+1] > '0' && instruc[i+1] <= '9'))
+			if ((instruc[i - 1] > '0' && instruc[i] <= '9')
+				&& (instruc[i + 1] > '0' && instruc[i + 1] <= '9'))
 					data->type->f = 1;
 			parse_precision(instruc, data->lngt, data->tool, i);
 		}

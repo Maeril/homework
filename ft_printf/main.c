@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 23:34:58 by myener            #+#    #+#             */
-/*   Updated: 2019/02/24 23:19:17 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/25 18:09:22 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,29 @@
 	printf("syst: %%\n");
 	ft_printf("mine: %%\n\n");
 
-	// Width simple
- 	printf("syst: %-5c\n", 'c');
- 	ft_printf("mine: %-5c\n\n", 'c');
+	// Width simple c
+ 	printf("syst: %5c\n", 'h');
+ 	ft_printf("mine: %5c\n\n", 'h');
+
+	// Width & minus
+	printf("syst: %-5c\n", 'x');
+ 	ft_printf("mine: %-5c\n\n", 'x');
+
+	// Width, minus & zero (minus override zero)
+	printf("syst: %-05c\n", 'G');
+ 	ft_printf("mine: %-05c\n\n", 'G');
+
+	// Width simple s
+ 	printf("syst: %5s\n", "bonjour");
+ 	ft_printf("mine: %5s\n\n", "bonjour");
+
+	// Width simple X
+ 	printf("syst: %10X\n", 10);
+ 	ft_printf("mine: %10X\n\n", 10);
+
+	// Width & plus
+	// printf("syst: %+d\n", 74);
+ 	// ft_printf("mine: %+5c\n\n", 'G');
 
 	// // Sharp simple #
  	// printf("syst: %#o\n", 100);

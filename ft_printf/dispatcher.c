@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 16:56:58 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/24 22:34:31 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/25 18:14:16 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,6 @@ void		dispatcher(va_list ap, t_data *data)
 
 	/*if (data->flag->space && (data->type->d || data->type->i))
 		ft_putchar(' '); // je  pense qu'il faudra enlever cette condition et ligne
-	if (data->flag->plus && !data->tool->unsign)
-		Je suis en train de tester le fait d'enlever la ligne en dessous et je pense que ca va aussi etre necessaire->->-> :) 
-		ft_putchar('+');
-	if (data->flag->zero)
-		ft_putnbr('0'); --> ML : je pense qu'il faut supprimer ces lignes
-	if (data->flag->minus && data->lngt->width) // j'ai mis la ligne en sourdine car je pense quelle est pas finie ^^ 
-	data->spec->car = (data->spec->car && data->type->c); // est ce qu'on peut reduire cette ligne ? data->car = data->c ?
-	data->spec->str = (data->spec->str && (data->type->s || data->type->p)); je met en sourdine en attendant (voir ligne ci dessus)
 
 	data->spec->unint = (data->spec->unint && data->type->u);
 

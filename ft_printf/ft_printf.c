@@ -6,13 +6,12 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 11:22:42 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/24 21:59:55 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/25 18:14:15 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include "ft_printf.h"
-
 
 int		is_type(const char *format, int i)
 {
@@ -46,7 +45,6 @@ char	*take_instructions(const char *format, int i)
 	str[j] = '\0';
 	return (str);
 }
-
 
 void	struct_malloc(t_data *data)
 {
@@ -89,7 +87,10 @@ int		put_text(va_list ap, const char *format, char *instruc)
 			len = ft_strlen(instruc);
 			i = i + len;
 			struct_malloc(&data);
+			// printf("width_value avant parsing = %d\n", data.lngt->width_value);
 			parser(instruc, &data);
+			// printf("width_value apres parsing = %d\n", data.lngt->width_value);
+			finalizer(&data);
 			dispatcher(ap, &data);
 			tmp = data.tool->nb_a;
 			cleaner(&data);
