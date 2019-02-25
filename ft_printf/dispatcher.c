@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 16:56:58 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/25 18:14:16 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/25 23:29:06 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void		dispatcher(va_list ap, t_data *data)
 {
-	if (data->type->d || data->type->i|| data->type->o || data->type->x
-		|| data->type->big_x)
-		data->spec->integer = 1;
 	if (data->type->d || data->type->i)
 		typeis_int(ap, data);
 	else if (data->type->c)

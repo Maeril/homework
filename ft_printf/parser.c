@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 13:40:00 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/25 18:31:15 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/25 23:53:49 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void		parse_precision(char *instruc, t_lngt *lngt, t_tool *tool, int i)
 
 void		parse_size(char *instruc, t_size *size, int i)
 {
-	//https://www.cprogramming.com/tutorial/printf-format-strings.html
 	if (size->l == (instruc[i] == 'l'))
 		size->ll = (instruc[++i] == 'l');
 	else if ((size->h = (instruc[i] == 'h')))

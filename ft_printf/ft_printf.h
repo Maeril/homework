@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/25 15:35:02 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/25 23:32:32 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@
 
 typedef struct			s_spec
 {
-	/* Gestion du type s'il y a une size : signed char, short, long
-	 * long long, unsigned char/short/long/longlong*/
 	int					integer;
+	int					ouxx;
 	int					str;
 	char				car;
 	unsigned int		unint;
@@ -107,9 +106,6 @@ typedef struct			s_data
 	t_tool				*tool;
 }						t_data;
 
-void					check_zero(t_type *type, t_flag *flag);
-void					check_sharp(t_type *type, t_flag *flag);
-void					check_unsigned(t_type *type, t_size *size, t_tool *tool);
 void					cleaner(t_data *data);
 void					finalizer(t_data *data);
 int						ft_printf(const char *format, ...);

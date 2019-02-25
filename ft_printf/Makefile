@@ -6,18 +6,17 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/17 21:20:38 by myener            #+#    #+#              #
-#    Updated: 2019/02/25 15:34:53 by myener           ###   ########.fr        #
+#    Updated: 2019/02/25 22:08:12 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	libftprintf.a
 
 SRC		=	cleaner.c				\
+			dispatcher.c			\
 			finalizer.c				\
 			ft_printf.c				\
 			parser.c				\
-			spec_instructions.c		\
-			dispatcher.c			\
 			typeis_int.c			\
 			typeis_char.c			\
 			typeis_unsign.c			\
