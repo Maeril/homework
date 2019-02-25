@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 11:22:42 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/25 18:14:15 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/25 18:26:06 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,7 @@ int		put_text(va_list ap, const char *format, char *instruc)
 			len = ft_strlen(instruc);
 			i = i + len;
 			struct_malloc(&data);
-			// printf("width_value avant parsing = %d\n", data.lngt->width_value);
 			parser(instruc, &data);
-			// printf("width_value apres parsing = %d\n", data.lngt->width_value);
 			finalizer(&data);
 			dispatcher(ap, &data);
 			tmp = data.tool->nb_a;
