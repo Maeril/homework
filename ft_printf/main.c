@@ -6,14 +6,13 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 23:34:58 by myener            #+#    #+#             */
-/*   Updated: 2019/02/26 17:15:02 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/26 23:14:28 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "ft_printf.h"
 #include <float.h>
-
 
  int			main(void)
 {
@@ -80,6 +79,10 @@
 	// Width simple X
  	printf("syst: %10X\n", 10);
  	ft_printf("mine: %10X\n\n", 10);
+
+	// Float simple f
+ 	printf("syst: %f\n", 3.295);
+ 	ft_printf("mine: %f\n\n", 3.295);
 
 	// Width & plus
 	// printf("syst: %+d\n", 74);
