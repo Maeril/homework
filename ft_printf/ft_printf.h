@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/25 23:32:32 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/26 16:37:21 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,6 @@ typedef struct			s_spec
 	short				sh;
 	long				lg;
 	long long			lglg;
-	unsigned char		unsigncar;
-	unsigned short		unsignsh;
-	unsigned long		unsignlg;
-	unsigned long long	unsignlglg;
 }						t_spec;
 
 typedef struct			s_flag
@@ -129,5 +125,6 @@ void					typeis_unsign(va_list ap, t_data *data);
 void					typeis_octal(va_list ap, t_data *data);
 void					typeis_hexl(va_list ap, t_data *data);
 void					typeis_hexu(va_list ap, t_data *data);
+void       				typeis_float(va_list ap, t_data *data);
 
 #endif

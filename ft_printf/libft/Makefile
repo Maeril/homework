@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 17:52:35 by myener            #+#    #+#              #
-#    Updated: 2019/02/22 21:42:33 by myener           ###   ########.fr        #
+#    Updated: 2019/02/26 15:50:54 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,8 +36,8 @@ SRC		=	ft_strdup.c \
 			ft_putnbr.c \
 			ft_putnbr_fd.c \
 			ft_putnbr_base.c \
-			ft_putnbr_long.c \
 			ft_putstr_fd.c \
+			ft_putnbr_long.c \
 			ft_memalloc.c \
 			ft_strnew.c \
 			ft_memccpy.c \

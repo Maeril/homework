@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   typeis_float.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/18 14:07:20 by myener            #+#    #+#             */
-/*   Updated: 2019/02/26 15:39:41 by myener           ###   ########.fr       */
+/*   Created: 2019/02/26 16:14:29 by myener            #+#    #+#             */
+/*   Updated: 2019/02/26 17:27:58 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_putnbr(int nb)
+void        typeis_float(va_list ap, t_data *data)
 {
-	long long int	n;
+    double     nb;
 
-	n = nb;
-	if (n < 0)
-	{
-		ft_putchar('-');
-		n = -n;
-	}
-	if (n >= 10)
-		ft_putnbr(n / 10);
-	ft_putchar(n % 10 + '0');
+    https://www.developpez.net/forums/d234854/c-cpp/c/double-float/
+    if (data->type->f)
+    {
+        nb = va_arg(ap, double);
+        ft_putnbr(nb);
+    }
+
 }

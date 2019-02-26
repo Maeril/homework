@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 13:40:00 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/25 23:53:49 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/26 16:34:46 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void		parse_type(char *instruc, t_type *type, t_tool *tool, int i)
 	type->u = (instruc[i] == 'u');
 	type->x = (instruc[i] == 'x');
 	type->big_x = (instruc[i] == 'X');
+	type->f = (instruc[i] == 'f');
 	tool->perc = (instruc[i] == '%');
 }
 
@@ -134,7 +135,7 @@ void		parser(char *instruc, t_data *data)
 		if (instruc[i] == 'h' || instruc[i] == 'l')
 			parse_size(instruc, data->size, i);
 		if (instruc[i] == 'c' || instruc[i] == 's' || instruc[i] == 'p' ||
-			instruc[i] == 'd' || instruc[i] == 'i' || instruc[i] == 'o' ||
+			instruc[i] == 'd' || instruc[i] == 'i' || instruc[i] == 'o' || instruc[i] == 'f' ||
 			instruc[i] == 'u' || instruc[i] == 'x' || instruc[i] == 'X' || instruc[i] == '%')
 			parse_type(instruc, data->type, data->tool, i);
 		if (instruc[i] == '%')

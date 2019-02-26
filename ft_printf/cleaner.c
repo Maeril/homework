@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 17:48:05 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/24 22:00:06 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/26 17:12:34 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void		cleaner(t_data *data)
 		data->type->u = 0;
 		data->type->x = 0;
 		data->type->big_x = 0;
+		data->type->f = 0;
 		data->spec->integer = 0;
 		data->spec->str = 0;
 		data->spec->car = 0;
@@ -41,14 +42,9 @@ void		cleaner(t_data *data)
 		data->spec->sh = 0;
 		data->spec->lg = 0;
 		data->spec->lglg = 0;
-		data->spec->unsigncar = 0;
-		data->spec->unsignsh = 0;
-		data->spec->unsignlg = 0;
-		data->spec->unsignlglg = 0;
 		data->tool->unsign = 0;
 		data->tool->index = 0;
 		data->tool->index2 = 0;
 		data->tool->nb_a = 0;
 		data->tool->str_tp = NULL;
 }
-

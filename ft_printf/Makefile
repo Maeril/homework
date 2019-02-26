@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/17 21:20:38 by myener            #+#    #+#              #
-#    Updated: 2019/02/25 22:08:12 by myener           ###   ########.fr        #
+#    Updated: 2019/02/26 16:37:53 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRC		=	cleaner.c				\
 			typeis_octal.c			\
 			typeis_hexl.c			\
 			typeis_hexu.c			\
-			typeis_perc.c
+			typeis_perc.c			\
+			typeis_float.c
 
 FLAGS	=	-Wall -Werror -Wextra
 

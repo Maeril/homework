@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 14:41:32 by myener            #+#    #+#             */
-/*   Updated: 2019/02/25 23:44:33 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/26 15:32:59 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putnbr_base(int nb, const char *base)
 {
-	long	n;
+	long long int	n;
 	int		bl;
 
 	n = nb;
