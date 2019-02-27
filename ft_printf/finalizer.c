@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 14:51:23 by myener            #+#    #+#             */
-/*   Updated: 2019/02/26 16:21:22 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/27 18:11:07 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ void    finalizer(t_data *data)
 	data->spec->sh = (data->spec->integer && data->size->h);
 	data->spec->lg = (data->spec->integer && data->size->l);
 	data->spec->lglg = (data->spec->integer && data->size->ll);
+	data->lngt->width = (!(data->lngt->width <= data->lngt->precision));
+	if (data->lngt->width > data->lngt->precision)
+		data->lngt->width = data->lngt->precision - data->lngt->width;
+
     // printf("\nAPRES FINALIZER: valeur de zero = %i, valeur de minus = % i\n", data->flag->zero, data->flag->minus);
     // _____________________________
 	// check zero

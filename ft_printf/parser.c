@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/08 13:40:00 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/26 16:34:46 by myener           ###   ########.fr       */
+/*   Created: 2019/02/08 13:40:00 by myener            #+#    #+#             */
+/*   Updated: 2019/02/27 19:03:07 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,26 +58,20 @@ void		parse_precision(char *instruc, t_lngt *lngt, t_tool *tool, int i)
 	int start;
 	char *precision_ins;
 
-/* a fortement simplifier en se basant sur le man; ne pas oublier les undefined behavior*/
 	len = 0;
 	i++;
 	start = i;
-	if (instruc[i] == '0')
-	{
-		lngt->precision_zero = 1;
-		i++;
-	}
-	while (instruc[i] >= '0' && instruc[i] <= '9')
+	while (instruc[i] > '0' && instruc[i] <= '9')
 	{
 		lngt->precision = 1;
 		len++;
 		i++;
 	}
-	if (len == 0)
-		lngt->precision_dot = 1;;
-	tool->index2 = i;
 	precision_ins = ft_strsub(instruc, start, len);
 	lngt->precision = ft_atoi(precision_ins);
+	if ((instruc[start] == '0' && !lngt->precision) || len == 0)
+		lngt->precision_zero = 1;
+	tool->index2 = i;
 }
 
 void		parse_size(char *instruc, t_size *size, int i)
@@ -111,27 +105,13 @@ void		parser(char *instruc, t_data *data)
 	i = 0;
 	while (instruc[i])
 	{
-		// printf("I, valeur de i = %i", i);
-		// printf("I, contenu de instruc[i] = %c", instruc[i]);
 		if ((instruc[i] == '-' || instruc[i] == '+' || instruc[i] == '0'
 			|| instruc[i] == ' ' || instruc[i] == '#'))
-		{
-			// printf("II, valeur de i = %i", i);
-			// printf("II, contenu de instruc[i] = %c", instruc[i]);
 			parse_flags(instruc, data->flag, i);
-		}
 		if ((instruc[i] >= '0' && instruc[i] <= '9') && !(instruc[i - 1] >= '0' && instruc[i - 1] <= '9')) /*|| (instruc[i] >= 0 && instruc[i] <= 9) && (instruc[i - 1] == '%' || instruc[i - 1] == '-' || instruc[i - 1] == '+'))*/
-		{
-			// printf("valeur de i - 1 = %c", instruc[i - 1]);
 			parse_width(instruc, data->lngt, data->tool, i);
-		}
 		if (instruc[i] == '.')
-		{
-			if ((instruc[i - 1] > '0' && instruc[i] <= '9')
-				&& (instruc[i + 1] > '0' && instruc[i + 1] <= '9'))
-					data->type->f = 1;
 			parse_precision(instruc, data->lngt, data->tool, i);
-		}
 		if (instruc[i] == 'h' || instruc[i] == 'l')
 			parse_size(instruc, data->size, i);
 		if (instruc[i] == 'c' || instruc[i] == 's' || instruc[i] == 'p' ||

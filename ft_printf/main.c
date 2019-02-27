@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 23:34:58 by myener            #+#    #+#             */
-/*   Updated: 2019/02/27 18:01:28 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/27 18:47:38 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,10 @@
 	printf("syst: ABC %5f DEF\n", 3.295);
 	ft_printf("mine: ABC %5f DEF\n\n", 3.295);
 
+	// Octal & Precision
+ 	printf("syst: %.05o\n", 36);
+ 	ft_printf("mine: %.05o\n\n", 36);
+
 	// Width & plus
 	// printf("syst: %+d\n", 74);
  	// ft_printf("mine: %+5c\n\n", 'G');
@@ -119,10 +123,6 @@
  	// // Octal & Width
  	// printf("syst: %5o\n", 36);
  	// ft_printf("mine: %5o\n\n", 36);
-
- 	// // Octal & Precision I
- 	// printf("syst: %.5o\n", 36);
- 	// ft_printf("mine: %.5o\n\n", 36);
 
 	// // Octal & Precision II
  	// printf("syst: %#5.o\n", 9);

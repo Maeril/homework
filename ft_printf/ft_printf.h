@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/07 10:32:38 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/27 17:50:05 by myener           ###   ########.fr       */
+/*   Created: 2019/02/07 10:32:38 by myener            #+#    #+#             */
+/*   Updated: 2019/02/27 18:55:03 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct			s_lngt
 	int					width;
 	int					width_value;
 	int					precision;
-	int					precision_dot;
 	int					precision_zero;/* Quand on a une precision egale a zero.*/
 
 }						t_lngt;
@@ -89,12 +88,10 @@ typedef struct			s_tool
 	int					perc;/* cas special : si on a "%%" et qu'il y a des instructions entre les %*/
 	int					index;/* Pour gerer data.width on a besoin de l'index i  */
 	int					index2;/* pour gerer data.precision on a besoin de l'index j */
-	/* data */
 }						t_tool;
 
 typedef struct			s_data
 {
-	// char				type;
 	t_spec 				*spec;
 	t_flag 				*flag;
 	t_lngt 				*lngt;
