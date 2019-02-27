@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   typeis_perc.c                                      :+:      :+:    :+:   */
+/*   ft_itoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/19 15:57:23 by myener            #+#    #+#             */
-/*   Updated: 2019/02/27 18:01:36 by myener           ###   ########.fr       */
+/*   Created: 2018/11/26 18:36:30 by myener            #+#    #+#             */
+/*   Updated: 2019/02/27 17:32:33 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void		typeis_perc(va_list ap, t_data *data)
+char	ft_itoc(int n)
 {
-	int	len;
+	char	c;
 
-	if (data->tool->perc)
-	{
-		data->tool->perc = va_arg(ap, int);
-		len = 1;
-		if ((data->lngt->width && data->lngt->width_value > 0) && !data->flag->minus)
-			widthprinter_nominus(data, len);
-		ft_putchar('%');
-		if ((data->lngt->width && data->lngt->width_value > 0) && data->flag->minus)
-			widthprinter_minus(data, len);
-	}
+	c = n + '0';
+	return (c);
 }

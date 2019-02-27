@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/26 16:37:21 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/27 17:50:05 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct			s_spec
 	int					integer;
 	int					ouxx;
 	int					str;
+	long double			flt;
 	char				car;
 	unsigned int		unint;
 	signed char			signcar;
@@ -126,5 +127,7 @@ void					typeis_octal(va_list ap, t_data *data);
 void					typeis_hexl(va_list ap, t_data *data);
 void					typeis_hexu(va_list ap, t_data *data);
 void       				typeis_float(va_list ap, t_data *data);
+void        			widthprinter_minus(t_data *data, int len);
+void      				widthprinter_nominus(t_data *data, int len);
 
 #endif

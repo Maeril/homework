@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 23:34:58 by myener            #+#    #+#             */
-/*   Updated: 2019/02/26 23:14:28 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/27 18:01:28 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
  int			main(void)
 {
  	// String simple s
- 	printf("syst: %s\n", "henlo");
- 	ft_printf("mine: %s\n\n", "henlo");
+ 	printf("syst: %10s\n", "henlo");
+ 	ft_printf("mine: %10s\n\n", "henlo");
 
 	// Char simple c
  	printf("syst: %c\n", 'o');
@@ -57,8 +57,8 @@
 	ft_printf("mine: %p\n\n", "test");
 
 	// Pourcentage simple %
-	printf("syst: %%\n");
-	ft_printf("mine: %%\n\n");
+	printf("syst: %8%\n");
+	ft_printf("mine: %8%\n\n");
 
 	// Width simple c
  	printf("syst: %5c\n", 'h');
@@ -83,6 +83,10 @@
 	// Float simple f
  	printf("syst: %f\n", 3.295);
  	ft_printf("mine: %f\n\n", 3.295);
+
+	// Test printf f;
+	printf("syst: ABC %5f DEF\n", 3.295);
+	ft_printf("mine: ABC %5f DEF\n\n", 3.295);
 
 	// Width & plus
 	// printf("syst: %+d\n", 74);

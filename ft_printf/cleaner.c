@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 17:48:05 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/26 17:12:34 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/27 16:10:48 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void		cleaner(t_data *data)
 		data->spec->integer = 0;
 		data->spec->str = 0;
 		data->spec->car = 0;
+		data->spec->flt = 0;
 		data->spec->unint = 0;
 		data->spec->signcar = 0;
 		data->spec->sh = 0;

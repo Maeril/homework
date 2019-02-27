@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 11:22:42 by mpicard           #+#    #+#             */
-/*   Updated: 2019/02/25 18:26:06 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/27 17:42:11 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int		is_type(const char *format, int i)
 {
 	if (format[i] == 'c' || format[i] == 'p' || format[i] == 's' ||
 			format[i] == 'd' || format[i] == 'i' || format[i] == 'o' ||
-			format[i] == 'u' || format[i] == 'x' || format[i] == 'X')
+			format[i] == 'u' || format[i] == 'x' || format[i] == 'X' ||
+			format[i] == 'f')
 		return (0);
 	else
 		return (1);

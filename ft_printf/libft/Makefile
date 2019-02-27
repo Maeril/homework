@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 17:52:35 by myener            #+#    #+#              #
-#    Updated: 2019/02/26 23:02:13 by myener           ###   ########.fr        #
+#    Updated: 2019/02/27 17:32:38 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,7 @@ SRC		=	ft_strdup.c \
 			ft_strtrim.c \
 			ft_strsplit.c \
 			ft_itoa.c	\
+			ft_itoc.c	\
 			ft_lstnew.c \
 			ft_lstdelone.c \
 			ft_lstdel.c \
