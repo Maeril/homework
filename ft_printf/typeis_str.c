@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:51:38 by myener            #+#    #+#             */
-/*   Updated: 2019/02/28 00:55:52 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/28 16:41:47 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,23 @@
 
 void		typeis_str(va_list ap, t_data *data)
 {
+	int		i;
     int     len;
 
 	if (data->tool->str_tp || data->type->s)
 	{
 		data->tool->str_tp = va_arg(ap, char*);
 		len = ft_strlen(data->tool->str_tp);
-		// printf("minus = %d, width = %d, width_value = %d\n", data->flag->minus, data->lngt->width, data->lngt->width_value);
 		if ((data->lngt->width && data->lngt->width_value) && (!data->flag->minus))
 			widthprinter_nominus(data, len);
-		ft_putstr(data->tool->str_tp);
+		if (data->lngt->precision)
+		{
+			i = -1;
+			while (i++ < (data->lngt->precision - 1))
+				ft_putchar(data->tool->str_tp[i]);
+		}
+		else if (!data->lngt->precision)
+			ft_putstr(data->tool->str_tp);
 		if ((data->lngt->width && (data->lngt->width_value > 0)) && data->flag->minus)
 			widthprinter_minus(data, len);
 	}

@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/17 21:20:38 by myener            #+#    #+#              #
-#    Updated: 2019/02/27 17:51:10 by myener           ###   ########.fr        #
+#    Updated: 2019/02/28 16:05:03 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRC		=	cleaner.c				\
 			finalizer.c				\
 			ft_printf.c				\
 			parser.c				\
+			precisionprinter.c		\
 			typeis_int.c			\
 			typeis_char.c			\
 			typeis_unsign.c			\

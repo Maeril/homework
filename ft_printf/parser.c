@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 13:40:00 by myener            #+#    #+#             */
-/*   Updated: 2019/02/28 00:46:54 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/28 17:21:05 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void		parser(char *instruc, t_data *data)
 		if ((instruc[i] == '-' || instruc[i] == '+' || instruc[i] == '0'
 			|| instruc[i] == ' ' || instruc[i] == '#'))
 			parse_flags(instruc, data->flag, i);
-		if ((instruc[i] >= '0' && instruc[i] <= '9') && !(instruc[i - 1] >= '0' && instruc[i - 1] <= '9')) /*|| (instruc[i] >= 0 && instruc[i] <= 9) && (instruc[i - 1] == '%' || instruc[i - 1] == '-' || instruc[i - 1] == '+'))*/
+		if ((instruc[i] >= '0' && instruc[i] <= '9') && !(instruc[i - 1] >= '0' && instruc[i - 1] <= '9') && (instruc[i - 1] != '.')) /*|| (instruc[i] >= 0 && instruc[i] <= 9) && (instruc[i - 1] == '%' || instruc[i - 1] == '-' || instruc[i - 1] == '+'))*/
 			parse_width(instruc, data, i);
 		if (instruc[i] == '.')
 			parse_precision(instruc, data->lngt, data->tool, i);

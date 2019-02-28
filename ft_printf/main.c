@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 23:34:58 by myener            #+#    #+#             */
-/*   Updated: 2019/02/28 00:54:59 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/28 17:21:17 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,37 @@
 	printf("syst: ABC %5f DEF\n", 3.295);
 	ft_printf("mine: ABC %5f DEF\n\n", 3.295);
 
+	// Int d & Precision
+ 	printf("syst: %.5d\n", 36);
+ 	ft_printf("mine: %.5d\n\n", 36);
+
+	// Int i & Precision
+ 	printf("syst: %.5i\n", 36);
+ 	ft_printf("mine: %.5i\n\n", 36);
+
 	// Octal & Precision
- 	printf("syst: %05o\n", 36);
- 	ft_printf("mine: %05o\n\n", 36);
+ 	printf("syst: %.5o\n", 36);
+ 	ft_printf("mine: %.5o\n\n", 36);
+
+	// Unsign & Precision
+ 	printf("syst: %.5u\n",-42);
+ 	ft_printf("mine: %.5u\n\n", -42);
+
+	// Hexl & Precision
+ 	printf("syst: %.5x\n", 10);
+ 	ft_printf("mine: %.5x\n\n", 10);
+
+	// Hexu & Precision
+ 	printf("syst: %.5X\n", 10);
+ 	ft_printf("mine: %.5X\n\n", 10);
+
+	 // Float & Precision
+ 	printf("syst: %.0f\n", 10.456);
+ 	ft_printf("mine: %.0f\n\n", 10.456);
+
+	// Str & Precision
+ 	printf("syst: %.6s\n", "bonjour");
+ 	ft_printf("mine: %.6s\n\n", "bonjour");
 
 	// Width & plus
 	// printf("syst: %+d\n", 74);

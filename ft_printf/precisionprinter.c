@@ -6,21 +6,23 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 15:58:14 by myener            #+#    #+#             */
-/*   Updated: 2019/02/27 18:14:21 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/28 16:26:50 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		precisionprinter(t_data *data)
+void		precisionprint_int(t_data *data, int len)
 {
-	while (data->lngt->precision)
+	int	i;
+
+	i = 0;
+	if (len < data->lngt->precision)
 	{
-		ft_putchar('0');
-		data->lngt->precision = data->lngt->precision - 1;
+		while (i < (data->lngt->precision - len))
+    		{
+    			ft_putchar('0');
+    			i++;
+    		}
 	}
-	if (data->flag->minus)
-		return ;
-	else
-		ft_putnbr(data->spec->integer);
 }
