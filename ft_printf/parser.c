@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 13:40:00 by myener            #+#    #+#             */
-/*   Updated: 2019/02/27 19:03:07 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/28 00:46:54 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,24 @@ void		parse_flags(char *instruc, t_flag *flag, int i)
 	}
 }
 
-void		parse_width(char *instruc, t_lngt *lngt, t_tool *tool, int i)
+void		parse_width(char *instruc, t_data *data, int i)
 {
 	int		j;
 	char	*width_value;
 
 	width_value = ft_strnew(ft_strlen(instruc));
+	data->lngt->width = 1;
 	if (instruc[i - 1] == '.')
 		return ;
 	j = 0;
-	lngt->width = 1;
 	while ((instruc[i] >= '0' && instruc[i] <= '9') && instruc[i])
 	{
 		width_value[j] = instruc[i];
 		i++;
 		j++;
 	}
-	lngt->width_value = ft_atoi(width_value);
-	tool->index = i;
+	data->lngt->width_value = ft_atoi(width_value);
+	data->tool->index = i;
 
 }
 
@@ -109,7 +109,7 @@ void		parser(char *instruc, t_data *data)
 			|| instruc[i] == ' ' || instruc[i] == '#'))
 			parse_flags(instruc, data->flag, i);
 		if ((instruc[i] >= '0' && instruc[i] <= '9') && !(instruc[i - 1] >= '0' && instruc[i - 1] <= '9')) /*|| (instruc[i] >= 0 && instruc[i] <= 9) && (instruc[i - 1] == '%' || instruc[i - 1] == '-' || instruc[i - 1] == '+'))*/
-			parse_width(instruc, data->lngt, data->tool, i);
+			parse_width(instruc, data, i);
 		if (instruc[i] == '.')
 			parse_precision(instruc, data->lngt, data->tool, i);
 		if (instruc[i] == 'h' || instruc[i] == 'l')

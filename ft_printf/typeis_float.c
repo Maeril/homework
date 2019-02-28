@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 16:14:29 by myener            #+#    #+#             */
-/*   Updated: 2019/02/27 17:50:56 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/27 23:37:15 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void        typeis_float(va_list ap, t_data *data)
     {
         data->spec->flt = va_arg(ap, double);
         len = (data->lngt->precision ? data->lngt->precision : 7);
-        if ((data->lngt->width && data->lngt->width_value > 0) && !data->flag->minus)
+        if ((data->lngt->width && (data->lngt->width_value > 0)) && !data->flag->minus)
 			widthprinter_nominus(data, len);
     	num = data->spec->flt;
   	    ft_putnbr(num);
@@ -59,7 +59,7 @@ void        typeis_float(va_list ap, t_data *data)
         // printf("contenu de str: %s", str);
 	    tmp = ft_atoi(str) + 1;
         ft_putnbr(tmp);
-        if ((data->lngt->width && data->lngt->width_value > 0) && data->flag->minus)
+        if ((data->lngt->width && (data->lngt->width_value > 0)) && data->flag->minus)
 			widthprinter_minus(data, len);
     }
 }

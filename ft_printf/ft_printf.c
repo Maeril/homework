@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 11:22:42 by myener            #+#    #+#             */
-/*   Updated: 2019/02/27 18:14:13 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/28 00:54:44 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,12 @@ int		put_text(va_list ap, const char *format, char *instruc)
 			len = ft_strlen(instruc);
 			i = i + len;
 			struct_malloc(&data);
+			cleaner(&data);
+			// printf("flag minus 1 = %d\n", data.flag->minus);
 			parser(instruc, &data);
+			// printf("flag minus 2 = %d\n", data.flag->minus);
 			finalizer(&data);
+			// printf("flag minus 3 = %d\n", data.flag->minus);
 			dispatcher(ap, &data);
 			tmp = data.tool->nb_a;
 			cleaner(&data);

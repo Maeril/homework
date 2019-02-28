@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 23:34:58 by myener            #+#    #+#             */
-/*   Updated: 2019/02/27 18:47:38 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/28 00:54:59 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
  int			main(void)
 {
  	// String simple s
- 	printf("syst: %10s\n", "henlo");
- 	ft_printf("mine: %10s\n\n", "henlo");
+ 	printf("syst: %10s\n", "hello");
+ 	ft_printf("mine: %10s\n\n", "hello");
 
 	// Char simple c
  	printf("syst: %c\n", 'o');
@@ -73,12 +73,16 @@
  	ft_printf("mine: %-05c\n\n", 'G');
 
 	// Width simple s
- 	printf("syst: %5s\n", "bonjour");
- 	ft_printf("mine: %5s\n\n", "bonjour");
+ 	printf("syst: %10s\n", "bjr");
+ 	ft_printf("mine: %10s\n\n", "bjr");
 
 	// Width simple X
  	printf("syst: %10X\n", 10);
  	ft_printf("mine: %10X\n\n", 10);
+
+	// Width simple o
+ 	printf("syst: %08o\n", 8);
+ 	ft_printf("mine: %08o\n\n", 8);
 
 	// Float simple f
  	printf("syst: %f\n", 3.295);
@@ -89,8 +93,8 @@
 	ft_printf("mine: ABC %5f DEF\n\n", 3.295);
 
 	// Octal & Precision
- 	printf("syst: %.05o\n", 36);
- 	ft_printf("mine: %.05o\n\n", 36);
+ 	printf("syst: %05o\n", 36);
+ 	ft_printf("mine: %05o\n\n", 36);
 
 	// Width & plus
 	// printf("syst: %+d\n", 74);

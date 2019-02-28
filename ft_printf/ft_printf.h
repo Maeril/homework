@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by myener            #+#    #+#             */
-/*   Updated: 2019/02/27 18:55:03 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/27 22:17:29 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void					parse_flags(char *instruc, t_flag *flag, int i);
 void					parse_precision(char *instruc, t_lngt *lngt, t_tool *tool, int i);
 void					parse_size(char *instruc, t_size *size, int i);
 void					parse_type(char *instruc, t_type *type, t_tool *tool, int i);
-void					parse_width(char *instruc, t_lngt *lngt, t_tool *tool, int i);
+void					parse_width(char *instruc, t_data *data, int i);
 void					parser(char *instruc, t_data *data);
 void					prt_precision(t_lngt *lngt, t_flag *flag, t_spec *spec);
 int						put_text(va_list ap, const char *format, char *instruc);
