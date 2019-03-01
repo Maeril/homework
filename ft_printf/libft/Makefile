@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 17:52:35 by myener            #+#    #+#              #
-#    Updated: 2019/02/27 17:32:38 by myener           ###   ########.fr        #
+#    Updated: 2019/02/28 21:02:29 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC		=	ft_strdup.c \
 			ft_strncmp.c \
 			ft_strlcat.c \
 			ft_atoi.c \
+			ft_atoll.c \
 			ft_memmove.c \
 			ft_memcpy.c \
 			ft_memset.c \

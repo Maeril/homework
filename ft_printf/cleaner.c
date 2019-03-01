@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 17:48:05 by myener            #+#    #+#             */
-/*   Updated: 2019/02/28 00:53:49 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/28 20:11:51 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ void		cleaner(t_data *data)
 		data->flag->plus = 0;
 		data->flag->zero = 0;
 		data->flag->space = 0;
+		data->flag->sharp = 0;
 		data->lngt->width = 0;
 		data->lngt->precision = 0;
+		data->lngt->precision_zero = 0;
 		data->size->h = 0;
 		data->size->ll = 0;
 		data->size->l = 0;

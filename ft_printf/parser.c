@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 13:40:00 by myener            #+#    #+#             */
-/*   Updated: 2019/02/28 17:21:05 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/28 20:44:11 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,23 @@ void		parse_width(char *instruc, t_data *data, int i)
 
 void		parse_precision(char *instruc, t_lngt *lngt, t_tool *tool, int i)
 {
-	int len;
-	int start;
-	char *precision_ins;
+	int		j;
+	int 	start;
+	char	*stk;
 
-	len = 0;
 	i++;
+	j = 0;
 	start = i;
-	while (instruc[i] > '0' && instruc[i] <= '9')
+	stk = ft_strnew(ft_strlen(instruc));
+	lngt->precision = 1;
+	while (instruc[i] >= '0' && instruc[i] <= '9')
 	{
-		lngt->precision = 1;
-		len++;
+		stk[j] = instruc[i];
 		i++;
+		j++;
 	}
-	precision_ins = ft_strsub(instruc, start, len);
-	lngt->precision = ft_atoi(precision_ins);
-	if ((instruc[start] == '0' && !lngt->precision) || len == 0)
+	lngt->precision_value = ft_atoi(stk);
+	if (instruc[start] == '0' && !lngt->precision_value)
 		lngt->precision_zero = 1;
 	tool->index2 = i;
 }

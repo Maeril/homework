@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atoll.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 18:40:23 by myener            #+#    #+#             */
-/*   Updated: 2019/02/28 20:57:26 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/28 21:01:39 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+long long int ft_atoll(const char *str)
 {
-	int	i;
-	int nb;
-	int	neg;
+	int				i;
+	int				neg;
+	long long int	nb;
 
 	i = 0;
 	nb = 0;

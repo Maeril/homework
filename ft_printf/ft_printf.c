@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 11:22:42 by myener            #+#    #+#             */
-/*   Updated: 2019/02/28 00:54:44 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/28 20:44:36 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,22 @@ int		put_text(va_list ap, const char *format, char *instruc)
 			i = i + len;
 			struct_malloc(&data);
 			cleaner(&data);
-			// printf("flag minus 1 = %d\n", data.flag->minus);
+			// printf("flag minus = %d\n", data.flag->minus);
+			// printf("flag zero = %d\n", data.flag->zero);
+			// printf("flag space = %d\n", data.flag->space);
+			// printf("flag plus = %d\n\n", data.flag->plus);
 			parser(instruc, &data);
-			// printf("flag minus 2 = %d\n", data.flag->minus);
+			// printf(">>> flag sharp = %d\n", data.flag->sharp);
+			// printf(">>> flag minus = %d\n", data.flag->minus);
+			// printf(">>> flag zero = %d\n", data.flag->zero);
+			// printf(">>> flag space = %d\n", data.flag->space);
+			// printf(">>> flag plus = %d\n\n", data.flag->plus);
 			finalizer(&data);
-			// printf("flag minus 3 = %d\n", data.flag->minus);
+			// printf("flag sharp = %d\n\n", data.flag->sharp);
+			// printf("flag minus = %d\n", data.flag->minus);
+			// printf("flag zero = %d\n", data.flag->zero);
+			// printf("flag space = %d\n", data.flag->space);
+			// printf("flag plus = %d\n\n", data.flag->plus);
 			dispatcher(ap, &data);
 			tmp = data.tool->nb_a;
 			cleaner(&data);

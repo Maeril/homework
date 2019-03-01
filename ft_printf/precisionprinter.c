@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 15:58:14 by myener            #+#    #+#             */
-/*   Updated: 2019/02/28 16:26:50 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/28 20:39:13 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void		precisionprint_int(t_data *data, int len)
 	int	i;
 
 	i = 0;
-	if (len < data->lngt->precision)
+	if (len < data->lngt->precision_value)
 	{
-		while (i < (data->lngt->precision - len))
+		while (i < (data->lngt->precision_value - len))
     		{
     			ft_putchar('0');
     			i++;
