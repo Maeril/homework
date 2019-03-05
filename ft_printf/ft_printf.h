@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by myener            #+#    #+#             */
-/*   Updated: 2019/02/28 20:18:11 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/03 18:04:41 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 typedef struct			s_spec
 {
 	int					integer;
-	int					ouxx;
 	int					str;
 	long double			flt;
 	char				car;
@@ -76,7 +75,6 @@ typedef struct			s_type
 	int					x;
 	int					big_x;
 	int					f;
-	int					pourcentage;
 }						t_type;
 
 typedef struct			s_tool
@@ -85,7 +83,6 @@ typedef struct			s_tool
 	char				*str_tp;
 	/* Nombre de caracteres imprimes */
 	int					nb_a; // compteur pour chaque caractere imprimes de l argument
-	int					nb_printed;
 	int					perc;/* cas special : si on a "%%" et qu'il y a des instructions entre les %*/
 	int					index;/* Pour gerer data.width on a besoin de l'index i  */
 	int					index2;/* pour gerer data.precision on a besoin de l'index j */

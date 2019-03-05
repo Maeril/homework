@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:59:01 by myener            #+#    #+#             */
-/*   Updated: 2019/03/01 14:06:13 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/03 19:54:21 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,15 @@ void		typeis_octal(va_list ap, t_data *data)
 	if (data->type->o)
 	{
 		data->type->o = va_arg(ap, int);
-		len = (data->flag->sharp ? (ft_hexlen(data->type->o) + 1) : ft_hexlen(data->type->o));
-		if (data->lngt->precision)
-			precisionprint_int(data, len);
+		len = ((ft_octlen(data->type->o) <= 1) ? ft_octlen(data->type->o) + 1 :
+			ft_octlen(data->type->o));
 		if ((data->lngt->width && (data->lngt->width_value > 0)) && !data->flag->minus)
-			widthprinter_nominus(data, (len + 1));
+			widthprinter_nominus(data, len);
+		if (data->lngt->precision)
+		{
+			len += ft_octlen(data->type->o);
+			precisionprint_int(data, len);
+		}
 		if (data->flag->sharp && data->type->o)
 			ft_putchar('0');
 		ft_putnbr_base(data->type->o, OCT);
