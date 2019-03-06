@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:51:42 by myener            #+#    #+#             */
-/*   Updated: 2019/02/27 23:36:49 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/06 17:58:31 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void		typeis_char(va_list ap, t_data *data)
 		data->spec->car = va_arg(ap, int);
 		len = 1;
 		if ((data->lngt->width && (data->lngt->width_value > 0)) && !data->flag->minus)
-			widthprinter_nominus(data, len);
+			printer_nominus(data, len);
 		ft_putchar(data->spec->car);
 		if ((data->lngt->width && (data->lngt->width_value > 0)) && data->flag->minus)
-			widthprinter_minus(data, len);
+			printer_minus(data, len);
 	}
 }
