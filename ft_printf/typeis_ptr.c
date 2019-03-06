@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:51:32 by myener            #+#    #+#             */
-/*   Updated: 2019/02/27 23:38:53 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/06 17:48:13 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void		typeis_ptr(va_list ap, t_data *data)
 
 	if (data->type->p)
 	{
-		data->type->p = va_arg(ap, int);
+		data->type->p = va_arg(ap, long long int);
 		len = (ft_hexlen(data->type->p) + 4);
 		if ((data->lngt->width && (data->lngt->width_value > 0)) && !data->flag->minus)
-			widthprinter_nominus(data, len);
-        ft_putstr("0x10");
+			printer_nominus(data, len);
+		ft_putstr("0x");
 		ft_putnbr_base(data->type->p, HEXL);
 		if ((data->lngt->width && (data->lngt->width_value > 0)) && data->flag->minus)
-			widthprinter_minus(data, len);
+			printer_minus(data, len);
 	}
 }
