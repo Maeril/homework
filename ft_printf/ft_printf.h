@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by myener            #+#    #+#             */
-/*   Updated: 2019/03/06 17:46:49 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/07 15:09:27 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,10 @@ typedef struct			s_lngt
 typedef struct			s_size
 {
 	int					h;
-	int					ll;
-	int					l;
 	int					hh;
+	int					l;
+	int					ll;
+	int					big_l;
 }						t_size;
 
 typedef struct			s_type
@@ -79,6 +80,7 @@ typedef struct			s_type
 
 typedef struct			s_tool
 {
+	int					size;
 	int					unsign;
 	char				*str_tp;
 	/* Nombre de caracteres imprimes */
@@ -108,6 +110,7 @@ void					parse_size(char *instruc, t_size *size, int i);
 void					parse_type(char *instruc, t_type *type, t_tool *tool, int i);
 void					parse_width(char *instruc, t_data *data, int i);
 void					parser(char *instruc, t_data *data);
+void					precision_printer(t_data *data, int len);
 int						put_text(va_list ap, const char *format, char *instruc);
 void					dispatcher(va_list ap, t_data *data);
 char					*take_instructions(const char *format, int i);
@@ -121,7 +124,7 @@ void					typeis_octal(va_list ap, t_data *data);
 void					typeis_hexl(va_list ap, t_data *data);
 void					typeis_hexu(va_list ap, t_data *data);
 void       				typeis_float(va_list ap, t_data *data);
-void        			printer_minus(t_data *data, int len);
-void      				printer_nominus(t_data *data, int len);
+void        			widthprinter_minus(t_data *data, int len);
+void      				widthprinter_nominus(t_data *data, int len);
 
 #endif

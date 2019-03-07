@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 13:40:00 by myener            #+#    #+#             */
-/*   Updated: 2019/03/03 18:11:02 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/07 15:10:44 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,10 @@ void		parser(char *instruc, t_data *data)
 		if (instruc[i] == '.')
 			parse_precision(instruc, data->lngt, data->tool, i);
 		if (instruc[i] == 'h' || instruc[i] == 'l')
+		{
+			data->tool->size = 1;
 			parse_size(instruc, data->size, i);
+		}
 		if (instruc[i] == 'c' || instruc[i] == 's' || instruc[i] == 'p' ||
 			instruc[i] == 'd' || instruc[i] == 'i' || instruc[i] == 'o' || instruc[i] == 'f' ||
 			instruc[i] == 'u' || instruc[i] == 'x' || instruc[i] == 'X' || instruc[i] == '%')

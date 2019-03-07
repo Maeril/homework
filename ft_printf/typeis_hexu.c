@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 18:06:08 by myener            #+#    #+#             */
-/*   Updated: 2019/03/06 18:01:25 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/07 14:51:35 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,22 @@ void		typeis_hexu(va_list ap, t_data *data)
 	if (data->type->big_x)
 	{
 		data->type->big_x = va_arg(ap, int);
-		len = (data->flag->sharp ? (ft_hexlen(data->type->big_x) + 2) : ft_hexlen(data->type->big_x));
-		if ((data->lngt->width && (data->lngt->width_value > 0)) && !data->flag->minus)
-			printer_nominus(data, len);
-		if (data->flag->sharp && data->type->big_x)
-			ft_putstr("0X");
+		len = ft_hexlen(data->type->big_x);
+		if (data->flag->sharp)
+			len++;
+		if ((data->lngt->precision && data->lngt->width) && (data->lngt->width_value >= data->lngt->precision_value))
+			data->lngt->width_value -= data->lngt->precision_value;
+		else if ((data->lngt->precision && data->lngt->width) && (data->lngt->width_value < data->lngt->precision_value))
+			data->lngt->width = 0;
+			widthprinter_nominus(data, len);
+		if (data->flag->sharp)
+			ft_putstr("0x");
+		if (data->lngt->precision && !data->flag->sharp)
+			precision_printer(data, len);
+		else if (data->lngt->precision && data->flag->sharp)
+			precision_printer(data, len - 1);
 		ft_putnbr_base(data->type->big_x, HEXU);
 		if ((data->lngt->width && (data->lngt->width_value > 0)) && data->flag->minus)
-			printer_minus(data, len);
+			widthprinter_minus(data, len);
 	}
 }

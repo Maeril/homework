@@ -6,26 +6,35 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 18:06:02 by myener            #+#    #+#             */
-/*   Updated: 2019/03/06 18:01:36 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/07 14:51:16 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		typeis_hexl(va_list ap, t_data *data)
+void typeis_hexl(va_list ap, t_data *data)
 {
-    int     len;
+	int len;
 
 	if (data->type->x)
 	{
 		data->type->x = va_arg(ap, int);
-		len = (data->flag->sharp ? (ft_hexlen(data->type->x) + 2) : ft_hexlen(data->type->x));
-		if ((data->lngt->width && (data->lngt->width_value > 0)) && !data->flag->minus)
-			printer_nominus(data, len);
-		if (data->flag->sharp && data->type->x)
+		len = ft_hexlen(data->type->x);
+		if (data->flag->sharp)
+			len++;
+		if ((data->lngt->precision && data->lngt->width) && (data->lngt->width_value >= data->lngt->precision_value))
+			data->lngt->width_value -= data->lngt->precision_value;
+		else if ((data->lngt->precision && data->lngt->width) && (data->lngt->width_value < data->lngt->precision_value))
+			data->lngt->width = 0;
+			widthprinter_nominus(data, len);
+		if (data->flag->sharp)
 			ft_putstr("0x");
+		if (data->lngt->precision && !data->flag->sharp)
+			precision_printer(data, len);
+		else if (data->lngt->precision && data->flag->sharp)
+			precision_printer(data, len - 1);
 		ft_putnbr_base(data->type->x, HEXL);
 		if ((data->lngt->width && (data->lngt->width_value > 0)) && data->flag->minus)
-			printer_minus(data, len);
+			widthprinter_minus(data, len);
 	}
 }
