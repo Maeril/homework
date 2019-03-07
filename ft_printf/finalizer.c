@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 14:51:23 by myener            #+#    #+#             */
-/*   Updated: 2019/03/04 23:18:41 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/07 21:23:37 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void    finalizer(t_data *data)
 	data->flag->plus = (data->flag->plus && !data->tool->unsign);
 	data->flag->space = (data->flag->space && !data->flag->plus);
 	data->flag->zero = (data->flag->zero && !data->flag->minus);
+	if (data->flag->zero && data->lngt->precision && (data->type->d || data->type->i || data->type->o
+		|| data->type->u || data->type->x || data->type->big_x))
+			data->flag->zero = 0;
 	data->flag->space = (data->flag->space && (data->type->d || data->type->i));
     data->flag->sharp = (data->flag->sharp && (data->type->o || data->type->x
         || data->type->big_x || data->type->f));

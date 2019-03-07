@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 23:34:58 by myener            #+#    #+#             */
-/*   Updated: 2019/03/07 16:36:09 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/07 21:18:19 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,10 @@
 	printf("Hexl Width Precision et Minus (-10.5x) :\n\n");
 	printf("syst: %-10.5x\n", 55);
  	ft_printf("mine: %-10.5x\n\n", 55);
+
+	printf("Hexl Width et Precision (10.5x) :\n\n");
+	printf("syst: %010.5x\n", 55);
+ 	ft_printf("mine: %010.5x\n\n", 55);
 
 	printf("Hexl Width et Zero (05x) :\n\n");
  	printf("syst: %05x\n", 10);
