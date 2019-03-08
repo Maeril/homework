@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:57:23 by myener            #+#    #+#             */
-/*   Updated: 2019/03/07 12:58:44 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/08 15:25:13 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ void		typeis_perc(va_list ap, t_data *data)
 	{
 		data->tool->perc = va_arg(ap, int);
 		len = 1;
+		if (data->lngt->precision && ((data->lngt->precision_value <= len)
+			|| (data->lngt->precision_value >= data->lngt->width_value)))
+			data->lngt->precision = 0;
+		if (data->lngt->precision && (data->lngt->precision_value < data->lngt->width_value))
+			data->lngt->width_value -= (data->lngt->precision_value - len);
 		if ((data->lngt->width && (data->lngt->width_value > 0)) && !data->flag->minus)
 			widthprinter_nominus(data, len);
 		ft_putchar('%');

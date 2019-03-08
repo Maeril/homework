@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:53:22 by myener            #+#    #+#             */
-/*   Updated: 2019/03/07 12:59:15 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/08 15:11:35 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,22 @@ void		typeis_unsign(va_list ap, t_data *data)
 	{
 		out = va_arg(ap, unsigned int);
 		len = ft_uintlen(out);
+		if (data->lngt->precision && (data->lngt->precision_value <= len))
+			data->lngt->precision = 0;
+		if (data->lngt->precision && (data->lngt->precision_value >= data->lngt->width_value))
+			data->lngt->width = 0;
+		if (data->lngt->precision && (data->lngt->precision_value < data->lngt->width_value))
+			data->lngt->width_value -= (data->lngt->precision_value - 2);
 		if ((data->lngt->width && (data->lngt->width_value > 0)) && !data->flag->minus)
 			widthprinter_nominus(data, len);
 		if (out < 0)
 		{
 			out = -out;
 			out = (UINT_MAX - out);
-			ft_putnbr_long(out);
 		}
-		else if (out >= 0)
-			ft_putnbr_long(out);
+		if (data->lngt->precision)
+			precision_printer(data, len);
+		ft_putnbr_long(out);
 		if ((data->lngt->width && (data->lngt->width_value > 0)) && data->flag->minus)
 			widthprinter_minus(data, len);
 	}
