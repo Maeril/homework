@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 23:34:58 by myener            #+#    #+#             */
-/*   Updated: 2019/03/08 15:24:48 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/11 17:09:07 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,33 +44,37 @@
  	// printf("syst: %10.50u\n",-42);
  	// ft_printf("mine: %10.50u\n\n", -42);
 
-	printf("Pourcentage et Width (8) :\n\n");
-	printf("syst: %8%\n");
-	ft_printf("mine: %8%\n\n");
+	// printf("Pourcentage et Width (8) :\n\n");
+	// printf("syst: %8%\n");
+	// ft_printf("mine: %8%\n\n");
 
-	printf("Pourcentage Precision et Width (8) :\n\n");
-	printf("syst: %1.10%\n");
-	ft_printf("mine: %1.10%\n\n");
+	// printf("Pourcentage Precision et Width (8) :\n\n");
+	// printf("syst: %1.10%\n");
+	// ft_printf("mine: %1.10%\n\n");
 
-	printf("Pourcentage et Precision (8) :\n\n");
-	printf("syst: %-%\n");
-	ft_printf("mine: %-%\n\n");
+	// printf("Pourcentage et Precision (8) :\n\n");
+	// printf("syst: %-%\n");
+	// ft_printf("mine: %-%\n\n");
 
-	// printf("Float simple (f) :\n\n");
- 	// printf("syst: %f\n", 3.295);
- 	// ft_printf("mine: %f\n\n", 3.295);
+	// printf("\n//////////////////////////////////////////////\n\n");
 
-	// printf("Float Width et Espace ( 10f) :\n\n");
- 	// printf("syst: % 10f\n", 10.5);
- 	// ft_printf("mine: % 10f\n\n", 10.5);
+	printf("Float simple (f) :\n\n");
+ 	printf("syst: %f\n", 3.295);
+ 	ft_printf("mine: %f\n\n", 3.295);
 
-	// printf("Float et Precision (.9f) :\n\n");
- 	// printf("syst: %.9f\n", 2.295);
- 	// ft_printf("mine: %.9f\n\n", 2.295);
+	printf("Float Width et Espace ( 10f) :\n\n");
+ 	printf("syst: % 10f\n", 10.5);
+ 	ft_printf("mine: % 10f\n\n", 10.5);
 
-	// printf("Float et Width (5f) :\n\n");
-	// printf("syst: ABC %5f DEF\n", 3.295);
-	// ft_printf("mine: ABC %5f DEF\n\n", 3.295);
+	printf("Float et Precision (.19f) :\n\n"); //okay donc la precision déconne completement.
+ 	printf("syst: %.19f\n", 2.295);
+ 	ft_printf("mine: %.19f\n\n", 2.295);
+
+	printf("Float et Width (25f) :\n\n");
+	printf("syst: ABC %25f DEF\n", 3.295);
+	ft_printf("mine: ABC %25f DEF\n\n", 3.295);
+
+	// printf("\n//////////////////////////////////////////////\n\n");
 
 	// printf("Hexu simple (X)) :\n\n");
  	// printf("syst: %X\n", 10);

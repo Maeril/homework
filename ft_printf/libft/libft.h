@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 13:57:15 by myener            #+#    #+#             */
-/*   Updated: 2019/03/06 16:22:43 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/11 15:21:04 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
+int				ft_abs(int nb);
 int				ft_atoi(const char *str);
 long long int	ft_atoll(const char *str);
 void			ft_bzero(void *s, size_t n);
@@ -33,6 +34,7 @@ int				ft_intlen(long long int n);
 int				ft_uintlen(unsigned long long int n);
 int				ft_octlen(unsigned long long int n);
 int				ft_hexlen(unsigned long long int n);
+float			ft_floatmod(float x, float y);
 int				ft_isalnum(int c);
 int				ft_isalpha(int c);
 int				ft_isascii(int c);
@@ -98,5 +100,8 @@ char			*ft_strtrim(const char *s);
 int				ft_tolower(int c);
 int				ft_toupper(int c);
 int				get_next_line(const int fd, char **line);
+float     		roundit_awayzero(float f);
+float   		roundit_towardzero(float f);
+float			roundit_halfeven(float f);
 
 #endif

@@ -6,13 +6,14 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 17:52:35 by myener            #+#    #+#              #
-#    Updated: 2019/02/28 21:02:29 by myener           ###   ########.fr        #
+#    Updated: 2019/03/11 15:05:47 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	libft.a
 
-SRC		=	ft_strdup.c \
+SRC		=	ft_abs.c \
+			ft_strdup.c \
 		   	ft_strcat.c \
 			ft_strcpy.c \
 	 		ft_strncat.c \
@@ -23,6 +24,7 @@ SRC		=	ft_strdup.c \
 			ft_strlcat.c \
 			ft_atoi.c \
 			ft_atoll.c \
+			ft_floatmod.c \
 			ft_memmove.c \
 			ft_memcpy.c \
 			ft_memset.c \
@@ -77,7 +79,8 @@ SRC		=	ft_strdup.c \
 			ft_intlen.c \
 			ft_octlen.c \
 			ft_hexlen.c \
-			ft_uintlen.c
+			ft_uintlen.c \
+			rounder.c
 
 
 
