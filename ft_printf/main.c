@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 23:34:58 by myener            #+#    #+#             */
-/*   Updated: 2019/03/11 17:09:07 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/12 14:52:16 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@
  	ft_printf("mine: %f\n\n", 3.295);
 
 	printf("Float Width et Espace ( 10f) :\n\n");
- 	printf("syst: % 10f\n", 10.5);
- 	ft_printf("mine: % 10f\n\n", 10.5);
+ 	printf("syst: % f\n", 10.5);
+ 	ft_printf("mine: % f\n\n", 10.5);
 
 	printf("Float et Precision (.19f) :\n\n"); //okay donc la precision déconne completement.
- 	printf("syst: %.19f\n", 2.295);
- 	ft_printf("mine: %.19f\n\n", 2.295);
+ 	printf("syst: %.18f\n", 2.295);
+ 	ft_printf("mine: %.18f\n\n", 2.295);
 
 	printf("Float et Width (25f) :\n\n");
 	printf("syst: ABC %25f DEF\n", 3.295);

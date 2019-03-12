@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 13:57:15 by myener            #+#    #+#             */
-/*   Updated: 2019/03/11 15:21:04 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/12 12:33:12 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int				ft_isdigit(int c);
 int				ft_isprint(int c);
 char			*ft_itoa(int n);
 char			ft_itoc(int n);
+char   			*ft_lltoa(long long int n);
 t_list			*ft_lstnew(void const *content, size_t content_size);
 void			ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
 void			ft_lstdel(t_list **alst, void (*del)(void *, size_t));
@@ -66,7 +67,7 @@ void			ft_putnbr_fd(int n, int fd);
 void			ft_putnbr_base(long long int nb, const char *base);
 void			ft_putstr(char *str);
 void			ft_putstr_fd(char const *s, int fd);
-void			ft_putnbr_long(long int nb);
+void			ft_putnbr_long(long long int nb);
 char			*ft_strcat(char *dest, const char *src);
 char			*ft_strchr(const char *s, int c);
 void			ft_strclr(char *s);

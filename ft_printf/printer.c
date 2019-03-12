@@ -26,11 +26,7 @@ void        widthprinter_nominus(t_data *data, int len)
 {
     int i;
 
-	// printf("\n\nwidth_value = %d\n\n", data->lngt->width_value);
-	// printf("\n\nprec_value = %d\n\n", data->lngt->precision_value);
 	len += 1;
-	// printf("\n\nln = %d\n\n", ln);
-	// printf("\n\nlen = %d\n\n", len);
 	i = -1;
 	if (data->flag->zero)
 	{
@@ -39,7 +35,7 @@ void        widthprinter_nominus(t_data *data, int len)
 	}
 	else if (!data->flag->zero)
 	{
-		if (data->lngt->precision && !data->flag->sharp)
+		if (data->lngt->prec && !data->flag->sharp)
 			while (i++ < data->lngt->width_value - 1)
     			ft_putchar(' ');
 		else
@@ -55,6 +51,6 @@ void		precision_printer(t_data *data, int len)
 	int	i;
 
 	i = 0;
-	while (i++ < (data->lngt->precision_value - len))
+	while (i++ < (data->lngt->prec_value - len))
 		ft_putchar('0');
 }

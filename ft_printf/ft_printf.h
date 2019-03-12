@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by myener            #+#    #+#             */
-/*   Updated: 2019/03/07 15:09:27 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/12 15:46:44 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ typedef struct			s_lngt
 {
 	int					width;
 	int					width_value;
-	int					precision;
-	int					precision_value;
-	int					precision_zero;/* Quand on a une precision egale a zero.*/
+	int					prec;
+	int					prec_value;
+	int					prec_zero;/* Quand on a une precision egale a zero.*/
 
 }						t_lngt;
 

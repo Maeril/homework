@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 13:40:00 by myener            #+#    #+#             */
-/*   Updated: 2019/03/11 13:47:07 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/12 15:49:03 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void		parse_width(char *instruc, t_data *data, int i)
 
 }
 
-void		parse_precision(char *instruc, t_lngt *lngt, t_tool *tool, int i)
+void		parse_prec(char *instruc, t_lngt *lngt, t_tool *tool, int i)
 {
 	int		j;
 	int 	start;
@@ -62,16 +62,16 @@ void		parse_precision(char *instruc, t_lngt *lngt, t_tool *tool, int i)
 	j = 0;
 	start = i;
 	stk = ft_strnew(ft_strlen(instruc));
-	lngt->precision = 1;
+	lngt->prec = 1;
 	while (instruc[i] >= '0' && instruc[i] <= '9')
 	{
 		stk[j] = instruc[i];
 		i++;
 		j++;
 	}
-	lngt->precision_value = ft_atoi(stk);
-	if (instruc[start] == '0' && !lngt->precision_value)
-		lngt->precision_zero = 1;
+	lngt->prec_value = ft_atoi(stk);
+	if (instruc[start] == '0' && !lngt->prec_value)
+		lngt->prec_zero = 1;
 	tool->index2 = i;
 }
 
@@ -112,7 +112,7 @@ void		parser(char *instruc, t_data *data)
 		if ((instruc[i] >= '0' && instruc[i] <= '9') && !(instruc[i - 1] >= '0' && instruc[i - 1] <= '9') && (instruc[i - 1] != '.')) /*|| (instruc[i] >= 0 && instruc[i] <= 9) && (instruc[i - 1] == '%' || instruc[i - 1] == '-' || instruc[i - 1] == '+'))*/
 			parse_width(instruc, data, i);
 		if (instruc[i] == '.')
-			parse_precision(instruc, data->lngt, data->tool, i);
+			parse_prec(instruc, data->lngt, data->tool, i);
 		if (instruc[i] == 'h' || instruc[i] == 'l')
 		{
 			data->tool->size = 1;
