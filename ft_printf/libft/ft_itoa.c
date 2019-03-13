@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:36:30 by myener            #+#    #+#             */
-/*   Updated: 2019/02/15 13:42:01 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/13 17:25:14 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_itoa(int n)
 		return (ft_strdup("-2147483648"));
 	neg = n < 0 ? 1 : 0;
 	n = neg == 1 ? n * -1 : n;
-	i = ft_intlen(n) - 1 + neg + 1;
+	i = ft_intlen(n) + neg;
 	if (!(str = (char*)malloc(sizeof(char) * (i + 1))))
 		return (NULL);
 	str[i] = '\0';

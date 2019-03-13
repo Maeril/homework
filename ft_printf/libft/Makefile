@@ -6,13 +6,14 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 17:52:35 by myener            #+#    #+#              #
-#    Updated: 2019/03/12 12:33:10 by myener           ###   ########.fr        #
+#    Updated: 2019/03/13 17:26:27 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	libft.a
 
 SRC		=	ft_abs.c \
+			ft_baselen.c \
 			ft_strdup.c \
 		   	ft_strcat.c \
 			ft_strcpy.c \
@@ -69,6 +70,7 @@ SRC		=	ft_abs.c \
 			ft_strtrim.c \
 			ft_strsplit.c \
 			ft_itoa.c	\
+			ft_itoa_base.c	\
 			ft_itoc.c	\
 			ft_lltoa.c	\
 			ft_lstnew.c \

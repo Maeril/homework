@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 16:56:58 by myener            #+#    #+#             */
-/*   Updated: 2019/02/27 18:14:11 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/13 14:22:02 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,34 +34,4 @@ void		dispatcher(va_list ap, t_data *data)
 		typeis_float(ap, data);
 	else if (data->tool->perc)
 		typeis_perc(ap, data);
-
-	/*_____________________ BORDEL A TRIER _____________________*/
-
-	/*if (data->flag->space && (data->type->d || data->type->i))
-		ft_putchar(' '); // je  pense qu'il faudra enlever cette condition et ligne
-
-	data->spec->unint = (data->spec->unint && data->type->u);
-
-	if (data->spec->car)
-		typeis_char(ap, data);
-	if (data->type->d || data->type->i)
-	{
-		// data->spec->signcar = (data->spec->signcar && data->size->hh);
-		// data->spec->sh = (data->spec->sh && data->size->h);
-		// data->spec->lg = (data->spec->lg && data->size->l);
-		// data->spec->lglg = (data->spec->lglg && data->size->ll);
-	}
-	if (data->type->o || data->type->u || data->type->x || data->type->big_x)
-	{
-		data->spec->unsigncar = (data->spec->unsigncar && data->size->hh);
-		data->spec->unsignsh = (data->spec->unsignsh && data->size->h);
-		data->spec->unsignlglg = (data->spec->unsignlglg && data->size->ll);
-		data->spec->unsignlg = (data->spec->unsignlg && data->size->l);
-	}
-	if (data->spec->integer || data->spec->sh || data->spec->lg || data->spec->lglg)
-		typeis_int(ap, data->spec);
-
-	if (data->spec->unsigncar || data->spec->unsignsh || data->spec->unsignlg
-		|| data->spec->unsignlglg || data->spec->unint)
-		typeis_unsign(ap, data->tool, data->spec);*/
 }

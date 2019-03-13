@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by myener            #+#    #+#             */
-/*   Updated: 2019/03/12 15:46:44 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/13 16:44:05 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct			s_type
 
 typedef struct			s_tool
 {
+	int					dioux;
 	int					size;
 	int					unsign;
 	char				*str_tp;

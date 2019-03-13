@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_baselen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/28 12:48:26 by myener            #+#    #+#             */
-/*   Updated: 2019/03/13 17:23:40 by myener           ###   ########.fr       */
+/*   Created: 2019/03/13 17:23:44 by myener            #+#    #+#             */
+/*   Updated: 2019/03/13 17:26:47 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
+int		ft_baselen(long long int n, int len)
 {
-	if (lst)
+	int	e;
+
+	e = 1;
+	while ((n / len) > 0)
 	{
-		while (lst)
-		{
-			f(lst);
-			lst = lst->next;
-		}
+		n /= len;
+		e++;
 	}
+	return (e);
 }
