@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 18:06:02 by myener            #+#    #+#             */
-/*   Updated: 2019/03/13 17:39:40 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/15 17:17:01 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,17 @@ void typeis_hexl(va_list ap, t_data *data)
 
 	if (data->type->x)
 	{
-		data->type->x = va_arg(ap, int);
-		if (!data->tool->size)
-			len = ft_hexlen(data->type->x);
-		else if (data->tool->size)
+		data->type->x = va_arg(ap, unsigned long long int);
+		if (data->tool->size)
 		{
 			if (data->size->h)
-				len = ft_hexlen((unsigned short)data->type->x);
+				data->type->x = ((unsigned short)data->type->x);
 			else if (data->size->hh)
-				len = ft_hexlen((unsigned char)data->type->x);
+				data->type->x = ((unsigned char)data->type->x);
 			else if (data->size->l)
-				len = ft_hexlen((unsigned long)data->type->x);
-			else if (data->size->ll)
-				len = ft_hexlen((unsigned long long)data->type->x);
+				data->type->x = ((unsigned long)data->type->x);
 		}
+		len = ft_hexlen(data->type->x);
 		if (data->flag->sharp)
 			len++;
 		if ((data->lngt->prec && data->lngt->width) && (data->lngt->width_value >= data->lngt->prec_value))
@@ -45,20 +42,8 @@ void typeis_hexl(va_list ap, t_data *data)
 		if (data->lngt->prec && !data->flag->sharp)
 			precision_printer(data, len);
 		else if (data->lngt->prec && data->flag->sharp)
-			precision_printer(data, len - 1);
-		if (!data->tool->size)
-			ft_putnbr_base(data->type->x, HEXL);
-		else if (data->tool->size)
-		{
-			if (data->size->h)
-				ft_putnbr_base(((unsigned short)data->type->x), HEXL);
-			else if (data->size->hh)
-				ft_putnbr_base(((unsigned char)data->type->x), HEXL);
-			else if (data->size->l)
-				ft_putnbr_base(((unsigned long)data->type->x), HEXL);
-			else if (data->size->ll)
-				ft_putnbr_base(data->type->x, HEXL);
-		}
+			precision_printer(data, (len - 1));
+		ft_putunbr_base(data->type->x, HEXL);
 		if ((data->lngt->width && (data->lngt->width_value > 0)) && data->flag->minus)
 			widthprinter_minus(data, len);
 	}

@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by myener            #+#    #+#             */
-/*   Updated: 2019/03/13 16:44:05 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/15 15:35:50 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ typedef struct			s_type
 	long long int		p;
 	long long int		d;
 	long long int		i;
-	long long int		o;
-	long long int		u;
-	long long int		x;
-	long long int		big_x;
+	unsigned long long int		o;
+	unsigned long long int		u;
+	unsigned long long int		x;
+	unsigned long long int		big_x;
 	int					f;
 }						t_type;
 
