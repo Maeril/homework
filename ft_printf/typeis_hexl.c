@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 18:06:02 by myener            #+#    #+#             */
-/*   Updated: 2019/03/15 17:17:01 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/16 18:02:37 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,16 @@ void typeis_hexl(va_list ap, t_data *data)
 	if (data->type->x)
 	{
 		data->type->x = va_arg(ap, unsigned long long int);
-		if (data->tool->size)
+		if (!data->tool->size)
+			data->type->x = ((unsigned int)data->type->x);
+		else if (data->tool->size)
 		{
 			if (data->size->h)
-				data->type->x = ((unsigned short)data->type->x);
+				data->type->x = ((unsigned short int)data->type->x);
 			else if (data->size->hh)
 				data->type->x = ((unsigned char)data->type->x);
 			else if (data->size->l)
-				data->type->x = ((unsigned long)data->type->x);
+				data->type->x = ((unsigned long int)data->type->x);
 		}
 		len = ft_hexlen(data->type->x);
 		if (data->flag->sharp)

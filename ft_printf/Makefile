@@ -6,17 +6,16 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/17 21:20:38 by myener            #+#    #+#              #
-#    Updated: 2019/03/07 16:36:25 by myener           ###   ########.fr        #
+#    Updated: 2019/03/17 00:17:03 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	libftprintf.a
-
-SRC		=	cleaner.c				\
+SRC		:=	cleaner.c				\
 			dispatcher.c			\
 			finalizer.c				\
 			ft_printf.c				\
 			parser.c				\
+			printer.c				\
 			typeis_int.c			\
 			typeis_char.c			\
 			typeis_unsign.c			\
@@ -26,27 +25,30 @@ SRC		=	cleaner.c				\
 			typeis_hexl.c			\
 			typeis_hexu.c			\
 			typeis_perc.c			\
-			typeis_float.c			\
-			printer.c
+			typeis_float.c
 
-FLAGS	=	-Wall -Werror -Wextra
+OBJ		:=	$(SRCS:.c=.o)
+NAME 	:=	libftprintf.a
+
+FLAGS 	:=	-Wall -Wextra -Werror -I./libft/H
 
 all: $(NAME)
 
-OBJ = $(SRC:.c=.o)
-
-$(NAME):
+$(NAME): libft $(OBJ)
 	@gcc -c $(FLAGS) $(SRC)
-	@ar -rc $(NAME) $(OBJ)
-	@make -C libft/
+	@ar rcs $(NAME) $(OBJ)
+
+libft:
+	@make -C libft
 
 clean :
 	@rm -rf $(OBJ)
 	@make -C libft clean
 
 fclean : clean
-	@/bin/rm -f $(NAME)
+	@rm -rf $(NAME)
 	@make -C libft fclean
 
 re : fclean all
 
+.PHONY: all clean fclean re

@@ -1,0 +1,67 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile_d                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/01/15 16:21:39 by mribouch          #+#    #+#              #
+#    Updated: 2019/03/16 22:40:30 by myener           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+MAKE	:= make
+CC		:= gcc
+LD		:= gcc
+RM		:= rm -rf
+
+SRCDIR	:=	./
+OBJDIR	:=	./objs
+INCLDIR	:=	-I./libft
+LIBDIR 	:=	libft/
+
+CFLAGS	:=	-Wall -Wextra -Werror -I./libft
+LDFLAGS	:=	-L libft/ -lft
+
+SRCS    :=	main.c				\
+			check.c				\
+			check_neighbour.c	\
+			tools.c				\
+			get.c				\
+			map.c				\
+			put_up_left.c		\
+			solver.c
+
+OBJS	:=	$(addprefix $./objs/,$(SRCS:.c=.o))
+SRCS	:=	$(addprefix $(SRCDIR)/,$(SRCS))
+NAME	:=	fillit
+
+fillit: $(LIB) $(OBJS)
+	@printf "\e[32m  Creating: \e[0mfillit\n"
+	gcc -L libft/ -lft -o fillit $(OBJS)
+
+all: fillit
+
+$./libft/libft.a:
+	make -C libft/
+
+$./objs/%.o: ./%.c
+	@printf "\e[32m Compiling: \e[0m$< -> $@\n"
+	@mkdir -p $(dir $@)
+	gcc -Wall -Wextra -Werror -I./libft -c $< -o $@
+
+clean:
+	@printf "\e[32m  Cleaning: \e[0m$./objs\e[0m\n"
+	rm -rf $./objs
+	make -C libft clean
+
+fclean: clean
+	@printf "\e[32m  Removing: \e[0m"
+	@find . -name "fillit" -exec sh -c 'basename {}' \; | tr "\n" " "
+	@echo ""
+	rm -rf fillit
+	make -C libft fclean
+
+re: fclean all
+
+.PHONY: all clean fclean re

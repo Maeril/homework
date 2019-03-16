@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:59:01 by myener            #+#    #+#             */
-/*   Updated: 2019/03/15 17:18:29 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/16 18:05:02 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,16 @@ void typeis_octal(va_list ap, t_data *data)
 	if (data->type->o)
 	{
 		data->type->o = va_arg(ap, int);
-		if (data->tool->size)
+		if (!data->tool->size)
+			data->type->o = ((unsigned int)data->type->o);
+		else if (data->tool->size)
 		{
 			if (data->size->h)
-				data->type->o = ((unsigned short)data->type->o);
+				data->type->o = ((unsigned short int)data->type->o);
 			else if (data->size->hh)
 				data->type->o = ((unsigned char)data->type->o);
 			else if (data->size->l)
-				data->type->o = ((unsigned long)data->type->o);
+				data->type->o = ((unsigned long int)data->type->o);
 		}
 		len = ft_octlen(data->type->o);
 		if (data->flag->sharp)

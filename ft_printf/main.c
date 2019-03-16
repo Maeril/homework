@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 23:34:58 by myener            #+#    #+#             */
-/*   Updated: 2019/03/15 17:18:13 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/16 18:06:21 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,77 +18,77 @@
 
  int			main(void)
 {
-// 	printf("Int simple (d)) :\n\n");
-//  	printf("syst: %hhd\n", -105654561);
-//  	ft_printf("mine: %hhd\n\n", -105654561);
+	printf("Int simple (d)) :\n\n");
+ 	printf("syst: %hhd\n", -105654561);
+ 	ft_printf("mine: %hhd\n\n", -105654561);
 
-// 	printf("Int simple (i)) :\n\n");
-//  	printf("syst: %li\n", 105654561);
-//  	ft_printf("mine: %li\n\n", 105654561);
+	printf("Int simple (i)) :\n\n");
+ 	printf("syst: %li\n", 105654561);
+ 	ft_printf("mine: %li\n\n", 105654561);
 
-// 	printf("Int Width et Precision (5.2d) :\n\n");
-//  	printf("syst: %5.25hd\n", 36256664125);
-//  	ft_printf("mine: %5.25hd\n\n", 36256664125);
+	printf("Int Width et Precision (5.2d) :\n\n");
+ 	printf("syst: %5.25hd\n", 36256664125);
+ 	ft_printf("mine: %5.25hd\n\n", 36256664125);
 
-// 	printf("Int et Width et Espace ( 5i) :\n\n");
-//  	printf("syst: % 5hhi\n", 36256664125);
-//  	ft_printf("mine: % 5hhi\n\n", 36256664125);
+	printf("Int et Width et Espace ( 5i) :\n\n");
+ 	printf("syst: % 5hhi\n", 36256664125);
+ 	ft_printf("mine: % 5hhi\n\n", 36256664125);
 
-// 	printf("Int et Plus (+d) :\n\n");
-// 	printf("syst: %+hhd\n", 74564555);
-//  	ft_printf("mine: %+hhd\n\n", 74564555);
+	printf("Int et Plus (+d) :\n\n");
+	printf("syst: %+hhd\n", 74564555);
+ 	ft_printf("mine: %+hhd\n\n", 74564555);
 
 	printf("Unsign simple - hh CHAR (u)) :\n\n");
-	printf("syst: %5.hhu\n", -10565456);
-	ft_printf("mine: %5.hhu\n\n", -10565456);
+	printf("syst: %5.u\n", -10565456);
+	ft_printf("mine: %5.u\n\n", -10565456);
 
 	printf("Unsign et Precision - hh CHAR (.5u) :\n\n");
  	printf("syst: %10.50hhu\n",-42);
  	ft_printf("mine: %10.50hhu\n\n", -42);
 
-	// printf("Pourcentage et Width (8) :\n\n");
-	// printf("syst: %8%\n");
-	// ft_printf("mine: %8%\n\n");
+	printf("Pourcentage et Width (8) :\n\n");
+	printf("syst: %8%\n");
+	ft_printf("mine: %8%\n\n");
 
-	// printf("Pourcentage Precision et Width (8) :\n\n");
-	// printf("syst: %1.10%\n");
-	// ft_printf("mine: %1.10%\n\n");
+	printf("Pourcentage Precision et Width (8) :\n\n");
+	printf("syst: %1.10%\n");
+	ft_printf("mine: %1.10%\n\n");
 
-	// printf("Pourcentage et Precision (8) :\n\n");
-	// printf("syst: %-%\n");
-	// ft_printf("mine: %-%\n\n");
-
-	printf("\n//////////////////////////////////////////////\n\n");
-
-	// printf("Float simple (f) :\n\n");
- 	// printf("syst: %f\n", 3.295);
- 	// ft_printf("mine: %f\n\n", 3.295);
-
-	// printf("Float Width et Espace ( 10f) :\n\n");
- 	// printf("syst: % f\n", 10.5);
- 	// ft_printf("mine: % f\n\n", 10.5);
-
-	// printf("Float et Precision (.19f) :\n\n");
- 	// printf("syst: %.18f\n", 2.295);
- 	// ft_printf("mine: %.18f\n\n", 2.295);
-
-	// printf("Float et Width (25f) :\n\n");
-	// printf("syst: ABC %25f DEF\n", 3.295);
-	// ft_printf("mine: ABC %25f DEF\n\n", 3.295);
+	printf("Pourcentage et Precision (8) :\n\n");
+	printf("syst: %-%\n");
+	ft_printf("mine: %-%\n\n");
 
 	// printf("\n//////////////////////////////////////////////\n\n");
 
-	// printf("Hexu simple (X)) :\n\n");
- 	// printf("syst: %hhX\n", 10);
-	// ft_printf("mine: %hhX\n\n", 10);
+	printf("Float simple (f) :\n\n");
+ 	printf("syst: %f\n", 3.295);
+ 	ft_printf("mine: %f\n\n", 3.295);
 
-	// printf("Hexu Width et Zero (05X) :\n\n");
- 	// printf("syst: %#05.2X\n", 10);
- 	// ft_printf("mine: %#05.2X\n\n", 10);
+	printf("Float Width et Espace ( 10f) :\n\n");
+ 	printf("syst: % f\n", 10.5);
+ 	ft_printf("mine: % f\n\n", 10.5);
 
-	// printf("Hexu et Width (10X) :\n\n");
- 	// printf("syst: %10X\n", 10);
- 	// ft_printf("mine: %10X\n\n", 10);
+	printf("Float et Precision (.19f) :\n\n");
+ 	printf("syst: %.18f\n", 2.295);
+ 	ft_printf("mine: %.18f\n\n", 2.295);
+
+	printf("Float et Width (25f) :\n\n");
+	printf("syst: ABC %25f DEF\n", 3.295);
+	ft_printf("mine: ABC %25f DEF\n\n", 3.295);
+
+	// printf("\n//////////////////////////////////////////////\n\n");
+
+	printf("Hexu simple (X)) :\n\n");
+ 	printf("syst: %X\n", -1054654654564);
+	ft_printf("mine: %X\n\n", -1054654654564);
+
+	printf("Hexu Width et Zero (05X) :\n\n");
+ 	printf("syst: %010.5hhX\n", 554454);
+ 	ft_printf("mine: %010.5hhX\n\n", 554454);
+
+	printf("Hexu et Width (10X) :\n\n");
+ 	printf("syst: %10X\n", 10);
+ 	ft_printf("mine: %10X\n\n", 10);
 
 	printf("Hexl simple (x)) :\n\n");
  	printf("syst: %x\n", 1054654654564);

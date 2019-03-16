@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 13:40:00 by myener            #+#    #+#             */
-/*   Updated: 2019/03/15 14:50:35 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/16 17:06:31 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,10 @@ void		parse_prec(char *instruc, t_lngt *lngt, t_tool *tool, int i)
 
 void		parse_size(char *instruc, t_size *size, int i)
 {
-	size->l = ((instruc[i] == 'l'));
-	size->h = ((instruc[i] == 'h'));
-	if (size->l)
-		size->ll = (instruc[i++] == 'l');
-	else if (size->h)
-		size->hh = (instruc[i++] == 'h');
+	size->l = (instruc[i] == 'l' && !(instruc[i-1] == 'l' || instruc[i+1] == 'l'));
+	size->h = (instruc[i] == 'h' && !(instruc[i-1] == 'h' || instruc[i+1] == 'h'));
+	size->ll = (instruc[i] == 'l' && (instruc[i+1] == 'l' || instruc[i-1] == 'l'));
+	size->hh = (instruc[i] == 'h' && (instruc[i+1] == 'h' || instruc[i-1] == 'h'));
 	i++;
 }
 
