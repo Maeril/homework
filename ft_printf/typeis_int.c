@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:51:47 by myener            #+#    #+#             */
-/*   Updated: 2019/03/16 21:55:44 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/17 15:40:51 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void typeis_int(va_list ap, t_data *data)
 
 	if (data->type->d || data->type->i)
 	{
-		nb = va_arg(ap, long long int);
+		nb = va_arg(ap, int);
 		if (data->tool->size)
 		{
 			if (data->size->h)

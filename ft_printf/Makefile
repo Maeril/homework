@@ -6,25 +6,25 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/17 21:20:38 by myener            #+#    #+#              #
-#    Updated: 2019/03/17 01:51:09 by myener           ###   ########.fr        #
+#    Updated: 2019/03/17 15:35:07 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC		=	cleaner.c				\
-			dispatcher.c			\
-			finalizer.c				\
-			ft_printf.c				\
-			parser.c				\
-			printer.c				\
-			typeis_int.c			\
-			typeis_char.c			\
-			typeis_unsign.c			\
-			typeis_str.c			\
-			typeis_ptr.c			\
-			typeis_octal.c			\
-			typeis_hexl.c			\
-			typeis_hexu.c			\
-			typeis_perc.c			\
+SRC		=	cleaner.c			\
+			dispatcher.c		\
+			finalizer.c			\
+			ft_printf.c			\
+			parser.c			\
+			printer.c			\
+			typeis_int.c		\
+			typeis_char.c		\
+			typeis_unsign.c		\
+			typeis_str.c		\
+			typeis_ptr.c		\
+			typeis_octal.c		\
+			typeis_hexl.c		\
+			typeis_hexu.c		\
+			typeis_perc.c		\
 			typeis_float.c
 
 LIBFT   =	libft
@@ -36,11 +36,11 @@ FLAGS 	=	-Wall -Wextra -Werror
 all:  $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
-	gcc -c $(FLAGS) $(SRC) -Ilibft
-	ar rcs $(NAME) $(OBJ)
+	@gcc -c $(FLAGS) $(SRC) -Ilibft
+	@ar rcs $(NAME) $(OBJ)
 
 libft :
-	make -C libft
+	@make -C libft
 
 clean :
 	@rm -rf $(OBJ)

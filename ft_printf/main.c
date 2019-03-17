@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 23:34:58 by myener            #+#    #+#             */
-/*   Updated: 2019/03/16 18:06:21 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/17 15:44:56 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
  int			main(void)
 {
+	char	*ptr = "PTDR";
+
 	printf("Int simple (d)) :\n\n");
  	printf("syst: %hhd\n", -105654561);
  	ft_printf("mine: %hhd\n\n", -105654561);
@@ -133,6 +135,56 @@
 	printf("Octal Sharp et Width (#8o) :\n\n");
  	printf("syst: %#8o\n", 8);
  	ft_printf("mine: %#8o\n\n", 8);
+
+	// printf("\n//////////////////////////////////////////////\n\n");
+
+	printf("String simple (s)) :\n\n");
+ 	printf("syst: %10s\n", "hello");
+ 	ft_printf("mine: %10s\n\n", "hello");
+
+	printf("Char simple (c)) :\n\n");
+ 	printf("syst: %c\n", 'o');
+ 	ft_printf("mine: %c\n\n", 'o');
+
+	printf("String simple (s)) :\n\n");
+ 	printf("syst: %s\n", "un autre test");
+ 	ft_printf("mine: %s\n\n", "un autre test");
+
+	printf("Char et Width (5c) :\n\n");
+ 	printf("syst: %5c\n", 'h');
+ 	ft_printf("mine: %5c\n\n", 'h');
+
+	printf("Char Width et Minus (-5c) :\n\n");
+	printf("syst: %-5c\n", 'h');
+ 	ft_printf("mine: %-5c\n\n", 'h');
+
+	printf("Char Zero Width et Minus (-05c) :\n\n");
+	printf("syst: %010c\n", 'h');
+ 	ft_printf("mine: %010c\n\n", 'h');
+
+	printf("String et Width (10s) :\n\n");
+ 	printf("syst: %10s\n", "bjr");
+ 	ft_printf("mine: %10s\n\n", "bjr");
+
+	printf("Str et Precision (.5s) :\n\n");
+ 	printf("syst: %.5s\n", "bonjour");
+ 	ft_printf("mine: %.5s\n\n", "bonjour");
+
+	printf("Pointeur simple (p)) :\n\n");
+	printf("syst: %p\n", ptr);
+	ft_printf("mine: %p\n\n", ptr);
+
+	printf("Pointeur et Width (5c) :\n\n");
+ 	printf("syst: %50p\n", ptr);
+ 	ft_printf("mine: %50p\n\n", ptr);
+
+	printf("Pointeur Width et Minus (-5c) :\n\n");
+	printf("syst: %-55p\n", ptr);
+ 	ft_printf("mine: %-55p\n\n", ptr);
+
+	printf("Pointeur Zero Width et Minus (-05c) :\n\n");
+	printf("syst: %025p\n", ptr);
+ 	ft_printf("mine: %025p\n\n", ptr);
 
 	return (0);
  }
