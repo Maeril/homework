@@ -6,11 +6,11 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/17 21:20:38 by myener            #+#    #+#              #
-#    Updated: 2019/03/17 00:17:03 by myener           ###   ########.fr        #
+#    Updated: 2019/03/17 01:51:09 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC		:=	cleaner.c				\
+SRC		=	cleaner.c				\
 			dispatcher.c			\
 			finalizer.c				\
 			ft_printf.c				\
@@ -27,19 +27,20 @@ SRC		:=	cleaner.c				\
 			typeis_perc.c			\
 			typeis_float.c
 
-OBJ		:=	$(SRCS:.c=.o)
-NAME 	:=	libftprintf.a
+LIBFT   =	libft
+OBJ		=	$(SRC:.c=.o)
+NAME 	=	libftprintf.a
 
-FLAGS 	:=	-Wall -Wextra -Werror -I./libft/H
+FLAGS 	=	-Wall -Wextra -Werror
 
-all: $(NAME)
+all:  $(NAME)
 
-$(NAME): libft $(OBJ)
-	@gcc -c $(FLAGS) $(SRC)
-	@ar rcs $(NAME) $(OBJ)
+$(NAME): $(LIBFT) $(OBJ)
+	gcc -c $(FLAGS) $(SRC) -Ilibft
+	ar rcs $(NAME) $(OBJ)
 
-libft:
-	@make -C libft
+libft :
+	make -C libft
 
 clean :
 	@rm -rf $(OBJ)
@@ -51,4 +52,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY: all clean fclean re
+.PHONY: clean fclean re libft

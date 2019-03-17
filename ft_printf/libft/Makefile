@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 17:52:35 by myener            #+#    #+#              #
-#    Updated: 2019/03/15 16:07:21 by myener           ###   ########.fr        #
+#    Updated: 2019/03/17 01:21:46 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,7 +97,7 @@ OBJ = $(SRC:.c=.o)
 
 $(NAME):
 	@gcc -c $(FLAGS) $(SRC)
-	@ar -rc $(NAME) $(OBJ)
+	@ar -rcs $(NAME) $(OBJ)
 
 clean :
 		@rm -rf $(OBJ)
