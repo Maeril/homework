@@ -6,11 +6,11 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 14:41:32 by myener            #+#    #+#             */
-/*   Updated: 2019/03/15 17:06:03 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/17 23:00:51 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_printf.h"
 
 void	ft_putnbr_base(long long int nb, const char *base)
 {

@@ -6,11 +6,11 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 15:13:22 by myener            #+#    #+#             */
-/*   Updated: 2018/11/27 16:12:41 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/17 23:02:46 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_printf.h"
 
 char	*ft_strdup(const char *str)
 {

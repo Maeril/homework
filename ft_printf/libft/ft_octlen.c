@@ -6,11 +6,11 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 20:42:58 by myener            #+#    #+#             */
-/*   Updated: 2019/02/22 21:41:36 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/17 23:02:07 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_printf.h"
 
 int		ft_octlen(unsigned long long int n)
 {

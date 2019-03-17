@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 17:52:35 by myener            #+#    #+#              #
-#    Updated: 2019/03/17 01:21:46 by myener           ###   ########.fr        #
+#    Updated: 2019/03/17 22:18:50 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,14 +89,13 @@ SRC		=	ft_abs.c \
 
 
 
-FLAGS	=	-Wall -Werror -Wextra
+CFLAGS	=	-Wall -Werror -Wextra
 
 all: $(NAME)
 
 OBJ = $(SRC:.c=.o)
 
-$(NAME):
-	@gcc -c $(FLAGS) $(SRC)
+$(NAME): $(OBJ)
 	@ar -rcs $(NAME) $(OBJ)
 
 clean :

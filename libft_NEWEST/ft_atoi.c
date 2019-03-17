@@ -1,18 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/15 11:17:43 by myener            #+#    #+#             */
-/*   Updated: 2019/03/17 23:04:18 by myener           ###   ########.fr       */
+/*   Created: 2018/11/13 18:40:23 by myener            #+#    #+#             */
+/*   Updated: 2019/02/28 20:57:26 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+int		ft_atoi(const char *str)
 {
-	ft_memset(s, 0, n);
+	int	i;
+	int nb;
+	int	neg;
+
+	i = 0;
+	nb = 0;
+	neg = 0;
+	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
+		i++;
+	if (str[i] == '-')
+		neg = 1;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nb = nb * 10;
+		nb += (str[i] - '0');
+		i++;
+	}
+	return (neg == 1) ? -nb : nb;
 }

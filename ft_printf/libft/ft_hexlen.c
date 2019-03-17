@@ -6,11 +6,11 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 20:44:14 by myener            #+#    #+#             */
-/*   Updated: 2019/03/06 16:15:24 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/17 23:00:11 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_printf.h"
 
 int		ft_hexlen(unsigned long long int n)
 {

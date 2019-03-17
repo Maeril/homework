@@ -6,16 +6,17 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by myener            #+#    #+#             */
-/*   Updated: 2019/03/16 18:03:35 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/17 23:04:07 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 
 # define FT_PRINTF_H
+# include <unistd.h>
 # include <stdarg.h>
 # include <stdio.h>
-# include "libft/libft.h"
+# include <stdlib.h>
 
 # define OCT "01234567"
 # define DECI "0123456789"
@@ -101,6 +102,27 @@ typedef struct			s_data
 	t_tool				*tool;
 }						t_data;
 
+int				ft_atoi(const char *str);
+long long int	ft_atoll(const char *str);
+void	ft_bzero(void *s, size_t n);
+int				ft_intlen(long long int n);
+int				ft_uintlen(unsigned long long int n);
+int				ft_octlen(unsigned long long int n);
+int				ft_hexlen(unsigned long long int n);
+char			ft_itoc(int n);
+char   			*ft_lltoa(long long int n);
+void	*ft_memset(void *b, int c, size_t len);
+void			ft_putchar(char c);
+void			ft_putnbr(int nb);
+void			ft_putnbr_base(long long int nb, const char *base);
+void			ft_putunbr_base(unsigned long long int nb, const char *base);
+void			ft_putnbr_long(long long int nb);
+void			ft_putunbr_long(unsigned long long int nb);
+void			ft_putstr(char *str);
+size_t			ft_strlen(const char *str);
+char			*ft_strnew(size_t size);
+char			*ft_strsub(const char *s, unsigned int start, size_t len);
+char	*ft_strdup(const char *str);
 void					cleaner(t_data *data);
 void					finalizer(t_data *data);
 int						ft_printf(const char *format, ...);

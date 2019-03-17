@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_intlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/15 11:17:43 by myener            #+#    #+#             */
-/*   Updated: 2019/03/17 23:04:18 by myener           ###   ########.fr       */
+/*   Created: 2018/11/26 23:58:45 by myener            #+#    #+#             */
+/*   Updated: 2019/03/15 15:03:25 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+int		ft_intlen(long long int n)
 {
-	ft_memset(s, 0, n);
+	int	e;
+
+	e = 1;
+	n = ((n < 0) ? -n : n);
+	while ((n / 10) > 0)
+	{
+		n /= 10;
+		e++;
+	}
+	return (e);
 }

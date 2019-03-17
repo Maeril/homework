@@ -6,11 +6,11 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:36:30 by myener            #+#    #+#             */
-/*   Updated: 2019/02/27 17:32:33 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/17 23:00:22 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_printf.h"
 
 char	ft_itoc(int n)
 {

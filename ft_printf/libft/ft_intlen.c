@@ -6,11 +6,11 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 23:58:45 by myener            #+#    #+#             */
-/*   Updated: 2019/03/15 15:03:25 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/17 23:00:15 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_printf.h"
 
 int		ft_intlen(long long int n)
 {

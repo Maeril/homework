@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/15 11:17:43 by myener            #+#    #+#             */
-/*   Updated: 2019/03/17 23:04:18 by myener           ###   ########.fr       */
+/*   Created: 2018/11/14 11:03:39 by myener            #+#    #+#             */
+/*   Updated: 2018/11/27 16:12:06 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	ft_memset(s, 0, n);
+	unsigned char	*d;
+
+	d = (unsigned char*)b;
+	while (len--)
+		*d++ = (unsigned char)c;
+	return (b);
 }

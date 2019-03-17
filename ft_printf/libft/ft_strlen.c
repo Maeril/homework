@@ -6,11 +6,11 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 15:10:09 by myener            #+#    #+#             */
-/*   Updated: 2018/11/27 16:12:31 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/17 23:01:28 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_printf.h"
 
 size_t	ft_strlen(const char *str)
 {

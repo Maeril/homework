@@ -6,11 +6,11 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 15:50:30 by myener            #+#    #+#             */
-/*   Updated: 2018/11/27 16:12:16 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/17 23:01:05 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_printf.h"
 
 char	*ft_strsub(const char *s, unsigned int start, size_t len)
 {
