@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 13:40:00 by myener            #+#    #+#             */
-/*   Updated: 2019/03/16 17:06:31 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/18 17:59:05 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void		parse_prec(char *instruc, t_lngt *lngt, t_tool *tool, int i)
 	lngt->prec_value = ft_atoi(stk);
 	if (instruc[start] == '0' && !lngt->prec_value)
 		lngt->prec_zero = 1;
+	if (!lngt->prec_zero && !lngt->prec_value)
+		lngt->prec_rien = 1;
 	tool->index2 = i;
 }
 

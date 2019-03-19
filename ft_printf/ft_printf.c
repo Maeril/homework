@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 11:22:42 by myener            #+#    #+#             */
-/*   Updated: 2019/03/15 14:48:29 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/19 17:27:15 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,13 @@ int		put_text(va_list ap, const char *format, char *instruc)
 	int		index;
 	int		tmp;
 	int		len;
+	int		ret;
 
 	index = 0;
 	tmp = 0;
 	i = 0;
 	len = 0;
+	ret = 0;
 	while (format[i])
 	{
 		if (format[i] != '%')
@@ -90,19 +92,15 @@ int		put_text(va_list ap, const char *format, char *instruc)
 			struct_malloc(&data);
 			cleaner(&data);
 			parser(instruc, &data);
-			// printf("size ? = %d\n", data.tool->size);
-			// printf("size h = %d\n", data.size->h);
-			// printf("size hh = %d\n", data.size->hh);
-			// printf("size l = %d\n", data.size->l);
-			// printf("size ll = %d\n", data.size->ll);
 			finalizer(&data);
 			dispatcher(ap, &data);
-			tmp = data.tool->nb_a;
+			ret += data.tool->ret;
 			cleaner(&data);
 		}
 		i++;
 	}
-	index = index + tmp;
+	// printf ("index = %d, ret = %d and tmp = %d\n", index, ret, tmp);
+	index = index + ret;
 	return (index);
 }
 

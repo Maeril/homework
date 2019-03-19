@@ -6,13 +6,13 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:51:42 by myener            #+#    #+#             */
-/*   Updated: 2019/03/07 12:57:27 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/18 15:55:49 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		typeis_char(va_list ap, t_data *data)
+int		typeis_char(va_list ap, t_data *data)
 {
     int     len;
 
@@ -25,5 +25,7 @@ void		typeis_char(va_list ap, t_data *data)
 		ft_putchar(data->spec->car);
 		if ((data->lngt->width && (data->lngt->width_value > 0)) && data->flag->minus)
 			widthprinter_minus(data, len);
+		return ((len < data->lngt->width_value) ? data->lngt->width_value : len);
 	}
+	return (-1);
 }

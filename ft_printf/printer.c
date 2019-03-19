@@ -35,12 +35,10 @@ void        widthprinter_nominus(t_data *data, int len)
 	}
 	else if (!data->flag->zero)
 	{
-		if (data->lngt->prec && !data->flag->sharp)
-			while (i++ < data->lngt->width_value - 1)
-    			ft_putchar(' ');
-		else
 			while (i++ < (data->lngt->width_value - len))
+			{
     			ft_putchar(' ');
+			}
 	}
 	len -= 1;
 }

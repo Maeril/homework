@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by myener            #+#    #+#             */
-/*   Updated: 2019/03/17 23:04:07 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/19 16:00:26 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ typedef struct			s_lngt
 	int					width_value;
 	int					prec;
 	int					prec_value;
-	int					prec_zero;/* Quand on a une precision egale a zero.*/
+	int					prec_zero;
+	int					prec_rien;
 
 }						t_lngt;
 
@@ -85,8 +86,7 @@ typedef struct			s_tool
 	int					size;
 	int					unsign;
 	char				*str_tp;
-	/* Nombre de caracteres imprimes */
-	int					nb_a; // compteur pour chaque caractere imprimes de l argument
+	int					ret;
 	int					perc;/* cas special : si on a "%%" et qu'il y a des instructions entre les %*/
 	int					index;/* Pour gerer data.width on a besoin de l'index i  */
 	int					index2;/* pour gerer data.precision on a besoin de l'index j */
@@ -135,18 +135,18 @@ void					parse_width(char *instruc, t_data *data, int i);
 void					parser(char *instruc, t_data *data);
 void					precision_printer(t_data *data, int len);
 int						put_text(va_list ap, const char *format, char *instruc);
-void					dispatcher(va_list ap, t_data *data);
+void						dispatcher(va_list ap, t_data *data);
 char					*take_instructions(const char *format, int i);
-void					typeis_int(va_list ap, t_data *data);
-void					typeis_perc(va_list ap, t_data *data);
-void					typeis_str(va_list ap, t_data *data);
-void					typeis_ptr(va_list ap, t_data *data);
-void					typeis_char(va_list ap, t_data *data);
-void					typeis_unsign(va_list ap, t_data *data);
-void					typeis_octal(va_list ap, t_data *data);
-void					typeis_hexl(va_list ap, t_data *data);
-void					typeis_hexu(va_list ap, t_data *data);
-void       				typeis_float(va_list ap, t_data *data);
+int						typeis_int(va_list ap, t_data *data);
+int						typeis_perc(va_list ap, t_data *data);
+int						typeis_str(va_list ap, t_data *data);
+int						typeis_ptr(va_list ap, t_data *data);
+int						typeis_char(va_list ap, t_data *data);
+int						typeis_unsign(va_list ap, t_data *data);
+int						typeis_octal(va_list ap, t_data *data);
+int						typeis_hexl(va_list ap, t_data *data);
+int						typeis_hexu(va_list ap, t_data *data);
+int	       				typeis_float(va_list ap, t_data *data);
 void        			widthprinter_minus(t_data *data, int len);
 void      				widthprinter_nominus(t_data *data, int len);
 

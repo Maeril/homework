@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 17:48:05 by myener            #+#    #+#             */
-/*   Updated: 2019/03/13 17:57:31 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/19 17:22:09 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@ void		cleaner(t_data *data)
 		data->flag->space = 0;
 		data->flag->sharp = 0;
 		data->lngt->width = 0;
+		data->lngt->width_value = 0;
 		data->lngt->prec = 0;
+		data->lngt->prec_value = 0;
 		data->lngt->prec_zero = 0;
+		data->lngt->prec_rien = 0;
 		data->size->h = 0;
 		data->size->ll = 0;
 		data->size->l = 0;
@@ -48,6 +51,6 @@ void		cleaner(t_data *data)
 		data->tool->unsign = 0;
 		data->tool->index = 0;
 		data->tool->index2 = 0;
-		data->tool->nb_a = 0;
+		data->tool->ret = 0;
 		data->tool->str_tp = NULL;
 }

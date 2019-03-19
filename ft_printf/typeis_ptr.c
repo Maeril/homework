@@ -6,13 +6,13 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:51:32 by myener            #+#    #+#             */
-/*   Updated: 2019/03/17 15:51:40 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/18 15:56:43 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		typeis_ptr(va_list ap, t_data *data)
+int		typeis_ptr(va_list ap, t_data *data)
 {
 	int		i;
     int     len;
@@ -32,5 +32,7 @@ void		typeis_ptr(va_list ap, t_data *data)
 		ft_putnbr_base(data->type->p, HEXL);
 		if ((data->lngt->width && (data->lngt->width_value > 0)) && data->flag->minus)
 			widthprinter_minus(data, len);
+		return ((len < data->lngt->width_value) ? data->lngt->width_value : len);
 	}
+	return (-1);
 }

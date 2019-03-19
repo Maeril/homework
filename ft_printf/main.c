@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 23:34:58 by myener            #+#    #+#             */
-/*   Updated: 2019/03/17 15:44:56 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/19 18:19:54 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@
 	printf("syst: %-%\n");
 	ft_printf("mine: %-%\n\n");
 
-	// printf("\n//////////////////////////////////////////////\n\n");
+	printf("\n//////////////////////////////////////////////\n\n");
 
 	printf("Float simple (f) :\n\n");
  	printf("syst: %f\n", 3.295);
@@ -78,7 +78,7 @@
 	printf("syst: ABC %25f DEF\n", 3.295);
 	ft_printf("mine: ABC %25f DEF\n\n", 3.295);
 
-	// printf("\n//////////////////////////////////////////////\n\n");
+	printf("\n//////////////////////////////////////////////\n\n");
 
 	printf("Hexu simple (X)) :\n\n");
  	printf("syst: %X\n", -1054654654564);
@@ -112,29 +112,29 @@
  	printf("syst: %05x\n", 10);
  	ft_printf("mine: %05x\n\n", 10);
 
-	printf("Octal Precision et Width (10.5o) :\n\n");
- 	printf("syst: %10.5o\n", 55);
- 	ft_printf("mine: %10.5o\n\n", 55);
+	// printf("Octal Precision et Width (10.5o) :\n\n");
+ 	// printf("syst: %10.5o\n", 55);
+ 	// ft_printf("mine: %10.5o\n\n", 55);
 
-	printf("Octal et Width (5o) :\n\n");
- 	printf("syst: %5o\n", 6);
- 	ft_printf("mine: %5o\n\n", 6);
+	// printf("Octal et Width (5o) :\n\n");
+ 	// printf("syst: %5o\n", 6);
+ 	// ft_printf("mine: %5o\n\n", 6);
 
-	printf("Octal simple - ll LONG LONG (o)) :\n\n");
- 	printf("syst: %llo\n", 8);
-	ft_printf("mine: %llo\n\n", 8);
+	// printf("Octal simple - ll LONG LONG (o)) :\n\n");
+ 	// printf("syst: %llo\n", 8);
+	// ft_printf("mine: %llo\n\n", 8);
 
-	printf("Octal Sharp Width et Precision - h SHORT (#5.o) :\n\n");
- 	printf("syst: %-#5.ho\n", -105654561);
- 	ft_printf("mine: %-#5.ho\n\n", -105654561);
+	// printf("Octal Sharp Width et Precision - h SHORT (#5.o) :\n\n");
+ 	// printf("syst: %-#5.ho\n", -105654561);
+ 	// ft_printf("mine: %-#5.ho\n\n", -105654561);
 
-	printf("Octal Width et Precision (5.1o) :\n\n");
- 	printf("syst: %5.1o\n", 36);
- 	ft_printf("mine: %5.1o\n\n", 36);
+	// printf("Octal Width et Precision (5.1o) :\n\n");
+ 	// printf("syst: %5.1o\n", 36);
+ 	// ft_printf("mine: %5.1o\n\n", 36);
 
-	printf("Octal Sharp et Width (#8o) :\n\n");
- 	printf("syst: %#8o\n", 8);
- 	ft_printf("mine: %#8o\n\n", 8);
+	// printf("Octal Sharp et Width (#8o) :\n\n");
+ 	// printf("syst: %#8o\n", 8);
+ 	// ft_printf("mine: %#8o\n\n", 8);
 
 	// printf("\n//////////////////////////////////////////////\n\n");
 
@@ -186,7 +186,7 @@
 	printf("syst: %025p\n", ptr);
  	ft_printf("mine: %025p\n\n", ptr);
 
-	return (0);
+	// return (0);
  }
 
 // 				DONE AND GONE:				 //
