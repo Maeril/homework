@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 11:22:42 by myener            #+#    #+#             */
-/*   Updated: 2019/03/19 17:27:15 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/20 13:10:44 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,14 @@ int		put_text(va_list ap, const char *format, char *instruc)
 			i = i + len;
 			struct_malloc(&data);
 			cleaner(&data);
+			// printf("zero = %d\n", data.flag->zero);
+			// printf("space = %d\n", data.flag->space);
 			parser(instruc, &data);
+			// printf("zero = %d\n", data.flag->zero);
+			// printf("prec = %d\n", data.lngt->prec);
 			finalizer(&data);
+			// printf("zero = %d\n", data.flag->zero);
+			// printf("space = %d\n", data.flag->space);
 			dispatcher(ap, &data);
 			ret += data.tool->ret;
 			cleaner(&data);

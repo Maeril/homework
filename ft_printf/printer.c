@@ -16,7 +16,8 @@ void        widthprinter_minus(t_data *data, int len)
 {
     int i;
 
-	len += 2;
+	len = (data->lngt->prec ? len + 2 : len + 1);
+	// len = ((data->flag->plus && data->flag->minus) ? len + 1 : len);
     i = -1;
     while (i++ < (data->lngt->width_value - len))
     	ft_putchar(' ');
@@ -49,6 +50,7 @@ void		precision_printer(t_data *data, int len)
 	int	i;
 
 	i = 0;
+	// printf("coucou\n");
 	while (i++ < (data->lngt->prec_value - len))
 		ft_putchar('0');
 }
