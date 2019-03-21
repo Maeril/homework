@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:51:47 by myener            #+#    #+#             */
-/*   Updated: 2019/03/20 18:53:46 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/21 16:28:25 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ int typeis_int(va_list ap, t_data *data)
 
 	if (data->type->d || data->type->i)
 	{
-		nb = va_arg(ap, int);
+		nb = va_arg(ap, long long int);
+		if ((((int)nb) < 0) && !data->tool->size)
+			nb = (((int)nb));
 		if (data->tool->size)
 		{
 			if (data->size->h)
@@ -79,6 +81,8 @@ int typeis_int(va_list ap, t_data *data)
 					data->lngt->width_value--;
 				widthprinter_minus(data, len);
 			}
+			if (data->lngt->prec_value && (data->lngt->prec_value > data->lngt->width_value))
+				data->lngt->width_value += data->lngt->prec_value;
 			return ((len < data->lngt->width_value) ? data->lngt->width_value : len);
 		}
 		return (data->lngt->width_value);

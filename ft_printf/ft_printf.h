@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by myener            #+#    #+#             */
-/*   Updated: 2019/03/19 16:00:26 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/21 16:24:15 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define HEXL "0123456789abcdef"
 # define HEXU "0123456789ABCDEF"
 # define UINT_MAX 4294967296
+# define INT_MAX 2147483647
 
 typedef struct			s_spec
 {

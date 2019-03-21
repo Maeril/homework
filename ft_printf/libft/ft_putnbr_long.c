@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 15:08:08 by myener            #+#    #+#             */
-/*   Updated: 2019/03/17 23:01:55 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/21 13:11:32 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ void	ft_putnbr_long(long long int nb)
 		nb = -nb;
 	}
 	if (nb >= 10)
-		ft_putnbr(nb / 10);
+		ft_putnbr_long(nb / 10);
 	ft_putchar(nb % 10 + '0');
 }
