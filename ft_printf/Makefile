@@ -6,13 +6,14 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/17 21:20:38 by myener            #+#    #+#              #
-#    Updated: 2019/03/21 15:50:56 by myener           ###   ########.fr        #
+#    Updated: 2019/03/23 17:44:08 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME    =   libftprintf.a
 
-SRC_LIBFT=  ./libft/ft_atoi.c	\
+SRC_LIBFT=  ./libft/ft_abs.c	\
+			./libft/ft_atoi.c	\
 			./libft/ft_atoll.c	\
 			./libft/ft_bzero.c	\
 			./libft/ft_strlen.c \

@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:51:47 by myener            #+#    #+#             */
-/*   Updated: 2019/03/22 17:54:42 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/23 18:19:44 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,7 @@ int typeis_int(va_list ap, t_data *data)
 					widthprinter_nominus(data, len);
 			}
 			if (nb < 0)
-			{
 				ft_putchar('-');
-				nb = -nb;
-			}
 			else if (data->flag->plus && (nb >= 0))
 				ft_putchar('+');
 			if (data->flag->space && !data->flag->plus && !data->lngt->width)

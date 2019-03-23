@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by myener            #+#    #+#             */
-/*   Updated: 2019/03/21 16:24:15 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/23 17:40:19 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct			s_data
 	t_tool				*tool;
 }						t_data;
 
+int		ft_abs(int nb);
 int				ft_atoi(const char *str);
 long long int	ft_atoll(const char *str);
 void	ft_bzero(void *s, size_t n);
