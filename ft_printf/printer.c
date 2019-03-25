@@ -17,8 +17,10 @@ void        widthprinter_minus(t_data *data, int len)
     int i;
 
     i = -1;
+	data->lngt->width_value--;
     while (i++ < (data->lngt->width_value - len))
     	ft_putchar(' ');
+	data->lngt->width_value++;
 }
 
 void        widthprinter_nominus(t_data *data, int len)

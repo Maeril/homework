@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by myener            #+#    #+#             */
-/*   Updated: 2019/03/23 17:40:19 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/25 15:47:30 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void					precision_printer(t_data *data, int len);
 int						put_text(va_list ap, const char *format, char *instruc);
 void						dispatcher(va_list ap, t_data *data);
 char					*take_instructions(const char *format, int i);
-int						typeis_int(va_list ap, t_data *data);
+int						typeis_int(va_list ap, t_data *data, t_lngt *lngt);
 int						typeis_perc(va_list ap, t_data *data);
 int						typeis_str(va_list ap, t_data *data);
 int						typeis_ptr(va_list ap, t_data *data);

@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 17:48:05 by myener            #+#    #+#             */
-/*   Updated: 2019/03/19 17:22:09 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/25 18:26:03 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void		cleaner(t_data *data)
 		data->spec->sh = 0;
 		data->spec->lg = 0;
 		data->spec->lglg = 0;
+		data->tool->perc = 0;
 		data->tool->unsign = 0;
 		data->tool->index = 0;
 		data->tool->index2 = 0;

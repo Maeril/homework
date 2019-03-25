@@ -6,14 +6,14 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 16:14:29 by myener            #+#    #+#             */
-/*   Updated: 2019/03/19 18:15:32 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/25 15:29:38 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdlib.h>
 
-void	display_float(int len, char *str, unsigned long long int tmp)
+static void	display_float(int len, char *str, unsigned long long int tmp)
 {
 	int i;
 	int zero;
@@ -37,7 +37,7 @@ void	display_float(int len, char *str, unsigned long long int tmp)
 			ft_putchar('0');
 }
 
-void	overthedot(t_data *data, char *str, unsigned long long int tmp)
+static void	overthedot(t_data *data, char *str, unsigned long long int tmp)
 {
 	int	i;
 
@@ -51,7 +51,7 @@ void	overthedot(t_data *data, char *str, unsigned long long int tmp)
 	}
 }
 
-void	troubleshooter(t_data *data, long long int num, int len)
+static void	troubleshooter(t_data *data, long long int num, int len)
 {
 	if ((data->lngt->width && (data->lngt->width_value > 0)) && !data->flag->minus && !data->lngt->prec)
 		widthprinter_nominus(data, len);
@@ -68,7 +68,7 @@ void	troubleshooter(t_data *data, long long int num, int len)
 		data->spec->flt = -data->spec->flt;
 }
 
-int	typeis_float(va_list ap, t_data *data)
+int			typeis_float(va_list ap, t_data *data)
 {
 	int						len_prec;
 	int						len;

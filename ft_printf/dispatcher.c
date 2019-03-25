@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 16:56:58 by myener            #+#    #+#             */
-/*   Updated: 2019/03/18 18:27:49 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/25 15:47:52 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void		dispatcher(va_list ap, t_data *data)
 {
 	if (data->type->d || data->type->i)
-		data->tool->ret = typeis_int(ap, data);
+		data->tool->ret = typeis_int(ap, data, data->lngt);
 	else if (data->type->c)
 		data->tool->ret = typeis_char(ap, data);
 	else if (data->type->s)
