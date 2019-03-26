@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 16:56:58 by myener            #+#    #+#             */
-/*   Updated: 2019/03/25 15:47:52 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/26 16:32:07 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void		dispatcher(va_list ap, t_data *data)
 	else if (data->type->u)
 		data->tool->ret = typeis_unsign(ap, data);
 	else if (data->type->x)
-		data->tool->ret = typeis_hexl(ap, data);
+		data->tool->ret = typeis_hexl(ap, data, data->lngt);
 	else if (data->type->big_x)
-		data->tool->ret = typeis_hexu(ap, data);
+		data->tool->ret = typeis_hexu(ap, data, data->lngt);
 	else if (data->type->f)
 		data->tool->ret = typeis_float(ap, data);
 	else if (data->tool->perc)
-		data->tool->ret = typeis_perc(ap, data);
+		data->tool->ret = typeis_perc(data);
 }

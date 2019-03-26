@@ -6,19 +6,18 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:57:23 by myener            #+#    #+#             */
-/*   Updated: 2019/03/19 18:26:35 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/26 15:18:20 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		typeis_perc(va_list ap, t_data *data)
+int		typeis_perc(t_data *data)
 {
 	int	len;
 
 	if (data->tool->perc)
 	{
-		data->tool->perc = va_arg(ap, int);
 		len = 1;
 		if (data->lngt->prec && ((data->lngt->prec_value <= len)
 			|| (data->lngt->prec_value >= data->lngt->width_value)))

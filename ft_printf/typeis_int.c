@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:51:47 by myener            #+#    #+#             */
-/*   Updated: 2019/03/25 17:41:17 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/26 15:44:36 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int					typeis_int(va_list ap, t_data *data, t_lngt *lngt)
 	if (data->type->d || data->type->i)
 	{
 		nb = va_arg(ap, long long int);
-		nb = (data->tool->size ? converter(data, nb) : (((int)nb)));
+		nb = (data->tool->size ? converter(data, nb) : ((int)nb));
 		len = ft_intlen(nb);
 		len = ((nb == 0) && (lngt->prec_zero || lngt->prec_rien)) ? 0 : len;
 		len = troubleshooter(lngt, len);

@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by myener            #+#    #+#             */
-/*   Updated: 2019/03/25 15:47:30 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/26 16:33:13 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,16 @@ typedef struct			s_size
 
 typedef struct			s_type
 {
-	int					c;
-	int					s;
-	long long int		p;
-	long long int		d;
-	long long int		i;
+	int							c;
+	int							s;
+	long long int				p;
+	long long int				d;
+	long long int				i;
 	unsigned long long int		o;
 	unsigned long long int		u;
 	unsigned long long int		x;
 	unsigned long long int		big_x;
-	int					f;
+	int							f;
 }						t_type;
 
 typedef struct			s_tool
@@ -95,25 +95,25 @@ typedef struct			s_tool
 
 typedef struct			s_data
 {
-	t_spec 				*spec;
-	t_flag 				*flag;
-	t_lngt 				*lngt;
-	t_size 				*size;
-	t_type 				*type;
+	t_spec				*spec;
+	t_flag				*flag;
+	t_lngt				*lngt;
+	t_size				*size;
+	t_type				*type;
 	t_tool				*tool;
 }						t_data;
 
-int		ft_abs(int nb);
+int				ft_abs(int nb);
 int				ft_atoi(const char *str);
 long long int	ft_atoll(const char *str);
-void	ft_bzero(void *s, size_t n);
+void			ft_bzero(void *s, size_t n);
 int				ft_intlen(long long int n);
 int				ft_uintlen(unsigned long long int n);
 int				ft_octlen(unsigned long long int n);
 int				ft_hexlen(unsigned long long int n);
 char			ft_itoc(int n);
 char   			*ft_lltoa(long long int n);
-void	*ft_memset(void *b, int c, size_t len);
+void			*ft_memset(void *b, int c, size_t len);
 void			ft_putchar(char c);
 void			ft_putnbr(int nb);
 void			ft_putnbr_base(long long int nb, const char *base);
@@ -124,32 +124,32 @@ void			ft_putstr(char *str);
 size_t			ft_strlen(const char *str);
 char			*ft_strnew(size_t size);
 char			*ft_strsub(const char *s, unsigned int start, size_t len);
-char	*ft_strdup(const char *str);
-void					cleaner(t_data *data);
-void					finalizer(t_data *data);
-int						ft_printf(const char *format, ...);
-void					get_arg_len(va_list ap, t_data *data);
-void					parse_flags(char *instruc, t_flag *flag, int i);
-void					parse_precision(char *instruc, t_lngt *lngt, t_tool *tool, int i);
-void					parse_size(char *instruc, t_size *size, int i);
-void					parse_type(char *instruc, t_type *type, t_tool *tool, int i);
-void					parse_width(char *instruc, t_data *data, int i);
-void					parser(char *instruc, t_data *data);
-void					precision_printer(t_data *data, int len);
-int						put_text(va_list ap, const char *format, char *instruc);
-void						dispatcher(va_list ap, t_data *data);
-char					*take_instructions(const char *format, int i);
-int						typeis_int(va_list ap, t_data *data, t_lngt *lngt);
-int						typeis_perc(va_list ap, t_data *data);
-int						typeis_str(va_list ap, t_data *data);
-int						typeis_ptr(va_list ap, t_data *data);
-int						typeis_char(va_list ap, t_data *data);
-int						typeis_unsign(va_list ap, t_data *data);
-int						typeis_octal(va_list ap, t_data *data);
-int						typeis_hexl(va_list ap, t_data *data);
-int						typeis_hexu(va_list ap, t_data *data);
-int	       				typeis_float(va_list ap, t_data *data);
-void        			widthprinter_minus(t_data *data, int len);
-void      				widthprinter_nominus(t_data *data, int len);
+char			*ft_strdup(const char *str);
+void			cleaner(t_data *data);
+void			finalizer(t_data *data);
+int				ft_printf(const char *format, ...);
+void			get_arg_len(va_list ap, t_data *data);
+void			parse_flags(char *instruc, t_flag *flag, int i);
+void			parse_precision(char *instruc, t_lngt *lngt, t_tool *tool, int i);
+void			parse_size(char *instruc, t_size *size, int i);
+void			parse_type(char *instruc, t_type *type, t_tool *tool, int i);
+void			parse_width(char *instruc, t_data *data, int i);
+void			parser(char *instruc, t_data *data);
+void			precision_printer(t_data *data, int len);
+int				put_text(va_list ap, const char *format, char *instruc);
+void			dispatcher(va_list ap, t_data *data);
+char			*take_instructions(const char *format, int i);
+int				typeis_int(va_list ap, t_data *data, t_lngt *lngt);
+int				typeis_perc(t_data *data);
+int				typeis_str(va_list ap, t_data *data);
+int				typeis_ptr(va_list ap, t_data *data);
+int				typeis_char(va_list ap, t_data *data);
+int				typeis_unsign(va_list ap, t_data *data);
+int				typeis_octal(va_list ap, t_data *data);
+int				typeis_hexl(va_list ap, t_data *data, t_lngt *lngt);
+int				typeis_hexu(va_list ap, t_data *data, t_lngt *lngt);
+int	       		typeis_float(va_list ap, t_data *data);
+void        	widthprinter_minus(t_data *data, int len);
+void      		widthprinter_nominus(t_data *data, int len);
 
 #endif
