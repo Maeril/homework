@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 18:06:08 by myener            #+#    #+#             */
-/*   Updated: 2019/03/26 16:34:38 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/26 18:22:04 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static long long	converter(t_data *data)
 		nb = ((unsigned char)data->type->big_x);
 	else if (data->size->l)
 		nb = ((unsigned long int)data->type->big_x);
+	else if (data->size->ll)
+		nb = ((unsigned long long int)data->type->big_x);
 	return (nb);
 }
 
@@ -39,7 +41,7 @@ static int			troubleshooter(t_data *data, int len)
 	lngt->prec = (lngt->prec && (lngt->prec_value <= len)) ? 0 : lngt->prec;
 	if (lngt->prec && !lngt->prec_rien && !lngt->prec_zero)
 		len = lngt->prec_value;
-	if (data->flag->sharp)
+	if (data->flag->sharp && data->type->big_x != 0)
 		len += 2;
 	return (len);
 }
@@ -51,7 +53,7 @@ static int			writer(t_data *data, int len, int prec_len)
 
 	lngt = data->lngt;
 	flag = data->flag;
-	if (flag->sharp)
+	if (flag->sharp && data->type->big_x != 0)
 		ft_putstr("0X");
 	if ((lngt->width && (lngt->width_value > 0)) && !flag->minus)
 		widthprinter_nominus(data, len);

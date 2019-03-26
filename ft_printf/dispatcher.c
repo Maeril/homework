@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 16:56:58 by myener            #+#    #+#             */
-/*   Updated: 2019/03/26 16:32:07 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/26 17:55:33 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void		dispatcher(va_list ap, t_data *data)
 	else if (data->type->p)
 		data->tool->ret = typeis_ptr(ap, data);
 	else if (data->type->o)
-		data->tool->ret = typeis_octal(ap, data);
+		data->tool->ret = typeis_octal(ap, data, data->lngt);
 	else if (data->type->u)
 		data->tool->ret = typeis_unsign(ap, data);
 	else if (data->type->x)
