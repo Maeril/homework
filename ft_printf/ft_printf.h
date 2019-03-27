@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by myener            #+#    #+#             */
-/*   Updated: 2019/03/26 17:49:44 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/27 13:23:53 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ int				typeis_perc(t_data *data);
 int				typeis_str(va_list ap, t_data *data);
 int				typeis_ptr(va_list ap, t_data *data);
 int				typeis_char(va_list ap, t_data *data);
-int				typeis_unsign(va_list ap, t_data *data);
+int				typeis_unsign(va_list ap, t_data *data, t_lngt *lngt);
 int				typeis_octal(va_list ap, t_data *data, t_lngt *lngt);
 int				typeis_hexl(va_list ap, t_data *data, t_lngt *lngt);
 int				typeis_hexu(va_list ap, t_data *data, t_lngt *lngt);

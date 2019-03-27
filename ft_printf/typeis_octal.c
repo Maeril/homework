@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:59:01 by myener            #+#    #+#             */
-/*   Updated: 2019/03/27 12:42:23 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/27 15:44:01 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,23 @@ static int			writer(t_data *data, int len, int prec_len)
 
 	lngt = data->lngt;
 	flag = data->flag;
-	if (flag->sharp && (data->type->o != 0) && !data->lngt->prec)
-		ft_putstr("0");
+	if ((flag->sharp && (data->type->o != 0) && !lngt->prec)
+		|| (flag->sharp && (data->type->o == 0) && (lngt->prec_zero
+		|| lngt->prec_rien) && !lngt->width))
+	{
+		ft_putchar('0');
+		if ((flag->sharp && (data->type->o == 0) && (lngt->prec_zero
+		|| lngt->prec_rien) && !lngt->width))
+			len++;
+	}
+	if (flag->sharp && (data->type->o == 0) && (lngt->prec_zero
+		|| lngt->prec_rien) && lngt->width)
+		len++;
 	if ((lngt->width && (lngt->width_value > 0)) && !flag->minus)
 		widthprinter_nominus(data, len);
+	if (flag->sharp && (data->type->o == 0) && (lngt->prec_zero
+		|| lngt->prec_rien) && lngt->width)
+		ft_putchar('0');
 	if (lngt->prec)
 		precision_printer(data, prec_len);
 	if (data->type->o != 0 || (data->type->o == 0 && !lngt->prec_zero && !lngt->prec_rien))
@@ -83,7 +96,8 @@ int		typeis_octal(va_list ap, t_data *data, t_lngt *lngt)
 		prec_len = (lngt->prec && !lngt->prec_rien && !lngt->prec_zero) ?
 			ft_octlen(data->type->o) : 0;
 		if (((data->lngt->prec_zero || data->lngt->prec_rien)
-			&& data->type->o > 0) || data->type->o || data->type->o == 0)
+			&& data->type->o > 0) || ((lngt->prec_zero || lngt->prec_rien)
+			&& data->lngt->width) || data->type->o || data->type->o == 0)
 			return (writer(data, len, prec_len));
 		return (data->lngt->width_value);
 	}

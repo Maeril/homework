@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:51:47 by myener            #+#    #+#             */
-/*   Updated: 2019/03/26 15:44:36 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/27 14:52:51 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int			writer(t_data *data, long long int nb, int len, int prec)
 		ft_putchar('-');
 	else if (flag->plus && (nb >= 0))
 		ft_putchar('+');
-	if (data->flag->space && !data->flag->plus && !lngt->width)
+	if (data->flag->space && !data->flag->plus && !lngt->width && (nb >= 0))
 		ft_putchar(' ');
 	if (flag->zero && (lngt->width && (lngt->width_value > 0) && !flag->minus))
 		widthprinter_nominus(data, len);

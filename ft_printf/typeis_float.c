@@ -6,35 +6,34 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 16:14:29 by myener            #+#    #+#             */
-/*   Updated: 2019/03/25 15:29:38 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/27 14:43:37 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdlib.h>
 
-static void	display_float(int len, char *str, unsigned long long int tmp)
+static void	troubleshooter(t_data *data, long long int num, int len)
 {
-	int i;
-	int zero;
+	t_lngt *lngt;
+	t_flag *flag;
 
-	zero = (((int)ft_strlen(str)) < len);
-	if (str[len - 1] >= '5')
-	{
-		str[len - 1] = '\0';
-		tmp = (ft_atoll(str)) + 1;
-		str = ft_lltoa(tmp);
-	}
-	else
-		str[len - 1] = '\0';
-	ft_putchar('.');
-	i = -1;
-	while (i++ < (len - 1))
-		ft_putchar(str[i]);
-	i = -1;
-	if (zero)
-		while (i++ < (len - ((int)ft_strlen(str)) - 2))
-			ft_putchar('0');
+	lngt = data->lngt;
+	flag = data->flag;
+	if ((lngt->width && (lngt->width_value > 0)) && !flag->minus && !lngt->prec)
+		widthprinter_nominus(data, len);
+	else if ((lngt->width && (lngt->width_value > 0)) && !flag->minus && lngt->prec)
+		widthprinter_nominus(data, lngt->prec_value);
+	if (flag->space && (lngt->width_value < (ft_intlen(num) + len)) && (num >= 0))
+		ft_putchar(' ');
+	if (data->spec->flt < 0)
+		ft_putchar('-');
+	if ((data->spec->flt > 0) && flag->plus)
+		ft_putchar('+');
+	if (lngt->prec_zero)
+		return ;
+	if (data->spec->flt < 0)
+		data->spec->flt = -data->spec->flt;
 }
 
 static void	overthedot(t_data *data, char *str, unsigned long long int tmp)
@@ -51,26 +50,34 @@ static void	overthedot(t_data *data, char *str, unsigned long long int tmp)
 	}
 }
 
-static void	troubleshooter(t_data *data, long long int num, int len)
+static void	display_float(int prec_len, char *str, unsigned long long int tmp)
 {
-	if ((data->lngt->width && (data->lngt->width_value > 0)) && !data->flag->minus && !data->lngt->prec)
-		widthprinter_nominus(data, len);
-	else if ((data->lngt->width && (data->lngt->width_value > 0)) && !data->flag->minus && data->lngt->prec)
-		widthprinter_nominus(data, data->lngt->prec_value);
-	if (data->flag->space &&
-		(data->lngt->width_value < (ft_intlen(num) + len)))
-		ft_putchar(' ');
-	if ((data->spec->flt > 0) && data->flag->plus)
-		ft_putchar('+');
-	if (data->lngt->prec_zero)
-		return ;
-	if (data->spec->flt < 0)
-		data->spec->flt = -data->spec->flt;
+	int i;
+	int zero;
+
+	zero = (((int)ft_strlen(str)) < prec_len);
+	if (str[prec_len - 1] >= '5')
+	{
+		str[prec_len - 1] = '\0';
+		tmp = (ft_atoll(str)) + 1;
+		str = ft_lltoa(tmp);
+	}
+	else
+		str[prec_len - 1] = '\0';
+	ft_putchar('.');
+	prec_len -= 1;
+	i = -1;
+	while (i++ < (prec_len - 1))
+		ft_putchar(str[i]);
+	i = -1;
+	if (zero)
+		while (i++ < (prec_len - ((int)ft_strlen(str)) - 1))
+			ft_putchar('0');
 }
 
 int			typeis_float(va_list ap, t_data *data)
 {
-	int						len_prec;
+	int						prec_len;
 	int						len;
 	long long int			num;
 	unsigned long long int	tmp;
@@ -80,25 +87,27 @@ int			typeis_float(va_list ap, t_data *data)
 	if (data->type->f)
 	{
 		data->lngt->width_value = data->lngt->width_value;
-		len_prec = (data->lngt->prec ? (data->lngt->prec_value + 1) : 7);
+		prec_len = (data->lngt->prec ? (data->lngt->prec_value + 1) : 7);
 		data->spec->flt = va_arg(ap, double);
 		if (data->flag->sharp)
 			data->lngt->width_value++;
 		num = data->spec->flt;
-		troubleshooter(data, num, len_prec);
+		troubleshooter(data, num, prec_len);
+		data->spec->flt = (data->spec->flt < 0) ? -data->spec->flt : data->spec->flt;
+		num = (num < 0) ? -num : num;
 		data->spec->flt -= num;
-		if (!(str = malloc(sizeof(char) * (len_prec + 1))))
+		if (!(str = malloc(sizeof(char) * (prec_len + 1))))
 			return (0);
 		tmp = 0;
 		overthedot(data, str, tmp);
-		str = ft_strsub(str, 0, len_prec);
+		str = ft_strsub(str, 0, prec_len);
 		ft_putnbr(num);
 		if (((data->lngt->prec_zero || data->lngt->prec_rien) && data->type->f > 0) || data->type->f)
 		{
-			display_float(len_prec, str, tmp);
+			display_float(prec_len, str, tmp);
 			if (data->lngt->width && data->lngt->width_value && data->flag->minus)
-				widthprinter_minus(data, (ft_intlen(num) + len_prec));
-			len = (ft_intlen(num) + len_prec);
+				widthprinter_minus(data, (ft_intlen(num) + prec_len));
+			len = (ft_intlen(num) + prec_len);
 			return ((len < data->lngt->width_value) ? data->lngt->width_value : len);
 		}
 		return(data->lngt->width_value);

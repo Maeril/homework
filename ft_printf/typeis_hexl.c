@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 18:06:02 by myener            #+#    #+#             */
-/*   Updated: 2019/03/26 18:22:21 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/27 15:03:59 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ int					typeis_hexl(va_list ap, t_data *data, t_lngt *lngt)
 		len = troubleshooter(data, len);
 		prec_len = (lngt->prec && !lngt->prec_rien && !lngt->prec_zero) ?
 			ft_hexlen(data->type->x) : 0;
-		if (((lngt->prec_zero || lngt->prec_rien) && (data->type->x > 0)) || data->type->x)
+		if (((lngt->prec_zero || lngt->prec_rien) && (data->type->x > 0))
+			|| ((lngt->prec_zero || lngt->prec_rien) && data->lngt->width) || data->type->x)
 			return (writer(data, len, prec_len));
 		return (lngt->width_value);
 	}
