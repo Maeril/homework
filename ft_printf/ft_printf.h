@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by myener            #+#    #+#             */
-/*   Updated: 2019/03/27 13:23:53 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/27 17:49:05 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ typedef struct			s_tool
 	int					size;
 	int					unsign;
 	char				*str_tp;
+	int					vir;
+	unsigned long long int flt_tmp;
 	int					ret;
 	int					perc;/* cas special : si on a "%%" et qu'il y a des instructions entre les %*/
 	int					index;/* Pour gerer data.width on a besoin de l'index i  */

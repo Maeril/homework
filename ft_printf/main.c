@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 23:34:58 by myener            #+#    #+#             */
-/*   Updated: 2019/03/27 15:44:41 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/27 18:52:34 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,84 +21,84 @@ int			main(void)
 	int			ret2 = 0;
 
 	double		nb;
-	nb = -12547.58;
+	nb = 0;
 
-	// ret1 += ft_printf("test basique:");
-	// ret1 += ft_printf("f simple:%f\n\n", nb);
-    ret1 += ft_printf("MINE : space:% f\n\n", nb);
-    // ret1 += ft_printf("plus:%+f\n\n", nb);
-    // ret1 += ft_printf("hash:%#f\n\n", nb);
-    // ret1 += ft_printf("precision:%.2f\n\n", nb);
-    // ret1 += ft_printf("big prec:%.14f\n\n", nb);
-    // ret1 += ft_printf("precision + hash:%#.0f\n\n", nb);
-    // ret1 += ft_printf("space + prec:% .5f\n\n", nb);
-    // ret1 += ft_printf("space + prec + hash:%# .0f\n\n", nb);
-    // ret1 += ft_printf("space + prec + hash:% #.0f\n\n", nb);
-    // ret1 += ft_printf("Plus + prec / grande:%+.5f\n\n", nb);
-    // ret1 += ft_printf("Plus + prec / petite:%+.0f\n\n", nb);
-    // ret1 += ft_printf("Plus + prec + hash:%#+.0f\n\n", nb);
-    // ret1 += ft_printf("Prec + 0:%0.5f\n\n", nb);
-    // ret1 += ft_printf("Prec + minus:%-.5f\n\n", nb);
-    // ret1 += ft_printf("size:%5f\n\n", nb);
-    // ret1 += ft_printf("size + space:% 5f\n\n", nb);
-    // ret1 += ft_printf("size + plus:%+5f\n\n", nb);
-    // ret1 += ft_printf("size + space:%# 5f\n\n", nb);
-    // ret1 += ft_printf("size + plus:%#+5f\n\n", nb);
-    // ret1 += ft_printf("size + minus:%-5f\n\n", nb);
-    // ret1 += ft_printf("size + 0:%05f\n\n", nb);
-    // ret1 += ft_printf("size + 0 + plus:%+05f\n\n", nb);
-    // ret1 += ft_printf("size + 0 + plus:%0+5f\n\n", nb);
-    // ret1 += ft_printf("size + 0 + prec:%05.3f\n\n", nb);
-    // ret1 += ft_printf("size + 0 + prec + hash:%0#5.0f\n\n", nb);
-    // ret1 += ft_printf("size + minus + prec:%-5.3f\n\n", nb);
-    // ret1 += ft_printf("size + minus + prec + hash:%-#5.0f\n\n", nb);
-    // ret1 += ft_printf("size + plus + 0 + prec:%+05.3f\n\n", nb);
-    // ret1 += ft_printf("size + plus + 0 + prec + hash:%0+#5.0f\n\n", nb);
-    // ret1 += ft_printf("size + espace + zero + prec:%0 5.3f\n\n", nb);
-    // ret1 += ft_printf("size + espace + zero + prec:% 05.3f\n\n", nb);
-    // ret1 += ft_printf("size + espace + zero + prec + hash:%#0 5.0f\n\n", nb);
-    // ret1 += ft_printf("size + minus + plus + prec:%-+5.3f\n\n", nb);
-    // ret1 += ft_printf("size + minus + plus + prec + hash:%-#+5.0f\n\n\n", nb);
+	ret1 += ft_printf("MINE : test basique:\n");
+	ret1 += ft_printf("MINE : f simple:%f\n", nb);
+    ret1 += ft_printf("MINE : space:% f\n", nb);
+    ret1 += ft_printf("MINE : plus:%+f\n", nb);
+    ret1 += ft_printf("MINE : hash:%#f\n", nb);
+    ret1 += ft_printf("MINE : precision:%.2f\n", nb);
+    ret1 += ft_printf("MINE : big prec:%.14f\n", nb);
+    ret1 += ft_printf("MINE : precision + hash:%#.f\n", nb);
+    ret1 += ft_printf("MINE : space + prec:% .5f\n", nb);
+    ret1 += ft_printf("MINE : space + prec + hash:%# .0f\n", nb);
+    ret1 += ft_printf("MINE : space + prec + hash:% #.0f\n", nb);
+    ret1 += ft_printf("MINE : Plus + prec / grande:%+.5f\n", nb);
+    ret1 += ft_printf("MINE : Plus + prec / petite:%+.0f\n", nb);
+    ret1 += ft_printf("MINE : Plus + prec + hash:%#+.0f\n", nb);
+    ret1 += ft_printf("MINE : Prec + 0:%0.5f\n", nb);
+    ret1 += ft_printf("MINE : Prec + minus:%-.5f\n", nb);
+    ret1 += ft_printf("MINE : size:%5f\n", nb);
+    ret1 += ft_printf("MINE : size + space:% 5f\n", nb);
+    ret1 += ft_printf("MINE : size + plus:%+5f\n", nb);
+    ret1 += ft_printf("MINE : size + space:%# 5f\n", nb);
+    ret1 += ft_printf("MINE : size + plus:%#+5f\n", nb);
+    ret1 += ft_printf("MINE : size + minus:%-5f\n", nb);
+    ret1 += ft_printf("MINE : size + 0:%05f\n", nb);
+    ret1 += ft_printf("MINE : size + 0 + plus:%+05f\n", nb);
+    ret1 += ft_printf("MINE : size + 0 + plus:%0+5f\n", nb);
+    ret1 += ft_printf("MINE : size + 0 + prec:%05.3f\n", nb);
+    ret1 += ft_printf("MINE : size + 0 + prec + hash:%0#5.0f\n", nb);
+    ret1 += ft_printf("MINE : size + minus + prec:%-5.3f\n", nb);
+    ret1 += ft_printf("MINE : size + minus + prec + hash:%-#5.0f\n", nb);
+    ret1 += ft_printf("MINE : size + plus + 0 + prec:%+05.3f\n", nb);
+    ret1 += ft_printf("MINE : size + plus + 0 + prec + hash:%0+#5.0f\n", nb);
+    ret1 += ft_printf("MINE : size + espace + zero + prec:%0 5.3f\n", nb);
+    ret1 += ft_printf("MINE : size + espace + zero + prec:% 05.3f\n", nb);
+    ret1 += ft_printf("MINE : size + espace + zero + prec + hash:%#0 5.0f\n", nb);
+    ret1 += ft_printf("MINE : size + minus + plus + prec:%-+5.3f\n", nb);
+    ret1 += ft_printf("MINE : size + minus + plus + prec + hash:%-#+5.0f\n\n", nb);
 
-	// ret2 += printf("test basique:");
-	// ret2 += printf("f simple:%f\n\n", nb);
-	ret2 += printf("SYST : space:% f\n\n", nb);
-	// ret2 += printf("plus:%+f\n\n", nb);
-	// ret2 += printf("hash:%#f\n\n", nb);
-	// ret2 += printf("precision:%.2f\n\n", nb);
-	// ret2 += printf("big prec:%.14f\n\n", nb);
-	// ret2 += printf("precision + hash:%#.0f\n\n", nb);
-	// ret2 += printf("space + prec:% .5f\n\n", nb);
-	// ret2 += printf("space + prec + hash:%# .0f\n\n", nb);
-	// ret2 += printf("space + prec + hash:% #.0f\n\n", nb);
-	// ret2 += printf("Plus + prec / grande:%+.5f\n\n", nb);
-	// ret2 += printf("Plus + prec / petite:%+.0f\n\n", nb);
-	// ret2 += printf("Plus + prec + hash:%#+.0f\n\n", nb);
-	// ret2 += printf("Prec + 0:%0.5f\n\n", nb);
-	// ret2 += printf("Prec + minus:%-.5f\n\n", nb);
-	// ret2 += printf("size:%5f\n\n", nb);
-	// ret2 += printf("size + space:% 5f\n\n", nb);
-	// ret2 += printf("size + plus:%+5f\n\n", nb);
-	// ret2 += printf("size + space:%# 5f\n\n", nb);
-	// ret2 += printf("size + plus:%#+5f\n\n", nb);
-	// ret2 += printf("size + minus:%-5f\n\n", nb);
-	// ret2 += printf("size + 0:%05f\n\n", nb);
-	// ret2 += printf("size + 0 + plus:%+05f\n\n", nb);
-	// ret2 += printf("size + 0 + plus:%0+5f\n\n", nb);
-	// ret2 += printf("size + 0 + prec:%05.3f\n\n", nb);
-	// ret2 += printf("size + 0 + prec + hash:%0#5.0f\n\n", nb);
-	// ret2 += printf("size + minus + prec:%-5.3f\n\n", nb);
-	// ret2 += printf("size + minus + prec + hash:%-#5.0f\n\n", nb);
-	// ret2 += printf("size + plus + 0 + prec:%+05.3f\n\n", nb);
-	// ret2 += printf("size + plus + 0 + prec + hash:%0+#5.0f\n\n", nb);
-	// ret2 += printf("size + espace + zero + prec:%0 5.3f\n\n", nb);
-	// ret2 += printf("size + espace + zero + prec:% 05.3f\n\n", nb);
-	// ret2 += printf("size + espace + zero + prec + hash:%#0 5.0f\n\n", nb);
-	// ret2 += printf("size + minus + plus + prec:%-+5.3f\n\n", nb);
-	// ret2 += printf("size + minus + plus + prec + hash:%-#+5.0f\n\n\n", nb);
+	ret2 += printf("SYST : test basique:\n");
+	ret2 += printf("SYST : f simple:%f\n", nb);
+	ret2 += printf("SYST : space:% f\n", nb);
+	ret2 += printf("SYST : plus:%+f\n", nb);
+	ret2 += printf("SYST : hash:%#f\n", nb);
+	ret2 += printf("SYST : precision:%.2f\n", nb);
+	ret2 += printf("SYST : big prec:%.14f\n", nb);
+	ret2 += printf("SYST : precision + hash:%#.f\n", nb);
+	ret2 += printf("SYST : space + prec:% .5f\n", nb);
+	ret2 += printf("SYST : space + prec + hash:%# .0f\n", nb);
+	ret2 += printf("SYST : space + prec + hash:% #.0f\n", nb);
+	ret2 += printf("SYST : Plus + prec / grande:%+.5f\n", nb);
+	ret2 += printf("SYST : Plus + prec / petite:%+.0f\n", nb);
+	ret2 += printf("SYST : Plus + prec + hash:%#+.0f\n", nb);
+	ret2 += printf("SYST : Prec + 0:%0.5f\n", nb);
+	ret2 += printf("SYST : Prec + minus:%-.5f\n", nb);
+	ret2 += printf("SYST : size:%5f\n", nb);
+	ret2 += printf("SYST : size + space:% 5f\n", nb);
+	ret2 += printf("SYST : size + plus:%+5f\n", nb);
+	ret2 += printf("SYST : size + space:%# 5f\n", nb);
+	ret2 += printf("SYST : size + plus:%#+5f\n", nb);
+	ret2 += printf("SYST : size + minus:%-5f\n", nb);
+	ret2 += printf("SYST : size + 0:%05f\n", nb);
+	ret2 += printf("SYST : size + 0 + plus:%+05f\n", nb);
+	ret2 += printf("SYST : size + 0 + plus:%0+5f\n", nb);
+	ret2 += printf("SYST : size + 0 + prec:%05.3f\n", nb);
+	ret2 += printf("SYST : size + 0 + prec + hash:%0#5.0f\n", nb);
+	ret2 += printf("SYST : size + minus + prec:%-5.3f\n", nb);
+	ret2 += printf("SYST : size + minus + prec + hash:%-#5.0f\n", nb);
+	ret2 += printf("SYST : size + plus + 0 + prec:%+05.3f\n", nb);
+	ret2 += printf("SYST : size + plus + 0 + prec + hash:%0+#5.0f\n", nb);
+	ret2 += printf("SYST : size + espace + zero + prec:%0 5.3f\n", nb);
+	ret2 += printf("SYST : size + espace + zero + prec:% 05.3f\n", nb);
+	ret2 += printf("SYST : size + espace + zero + prec + hash:%#0 5.0f\n", nb);
+	ret2 += printf("SYST : size + minus + plus + prec:%-+5.3f\n", nb);
+	ret2 += printf("SYST : size + minus + plus + prec + hash:%-#+5.0f\n\n", nb);
 
-	printf("res mine : %d\n\n", ret1);
-	printf("res syst : %d\n\n\n", ret2);
+	printf("res mine : %d\n", ret1);
+	printf("res syst : %d\n\n", ret2);
 
 	return (0);
 }
