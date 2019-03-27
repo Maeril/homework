@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:59:01 by myener            #+#    #+#             */
-/*   Updated: 2019/03/26 18:24:56 by myener           ###   ########.fr       */
+/*   Updated: 2019/03/27 12:42:23 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int			troubleshooter(t_data *data, int len)
 	lngt->prec = (lngt->prec && (lngt->prec_value <= len)) ? 0 : lngt->prec;
 	if (lngt->prec && !lngt->prec_rien && !lngt->prec_zero)
 		len = lngt->prec_value;
-	if (data->flag->sharp && data->type->o != 0)
+	if (data->flag->sharp && data->type->o != 0 && !data->lngt->prec)
 		len += 1;
 	return (len);
 }
@@ -53,7 +53,7 @@ static int			writer(t_data *data, int len, int prec_len)
 
 	lngt = data->lngt;
 	flag = data->flag;
-	if (flag->sharp && data->type->o != 0)
+	if (flag->sharp && (data->type->o != 0) && !data->lngt->prec)
 		ft_putstr("0");
 	if ((lngt->width && (lngt->width_value > 0)) && !flag->minus)
 		widthprinter_nominus(data, len);
@@ -75,7 +75,7 @@ int		typeis_octal(va_list ap, t_data *data, t_lngt *lngt)
 
 	if (data->type->o)
 	{
-		data->type->o = va_arg(ap, int);
+		data->type->o = va_arg(ap, unsigned long long int);
 		data->type->o =(data->tool->size ? converter(data) : ((unsigned int)data->type->o));
 		len = ft_octlen(data->type->o);
 		len = ((data->type->o == 0) && (lngt->prec_zero || lngt->prec_rien)) ? 0 : len;
