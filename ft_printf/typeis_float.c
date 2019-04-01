@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 16:14:29 by myener            #+#    #+#             */
-/*   Updated: 2019/04/01 16:02:09 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/01 17:39:33 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ static void	writer(t_data *data, int prec_len, char *str, long long int num)
 	else if ((!data->lngt->prec_rien && !data->lngt->prec_zero && num == 0) || num != 0)
 	{
 		ft_putnbr_long(num);
-		ft_putchar('.');
+		if ((!data->lngt->prec_rien && !data->lngt->prec_zero) || data->flag->sharp)
+			ft_putchar('.');
 	}
 	if (str[prec_len - 1] >= '5')
 	{
