@@ -28,7 +28,7 @@ void        widthprinter_nominus(t_data *data, int len)
     int i;
 
 	len += 1;
-	i = -1;
+	i = (data->spec->flt ? 0 : -1);
 	if (data->flag->zero)
 	{
     	while (i++ < (data->lngt->width_value - len))

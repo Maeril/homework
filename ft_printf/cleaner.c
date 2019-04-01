@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 17:48:05 by myener            #+#    #+#             */
-/*   Updated: 2019/03/27 17:50:06 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/01 15:45:14 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ void		cleaner(t_data *data)
 		data->tool->ret = 0;
 		data->tool->flt_tmp = 0;
 		data->tool->vir = 0;
+		data->tool->neg = 0;
 		data->tool->str_tp = NULL;
 }

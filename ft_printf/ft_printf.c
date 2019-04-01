@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 11:22:42 by myener            #+#    #+#             */
-/*   Updated: 2019/03/28 15:30:21 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/01 12:53:40 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,8 @@ int		put_text(va_list ap, const char *format, char *instruc)
 			i = i + len;
 			struct_malloc(&data);
 			cleaner(&data);
-			// printf("prec_value = %d\n", data.lngt->prec_value);
 			parser(instruc, &data);
-			// printf("prec_value = %d\n", data.lngt->prec_value);
 			finalizer(&data);
-			// printf("prec_value = %d\n", data.lngt->prec_value);
 			dispatcher(ap, &data);
 			ret += data.tool->ret;
 			cleaner(&data);

@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by myener            #+#    #+#             */
-/*   Updated: 2019/03/27 17:49:05 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/01 15:44:59 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct			s_tool
 	int					vir;
 	unsigned long long int flt_tmp;
 	int					ret;
+	int					neg;
 	int					perc;/* cas special : si on a "%%" et qu'il y a des instructions entre les %*/
 	int					index;/* Pour gerer data.width on a besoin de l'index i  */
 	int					index2;/* pour gerer data.precision on a besoin de l'index j */

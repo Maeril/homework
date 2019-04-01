@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 16:14:29 by myener            #+#    #+#             */
-/*   Updated: 2019/03/28 17:00:35 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/01 16:02:09 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ static void	troubleshooter(t_data *data, long long int num, int prec_len, int le
 		ft_putchar('-');
 		data->tool->vir++;
 	}
-	else if ((flag->plus || flag->space)
-		&& ((lngt->width_value < (ft_intlen(num) + prec_len) && num >= 0) || num == 0))
+	else if (flag->plus || flag->space)
 	{
 		if (flag->plus)
 			ft_putchar('+');
@@ -40,7 +39,9 @@ static void	troubleshooter(t_data *data, long long int num, int prec_len, int le
 			ft_putchar(' ');
 		data->tool->vir++;
 	}
-	if (data->flag->sharp && (data->spec->flt - num == 0))
+	num += 1;
+	num -= 1;
+	if (data->flag->sharp && (!data->flag->zero || (data->flag->sharp && (data->spec->flt - num == 0) && data->flag->zero)))
 		data->tool->vir++;
 	len += data->tool->vir;
 	len += prec_len;
@@ -87,15 +88,17 @@ static void	writer(t_data *data, int prec_len, char *str, long long int num)
 	data->tool->vir += ((data->lngt->prec_rien || data->lngt->prec_zero) ? (prec_len - 1) : prec_len);
 	if ((data->lngt->prec_rien || data->lngt->prec_zero) && ((stk[len - 1] >= '5') || num == 0))
 	{
-		num = (((num != 0) && (stk[len - 1] > '5')) ? ((ft_atoll(stk)) + 1) : num);
-		ft_putnbr(num);
+		if ((num != 0) && (stk[len - 1] > '5'))
+			num = ft_atoll(stk) + 1;
+		num -= (!data->tool->neg && num != 0 && (stk[len - 1] > '5')) ? 1 : 0;
+		ft_putnbr_long(num);
 		if (data->flag->sharp)
 			ft_putchar('.');
 		data->tool->vir += (data->flag->sharp ? 1 : 0);
 	}
-	else if (!data->lngt->prec_rien && !data->lngt->prec_zero)
+	else if ((!data->lngt->prec_rien && !data->lngt->prec_zero && num == 0) || num != 0)
 	{
-		ft_putnbr(num);
+		ft_putnbr_long(num);
 		ft_putchar('.');
 	}
 	if (str[prec_len - 1] >= '5')
@@ -134,6 +137,7 @@ int			typeis_float(va_list ap, t_data *data)
 		len = ft_intlen(num);
 		troubleshooter(data, num, prec_len, len);
 		data->spec->flt = (data->spec->flt < 0) ? -data->spec->flt : data->spec->flt;
+		data->tool->neg = (num < 0) ? 1 : 0;
 		num = (num < 0) ? -num : num;
 		data->spec->flt -= num;
 		if (!(str = malloc(sizeof(char) * (prec_len + 1))))
