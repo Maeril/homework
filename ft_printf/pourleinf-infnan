@@ -1,0 +1,8 @@
+```if (nb != nb)
+        ft_putstr("lol c'est un nan");```
+(modifié)
+```if (nb >= 1 / 0.0 && nb <= 1 / 0.0)
+        ft_putstr("lol c'est un inf");```
+```if (nb >= -1 / 0.0 && nb <= -1 / 0.0)
+        ft_putstr("lol c'est un -inf");```
+https://stackoverflow.com/questions/36150514/check-if-a-number-is-inf-or-nan
