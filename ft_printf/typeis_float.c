@@ -6,12 +6,38 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 16:14:29 by myener            #+#    #+#             */
-/*   Updated: 2019/04/01 17:39:33 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/01 21:38:02 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdlib.h>
+
+#include "ft_printf.h"
+#include <stdlib.h>
+
+static int infnan(double num)
+{
+	// double nb;
+
+	// nb = num;
+	if (num != num)
+	{
+		ft_putstr("nan");
+		return (1);
+	}
+	else if (num >= 1 / 0.0 && num <= 1 / 0.0)
+    {
+		ft_putstr("inf");
+		return (1);
+	}
+	else if (num >= -1 / 0.0 && num <= -1 / 0.0)
+	{
+		ft_putstr("-inf");
+		return (1);
+	}
+	return (0);
+}
 
 static void	troubleshooter(t_data *data, long long int num, int prec_len, int len)
 {
@@ -134,9 +160,12 @@ int			typeis_float(va_list ap, t_data *data)
 		prec_len = (data->lngt->prec ? (data->lngt->prec_value + 1) : 7);
 		prec_len = ((data->lngt->prec_zero || data->lngt->prec_rien) ? 0 : prec_len);
 		data->spec->flt = va_arg(ap, double);
+		data->tool->stock = data->spec->flt;
 		num = data->spec->flt;
 		len = ft_intlen(num);
 		troubleshooter(data, num, prec_len, len);
+		if (infnan(data->spec->flt))
+			return (0);
 		data->spec->flt = (data->spec->flt < 0) ? -data->spec->flt : data->spec->flt;
 		data->tool->neg = (num < 0) ? 1 : 0;
 		num = (num < 0) ? -num : num;

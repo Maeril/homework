@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 23:34:58 by myener            #+#    #+#             */
-/*   Updated: 2019/04/01 17:39:34 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/01 21:40:55 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,33 +23,35 @@ int			main(void)
 	double		nb;
 
     nb = 1.0/0.0;
-	// ret1 += ft_printf("MINE = %f\n", nb);
+	ret1 += ft_printf("MINE = %f\n", nb);
+	printf("\n\n");
 	ret2 += printf("SYST = %f\n", nb);
-	// ret1 += ft_printf("MINE = %12f\n", nb);
+	ret1 += ft_printf("MINE = %12f\n", nb);
 	ret2 += printf("SYST = %12f\n", nb);
-	// ret1 += ft_printf("MINE = %-12f\n", nb);
+	ret1 += ft_printf("MINE = %-12f\n", nb);
 	ret2 += printf("SYST = %-12f\n", nb);
-	// ret1 += ft_printf("MINE = %5.9f\n", nb);
+	ret1 += ft_printf("MINE = %5.9f\n", nb);
 	ret2 += printf("SYST = %5.9f\n", nb);
 
+
     nb = -1.0/0.0;
-	// ret1 += ft_printf("MINE = %f\n", nb);
+	ret1 += ft_printf("MINE = %f\n", nb);
 	ret2 += printf("SYST = %f\n", nb);
-	// ret1 += ft_printf("MINE = %12f\n", nb);
+	ret1 += ft_printf("MINE = %12f\n", nb);
 	ret2 += printf("SYST = %12f\n", nb);
-	// ret1 += ft_printf("MINE = %-12f\n", nb);
+	ret1 += ft_printf("MINE = %-12f\n", nb);
 	ret2 += printf("SYST = %-12f\n", nb);
-	// ret1 += ft_printf("MINE = %5.9f\n", nb);
+	ret1 += ft_printf("MINE = %5.9f\n", nb);
 	ret2 += printf("SYST = %5.9f\n", nb);
 
 	nb = 0.0/0.0;
-	// ret1 += ft_printf("MINE = %f\n", nb);
+	ret1 += ft_printf("MINE = %f\n", nb);
 	ret2 += printf("SYST = %f\n", nb);
-	// ret1 += ft_printf("MINE = %12f\n", nb);
+	ret1 += ft_printf("MINE = %12f\n", nb);
 	ret2 += printf("SYST = %12f\n", nb);
-	// ret1 += ft_printf("MINE = %-12f\n", nb);
+	ret1 += ft_printf("MINE = %-12f\n", nb);
 	ret2 += printf("SYST = %-12f\n", nb);
-	// ret1 += ft_printf("MINE = %5.9f\n", nb);
+	ret1 += ft_printf("MINE = %5.9f\n", nb);
 	ret2 += printf("SYST = %5.9f\n", nb);
 
 	printf("res mine : %d\n", ret1);
