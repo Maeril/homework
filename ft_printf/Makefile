@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/17 21:20:38 by myener            #+#    #+#              #
-#    Updated: 2019/03/23 17:44:08 by myener           ###   ########.fr        #
+#    Updated: 2019/04/02 16:31:27 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC_LIBFT=  ./libft/ft_abs.c	\
             ./libft/ft_putnbr_long.c \
             ./libft/ft_putunbr_long.c \
             ./libft/ft_strnew.c \
+            ./libft/ft_strcmp.c \
             ./libft/ft_strsub.c \
             ./libft/ft_strdup.c \
             ./libft/ft_itoc.c   \

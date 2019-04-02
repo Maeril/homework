@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 16:14:29 by myener            #+#    #+#             */
-/*   Updated: 2019/04/01 21:38:02 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/02 15:57:24 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,41 @@
 #include "ft_printf.h"
 #include <stdlib.h>
 
-static int infnan(double num)
+static int infnan(t_data *data, double num, int len)
 {
-	// double nb;
+	t_lngt *lngt;
+	t_flag *flag;
 
-	// nb = num;
+	lngt = data->lngt;
+	flag = data->flag;
 	if (num != num)
 	{
+		len += flag->minus ?  2 : 1;
+		if ((lngt->width && (lngt->width_value > 0)) && !flag->minus && (lngt->width_value > (len + 1)))
+			widthprinter_nominus(data, len);
 		ft_putstr("nan");
+		if (lngt->width && lngt->width_value && flag->minus)
+			widthprinter_minus(data, len);
 		return (1);
 	}
 	else if (num >= 1 / 0.0 && num <= 1 / 0.0)
     {
+		len += flag->minus ?  2 : 1;
+		if ((lngt->width && (lngt->width_value > 0)) && !flag->minus && (lngt->width_value > (len + 1)))
+			widthprinter_nominus(data, len);
 		ft_putstr("inf");
+		if (lngt->width && lngt->width_value && flag->minus)
+			widthprinter_minus(data, len);
 		return (1);
 	}
 	else if (num >= -1 / 0.0 && num <= -1 / 0.0)
 	{
+		len += flag->minus ?  3 : 2;
+		if ((lngt->width && (lngt->width_value > 0)) && !flag->minus && (lngt->width_value > (len + 1)))
+			widthprinter_nominus(data, len);
 		ft_putstr("-inf");
+		if (lngt->width && lngt->width_value && flag->minus)
+			widthprinter_minus(data, len);
 		return (1);
 	}
 	return (0);
@@ -163,9 +180,9 @@ int			typeis_float(va_list ap, t_data *data)
 		data->tool->stock = data->spec->flt;
 		num = data->spec->flt;
 		len = ft_intlen(num);
-		troubleshooter(data, num, prec_len, len);
-		if (infnan(data->spec->flt))
+		if (infnan(data, data->spec->flt, len))
 			return (0);
+		troubleshooter(data, num, prec_len, len);
 		data->spec->flt = (data->spec->flt < 0) ? -data->spec->flt : data->spec->flt;
 		data->tool->neg = (num < 0) ? 1 : 0;
 		num = (num < 0) ? -num : num;

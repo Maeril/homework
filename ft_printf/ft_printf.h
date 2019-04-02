@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by myener            #+#    #+#             */
-/*   Updated: 2019/04/01 21:26:29 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/02 16:31:12 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ void			ft_putunbr_base(unsigned long long int nb, const char *base);
 void			ft_putnbr_long(long long int nb);
 void			ft_putunbr_long(unsigned long long int nb);
 void			ft_putstr(char *str);
+int				ft_strcmp(const char *s1, const char *s2);
 size_t			ft_strlen(const char *str);
 char			*ft_strnew(size_t size);
 char			*ft_strsub(const char *s, unsigned int start, size_t len);
