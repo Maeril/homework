@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:51:38 by myener            #+#    #+#             */
-/*   Updated: 2019/04/02 17:44:37 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/03 14:07:21 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void		errormanager(t_data *data, int len, char *err)
 		len = 6;
 		if ((data->lngt->width && (data->lngt->width_value > 0)) && !data->flag->minus)
 			widthprinter_nominus(data, len);
-		ft_putstr("(null)");
+		if (!data->lngt->prec_zero && !data->lngt->prec_rien)
+			ft_putstr("(null)");
 		if ((data->lngt->width && (data->lngt->width_value > 0)) && data->flag->minus)
 			widthprinter_minus(data, len);
 	}

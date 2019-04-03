@@ -30,17 +30,11 @@ void        widthprinter_nominus(t_data *data, int len)
 	len += 1;
 	i = (data->spec->flt ? 0 : -1);
 	if (data->flag->zero)
-	{
     	while (i++ < (data->lngt->width_value - len))
     		ft_putchar('0');
-	}
 	else if (!data->flag->zero)
-	{
 			while (i++ < (data->lngt->width_value - len))
-			{
     			ft_putchar(' ');
-			}
-	}
 	len -= 1;
 }
 

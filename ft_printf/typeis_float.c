@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 16:14:29 by myener            #+#    #+#             */
-/*   Updated: 2019/04/02 15:57:24 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/03 15:56:34 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,11 @@ static int infnan(t_data *data, double num, int len)
 
 static void	troubleshooter(t_data *data, long long int num, int prec_len, int len)
 {
-	t_lngt *lngt;
-	t_flag *flag;
+	t_lngt	*lngt;
+	t_flag	*flag;
+	t_spec	*spec;
 
+	spec = data->spec;
 	lngt = data->lngt;
 	flag = data->flag;
 	if (lngt->prec && !lngt->prec_rien && !lngt->prec_zero)
@@ -69,7 +71,7 @@ static void	troubleshooter(t_data *data, long long int num, int prec_len, int le
 	lngt->width = (lngt->width && ((lngt->width_value <= len + prec_len) ||
 		((lngt->prec && (lngt->width_value <= len + prec_len))))) ?
 		0 : lngt->width;
-	if (data->spec->flt < 0)
+	if (spec->flt < 0)
 	{
 		ft_putchar('-');
 		data->tool->vir++;
@@ -84,7 +86,7 @@ static void	troubleshooter(t_data *data, long long int num, int prec_len, int le
 	}
 	num += 1;
 	num -= 1;
-	if (data->flag->sharp && (!data->flag->zero || (data->flag->sharp && (data->spec->flt - num == 0) && data->flag->zero)))
+	if (flag->sharp && (!flag->zero || (flag->sharp && (spec->flt - num == 0) && flag->zero)))
 		data->tool->vir++;
 	len += data->tool->vir;
 	len += prec_len;
@@ -92,8 +94,8 @@ static void	troubleshooter(t_data *data, long long int num, int prec_len, int le
 		widthprinter_nominus(data, len);
 	if (lngt->prec_zero)
 		return ;
-	if (data->spec->flt < 0)
-		data->spec->flt = -data->spec->flt;
+	if (spec->flt < 0)
+		spec->flt = -spec->flt;
 }
 
 static void	overthedot(t_data *data, char *str)
@@ -124,12 +126,12 @@ static void	writer(t_data *data, int prec_len, char *str, long long int num)
 	zero = (((int)ft_strlen(str)) < prec_len);
 	tmp = data->tool->flt_tmp;
 	len = ((num < 0) ? ft_intlen(num) + 1 : ft_intlen(num));
-	if (!(stk = malloc(sizeof(char) * (len + 2))))
-			return ;
+	stk = ft_strnew(len + 2);
 	stk = ft_lltoa(num);
 	data->tool->vir = !data->tool->vir ? 1 : data->tool->vir;
 	data->tool->vir += ((data->lngt->prec_rien || data->lngt->prec_zero) ? (prec_len - 1) : prec_len);
-	if ((data->lngt->prec_rien || data->lngt->prec_zero) && ((stk[len - 1] >= '5') || num == 0))
+	data->tool->vir -= (!data->lngt->prec_rien && !data->lngt->prec_zero) ? 1 : 0;
+	if (((data->lngt->prec_rien || data->lngt->prec_zero)) && ((stk[len - 1] >= '5') || num == 0 ))
 	{
 		if ((num != 0) && (stk[len - 1] > '5'))
 			num = ft_atoll(stk) + 1;
@@ -169,29 +171,31 @@ int			typeis_float(va_list ap, t_data *data)
 	int						len;
 	long long int			num;
 	char					*str;
+	t_spec					*spec;
 
+	spec = data->spec;
 	len = 0;
 	if (data->type->f)
 	{
 		data->lngt->width_value = data->lngt->width_value;
 		prec_len = (data->lngt->prec ? (data->lngt->prec_value + 1) : 7);
 		prec_len = ((data->lngt->prec_zero || data->lngt->prec_rien) ? 0 : prec_len);
-		data->spec->flt = va_arg(ap, double);
-		data->tool->stock = data->spec->flt;
-		num = data->spec->flt;
+		spec->flt = va_arg(ap, double);
+		data->tool->stock = spec->flt;
+		num = spec->flt;
 		len = ft_intlen(num);
-		if (infnan(data, data->spec->flt, len))
+		if (infnan(data, spec->flt, len))
 			return (0);
 		troubleshooter(data, num, prec_len, len);
-		data->spec->flt = (data->spec->flt < 0) ? -data->spec->flt : data->spec->flt;
+		spec->flt = (spec->flt < 0) ? -spec->flt : spec->flt;
 		data->tool->neg = (num < 0) ? 1 : 0;
 		num = (num < 0) ? -num : num;
-		data->spec->flt -= num;
+		spec->flt -= num;
 		if (!(str = malloc(sizeof(char) * (prec_len + 1))))
 			return (0);
 		overthedot(data, str);
 		str = ft_strsub(str, 0, prec_len);
-		if (((data->lngt->prec_zero || data->lngt->prec_rien) && data->spec->flt != 0) || data->spec->flt || data->spec->flt == 0)
+		if (((data->lngt->prec_zero || data->lngt->prec_rien) && spec->flt != 0) || spec->flt || spec->flt == 0)
 		{
 			writer(data, prec_len, str, num);
 			len = (ft_intlen(num) + data->tool->vir);
