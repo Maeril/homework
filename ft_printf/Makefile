@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/17 21:20:38 by myener            #+#    #+#              #
-#    Updated: 2019/04/02 16:31:27 by myener           ###   ########.fr        #
+#    Updated: 2019/04/04 14:43:11 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,8 +39,10 @@ SRC_LIBFT=  ./libft/ft_abs.c	\
 SRC     =   cleaner.c           \
             dispatcher.c        \
             finalizer.c         \
+            float_tools.c		\
             ft_printf.c         \
             parser.c            \
+			parser_helper.c		\
             printer.c           \
             typeis_int.c        \
             typeis_char.c       \

@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:32:38 by myener            #+#    #+#             */
-/*   Updated: 2019/04/03 14:53:27 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/04 16:51:29 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ typedef struct			s_tool
 	int					ret;
 	int					neg;
 	double				stock;
+	int					flt_len;
+	char				*flt_str;
 	int					perc;/* cas special : si on a "%%" et qu'il y a des instructions entre les %*/
 	int					index;/* Pour gerer data.width on a besoin de l'index i  */
 	int					index2;/* pour gerer data.precision on a besoin de l'index j */
@@ -130,22 +132,22 @@ size_t			ft_strlen(const char *str);
 char			*ft_strnew(size_t size);
 char			*ft_strsub(const char *s, unsigned int start, size_t len);
 char			*ft_strdup(const char *str);
+int				infnan(t_data *data, double num, int len);
 void			cleaner(t_data *data);
+void			endwriter(t_data *data, int zero, int prec_len, char *str);
 void			finalizer(t_data *data);
 int				ft_printf(const char *format, ...);
-void			get_arg_len(va_list ap, t_data *data);
-void			parse_flags(char *instruc, t_flag *flag, int i);
-void			parse_precision(char *instruc, t_lngt *lngt, t_tool *tool, int i);
-void			parse_size(char *instruc, t_size *size, int i);
-void			parse_type(char *instruc, t_type *type, t_tool *tool, int i);
+void			ghostwriter(t_data *data, int len, unsigned long long int num);
+void			overthedot(t_data *data, int p_ln);
+void			parse_prec(char *instruc, t_lngt *lngt, t_tool *tool, int i);
 void			parse_width(char *instruc, t_data *data, int i);
 void			parser(char *instruc, t_data *data);
 void			precision_printer(t_data *data, int len);
-int				put_text(va_list ap, const char *format, char *instruc);
+void			troublehelper(t_data *data, t_flag	*flag, t_spec *spec);
+void			struct_malloc(t_data *data);
 void			dispatcher(va_list ap, t_data *data);
-char			*take_instructions(const char *format, int i);
 int				typeis_int(va_list ap, t_data *data, t_lngt *lngt);
-int				typeis_perc(t_data *data);
+int				typeis_perc(t_data *data, t_lngt *lngt);
 int				typeis_str(va_list ap, t_data *data);
 int				typeis_ptr(va_list ap, t_data *data);
 int				typeis_char(va_list ap, t_data *data);

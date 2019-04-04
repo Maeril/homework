@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 18:06:02 by myener            #+#    #+#             */
-/*   Updated: 2019/03/27 15:03:59 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/04 16:24:31 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ static int			writer(t_data *data, int len, int prec_len)
 		widthprinter_nominus(data, len);
 	if (lngt->prec)
 		precision_printer(data, prec_len);
-	if (data->type->x != 0 || (data->type->x == 0 && !lngt->prec_zero && !lngt->prec_rien))
+	if (data->type->x != 0 || (data->type->x == 0 && !lngt->prec_zero &&
+		!lngt->prec_rien))
 		ft_putunbr_base(data->type->x, HEXL);
 	if ((lngt->width && (lngt->width_value > 0)) && flag->minus)
 		widthprinter_minus(data, len);
@@ -70,20 +71,26 @@ static int			writer(t_data *data, int len, int prec_len)
 
 int					typeis_hexl(va_list ap, t_data *data, t_lngt *lngt)
 {
-	int len;
-	int	prec_len;
+	int		len;
+	int		prec_len;
+	t_type	*type;
+	t_tool	*tool;
 
-	if (data->type->x)
+	tool = data->tool;
+	type = data->type;
+	if (type->x)
 	{
 		data->type->x = va_arg(ap, unsigned long long int);
-		data->type->x =(data->tool->size ? converter(data) : ((unsigned int)data->type->x));
-		len = ft_hexlen(data->type->x);
-		len = ((data->type->x == 0) && (lngt->prec_zero || lngt->prec_rien)) ? 0 : len;
+		data->type->x = (data->tool->size ? converter(data) :
+			((unsigned int)data->type->x));
+		len = ft_hexlen(type->x);
+		len = ((type->x == 0) && (lngt->prec_zero || lngt->prec_rien)) ?
+			0 : len;
 		len = troubleshooter(data, len);
 		prec_len = (lngt->prec && !lngt->prec_rien && !lngt->prec_zero) ?
-			ft_hexlen(data->type->x) : 0;
-		if (((lngt->prec_zero || lngt->prec_rien) && (data->type->x > 0))
-			|| ((lngt->prec_zero || lngt->prec_rien) && data->lngt->width) || data->type->x)
+			ft_hexlen(type->x) : 0;
+		if (((lngt->prec_zero || lngt->prec_rien) && (type->x > 0)) ||
+		((lngt->prec_zero || lngt->prec_rien) && lngt->width) || type->x)
 			return (writer(data, len, prec_len));
 		return (lngt->width_value);
 	}

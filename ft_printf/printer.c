@@ -1,43 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printer.c                          :+:      :+:    :+:   */
+/*   printer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/27 17:50:30 by myener            #+#    #+#             */
-/*   Updated: 2019/03/06 17:22:09 by myener           ###   ########.fr       */
+/*   Created: 2019/04/04 14:21:05 by myener            #+#    #+#             */
+/*   Updated: 2019/04/04 14:21:22 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void        widthprinter_minus(t_data *data, int len)
+void		widthprinter_minus(t_data *data, int len)
 {
-    int i;
+	int i;
 
-    i = -1;
+	i = -1;
 	data->lngt->width_value--;
-    while (i++ < (data->lngt->width_value - len))
-    	ft_putchar(' ');
+	while (i++ < (data->lngt->width_value - len))
+		ft_putchar(' ');
 	data->lngt->width_value++;
 }
 
-void        widthprinter_nominus(t_data *data, int len)
+void		widthprinter_nominus(t_data *data, int len)
 {
-    int i;
+	int i;
 
 	len += 1;
 	i = (data->spec->flt ? 0 : -1);
 	if (data->flag->zero)
-    	while (i++ < (data->lngt->width_value - len))
-    		ft_putchar('0');
+		while (i++ < (data->lngt->width_value - len))
+			ft_putchar('0');
 	else if (!data->flag->zero)
-			while (i++ < (data->lngt->width_value - len))
-    			ft_putchar(' ');
+		while (i++ < (data->lngt->width_value - len))
+			ft_putchar(' ');
 	len -= 1;
 }
-
 
 void		precision_printer(t_data *data, int len)
 {

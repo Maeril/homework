@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 16:56:58 by myener            #+#    #+#             */
-/*   Updated: 2019/04/03 16:49:32 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/04 16:51:13 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ void		dispatcher(va_list ap, t_data *data)
 	else if (data->type->f)
 		data->tool->ret = typeis_float(ap, data);
 	else if (data->tool->perc)
-		data->tool->ret = typeis_perc(data);
+		data->tool->ret = typeis_perc(data, data->lngt);
 }

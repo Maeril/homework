@@ -6,25 +6,25 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 11:22:42 by myener            #+#    #+#             */
-/*   Updated: 2019/04/01 12:53:40 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/04 14:10:05 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include "ft_printf.h"
 
-int		is_type(const char *format, int i)
+static int	is_type(const char *format, int i)
 {
 	if (format[i] == 'c' || format[i] == 'p' || format[i] == 's' ||
-			format[i] == 'd' || format[i] == 'i' || format[i] == 'o' ||
-			format[i] == 'u' || format[i] == 'x' || format[i] == 'X' ||
-			format[i] == 'f')
+		format[i] == 'd' || format[i] == 'i' || format[i] == 'o' ||
+		format[i] == 'u' || format[i] == 'x' || format[i] == 'X' ||
+		format[i] == 'f')
 		return (0);
 	else
 		return (1);
 }
 
-char	*take_instructions(const char *format, int i)
+static char	*take_instructions(const char *format, int i)
 {
 	int		tmp;
 	char	*str;
@@ -47,35 +47,27 @@ char	*take_instructions(const char *format, int i)
 	return (str);
 }
 
-void	struct_malloc(t_data *data)
+static int	display_helper(va_list ap, char *inst, int i, t_data *data)
 {
-	if (!(data->spec = malloc(sizeof(t_spec))))
-		return ;
-	if (!(data->flag = malloc(sizeof(t_flag))))
-		return ;
-	if (!(data->lngt = malloc(sizeof(t_lngt))))
-		return ;
-	if (!(data->size = malloc(sizeof(t_size))))
-		return ;
-	if (!(data->type = malloc(sizeof(t_type))))
-		return ;
-	if (!(data->tool = malloc(sizeof(t_tool))))
-		return ;
+	int	len;
+
+	len = ft_strlen(inst);
+	i = i + len;
+	struct_malloc(data);
+	cleaner(data);
+	parser(inst, data);
+	finalizer(data);
+	dispatcher(ap, data);
+	return (i);
 }
 
-int		put_text(va_list ap, const char *format, char *instruc)
+static int	put_text(va_list ap, const char *format, char *instruc, int index)
 {
 	int		i;
 	t_data	data;
-	int		index;
-	int		tmp;
-	int		len;
 	int		ret;
 
-	index = 0;
-	tmp = 0;
 	i = 0;
-	len = 0;
 	ret = 0;
 	while (format[i])
 	{
@@ -87,13 +79,7 @@ int		put_text(va_list ap, const char *format, char *instruc)
 		if (format[i] == '%')
 		{
 			instruc = take_instructions(format, i);
-			len = ft_strlen(instruc);
-			i = i + len;
-			struct_malloc(&data);
-			cleaner(&data);
-			parser(instruc, &data);
-			finalizer(&data);
-			dispatcher(ap, &data);
+			i = display_helper(ap, instruc, i, &data);
 			ret += data.tool->ret;
 			cleaner(&data);
 		}
@@ -103,15 +89,17 @@ int		put_text(va_list ap, const char *format, char *instruc)
 	return (index);
 }
 
-int		ft_printf(const char *format, ...)
+int			ft_printf(const char *format, ...)
 {
 	va_list ap;
 	int		nb;
+	int		index;
 	char	*instruc;
 
-	instruc = 0;
+	instruc = NULL;
+	index = 0;
 	va_start(ap, format);
-	nb = put_text(ap, format, instruc);
+	nb = put_text(ap, format, instruc, index);
 	va_end(ap);
 	return (nb);
 }
