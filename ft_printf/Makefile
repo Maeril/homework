@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/17 21:20:38 by myener            #+#    #+#              #
-#    Updated: 2019/04/04 14:43:11 by myener           ###   ########.fr        #
+#    Updated: 2019/04/05 19:01:44 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ LIBFT   =   libft
 OBJ     =   $(SRC:.c=.o)
 OBJ_LIBFT=  $(SRC_LIBFT:.c=.o)
 
-CFLAGS  =   -Wall -Wextra -Werror
+CFLAGS  =  -g -g3 -Wall -Wextra -Werror
 
 all:  $(NAME)
 

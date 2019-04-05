@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 17:48:05 by myener            #+#    #+#             */
-/*   Updated: 2019/04/04 16:14:14 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/05 18:58:09 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void		cleaner_helper(t_data *data)
 	data->spec->lg = 0;
 	data->spec->lglg = 0;
 	data->tool->perc = 0;
+	data->tool->size = 0;
 	data->tool->unsign = 0;
 	data->tool->index = 0;
 	data->tool->index2 = 0;
@@ -80,4 +81,14 @@ void	struct_malloc(t_data *data)
 		return ;
 	if (!(data->tool = malloc(sizeof(t_tool))))
 		return ;
+}
+
+void	free_malloc(t_data *data)
+{
+	free(data->spec);
+	free(data->flag);
+	free(data->lngt);
+	free(data->size);
+	free(data->type);
+	free(data->tool);
 }

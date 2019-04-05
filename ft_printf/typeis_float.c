@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 16:14:29 by myener            #+#    #+#             */
-/*   Updated: 2019/04/04 16:16:57 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/05 18:51:59 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int			float_helper(t_data *data, int p_ln, char *str, long long int num)
 		return ((tool->flt_len < lngt->width_value) ? lngt->width_value
 			: tool->flt_len);
 	}
+	free(str);
 	return (lngt->width_value);
 }
 

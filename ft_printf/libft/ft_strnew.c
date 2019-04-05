@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 13:57:15 by myener            #+#    #+#             */
-/*   Updated: 2019/03/17 23:01:24 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/05 16:37:42 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_strnew(size_t size)
 {
 	char *str;
 
-	if (!(str = (char*)malloc(size + 1)))
+	if (!(str = malloc(sizeof(char) * (size + 1))))
 		return (NULL);
 	ft_bzero(((void*)str), (size + 1));
 	return (str);

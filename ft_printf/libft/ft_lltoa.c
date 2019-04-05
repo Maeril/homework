@@ -6,13 +6,13 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 12:27:49 by myener            #+#    #+#             */
-/*   Updated: 2019/03/17 23:04:48 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/05 15:13:31 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-char    *ft_lltoa(long long int n)
+char	*ft_lltoa(long long int n)
 {
 	int		i;
 	int		neg;

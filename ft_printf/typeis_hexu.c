@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 18:06:08 by myener            #+#    #+#             */
-/*   Updated: 2019/04/04 16:24:28 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/05 16:32:42 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ int					typeis_hexu(va_list ap, t_data *data, t_lngt *lngt)
 	t_type	*type;
 	t_tool	*tool;
 
+	len = 0;
+	prec_len = 0;
 	tool = data->tool;
 	type = data->type;
 	if (type->big_x)

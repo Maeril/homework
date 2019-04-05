@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:34:39 by myener            #+#    #+#             */
-/*   Updated: 2019/04/04 16:16:54 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/05 18:50:42 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ghostwriter(t_data *data, int len, unsigned long long int num)
 {
 	char	*stk;
 
-	stk = ft_strnew(len + 2);
+	stk = ft_strnew(len);
 	stk = ft_lltoa(num);
 	if (((data->lngt->prec_rien || data->lngt->prec_zero)) &&
 		((stk[len - 1] >= '5') || num == 0))
@@ -65,6 +65,7 @@ void	ghostwriter(t_data *data, int len, unsigned long long int num)
 			|| data->flag->sharp)
 			ft_putchar('.');
 	}
+	free(stk);
 }
 
 void	endwriter(t_data *data, int zero, int prec_len, char *str)
@@ -108,15 +109,16 @@ void	overthedot(t_data *data, int p_ln)
 	int						i;
 	unsigned long long int	tmp;
 
-	i = -1;
+	i = 0;
 	tmp = 0;
-	str = ft_strnew(p_ln + 1);
+	str = ft_strnew(p_ln);
 	while (data->spec->flt)
 	{
 		data->spec->flt *= 10;
 		tmp = data->spec->flt;
-		str[++i] = ft_itoc(tmp);
+		str[i] = ft_itoc(tmp);
 		data->spec->flt -= tmp;
+		i++;
 	}
 	data->tool->flt_tmp = tmp;
 	str = ft_strsub(str, 0, p_ln);
