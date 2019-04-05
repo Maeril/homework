@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:53:22 by myener            #+#    #+#             */
-/*   Updated: 2019/03/27 13:30:40 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/05 14:02:13 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static int			writer(t_data *data, int len, int prec_len)
 	return ((len < lngt->width_value) ? lngt->width_value : len);
 }
 
-int		typeis_unsign(va_list ap, t_data *data, t_lngt *lngt)
+int					typeis_unsign(va_list ap, t_data *data, t_lngt *lngt)
 {
 	int	len;
 	int	prec_len;
@@ -69,17 +69,18 @@ int		typeis_unsign(va_list ap, t_data *data, t_lngt *lngt)
 	if (data->type->u)
 	{
 		data->type->u = va_arg(ap, unsigned long long int);
-		data->type->u =(data->tool->size ? converter(data) :
+		data->type->u = (data->tool->size ? converter(data) :
 			((unsigned int)data->type->u));
 		len = ft_uintlen(data->type->u);
-		len = ((data->type->u == 0) && (lngt->prec_zero || lngt->prec_rien)) ? 0 : len;
+		len = ((data->type->u == 0) && (lngt->prec_zero || lngt->prec_rien)) ?
+			0 : len;
 		len = troubleshooter(data, len);
 		prec_len = (lngt->prec && !lngt->prec_rien && !lngt->prec_zero) ?
 			ft_uintlen(data->type->u) : 0;
 		if (((data->lngt->prec_zero || data->lngt->prec_rien)
 			&& data->type->u > 0) || data->type->u || data->type->u == 0)
 			return (writer(data, len, prec_len));
-		return(data->lngt->width_value);
+		return (data->lngt->width_value);
 	}
 	return (-1);
 }
