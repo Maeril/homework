@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 17:48:05 by myener            #+#    #+#             */
-/*   Updated: 2019/04/05 18:58:09 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/06 19:49:21 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,20 @@ void	struct_malloc(t_data *data)
 
 void	free_malloc(t_data *data)
 {
-	free(data->spec);
-	free(data->flag);
-	free(data->lngt);
-	free(data->size);
-	free(data->type);
-	free(data->tool);
+	if (data->spec)
+		free(data->spec);
+	if (data->flag)
+		free(data->flag);
+	if (data->lngt)
+		free(data->lngt);
+	if (data->size)
+		free(data->size);
+	if (data->type)
+		free(data->type);
+	if (data->tool)
+	{
+		if (data->tool->flt_str)
+			free(data->tool->flt_str);
+		free(data->tool);
+	}
 }

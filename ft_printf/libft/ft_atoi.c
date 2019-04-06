@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 18:40:23 by myener            #+#    #+#             */
-/*   Updated: 2019/03/17 22:59:03 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/06 20:28:20 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,14 @@ int		ft_atoi(const char *str)
 	neg = 0;
 	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
 		i++;
-	if (str[i] == '-')
-		neg = 1;
+	neg = (str[i] == '-');
 	if (str[i] == '-' || str[i] == '+')
 		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		nb = nb * 10;
+		nb *= 10;
 		nb += (str[i] - '0');
 		i++;
 	}
-	return (neg == 1) ? -nb : nb;
+	return (neg ? -nb : nb);
 }

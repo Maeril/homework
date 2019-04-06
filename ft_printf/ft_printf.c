@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 11:22:42 by myener            #+#    #+#             */
-/*   Updated: 2019/04/05 19:01:36 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/06 19:49:15 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,17 +81,13 @@ static int	put_text(va_list ap, const char *format, char *instruc, int index)
 			instruc = take_instructions(format, i);
 			i = display_helper(ap, instruc, i, &data);
 			ret += data.tool->ret;
-			cleaner(&data);
-			if (data.tool->str_tp)
-				free(data.tool->str_tp);
-			if (data.tool->flt_str)
-				free(data.tool->flt_str);
+			free_malloc(&data);
 		}
 		i++;
 	}
 	index = index + ret;
-	free(instruc);
-	free_malloc(&data);
+	if (instruc)
+		free(instruc);
 	return (index);
 }
 

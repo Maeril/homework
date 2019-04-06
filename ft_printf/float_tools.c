@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:34:39 by myener            #+#    #+#             */
-/*   Updated: 2019/04/05 18:50:42 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/06 19:51:09 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,22 +105,20 @@ void	troublehelper(t_data *data, t_flag *flag, t_spec *spec)
 
 void	overthedot(t_data *data, int p_ln)
 {
-	char					*str;
 	int						i;
 	unsigned long long int	tmp;
 
 	i = 0;
 	tmp = 0;
-	str = ft_strnew(p_ln);
-	while (data->spec->flt)
+	data->tool->flt_str = ft_strnew(p_ln);
+	ft_bzero(data->tool->flt_str, p_ln);
+	while (data->spec->flt && i < p_ln)
 	{
 		data->spec->flt *= 10;
 		tmp = data->spec->flt;
-		str[i] = ft_itoc(tmp);
+		data->tool->flt_str[i] = ft_itoc(tmp);
 		data->spec->flt -= tmp;
 		i++;
 	}
 	data->tool->flt_tmp = tmp;
-	str = ft_strsub(str, 0, p_ln);
-	data->tool->flt_str = str;
 }

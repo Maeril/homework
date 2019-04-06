@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 16:14:29 by myener            #+#    #+#             */
-/*   Updated: 2019/04/05 18:51:59 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/06 20:32:55 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ static void	troubleshooter(t_data *data, int p_ln, int ln)
 	spec = data->spec;
 	lngt = data->lngt;
 	flag = data->flag;
-	if (lngt->prec && !lngt->prec_rien && !lngt->prec_zero)
-		p_ln = lngt->prec_value;
+	p_ln = (lngt->prec && !lngt->prec_rien && !lngt->prec_zero) ? lngt->prec_value : p_ln;
 	lngt->prec = (lngt->prec && (lngt->prec_value <= p_ln)) ? 0 : lngt->prec;
 	lngt->width = (lngt->width && ((lngt->width_value <= ln + p_ln) ||
 		((lngt->prec && (lngt->width_value <= ln + p_ln))))) ?
@@ -55,12 +54,9 @@ static void	writer(t_data *data, int prec_len, char *str, long long int num)
 	ghostwriter(data, len, num);
 	if (str[prec_len - 1] >= '5')
 	{
-		str[prec_len - 1] = '\0';
 		tmp = (ft_atoll(str)) + 1;
 		str = ft_lltoa(tmp);
 	}
-	else
-		str[prec_len - 1] = '\0';
 	prec_len -= 1;
 	endwriter(data, zero, prec_len, str);
 }
@@ -74,8 +70,8 @@ int			float_helper(t_data *data, int p_ln, char *str, long long int num)
 	lngt = data->lngt;
 	spec = data->spec;
 	tool = data->tool;
-	if (((lngt->prec_zero || lngt->prec_rien)
-		&& data->spec->flt != 0) || data->spec->flt || data->spec->flt == 0)
+	if (((lngt->prec_zero || lngt->prec_rien) && data->spec->flt != 0) ||
+	data->spec->flt || data->spec->flt == 0)
 	{
 		writer(data, p_ln, str, num);
 		tool->flt_len = (ft_intlen(num) + data->tool->vir);
@@ -84,7 +80,6 @@ int			float_helper(t_data *data, int p_ln, char *str, long long int num)
 		return ((tool->flt_len < lngt->width_value) ? lngt->width_value
 			: tool->flt_len);
 	}
-	free(str);
 	return (lngt->width_value);
 }
 
