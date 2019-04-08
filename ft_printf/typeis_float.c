@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 16:14:29 by myener            #+#    #+#             */
-/*   Updated: 2019/04/06 20:32:55 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/08 21:11:33 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static void	troubleshooter(t_data *data, int p_ln, int ln)
 	spec = data->spec;
 	lngt = data->lngt;
 	flag = data->flag;
-	p_ln = (lngt->prec && !lngt->prec_rien && !lngt->prec_zero) ? lngt->prec_value : p_ln;
+	p_ln = (lngt->prec && !lngt->prec_rien && !lngt->prec_zero) ?
+	lngt->prec_value : p_ln;
 	lngt->prec = (lngt->prec && (lngt->prec_value <= p_ln)) ? 0 : lngt->prec;
 	lngt->width = (lngt->width && ((lngt->width_value <= ln + p_ln) ||
 		((lngt->prec && (lngt->width_value <= ln + p_ln))))) ?

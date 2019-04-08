@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 17:48:05 by myener            #+#    #+#             */
-/*   Updated: 2019/04/06 19:49:21 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/08 21:08:23 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void			cleaner(t_data *data)
 	cleaner_helper(data);
 }
 
-void	struct_malloc(t_data *data)
+void			struct_malloc(t_data *data)
 {
 	if (!(data->spec = malloc(sizeof(t_spec))))
 		return ;
@@ -83,7 +83,7 @@ void	struct_malloc(t_data *data)
 		return ;
 }
 
-void	free_malloc(t_data *data)
+void			free_malloc(t_data *data)
 {
 	if (data->spec)
 		free(data->spec);

@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:12:36 by myener            #+#    #+#             */
-/*   Updated: 2019/04/05 18:49:35 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/08 21:12:26 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		parse_width(char *instruc, t_data *data, int i)
 
 	width_value = ft_strnew(ft_strlen(instruc) - 1);
 	data->lngt->width = 1;
-	if (instruc[i - 1] == '.')
+	if (i > 0 && instruc[i - 1] == '.')
 		return ;
 	j = 0;
 	while ((instruc[i] >= '0' && instruc[i] <= '9') && instruc[i])
@@ -30,13 +30,13 @@ void		parse_width(char *instruc, t_data *data, int i)
 	}
 	data->lngt->width_value = ft_atoi(width_value);
 	data->tool->index = i;
-
+	free(width_value);
 }
 
 void		parse_prec(char *instruc, t_lngt *lngt, t_tool *tool, int i)
 {
 	int		j;
-	int 	start;
+	int		start;
 	char	*stk;
 
 	i++;

@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 13:40:00 by myener            #+#    #+#             */
-/*   Updated: 2019/04/04 14:17:58 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/08 21:15:32 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,17 @@ static void		parse_flags(char *instruc, t_flag *flag, int i)
 			flag->minus = 1;
 		if (instruc[i] == '+')
 			flag->plus = 1;
-		if (instruc[i] == '0' && !(instruc[i - 1] >= '0'
+		if (i == 0)
+		{
+			if (instruc[i] == '0')
+				flag->zero = 1;
+		}
+		else if (i > 0)
+		{
+			if (instruc[i] == '0' && !(instruc[i - 1] >= '0'
 			&& instruc[i - 1] <= '9'))
-			flag->zero = 1;
+				flag->zero = 1;
+		}
 		if (instruc[i] == ' ')
 			flag->space = 1;
 		if (instruc[i] == '#')
@@ -69,9 +77,18 @@ void			parser(char *instruc, t_data *data)
 		if ((instruc[i] == '-' || instruc[i] == '+' || instruc[i] == '0'
 			|| instruc[i] == ' ' || instruc[i] == '#'))
 			parse_flags(instruc, data->flag, i);
-		if ((instruc[i] >= '0' && instruc[i] <= '9') && !(instruc[i - 1] >= '0'
-			&& instruc[i - 1] <= '9') && (instruc[i - 1] != '.'))
-			parse_width(instruc, data, i);
+		if (i == 0)
+		{
+			if (instruc[i] >= '0' && instruc[i] <= '9')
+				parse_width(instruc, data, i);
+		}
+		else if (i > 0)
+		{
+			if ((instruc[i] >= '0' && instruc[i] <= '9') &&
+			!(instruc[i - 1] >= '0' && instruc[i - 1] <= '9') &&
+			(instruc[i - 1] != '.'))
+				parse_width(instruc, data, i);
+		}
 		if (instruc[i] == '.')
 			parse_prec(instruc, data->lngt, data->tool, i);
 		if (instruc[i] == 'h' || instruc[i] == 'l')

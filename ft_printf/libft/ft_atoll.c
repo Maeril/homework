@@ -6,13 +6,13 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 18:40:23 by myener            #+#    #+#             */
-/*   Updated: 2019/03/17 23:00:07 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/08 21:08:53 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-long long int ft_atoll(const char *str)
+long long int	ft_atoll(const char *str)
 {
 	int				i;
 	int				neg;
