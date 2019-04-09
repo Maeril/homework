@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 11:22:42 by myener            #+#    #+#             */
-/*   Updated: 2019/04/06 19:49:15 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/09 14:49:44 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,9 @@ static int	put_text(va_list ap, const char *format, char *instruc, int index)
 		}
 		i++;
 	}
-	index = index + ret;
 	if (instruc)
 		free(instruc);
-	return (index);
+	return (index + ret);
 }
 
 int			ft_printf(const char *format, ...)

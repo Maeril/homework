@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 13:40:00 by myener            #+#    #+#             */
-/*   Updated: 2019/04/08 21:15:32 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/09 14:58:31 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,22 @@ static void		parse_flags(char *instruc, t_flag *flag, int i)
 	}
 }
 
-static void		parse_size(char *instruc, t_size *size, int i)
+static int		parse_size(char *instruc, t_size *size, int i)
 {
-	size->l = (instruc[i] == 'l' && !(instruc[i - 1] == 'l'
-	|| instruc[i + 1] == 'l'));
-	size->h = (instruc[i] == 'h' && !(instruc[i - 1] == 'h'
-	|| instruc[i + 1] == 'h'));
-	size->ll = (instruc[i] == 'l' && (instruc[i + 1] == 'l'
-	|| instruc[i - 1] == 'l'));
-	size->hh = (instruc[i] == 'h' && (instruc[i + 1] == 'h'
-	|| instruc[i - 1] == 'h'));
-	i++;
+	if (instruc[i] == 'h' || instruc[i] == 'l')
+	{
+		size->l = (instruc[i] == 'l' && !(instruc[i - 1] == 'l'
+		|| instruc[i + 1] == 'l'));
+		size->h = (instruc[i] == 'h' && !(instruc[i - 1] == 'h'
+		|| instruc[i + 1] == 'h'));
+		size->ll = (instruc[i] == 'l' && (instruc[i + 1] == 'l'
+		|| instruc[i - 1] == 'l'));
+		size->hh = (instruc[i] == 'h' && (instruc[i + 1] == 'h'
+		|| instruc[i - 1] == 'h'));
+		i++;
+		return (1);
+	}
+	return (0);
 }
 
 static void		parse_type(char *instruc, t_type *type, t_tool *tool, int i)
@@ -77,25 +82,14 @@ void			parser(char *instruc, t_data *data)
 		if ((instruc[i] == '-' || instruc[i] == '+' || instruc[i] == '0'
 			|| instruc[i] == ' ' || instruc[i] == '#'))
 			parse_flags(instruc, data->flag, i);
-		if (i == 0)
-		{
-			if (instruc[i] >= '0' && instruc[i] <= '9')
-				parse_width(instruc, data, i);
-		}
-		else if (i > 0)
-		{
-			if ((instruc[i] >= '0' && instruc[i] <= '9') &&
-			!(instruc[i - 1] >= '0' && instruc[i - 1] <= '9') &&
-			(instruc[i - 1] != '.'))
-				parse_width(instruc, data, i);
-		}
+		if (((i == 0) && (instruc[i] >= '0' && instruc[i] <= '9')) || ((i > 0)
+		&& ((instruc[i] >= '0' && instruc[i] <= '9') && !(instruc[i - 1] >= '0'
+		&& instruc[i - 1] <= '9') && (instruc[i - 1] != '.'))))
+			parse_width(instruc, data, i);
 		if (instruc[i] == '.')
 			parse_prec(instruc, data->lngt, data->tool, i);
 		if (instruc[i] == 'h' || instruc[i] == 'l')
-		{
-			data->tool->size = 1;
-			parse_size(instruc, data->size, i);
-		}
+			data->tool->size = parse_size(instruc, data->size, i);
 		if (instruc[i] == 'c' || instruc[i] == 's' || instruc[i] == 'p' ||
 			instruc[i] == 'd' || instruc[i] == 'i' || instruc[i] == 'o' ||
 			instruc[i] == 'f' || instruc[i] == 'u' || instruc[i] == 'x' ||

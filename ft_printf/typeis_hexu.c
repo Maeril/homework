@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 18:06:08 by myener            #+#    #+#             */
-/*   Updated: 2019/04/05 16:32:42 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/09 14:50:56 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,7 @@ int					typeis_hexu(va_list ap, t_data *data, t_lngt *lngt)
 	if (type->big_x)
 	{
 		type->big_x = va_arg(ap, unsigned long long int);
-		type->big_x = (tool->size ? convert(data) :
-			((unsigned int)type->big_x));
+		type->big_x = tool->size ? convert(data) : ((unsigned int)type->big_x);
 		len = ft_hexlen(type->big_x);
 		len = ((type->big_x == 0) && (lngt->prec_zero || lngt->prec_rien)) ?
 			0 : len;
