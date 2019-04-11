@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_baselen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/18 14:07:20 by myener            #+#    #+#             */
-/*   Updated: 2019/02/26 15:39:41 by myener           ###   ########.fr       */
+/*   Created: 2019/03/13 17:23:44 by myener            #+#    #+#             */
+/*   Updated: 2019/03/13 17:26:47 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr(int nb)
+int		ft_baselen(long long int n, int len)
 {
-	long long int	n;
+	int	e;
 
-	n = nb;
-	if (n < 0)
+	e = 1;
+	while ((n / len) > 0)
 	{
-		ft_putchar('-');
-		n = -n;
+		n /= len;
+		e++;
 	}
-	if (n >= 10)
-		ft_putnbr(n / 10);
-	ft_putchar(n % 10 + '0');
+	return (e);
 }

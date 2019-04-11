@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/18 14:07:20 by myener            #+#    #+#             */
-/*   Updated: 2019/02/26 15:39:41 by myener           ###   ########.fr       */
+/*   Created: 2019/02/14 14:41:32 by myener            #+#    #+#             */
+/*   Updated: 2019/03/15 17:06:03 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr(int nb)
+void	ft_putnbr_base(long long int nb, const char *base)
 {
-	long long int	n;
+	int		bl;
 
-	n = nb;
-	if (n < 0)
+	bl = ft_strlen(base);
+	if (nb < 0)
 	{
 		ft_putchar('-');
-		n = -n;
+		nb = -nb;
 	}
-	if (n >= 10)
-		ft_putnbr(n / 10);
-	ft_putchar(n % 10 + '0');
+	if (nb >= bl)
+		ft_putnbr_base((nb / bl), base);
+	ft_putchar(base[nb % bl]);
 }

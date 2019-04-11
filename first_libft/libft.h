@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mribouch <mribouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 13:57:15 by myener            #+#    #+#             */
-/*   Updated: 2019/03/15 16:08:00 by myener           ###   ########.fr       */
+/*   Updated: 2019/01/29 16:41:54 by mribouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 
 typedef struct	s_list
 {
@@ -26,16 +25,9 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
-int				ft_abs(int nb);
 int				ft_atoi(const char *str);
-long long int	ft_atoll(const char *str);
 void			ft_bzero(void *s, size_t n);
-int				ft_baselen(long long int n, int len);
-int				ft_intlen(long long int n);
-int				ft_uintlen(unsigned long long int n);
-int				ft_octlen(unsigned long long int n);
-int				ft_hexlen(unsigned long long int n);
-float			ft_floatmod(float x, float y);
+int				ft_intlen(int n);
 int				ft_isalnum(int c);
 int				ft_isalpha(int c);
 int				ft_isascii(int c);
@@ -43,9 +35,6 @@ int				ft_isblank(int c);
 int				ft_isdigit(int c);
 int				ft_isprint(int c);
 char			*ft_itoa(int n);
-char			*ft_itoa_base(long long int n, const char *base);
-char			ft_itoc(int n);
-char   			*ft_lltoa(long long int n);
 t_list			*ft_lstnew(void const *content, size_t content_size);
 void			ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
 void			ft_lstdel(t_list **alst, void (*del)(void *, size_t));
@@ -66,12 +55,8 @@ void			ft_putendl(char const *s);
 void			ft_putendl_fd(char const *s, int fd);
 void			ft_putnbr(int nb);
 void			ft_putnbr_fd(int n, int fd);
-void			ft_putnbr_base(long long int nb, const char *base);
-void			ft_putunbr_base(unsigned long long int nb, const char *base);
 void			ft_putstr(char *str);
 void			ft_putstr_fd(char const *s, int fd);
-void			ft_putnbr_long(long long int nb);
-void			ft_putunbr_long(unsigned long long int nb);
 char			*ft_strcat(char *dest, const char *src);
 char			*ft_strchr(const char *s, int c);
 void			ft_strclr(char *s);
@@ -105,8 +90,5 @@ char			*ft_strtrim(const char *s);
 int				ft_tolower(int c);
 int				ft_toupper(int c);
 int				get_next_line(const int fd, char **line);
-float     		roundit_awayzero(float f);
-float   		roundit_towardzero(float f);
-float			roundit_halfeven(float f);
 
 #endif

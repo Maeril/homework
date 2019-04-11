@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/18 14:07:20 by myener            #+#    #+#             */
-/*   Updated: 2019/02/26 15:39:41 by myener           ###   ########.fr       */
+/*   Created: 2018/11/14 19:30:15 by myener            #+#    #+#             */
+/*   Updated: 2019/02/04 15:43:19 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <string.h>
+#include <stdio.h>
 
-void	ft_putnbr(int nb)
+char	*ft_strnstr(const char *str, const char *find, size_t len)
 {
-	long long int	n;
+	size_t	i;
+	size_t	j;
 
-	n = nb;
-	if (n < 0)
+	if (!*find)
+		return ((char *)str);
+	i = 0;
+	while (str[i] && i < len)
 	{
-		ft_putchar('-');
-		n = -n;
+		j = 1;
+		if (str[i] == find[0])
+		{
+			while (find[j] != '\0' && str[i + j] == find[j] && (i + j) < len)
+				j++;
+			if (find[j] == '\0')
+				return ((char *)str + i);
+		}
+		i++;
 	}
-	if (n >= 10)
-		ft_putnbr(n / 10);
-	ft_putchar(n % 10 + '0');
+	return (0);
 }

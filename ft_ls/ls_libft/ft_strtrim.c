@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/18 14:07:20 by myener            #+#    #+#             */
-/*   Updated: 2019/02/26 15:39:41 by myener           ###   ########.fr       */
+/*   Created: 2018/11/19 18:03:15 by myener            #+#    #+#             */
+/*   Updated: 2018/11/27 16:12:14 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr(int nb)
+char	*ft_strtrim(char const *s)
 {
-	long long int	n;
+	size_t	i;
+	size_t	j;
+	size_t	len;
 
-	n = nb;
-	if (n < 0)
-	{
-		ft_putchar('-');
-		n = -n;
-	}
-	if (n >= 10)
-		ft_putnbr(n / 10);
-	ft_putchar(n % 10 + '0');
+	if (!s)
+		return (NULL);
+	i = 0;
+	while (s[i] && (ft_isblank(s[i]) || s[i] == '\n'))
+		i++;
+	if (i == ft_strlen(s))
+		return (ft_strnew(1));
+	j = 0;
+	len = ft_strlen(s);
+	while (s[len - j - 1] == ' ' || s[len - j - 1] == '\t'
+	|| s[len - j - 1] == '\n')
+		j++;
+	return (ft_strndup((s + i), (len - i - j)));
 }

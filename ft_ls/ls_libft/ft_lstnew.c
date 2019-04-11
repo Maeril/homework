@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/18 14:07:20 by myener            #+#    #+#             */
-/*   Updated: 2019/02/26 15:39:41 by myener           ###   ########.fr       */
+/*   Created: 2018/11/28 12:38:04 by myener            #+#    #+#             */
+/*   Updated: 2018/11/28 16:31:14 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr(int nb)
+t_list	*ft_lstnew(void const *content, size_t content_size)
 {
-	long long int	n;
+	t_list	*new;
 
-	n = nb;
-	if (n < 0)
+	if (!(new = malloc(sizeof(t_list))))
+		return (NULL);
+	if (!content)
 	{
-		ft_putchar('-');
-		n = -n;
+		new->content = NULL;
+		new->content_size = 0;
 	}
-	if (n >= 10)
-		ft_putnbr(n / 10);
-	ft_putchar(n % 10 + '0');
+	else
+	{
+		if (!(new->content = malloc(sizeof(void*) * (content_size))))
+			return (NULL);
+		ft_memcpy(new->content, content, content_size);
+		new->content_size = content_size;
+	}
+	new->next = NULL;
+	return (new);
 }

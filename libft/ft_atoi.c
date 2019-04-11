@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 18:40:23 by myener            #+#    #+#             */
-/*   Updated: 2018/11/27 16:14:20 by myener           ###   ########.fr       */
+/*   Updated: 2019/02/28 20:57:26 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		ft_atoi(const char *str)
 {
 	int	i;
-	int	nb;
+	int nb;
 	int	neg;
 
 	i = 0;

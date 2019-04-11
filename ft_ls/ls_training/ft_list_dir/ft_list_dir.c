@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_list_dir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/18 14:07:20 by myener            #+#    #+#             */
-/*   Updated: 2019/02/26 15:39:41 by myener           ###   ########.fr       */
+/*   Created: 2019/04/11 14:48:35 by myener            #+#    #+#             */
+/*   Updated: 2019/04/11 15:36:45 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_list_dir.h"
 
-void	ft_putnbr(int nb)
+int		ft_list_dir(const char *name)
 {
-	long long int	n;
+	DIR				*dir;
+	struct dirent	*repo;
 
-	n = nb;
-	if (n < 0)
+	dir = opendir(name);
+	if (readdir(dir))
 	{
-		ft_putchar('-');
-		n = -n;
+		while ((repo = readdir(dir)) != NULL)
+			printf("%s ", repo->d_name);
+		return (1);
 	}
-	if (n >= 10)
-		ft_putnbr(n / 10);
-	ft_putchar(n % 10 + '0');
+	closedir(dir);
+	return (0);
+}
+
+int		main(int argc, char **argv)
+{
+	const char	*name;
+
+	name = argv[1];
+	if (argc == 2)
+		return (ft_list_dir(name));
+	return (0);
 }

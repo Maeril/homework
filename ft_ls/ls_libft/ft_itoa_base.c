@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/18 14:07:20 by myener            #+#    #+#             */
-/*   Updated: 2019/02/26 15:39:41 by myener           ###   ########.fr       */
+/*   Created: 2019/03/13 17:15:33 by myener            #+#    #+#             */
+/*   Updated: 2019/03/13 17:25:20 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr(int nb)
+char	*ft_itoa_base(long long int n, const char *base)
 {
-	long long int	n;
+	int		i;
+	int		bl;
+	int		neg;
+	char	*str;
 
-	n = nb;
-	if (n < 0)
+	bl = ft_strlen(base);
+	neg = n < 0 ? 1 : 0;
+	n = neg == 1 ? n * -1 : n;
+	i = ft_baselen(n, bl) + neg;
+	if (!(str = (char*)malloc(sizeof(char) * (i + 1))))
+		return (NULL);
+	str[i] = '\0';
+	while (1)
 	{
-		ft_putchar('-');
-		n = -n;
+		str[--i] = ((n % bl) + 48);
+		n /= bl;
+		if (n == 0)
+			break ;
 	}
-	if (n >= 10)
-		ft_putnbr(n / 10);
-	ft_putchar(n % 10 + '0');
+	if (neg == 1)
+		str[0] = '-';
+	return (str);
 }

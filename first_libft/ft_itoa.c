@@ -6,11 +6,12 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:36:30 by myener            #+#    #+#             */
-/*   Updated: 2019/03/13 17:25:14 by myener           ###   ########.fr       */
+/*   Updated: 2018/11/29 16:18:45 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 char	*ft_itoa(int n)
 {
@@ -24,7 +25,7 @@ char	*ft_itoa(int n)
 		return (ft_strdup("-2147483648"));
 	neg = n < 0 ? 1 : 0;
 	n = neg == 1 ? n * -1 : n;
-	i = ft_intlen(n) + neg;
+	i = ft_intlen(n) - 1 + neg + 1;
 	if (!(str = (char*)malloc(sizeof(char) * (i + 1))))
 		return (NULL);
 	str[i] = '\0';

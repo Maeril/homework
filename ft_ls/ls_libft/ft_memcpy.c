@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/18 14:07:20 by myener            #+#    #+#             */
-/*   Updated: 2019/02/26 15:39:41 by myener           ###   ########.fr       */
+/*   Created: 2018/11/14 11:13:50 by myener            #+#    #+#             */
+/*   Updated: 2018/11/27 16:13:10 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr(int nb)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	long long int	n;
+	size_t	i;
 
-	n = nb;
-	if (n < 0)
+	i = 0;
+	while (i != n)
 	{
-		ft_putchar('-');
-		n = -n;
+		((char*)dst)[i] = ((const char*)src)[i];
+		i++;
 	}
-	if (n >= 10)
-		ft_putnbr(n / 10);
-	ft_putchar(n % 10 + '0');
+	return (dst);
 }
