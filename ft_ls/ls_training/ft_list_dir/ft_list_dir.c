@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 14:48:35 by myener            #+#    #+#             */
-/*   Updated: 2019/04/11 15:36:45 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/12 18:37:58 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		ft_list_dir(const char *name)
 	if (readdir(dir))
 	{
 		while ((repo = readdir(dir)) != NULL)
-			printf("%s ", repo->d_name);
+			ft_printf("%s ", repo->d_name);
 		return (1);
 	}
 	closedir(dir);
