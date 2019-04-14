@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 13:57:15 by myener            #+#    #+#             */
-/*   Updated: 2019/03/15 16:08:00 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/14 22:31:57 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
+# include "ft_printf/ft_printf.h"
 
 typedef struct	s_list
 {
@@ -108,5 +108,6 @@ int				get_next_line(const int fd, char **line);
 float     		roundit_awayzero(float f);
 float   		roundit_towardzero(float f);
 float			roundit_halfeven(float f);
+int				ft_printf(const char *format, ...);
 
 #endif

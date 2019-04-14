@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/12 16:41:39 by myener            #+#    #+#              #
-#    Updated: 2019/04/12 18:23:21 by myener           ###   ########.fr        #
+#    Updated: 2019/04/14 20:56:10 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@gcc $(FLAGS) -c $< -o $@
 
 clean:
-	@printf "\e[34m  Cleaning:  \e[0m$(OBJDIR)\e[0m\n"
+	@printf "\e[34m  Cleaning ft_inspect_file:  \e[0m$(OBJDIR)\e[0m\n"
 	@rm -rf $(OBJDIR)
 	@make clean -C ls_libft/ft_printf
 

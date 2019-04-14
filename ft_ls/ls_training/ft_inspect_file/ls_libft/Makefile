@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 17:52:34 by myener            #+#    #+#              #
-#    Updated: 2019/04/12 18:37:55 by myener           ###   ########.fr        #
+#    Updated: 2019/04/14 20:56:00 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,7 +113,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@gcc $(CFLAGS) -c $< -o $@
 
 clean :
-	@printf "\e[34m  Cleaning:  \e[0m$(OBJDIR)\e[0m\n"
+	@printf "\e[34m  Cleaning libft:  \e[0m$(OBJDIR)\e[0m\n"
 	@rm -rf $(OBJDIR)
 
 fclean : clean
