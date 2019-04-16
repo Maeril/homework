@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 15:27:50 by myener            #+#    #+#             */
-/*   Updated: 2019/04/12 16:47:54 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/16 15:39:46 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,33 +38,19 @@ static const char	*typefinder(struct stat buf)
 
 	str = NULL;
 	if (S_ISBLK(buf.st_mode))
-	{
 		str = "Peripherique blocs";
-	}
-	else if (S_ISCHR(buf.st_mode))
-	{
+	if (S_ISCHR(buf.st_mode))
 		str = "Peripherique caracteres";
-	}
-	else if (S_ISDIR(buf.st_mode))
-	{
+	if (S_ISDIR(buf.st_mode))
 		str = "Dossier";
-	}
-	else if (S_ISFIFO(buf.st_mode))
-	{
+	if (S_ISFIFO(buf.st_mode))
 		str = "Fifo";
-	}
-	else if (S_ISREG(buf.st_mode))
-	{
+	if (S_ISREG(buf.st_mode))
 		str = "Fichier";
-	}
-	else if (S_ISLNK(buf.st_mode))
-	{
+	if (S_ISLNK(buf.st_mode))
 		str = "Lien symbolique";
-	}
-	else if (S_ISSOCK(buf.st_mode))
-	{
+	if (S_ISSOCK(buf.st_mode))
 		str = "Socket";
-	}
 	return (str ? str : 0);
 }
 

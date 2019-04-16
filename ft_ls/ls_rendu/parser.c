@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_dir.c                                      :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/11 14:48:35 by myener            #+#    #+#             */
-/*   Updated: 2019/04/16 16:05:31 by myener           ###   ########.fr       */
+/*   Created: 2019/04/16 16:29:00 by myener            #+#    #+#             */
+/*   Updated: 2019/04/16 18:37:39 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list_dir.h"
+#include "ft_ls.h"
 
-int		ft_list_dir(const char *name)
+void	ls_parser(t_lsflag *lsflag, char *str)
 {
-	DIR				*dir;
-	struct dirent	*repo;
+	int		i;
 
-	dir = opendir(name);
-	if (readdir(dir))
+	i = 1; // et pas 0, pour sauter le '-'
+	while (str[i])
 	{
-		while ((repo = readdir(dir)) != NULL)
-			ft_printf("%s ", repo->d_name);
-		ft_putchar('\n');
-		return (1);
+		lsflag->R = (str[i] == 'R');
+		lsflag->a = (str[i] == 'a');
+		lsflag->l = (str[i] == 'l');
+		lsflag->r = (str[i] == 'r');
+		lsflag->t = (str[i] == 't');
+		lsflag->flag = (lsflag->R || lsflag->a || lsflag->l || lsflag->r
+			|| lsflag->t);
+		i++;
 	}
-	closedir(dir);
-	return (0);
-}
-
-int		main(int argc, char **argv)
-{
-	const char	*name;
-
-	name = argv[1];
-	if (argc == 2)
-		return (ft_list_dir(name));
-	return (0);
 }

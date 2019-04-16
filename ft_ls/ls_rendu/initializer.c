@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_dir.c                                      :+:      :+:    :+:   */
+/*   initializer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/11 14:48:35 by myener            #+#    #+#             */
-/*   Updated: 2019/04/16 16:05:31 by myener           ###   ########.fr       */
+/*   Created: 2019/04/16 18:02:03 by myener            #+#    #+#             */
+/*   Updated: 2019/04/16 19:27:27 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list_dir.h"
+#include "ft_ls.h"
 
-int		ft_list_dir(const char *name)
+void	initializer(t_lsflag *lsflag)
 {
-	DIR				*dir;
-	struct dirent	*repo;
-
-	dir = opendir(name);
-	if (readdir(dir))
-	{
-		while ((repo = readdir(dir)) != NULL)
-			ft_printf("%s ", repo->d_name);
-		ft_putchar('\n');
-		return (1);
-	}
-	closedir(dir);
-	return (0);
+	lsflag->flag = 0;
+	lsflag->R = 0;
+	lsflag->a = 0;
+	lsflag->l = 0;
+	lsflag->r = 0;
+	lsflag->t = 0;
 }
 
-int		main(int argc, char **argv)
+void	ls_struct_malloc(t_lsflag *lsflag)
 {
-	const char	*name;
+	if (!(lsflag = malloc(sizeof(t_lsflag))))
+		return ;
+}
 
-	name = argv[1];
-	if (argc == 2)
-		return (ft_list_dir(name));
-	return (0);
+void	ls_free_malloc(t_lsflag *lsflag)
+{
+	if (lsflag)
+		free(lsflag);
 }

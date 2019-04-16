@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/17 21:20:38 by myener            #+#    #+#              #
-#    Updated: 2019/04/14 20:56:19 by myener           ###   ########.fr        #
+#    Updated: 2019/04/16 16:00:03 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ CFLAGS  =  -Wall -Wextra -Werror
 all:  $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
-	@printf "\e[34m  Creating: \e[32m$(NAME)\n"
+	@printf "\e[36m Creating: \e[32m$(NAME)\n"
 	@ar -rcs $(NAME) $(OBJS)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
@@ -77,12 +77,12 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@gcc $(CFLAGS) -c $< -o $@
 
 clean :
-	@printf "\e[34m  Cleaning ft_printf:  \e[0m$(OBJDIR)\e[0m\n"
+	@printf "\e[34m Cleaning ft_printf:	\e[0m$(OBJDIR)\e[0m\n"
 	@rm -rf $(OBJDIR)
 	@rm *.o
 
 fclean : clean
-	@printf "\e[34m  Removing: \e[32m$(NAME)\e[0m\n"
+	@printf "\e[36m Removing: \e[32m$(NAME)\e[0m\n"
 	@rm -rf $(NAME)
 
 re : fclean all
