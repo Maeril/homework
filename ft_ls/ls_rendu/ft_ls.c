@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:40:21 by myener            #+#    #+#             */
-/*   Updated: 2019/04/17 17:33:58 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/17 18:25:15 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,23 +77,23 @@ int		main(int argc, char **argv)
 		initializer(&lsflag);
 		if (argc == 1)
 		{
-			return (ls_recursive(empty, &lsflag));
+			return (ft_ls(empty, &lsflag));
 		}
 		else if (argc == 2 && argv[1][0] != '-')
 		{
 			name = argv[1];
-			return (ls_recursive(name, &lsflag));
+			return (ft_ls(name, &lsflag));
 		}
 		else if (argc == 2 && argv[1][0] == '-')
 		{
 			ls_parser(&lsflag, argv[1]);
-			return (ls_recursive(empty, &lsflag));
+			return (ft_ls(empty, &lsflag));
 		}
 		else if (argc == 3 && argv[1][0] == '-')
 		{
 			name = argv[2];
 			ls_parser(&lsflag, argv[1]);
-			return (ls_recursive(name, &lsflag));
+			return (ft_ls(name, &lsflag));
 		}
 		ls_free_malloc(&lsflag);
 	}
