@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:40:21 by myener            #+#    #+#             */
-/*   Updated: 2019/04/17 18:25:15 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/17 18:45:33 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,16 @@ int	ft_ls(const char *name, t_lsflag *lsflag)
 {
 	DIR				*dir;
 	struct dirent	*repo;
-	DIR				*isdir;
+	struct stat		buf;
 
 	dir = opendir(name);
 	if (readdir(dir))
 	{
 		while ((repo = readdir(dir)) != NULL)
 		{
+			stat(repo->d_name, &buf);
 			if (lsflag->R)
-				if ((isdir = opendir(repo->d_name)) != NULL && (ft_strcmp(repo->d_name, "..") != 0))
+				if (S_ISDIR(buf.st_mode) && (ft_strcmp(repo->d_name, "..") != 0))
 					ft_ls(repo->d_name, lsflag);
 			if (lsflag->flag)
 				flag_manager(lsflag, repo);
