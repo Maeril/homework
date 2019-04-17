@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 15:43:08 by myener            #+#    #+#             */
-/*   Updated: 2019/04/16 19:12:40 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/17 15:48:11 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	initializer(t_lsflag *lsflag);
 void	ls_struct_malloc(t_lsflag *lsflag);
 void	ls_free_malloc(t_lsflag *lsflag);
 void	ls_parser(t_lsflag *lsflag, char *str);
+int		ls_recursive(const char *name, t_lsflag *lsflag);
 void	flag_manager(t_lsflag *lsflag, struct dirent *repo);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/17 21:20:38 by myener            #+#    #+#              #
-#    Updated: 2019/04/16 16:00:03 by myener           ###   ########.fr        #
+#    Updated: 2019/04/17 18:13:36 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,6 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 clean :
 	@printf "\e[34m Cleaning ft_printf:	\e[0m$(OBJDIR)\e[0m\n"
 	@rm -rf $(OBJDIR)
-	@rm *.o
 
 fclean : clean
 	@printf "\e[36m Removing: \e[32m$(NAME)\e[0m\n"

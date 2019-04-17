@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 15:49:54 by myener            #+#    #+#              #
-#    Updated: 2019/04/16 19:31:48 by myener           ###   ########.fr        #
+#    Updated: 2019/04/17 18:13:14 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,6 @@ clean:
 	@printf "\e[34m Cleaning ft_ls:	\e[0m$(OBJDIR)\e[0m\n"
 	@rm -rf $(OBJDIR)
 	@make clean -C ls_libft/ft_printf
-	@rm ls_libft/ft_printf/*.o
 
 fclean: clean
 	@printf "\e[36m Removing: \e[0m"
