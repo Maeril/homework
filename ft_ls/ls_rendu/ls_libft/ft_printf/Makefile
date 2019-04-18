@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/17 21:20:38 by myener            #+#    #+#              #
-#    Updated: 2019/04/17 18:13:36 by myener           ###   ########.fr        #
+#    Updated: 2019/04/18 12:39:15 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,51 +17,51 @@ NAME    =   libftprintf.a
 SRCDIR	:=	./
 OBJDIR	:=	./objs
 
-SRCS	=   ./../ft_abs.c				\
-			./../ft_atoi.c				\
-			./../ft_atoll.c				\
-			./../ft_bzero.c				\
-			./../ft_strlen.c 			\
-			./../ft_memset.c 			\
-			./../ft_putchar.c 			\
-			./../ft_putstr.c 			\
-			./../ft_putnbr.c			\
-			./../ft_putnbr_base.c		\
-			./../ft_putunbr_base.c		\
-			./../ft_putnbr_long.c		\
-			./../ft_putunbr_long.c		\
-			./../ft_strnew.c 			\
-			./../ft_strcmp.c 			\
-			./../ft_strsub.c 			\
-			./../ft_strdup.c 			\
-			./../ft_itoc.c   			\
-			./../ft_lltoa.c  			\
-			./../ft_intlen.c 			\
-			./../ft_octlen.c 			\
-			./../ft_hexlen.c			\
-			./../ft_uintlen.c			\
-			cleaner.c           		\
-			dispatcher.c        		\
-			finalizer.c         		\
-			float_tools.c				\
-			ft_printf.c         		\
-			parser.c            		\
-			parser_helper.c				\
-			printer.c           		\
-			typeis_int.c				\
-			typeis_char.c       		\
-			typeis_unsign.c     		\
-			typeis_str.c        		\
-			typeis_ptr.c        		\
-			typeis_octal.c      		\
-			typeis_hexl.c       		\
-			typeis_hexu.c       		\
-			typeis_perc.c       		\
+SRCS	=   printf_libft/ft_abs.c				\
+			printf_libft/ft_atoi.c				\
+			printf_libft/ft_atoll.c				\
+			printf_libft/ft_bzero.c				\
+			printf_libft/ft_strlen.c 			\
+			printf_libft/ft_memset.c 			\
+			printf_libft/ft_putchar.c 			\
+			printf_libft/ft_putstr.c 			\
+			printf_libft/ft_putnbr.c			\
+			printf_libft/ft_putnbr_base.c		\
+			printf_libft/ft_putunbr_base.c		\
+			printf_libft/ft_putnbr_long.c		\
+			printf_libft/ft_putunbr_long.c		\
+			printf_libft/ft_strnew.c 			\
+			printf_libft/ft_strcmp.c 			\
+			printf_libft/ft_strsub.c 			\
+			printf_libft/ft_strdup.c 			\
+			printf_libft/ft_itoc.c   			\
+			printf_libft/ft_lltoa.c  			\
+			printf_libft/ft_intlen.c 			\
+			printf_libft/ft_octlen.c 			\
+			printf_libft/ft_hexlen.c			\
+			printf_libft/ft_uintlen.c			\
+			cleaner.c           				\
+			dispatcher.c        				\
+			finalizer.c         				\
+			float_tools.c						\
+			ft_printf.c         				\
+			parser.c            				\
+			parser_helper.c						\
+			printer.c           				\
+			typeis_int.c						\
+			typeis_char.c       				\
+			typeis_unsign.c     				\
+			typeis_str.c        				\
+			typeis_ptr.c        				\
+			typeis_octal.c      				\
+			typeis_hexl.c       				\
+			typeis_hexu.c       				\
+			typeis_perc.c       				\
 			typeis_float.c
 
 OBJS	:=	$(addprefix $(OBJDIR)/,$(SRCS:.c=.o))
 SRCS	:=	$(addprefix $(SRCDIR)/,$(SRCS))
-LIBFT = ../
+LIBFT = printf_libft/
 
 CFLAGS  =  -Wall -Wextra -Werror
 

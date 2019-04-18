@@ -6,58 +6,39 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:40:21 by myener            #+#    #+#             */
-/*   Updated: 2019/04/17 18:45:33 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/18 16:02:05 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-// int		ft_ls(const char *name, t_lsflag *lsflag)
-// {
-// 	DIR				*dir;
-// 	struct stat		buf;
-// 	struct dirent	*repo;
-
-// 	dir = opendir(name);
-// 	if (readdir(dir))
-// 	{
-// 		while ((repo = readdir(dir)) != NULL)
-// 		{
-// 			// stat(repo->d_name, &buf);
-// 			// if (S_ISDIR(buf.st_mode))
-// 			// 	ft_ls(repo->d_name, lsflag);  // <- recursive
-// 			if (lsflag->flag)
-// 				flag_manager(lsflag, repo);
-// 			if (ft_strcmp(repo->d_name, "..") != 0
-// 			&& ft_strcmp(repo->d_name, ".") != 0)
-// 				ft_printf("%s ", repo->d_name);
-// 		}
-// 		ft_putchar('\n');
-// 		return (1);
-// 	}
-// 	closedir(dir);
-// 	return (0);
-// }
-
 int	ft_ls(const char *name, t_lsflag *lsflag)
 {
 	DIR				*dir;
+	DIR				*isdir;
 	struct dirent	*repo;
-	struct stat		buf;
+	int				i;
 
 	dir = opendir(name);
+	i = 0;
 	if (readdir(dir))
 	{
 		while ((repo = readdir(dir)) != NULL)
 		{
-			stat(repo->d_name, &buf);
 			if (lsflag->R)
-				if (S_ISDIR(buf.st_mode) && (ft_strcmp(repo->d_name, "..") != 0))
-					ft_ls(repo->d_name, lsflag);
+				if (((isdir = opendir(repo->d_name)) != NULL)
+				&& (ft_strcmp(repo->d_name, "..") != 0))
+				{
+					name = ft_strjoin(name, "/");
+					name = ft_strjoin(name, repo->d_name);
+					ft_ls(name, lsflag);
+				}
 			if (lsflag->flag)
-				flag_manager(lsflag, repo);
-			if (ft_strcmp(repo->d_name, "..") != 0 && ft_strcmp(repo->d_name, ".") != 0)
+				flag_manager(lsflag, repo, i);
+			if (!lsflag->l && ft_strcmp(repo->d_name, "..") != 0
+			&& ft_strcmp(repo->d_name, ".") != 0)
 				ft_printf("%s ", repo->d_name);
+			i++;
 		}
 		ft_putchar('\n');
 		return (1);
@@ -77,10 +58,8 @@ int		main(int argc, char **argv)
 		ls_struct_malloc(&lsflag);
 		initializer(&lsflag);
 		if (argc == 1)
-		{
 			return (ft_ls(empty, &lsflag));
-		}
-		else if (argc == 2 && argv[1][0] != '-')
+		if (argc == 2 && argv[1][0] != '-')
 		{
 			name = argv[1];
 			return (ft_ls(name, &lsflag));

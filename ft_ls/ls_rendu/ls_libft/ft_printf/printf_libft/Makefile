@@ -5,59 +5,65 @@
 #                                                     +:+ +:+         +:+      #
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/04/16 15:49:54 by myener            #+#    #+#              #
-#    Updated: 2019/04/18 14:45:54 by myener           ###   ########.fr        #
+#    Created: 2018/11/20 17:52:34 by myener            #+#    #+#              #
+#    Updated: 2019/04/18 12:36:42 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY: all, clean, fclean, re
-NAME = ft_ls
+.PHONY: clean fclean re
+
+NAME	=	libft.a
 
 SRCDIR	:=	./
 OBJDIR	:=	./objs
 
-SRCS =	ft_ls.c					\
-		flag_manager.c			\
-		parser.c				\
-		get_file_info.c			\
-		initializer.c
+SRCS	=	ft_abs.c \
+			ft_strdup.c \
+			ft_strcmp.c \
+			ft_strlen.c \
+			ft_atoi.c \
+			ft_atoll.c \
+			ft_memset.c \
+			ft_bzero.c \
+			ft_putchar.c \
+			ft_putstr.c \
+			ft_putnbr.c \
+			ft_putnbr_base.c \
+			ft_putunbr_base.c \
+			ft_putnbr_long.c \
+			ft_putunbr_long.c \
+			ft_strnew.c \
+			ft_strsub.c \
+			ft_itoc.c	\
+			ft_lltoa.c	\
+			ft_intlen.c \
+			ft_octlen.c \
+			ft_hexlen.c \
+			ft_uintlen.c \
 
-FLAGS = -Wall -Wextra -Werror
 
 OBJS	:=	$(addprefix $(OBJDIR)/,$(SRCS:.c=.o))
 SRCS	:=	$(addprefix $(SRCDIR)/,$(SRCS))
-LIBPRINTF = ls_libft/ft_printf/libftprintf.a
-LIBFT = ls_libft/libft.a
+
+CFLAGS	=	-Wall -Werror -Wextra
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBPRINTF) $(LIBFT) ft_ls.h
+$(NAME): $(OBJS)
 	@printf "\e[36m Creating: \e[32m$(NAME)\n"
-	@gcc $(FLAGS) $(LIBFT) $(LIBPRINTF) $(OBJS) -o ft_ls
-
-%.o: %.c
-	@gcc $(FLAGS) -c $< -o $@
-
-$(LIBPRINTF):
-	@make -C ls_libft/ft_printf
-
-$(LIBFT):
-	@make -C ls_libft
+	@ar -rcs $(NAME) $(OBJS)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@printf "\e[34m Compiling: \e[0m$< -> $@\n"
 	@mkdir -p $(dir $@)
-	@gcc $(FLAGS) -c $< -o $@
+	@gcc $(CFLAGS) -c $< -o $@
 
-clean:
-	@printf "\e[34m Cleaning ft_ls:	\e[0m$(OBJDIR)\e[0m\n"
+clean :
+	@printf "\e[34m Cleaning libft:	\e[0m$(OBJDIR)\e[0m\n"
 	@rm -rf $(OBJDIR)
-	@make clean -C ls_libft/ft_printf
-	@make clean -C ls_libft
 
-fclean: clean
-	@printf "\e[36m Removing: \e[0m"
-	@printf "\e[32mft_ls \e[0m\n"
-	@rm -rf ft_ls ls_libft/ft_printf/libftprintf.a ls_libft/libft.a
+fclean : clean
+	@printf "\e[36m Removing: \e[32m$(NAME)\e[0m\n"
+	@rm -rf $(NAME)
 
-re: fclean $(NAME)
+re : fclean all

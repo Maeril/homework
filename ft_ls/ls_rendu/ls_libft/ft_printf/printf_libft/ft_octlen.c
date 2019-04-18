@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flag_manager.c                                     :+:      :+:    :+:   */
+/*   ft_octlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/16 18:19:42 by myener            #+#    #+#             */
-/*   Updated: 2019/04/18 16:00:22 by myener           ###   ########.fr       */
+/*   Created: 2019/02/22 20:42:58 by myener            #+#    #+#             */
+/*   Updated: 2019/02/22 21:41:36 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "libft.h"
 
-void	flag_manager(t_lsflag *lsflag, struct dirent *repo, int i)
+int		ft_octlen(unsigned long long int n)
 {
-	// DIR				*dir;
-	if (lsflag->a)
+	int	e;
+
+	e = 1;
+	while ((n / 8) > 0)
 	{
-		if (i == 0)
-			ft_printf(". ");
-		if (ft_strcmp(repo->d_name, "..") == 0)
-			ft_printf(".. ");
+		n /= 8;
+		e++;
 	}
-	if (lsflag->l)
-		get_file_info(repo->d_name);
+	return (e);
 }

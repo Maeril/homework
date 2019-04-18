@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flag_manager.c                                     :+:      :+:    :+:   */
+/*   ft_lltoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/16 18:19:42 by myener            #+#    #+#             */
-/*   Updated: 2019/04/18 16:00:22 by myener           ###   ########.fr       */
+/*   Created: 2019/03/12 12:27:49 by myener            #+#    #+#             */
+/*   Updated: 2019/03/12 12:30:19 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "libft.h"
 
-void	flag_manager(t_lsflag *lsflag, struct dirent *repo, int i)
+char    *ft_lltoa(long long int n)
 {
-	// DIR				*dir;
-	if (lsflag->a)
+	int		i;
+	int		neg;
+	char	*str;
+
+	if (n == 0)
+		return (ft_strdup("0"));
+	neg = n < 0 ? 1 : 0;
+	n = neg == 1 ? n * -1 : n;
+	i = ft_intlen(n) - 1 + neg + 1;
+	if (!(str = (char*)malloc(sizeof(char) * (i + 1))))
+		return (NULL);
+	str[i] = '\0';
+	while (n > 0)
 	{
-		if (i == 0)
-			ft_printf(". ");
-		if (ft_strcmp(repo->d_name, "..") == 0)
-			ft_printf(".. ");
+		str[--i] = ((n % 10) + 48);
+		n /= 10;
 	}
-	if (lsflag->l)
-		get_file_info(repo->d_name);
+	if (neg == 1)
+		str[0] = '-';
+	return (str);
 }

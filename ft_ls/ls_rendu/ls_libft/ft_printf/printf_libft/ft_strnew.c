@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flag_manager.c                                     :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/16 18:19:42 by myener            #+#    #+#             */
-/*   Updated: 2019/04/18 16:00:22 by myener           ###   ########.fr       */
+/*   Created: 2018/11/14 13:57:15 by myener            #+#    #+#             */
+/*   Updated: 2018/11/27 16:11:42 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "libft.h"
 
-void	flag_manager(t_lsflag *lsflag, struct dirent *repo, int i)
+char	*ft_strnew(size_t size)
 {
-	// DIR				*dir;
-	if (lsflag->a)
-	{
-		if (i == 0)
-			ft_printf(". ");
-		if (ft_strcmp(repo->d_name, "..") == 0)
-			ft_printf(".. ");
-	}
-	if (lsflag->l)
-		get_file_info(repo->d_name);
+	char *str;
+
+	if (!(str = (char*)malloc(size + 1)))
+		return (NULL);
+	ft_bzero(((void*)str), (size + 1));
+	return (str);
 }

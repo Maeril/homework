@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flag_manager.c                                     :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/16 18:19:42 by myener            #+#    #+#             */
-/*   Updated: 2019/04/18 16:00:22 by myener           ###   ########.fr       */
+/*   Created: 2018/11/13 18:40:23 by myener            #+#    #+#             */
+/*   Updated: 2019/02/28 20:57:26 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "libft.h"
 
-void	flag_manager(t_lsflag *lsflag, struct dirent *repo, int i)
+int		ft_atoi(const char *str)
 {
-	// DIR				*dir;
-	if (lsflag->a)
+	int	i;
+	int nb;
+	int	neg;
+
+	i = 0;
+	nb = 0;
+	neg = 0;
+	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
+		i++;
+	if (str[i] == '-')
+		neg = 1;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		if (i == 0)
-			ft_printf(". ");
-		if (ft_strcmp(repo->d_name, "..") == 0)
-			ft_printf(".. ");
+		nb = nb * 10;
+		nb += (str[i] - '0');
+		i++;
 	}
-	if (lsflag->l)
-		get_file_info(repo->d_name);
+	return (neg == 1) ? -nb : nb;
 }

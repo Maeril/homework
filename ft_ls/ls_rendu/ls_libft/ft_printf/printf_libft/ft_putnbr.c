@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flag_manager.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/16 18:19:42 by myener            #+#    #+#             */
-/*   Updated: 2019/04/18 16:00:22 by myener           ###   ########.fr       */
+/*   Created: 2018/11/18 14:07:20 by myener            #+#    #+#             */
+/*   Updated: 2019/02/26 15:39:41 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "libft.h"
 
-void	flag_manager(t_lsflag *lsflag, struct dirent *repo, int i)
+void	ft_putnbr(int nb)
 {
-	// DIR				*dir;
-	if (lsflag->a)
+	long long int	n;
+
+	n = nb;
+	if (n < 0)
 	{
-		if (i == 0)
-			ft_printf(". ");
-		if (ft_strcmp(repo->d_name, "..") == 0)
-			ft_printf(".. ");
+		ft_putchar('-');
+		n = -n;
 	}
-	if (lsflag->l)
-		get_file_info(repo->d_name);
+	if (n >= 10)
+		ft_putnbr(n / 10);
+	ft_putchar(n % 10 + '0');
 }

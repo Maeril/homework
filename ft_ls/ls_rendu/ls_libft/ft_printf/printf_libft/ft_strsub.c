@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flag_manager.c                                     :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/16 18:19:42 by myener            #+#    #+#             */
-/*   Updated: 2019/04/18 16:00:22 by myener           ###   ########.fr       */
+/*   Created: 2018/11/19 15:50:30 by myener            #+#    #+#             */
+/*   Updated: 2018/11/27 16:12:16 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "libft.h"
 
-void	flag_manager(t_lsflag *lsflag, struct dirent *repo, int i)
+char	*ft_strsub(const char *s, unsigned int start, size_t len)
 {
-	// DIR				*dir;
-	if (lsflag->a)
+	char			*str;
+	unsigned int	i;
+	unsigned int	j;
+
+	if (!s)
+		return (NULL);
+	if (!(str = malloc(sizeof(*s) * (len + 1))))
+		return (NULL);
+	i = start;
+	j = 0;
+	while (s[i] && i < start + len)
 	{
-		if (i == 0)
-			ft_printf(". ");
-		if (ft_strcmp(repo->d_name, "..") == 0)
-			ft_printf(".. ");
+		str[j] = s[i];
+		j++;
+		i++;
 	}
-	if (lsflag->l)
-		get_file_info(repo->d_name);
+	str[j] = '\0';
+	return (str);
 }
