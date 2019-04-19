@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 15:43:08 by myener            #+#    #+#             */
-/*   Updated: 2019/04/18 16:01:06 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/19 18:36:35 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,25 @@ typedef struct 			s_lsflag
 	// int					arobase;
 }						t_lsflag;
 
-void	flag_manager(t_lsflag *lsflag, struct dirent *repo, int i);
-int		get_file_info(const char *name);
-void	initializer(t_lsflag *lsflag);
-void	ls_struct_malloc(t_lsflag *lsflag);
-void	ls_free_malloc(t_lsflag *lsflag);
-void	ls_parser(t_lsflag *lsflag, char *str);
-void	padding(struct stat buf);
+typedef struct			s_lsdata
+{
+	char				*filename;
+	long int			ls_namelen;
+	long long int		date_sec;
+	struct s_lsdata		*next;
+}						t_lsdata;
+
+
+void		flag_manager(t_lsflag *lsflag, t_lsdata	*list, int i);
+int			ft_ls(const char *name, t_lsflag *lsflag);
+int			get_file_info(const char *name);
+void		initializer(t_lsflag *lsflag);
+t_lsdata	*list_malloc(t_lsdata *lsdata);
+void		list_free(t_lsdata *lsdata);
+t_lsdata	*listinit(t_lsdata *lsdata);
+void		ls_struct_malloc(t_lsflag *lsflag);
+void		ls_struct_free(t_lsflag *lsflag);
+void		ls_parser(t_lsflag *lsflag, char *str);
+void		padding(struct stat buf);
 
 #endif

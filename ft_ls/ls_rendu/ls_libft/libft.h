@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 13:57:15 by myener            #+#    #+#             */
-/*   Updated: 2019/03/15 16:08:00 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/19 17:08:14 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
+char			*ft_free_join(const char *s1, const char *s2);
 int				ft_abs(int nb);
 int				ft_atoi(const char *str);
 long long int	ft_atoll(const char *str);

@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 17:52:34 by myener            #+#    #+#              #
-#    Updated: 2019/04/18 12:26:03 by myener           ###   ########.fr        #
+#    Updated: 2019/04/19 14:51:37 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,6 +93,7 @@ SRCS	=	ft_abs.c \
 			ft_strndup.c \
 			ft_strnlen.c \
 			ft_isblank.c \
+			ft_free_join.c \
 			rounder.c
 
 
