@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 18:02:03 by myener            #+#    #+#             */
-/*   Updated: 2019/04/19 17:09:09 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/21 15:10:29 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,13 @@ void	initializer(t_lsflag *lsflag)
 	lsflag->t = 0;
 }
 
-t_lsdata	*listinit(t_lsdata *lsdata)
-{
-	lsdata->filename = NULL;
-	lsdata->username = NULL;
-	lsdata->groupname = NULL;
-	lsdata->date = 0;
-	lsdata->ls_namelen = 0;
-	lsdata->next = NULL;
-	return (lsdata);
-}
+// t_lsdata	*listinit(t_lsdata *lsdata)
+// {
+// 	lsdata->filename = NULL;
+// 	lsdata->ls_namelen = 0;
+// 	lsdata->next = NULL;
+// 	return (lsdata);
+// }
 
 void	ls_struct_malloc(t_lsflag *lsflag)
 {
@@ -39,18 +36,18 @@ void	ls_struct_malloc(t_lsflag *lsflag)
 		return ;
 }
 
-t_lsdata	*list_malloc(t_lsdata *lsdata)
-{
-	if (!(lsdata = malloc(sizeof(t_lsdata))))
-		return (NULL);
-	return (lsdata);
-}
+// t_lsdata	*list_malloc(t_lsdata *lsdata)
+// {
+// 	if (!(lsdata = malloc(sizeof(t_lsdata))))
+// 		return (NULL);
+// 	return (lsdata);
+// }
 
-void	list_free(t_lsdata *lsdata)
-{
-	if (!(lsdata = malloc(sizeof(t_lsdata))))
-		return ;
-}
+// void	list_free(t_lsdata *lsdata)
+// {
+// 	if (!(lsdata = malloc(sizeof(t_lsdata))))
+// 		return ;
+// }
 
 void	ls_struct_free(t_lsflag *lsflag)
 {

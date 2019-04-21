@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flag_manager.c                                     :+:      :+:    :+:   */
+/*   atoi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/16 18:19:42 by myener            #+#    #+#             */
-/*   Updated: 2019/04/21 14:59:53 by myener           ###   ########.fr       */
+/*   Created: 2019/04/15 23:15:22 by myener            #+#    #+#             */
+/*   Updated: 2019/04/15 23:27:34 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
-
-void	flag_manager(t_lsflag *lsflag, struct dirent *repo, /*	t_lsdata *list,*/ int i)
+int	ft_atoi(const char *str)
 {
-	// DIR				*isdir;
+	int nb;
+	int	i;
+	int	neg;
 
-	if (lsflag->a)
-	{
-		if (i == 0)
-			ft_printf(". ");
-		if (ft_strcmp(repo->d_name, "..") == 0)
-			ft_printf(".. ");
-	}
-	if (lsflag->l)
-		get_file_info(repo->d_name);
+	i = 0;
+	neg = 0;
+	nb = 0;
+	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
+		i++;
+	if (str[i] == '-')
+		neg = 1;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	if (str[i] >= '0' && str[i] <= '9')
+		nb = str[i] + '0';
+	return (0);
 }
