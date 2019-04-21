@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 15:49:54 by myener            #+#    #+#              #
-#    Updated: 2019/04/18 14:45:54 by myener           ###   ########.fr        #
+#    Updated: 2019/04/21 20:40:52 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ SRCDIR	:=	./
 OBJDIR	:=	./objs
 
 SRCS =	ft_ls.c					\
-		flag_manager.c			\
 		parser.c				\
 		get_file_info.c			\
 		initializer.c

@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 14:37:03 by myener            #+#    #+#             */
-/*   Updated: 2019/04/21 19:01:45 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/21 20:55:32 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,16 @@ void	time_formatter(struct stat buf)
 	ft_printf("%s ", tm); // last modification time;
 }
 
-int		get_file_info(const char *name)
+int		get_file_info(const char *name, t_lsdata *list)
 {
 	struct stat		buf;
-	struct passwd	*pw;
-	struct group	*gr;
 
 	stat(name, &buf);
-	pw = getpwuid(buf.st_uid);
-	gr = getgrgid(buf.st_gid);
 
 	permissionprinter(buf);
 	ft_printf("%d\t", buf.st_nlink); // nb hardlinks;
-	ft_printf("%s ", pw->pw_name); // user name;
-	ft_printf("%s ", gr->gr_name); // group name;
+	ft_printf("%s ", list->username); // user name;
+	ft_printf("%s ", list->groupname); // group name;
 	ft_printf("%lld\t", buf.st_size); // size (octets);
 	time_formatter(buf);
 	ft_printf("%s\n", name); // file name;

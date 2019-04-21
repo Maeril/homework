@@ -6,82 +6,97 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:40:21 by myener            #+#    #+#             */
-/*   Updated: 2019/04/21 19:02:13 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/21 21:30:08 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-// t_lsdata	*listfill(const char *name, t_lsdata *list, struct dirent *repo)
-// {
-// 	struct stat		buf;
-// 	struct passwd	*pw;
-// 	struct group	*gr;
+t_lsdata	*listfill(const char *name, t_lsdata *list, struct dirent *repo)
+{
+	struct stat		buf;
+	struct passwd	*pw;
+	struct group	*gr;
 
-// 	stat(name, &buf);
-// 	pw = getpwuid(buf.st_uid);
-// 	gr = getgrgid(buf.st_gid);
+	stat(name, &buf);
+	pw = getpwuid(buf.st_uid);
+	gr = getgrgid(buf.st_gid);
 
-// 	list->filename = repo->d_name;
-// 	list->ls_namelen = ft_strlen(repo->d_name);
-// 	list->date_sec = time(&buf.st_mtime);
-// 	return (list);
-// }
+	list->filename = repo->d_name;
+	list->username = pw->pw_name;
+	list->groupname = gr->gr_name;
+	list->ls_namelen = ft_strlen(repo->d_name);
+	list->date_sec = buf.st_mtime;
+	return (list);
+}
+
+static void		ls_printer(t_lsdata *list, t_lsflag *lsflag, const char *name, int i)
+{
+	char			*tmp;
+	DIR				*isdir;
+
+	while (list)
+	{
+		if (lsflag->a)
+		{
+			if (i == 0)
+				ft_printf(". ");
+			if (ft_strcmp(list->filename, "..") == 0)
+				ft_printf(".. ");
+		}
+		if (lsflag->l)
+		{
+			tmp = ft_strjoin(name, "/");
+			tmp = ft_strjoin(tmp, list->filename);
+			get_file_info(tmp, list);
+		}
+		if (!lsflag->l && ft_strcmp(list->filename, "..") != 0 //problematique car du coup le flag -l n'est pas compatible avec les autres :/
+		&& ft_strcmp(list->filename, ".") != 0)
+			ft_printf("%s \n", list->filename);
+		if (lsflag->R)
+		{
+			tmp = ft_strjoin(name, "/");
+			tmp = ft_strjoin(tmp, list->filename);
+			isdir = opendir(tmp);
+			if ((isdir != NULL) && (ft_strcmp(list->filename, "..") != 0))
+				ft_ls(tmp, lsflag);
+		}
+		list = list->next;
+	}
+}
 
 int			ft_ls(const char *name, t_lsflag *lsflag)
 {
 	DIR				*dir;
-	DIR				*isdir;
 	struct dirent	*repo;
 	int				i;
 	char			*tmp;
-	// t_lsdata		*list;
-	// t_lsdata		*head;
+	t_lsdata		*list;
+	t_lsdata		*prec;
 
-	isdir = NULL;
 	dir = opendir(name);
 	i = 0;
-	// list = NULL;
+	list = NULL;
 	if (readdir(dir))
 	{
-		// list = list_malloc(list);
-		// repo = readdir(dir);
-		// list = listinit(list);
-		// list = listfill(name, list, repo);
-		// head = list;
+		list = list_malloc(list);
+		repo = readdir(dir);
+		listinit(list);
+		list = listfill(name, list, repo);
+		list->next = NULL;
+		prec = list;
 		while ((repo = readdir(dir)) != NULL)
 		{
-			if (lsflag->a)
-			{
-				if (i == 0)
-					ft_printf(". ");
-				if (ft_strcmp(repo->d_name, "..") == 0)
-					ft_printf(".. ");
-			}
-			if (lsflag->l)
-			{
-				tmp = ft_strjoin(name, "/");
-				tmp = ft_strjoin(tmp, repo->d_name);
-				get_file_info(tmp);
-			}
-			if (!lsflag->l && ft_strcmp(repo->d_name, "..") != 0 //problematique car du coup le flag -l n'est pas compatible avec les autres :/
-			&& ft_strcmp(repo->d_name, ".") != 0)
-				ft_printf("%s \n", repo->d_name);
-			if (lsflag->R)
-			{
-				tmp = ft_strjoin(name, "/");
-				tmp = ft_strjoin(tmp, repo->d_name);
-				isdir = opendir(tmp);
-				if ((isdir != NULL) && (ft_strcmp(repo->d_name, "..") != 0))
-					ft_ls(tmp, lsflag);
-			}
-			// list = list->next;
-			// list = list_malloc(list);
-			// list = listinit(list);
-			// list = listfill(name, list, repo);
-//			list = list->next;
+			list = list_malloc(list);
+			listinit(list);
+			tmp = ft_strjoin(name, "/");
+			tmp = ft_strjoin(tmp, repo->d_name);
+			list = listfill(tmp, list, repo);
+			list->next = prec;
+			prec = list;
 			i++;
 		}
+		ls_printer(prec, lsflag, name, i);
 		ft_putchar('\n');
 		return (1);
 	}
