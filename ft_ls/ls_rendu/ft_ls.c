@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:40:21 by myener            #+#    #+#             */
-/*   Updated: 2019/04/23 12:15:34 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/23 16:13:33 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,36 +30,27 @@ t_lsdata	*listfill(const char *name, t_lsdata *list, struct dirent *repo)
 	return (list);
 }
 
-static void		ls_printer(t_lsdata *list, t_lsflag *lsflag, const char *name, int i)
+static void	ls_printer(t_lsdata *list, t_lsflag *flag, const char *n, int i)
 {
 	char			*tmp;
 	DIR				*isdir;
 
 	while (list)
 	{
-		if (lsflag->a)
-		{
-			if (i == 0)
-				ft_printf(". ");
-			if (ft_strcmp(list->filename, "..") == 0)
-				ft_printf(".. ");
-		}
-		if (lsflag->l)
-		{
-			tmp = ft_strjoin(name, "/");
-			tmp = ft_strjoin(tmp, list->filename);
-			get_file_info(tmp, list);
-		}
-		if (!lsflag->l && ft_strcmp(list->filename, "..") != 0 //problematique car du coup le flag -l n'est pas compatible avec les autres :/
+		if (flag->a || flag->l || flag->t)
+			flag_manager(flag, n, list, i);
+		if (!flag->l && ft_strcmp(list->filename, "..") != 0
 		&& ft_strcmp(list->filename, ".") != 0)
-			ft_printf("%s \n", list->filename);
-		if (lsflag->R)
+			ft_printf("%s ", list->filename);
+		if (!flag->r)
+			rev_list
+		if (flag->R)
 		{
-			tmp = ft_strjoin(name, "/");
+			tmp = ft_strjoin(n, "/");
 			tmp = ft_strjoin(tmp, list->filename);
 			isdir = opendir(tmp);
 			if ((isdir != NULL) && (ft_strcmp(list->filename, "..") != 0))
-				ft_ls(tmp, lsflag);
+				ft_ls(tmp, flag);
 		}
 		list = list->next;
 	}

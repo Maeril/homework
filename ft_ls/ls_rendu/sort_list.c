@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:42:23 by myener            #+#    #+#             */
-/*   Updated: 2019/04/23 13:30:42 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/23 16:47:33 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,40 @@ void	sort_list_revdate(t_lsdata *head)
 		while((j != NULL) && (j = j->next))
 			if(i->date_sec < j->date_sec)
 			{
-				tmp = i;
-				i = j;
-				j = tmp;
+				tmp = i->next;
+				i->next = j->next;
+				j->next = tmp;
 			}
+}
+
+void rev_list(struct s_lsdata** head)
+{
+	struct s_lsdata	*first;
+	struct s_lsdata	*rest;
+
+	if (*head == NULL)
+	   return;
+	first = *head;
+	rest  = first->next;
+	if (rest == NULL)
+	   return;
+	/* reverse the rest list and put the first element at the end */
+	recursiveReverse(&rest);
+	first->next->next  = first;
+	/* tricky step -- see the diagram */
+	first->next  = NULL;
+	/* fix the head pointer */
+	*head = rest;
+}
+/*Function to swap the lsdatas */
+struct s_lsdata	*swap_nodes(struct s_lsdata* p1, struct s_lsdata* p2)
+{
+	struct s_lsdata	*tmp;
+
+	tmp = p2->next;
+	p2->next = p1;
+	p1->next = tmp;
+	return (p2);
 }
 
 // void	sort_list_alpha(t_lsdata *head)

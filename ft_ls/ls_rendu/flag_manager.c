@@ -6,27 +6,31 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 18:19:42 by myener            #+#    #+#             */
-/*   Updated: 2019/04/23 13:14:34 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/23 16:13:25 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	flag_manager(t_lsflag *lsflag, struct dirent *repo, /*	t_lsdata *list,*/ int i)
+void	flag_manager(t_lsflag *flag, const char *name, t_lsdata *list, int i)
 {
-	// DIR				*isdir;
+	char	*tmp;
 
-	if (lsflag->a)
+	if (flag->a)
 	{
 		if (i == 0)
 			ft_printf(". ");
-		if (ft_strcmp(list->filename, "..") == 0)
+		if (ft_strcmp(list->filename, "..") == 0 && !flag->l)
 			ft_printf(".. ");
 	}
-	if (lsflag->l)
+	if (flag->l)
 	{
 		tmp = ft_strjoin(name, "/");
 		tmp = ft_strjoin(tmp, list->filename);
 		get_file_info(tmp, list);
+	}
+	if (flag->t)
+	{
+
 	}
 }

@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 15:49:54 by myener            #+#    #+#              #
-#    Updated: 2019/04/21 20:40:52 by myener           ###   ########.fr        #
+#    Updated: 2019/04/23 16:14:03 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,11 @@ SRCDIR	:=	./
 OBJDIR	:=	./objs
 
 SRCS =	ft_ls.c					\
-		parser.c				\
+		flag_manager.c			\
 		get_file_info.c			\
-		initializer.c
+		initializer.c			\
+		parser.c				\
+		sort_list.c
 
 FLAGS = -Wall -Wextra -Werror
 

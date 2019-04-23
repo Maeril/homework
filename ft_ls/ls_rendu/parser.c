@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 16:29:00 by myener            #+#    #+#             */
-/*   Updated: 2019/04/18 14:30:48 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/23 16:12:21 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ void	ls_parser(t_lsflag *lsflag, char *str)
 			lsflag->t = 1;
 		if (lsflag->R || lsflag->a || lsflag->l || lsflag->r || lsflag->t)
 			lsflag->flag = 1;
+		if (lsflag->r && lsflag->t)
+		{
+			lsflag->r = 0;
+			lsflag->t = 0;
+		}
 		i++;
 	}
 }
