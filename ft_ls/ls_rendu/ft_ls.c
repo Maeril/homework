@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:40:21 by myener            #+#    #+#             */
-/*   Updated: 2019/04/23 16:13:33 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/24 16:33:34 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,9 @@
 t_lsdata	*listfill(const char *name, t_lsdata *list, struct dirent *repo)
 {
 	struct stat		buf;
-	struct passwd	*pw;
-	struct group	*gr;
 
 	stat(name, &buf);
-	pw = getpwuid(buf.st_uid);
-	gr = getgrgid(buf.st_gid);
-
 	list->filename = repo->d_name;
-	list->username = pw->pw_name;
-	list->groupname = gr->gr_name;
 	list->ls_namelen = ft_strlen(repo->d_name);
 	list->date_sec = buf.st_mtime;
 	return (list);
@@ -42,8 +35,6 @@ static void	ls_printer(t_lsdata *list, t_lsflag *flag, const char *n, int i)
 		if (!flag->l && ft_strcmp(list->filename, "..") != 0
 		&& ft_strcmp(list->filename, ".") != 0)
 			ft_printf("%s ", list->filename);
-		if (!flag->r)
-			rev_list
 		if (flag->R)
 		{
 			tmp = ft_strjoin(n, "/");

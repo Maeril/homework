@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 15:43:08 by myener            #+#    #+#             */
-/*   Updated: 2019/04/23 16:47:36 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/24 16:33:33 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ typedef struct			s_lsdata
 }						t_lsdata;
 
 
-void	flag_manager(t_lsflag *lsflag, const char *name, t_lsdata *list, int i);
+void		flag_manager(t_lsflag *flag, const char *name, t_lsdata *list, int i);
 int			ft_ls(const char *name, t_lsflag *lsflag);
-int			get_file_info(const char *name, t_lsdata *list);
+int			get_file_info(const char *name);
 void		initializer(t_lsflag *lsflag);
 t_lsdata	*list_malloc(t_lsdata *lsdata);
 void		list_free(t_lsdata *lsdata);
@@ -92,5 +92,6 @@ void		ls_struct_malloc(t_lsflag *lsflag);
 void		ls_struct_free(t_lsflag *lsflag);
 void		ls_parser(t_lsflag *lsflag, char *str);
 void		padding(struct stat buf);
+void		swap_list_data(t_lsdata* p1, t_lsdata* p2);
 
 #endif

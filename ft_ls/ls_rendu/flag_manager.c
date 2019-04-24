@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 18:19:42 by myener            #+#    #+#             */
-/*   Updated: 2019/04/23 16:13:25 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/24 16:22:18 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ void	flag_manager(t_lsflag *flag, const char *name, t_lsdata *list, int i)
 	{
 		tmp = ft_strjoin(name, "/");
 		tmp = ft_strjoin(tmp, list->filename);
-		get_file_info(tmp, list);
+		get_file_info(tmp);
 	}
-	if (flag->t)
-	{
-
-	}
+	// if (flag->t)
+	// 	list = sort_list_revdate(list);
 }
