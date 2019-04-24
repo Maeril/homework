@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 18:02:03 by myener            #+#    #+#             */
-/*   Updated: 2019/04/21 20:55:24 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/24 20:11:57 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ void	initializer(t_lsflag *lsflag)
 void	listinit(t_lsdata *lsdata)
 {
 	lsdata->filename = NULL;
-	lsdata->username = NULL;
-	lsdata->groupname = NULL;
 	// lsdata->hardlinks = 0;
-	lsdata->ls_namelen = 0;
 	lsdata->next = NULL;
 }
 

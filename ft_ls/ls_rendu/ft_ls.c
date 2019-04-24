@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:40:21 by myener            #+#    #+#             */
-/*   Updated: 2019/04/24 16:33:34 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/24 20:11:45 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_lsdata	*listfill(const char *name, t_lsdata *list, struct dirent *repo)
 
 	stat(name, &buf);
 	list->filename = repo->d_name;
-	list->ls_namelen = ft_strlen(repo->d_name);
+	// list->ls_namelen = ft_strlen(repo->d_name);
 	list->date_sec = buf.st_mtime;
 	return (list);
 }
@@ -53,32 +53,32 @@ int			ft_ls(const char *name, t_lsflag *lsflag)
 	struct dirent	*repo;
 	int				i;
 	char			*tmp;
-	t_lsdata		*list;
-	t_lsdata		*prec;
+	t_lsdata		*node;
+	t_lsdata		*head;
 
 	dir = opendir(name);
 	i = 0;
-	list = NULL;
+	node = NULL;
 	if (readdir(dir))
 	{
-		list = list_malloc(list);
+		node = list_malloc(node);
 		repo = readdir(dir);
-		listinit(list);
-		list = listfill(name, list, repo);
-		list->next = NULL;
-		prec = list;
+		listinit(node);
+		node = listfill(name, node, repo);
+		node->next = NULL;
+		head = node;
 		while ((repo = readdir(dir)) != NULL)
 		{
-			list = list_malloc(list);
-			listinit(list);
+			node = list_malloc(node);
+			listinit(node);
 			tmp = ft_strjoin(name, "/");
 			tmp = ft_strjoin(tmp, repo->d_name);
-			list = listfill(tmp, list, repo);
-			list->next = prec;
-			prec = list;
+			node = listfill(tmp, node, repo);
+			node->next = head;
+			head = node;
 			i++;
 		}
-		ls_printer(prec, lsflag, name, i);
+		ls_printer(head, lsflag, name, i);
 		ft_putchar('\n');
 		return (1);
 	}

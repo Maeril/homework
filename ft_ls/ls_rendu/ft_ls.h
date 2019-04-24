@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 15:43:08 by myener            #+#    #+#             */
-/*   Updated: 2019/04/24 16:33:33 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/24 19:37:30 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,7 @@ typedef struct 			s_lsflag
 typedef struct			s_lsdata
 {
 	char				*filename;
-	char				*username;
-	char				*groupname;
-	long int			ls_namelen;
+	// long int			ls_namelen;
 	long long int		date_sec;
 	struct s_lsdata		*next;
 }						t_lsdata;
@@ -92,6 +90,9 @@ void		ls_struct_malloc(t_lsflag *lsflag);
 void		ls_struct_free(t_lsflag *lsflag);
 void		ls_parser(t_lsflag *lsflag, char *str);
 void		padding(struct stat buf);
-void		swap_list_data(t_lsdata* p1, t_lsdata* p2);
+// t_lsdata	*sort_list_revalpha(t_lsdata *head);
+// t_lsdata	*sort_list_alpha(t_lsdata *head);
+t_lsdata	*sort_list_revdate(t_lsdata *head);
+int			swap_list_data(t_lsdata* p1, t_lsdata* p2);
 
 #endif
