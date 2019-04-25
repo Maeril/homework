@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 13:57:15 by myener            #+#    #+#             */
-/*   Updated: 2019/04/18 12:36:50 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/25 17:10:14 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int				ft_uintlen(unsigned long long int n);
 int				ft_octlen(unsigned long long int n);
 int				ft_hexlen(unsigned long long int n);
 char			ft_itoc(int n);
-char   			*ft_lltoa(long long int n);
+char			*ft_lltoa(long long int n);
 void			*ft_memset(void *b, int c, size_t len);
 void			ft_putchar(char c);
 void			ft_putnbr(int nb);

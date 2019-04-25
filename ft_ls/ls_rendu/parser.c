@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 16:29:00 by myener            #+#    #+#             */
-/*   Updated: 2019/04/23 16:12:21 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/25 17:19:37 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	ls_parser(t_lsflag *lsflag, char *str)
 {
 	int		i;
 
-	i = 1; // et pas 0, pour sauter le '-'
+	i = 1;
 	while ((str[i] && str[i] != ' ') || str[i])
 	{
 		if (str[i] == 'R')
-			lsflag->R = 1;
+			lsflag->big_r = 1;
 		if (str[i] == 'a')
 			lsflag->a = 1;
 		if (str[i] == 'l')
@@ -29,7 +29,7 @@ void	ls_parser(t_lsflag *lsflag, char *str)
 			lsflag->r = 1;
 		if (str[i] == 't')
 			lsflag->t = 1;
-		if (lsflag->R || lsflag->a || lsflag->l || lsflag->r || lsflag->t)
+		if (lsflag->big_r || lsflag->a || lsflag->l || lsflag->r || lsflag->t)
 			lsflag->flag = 1;
 		if (lsflag->r && lsflag->t)
 		{

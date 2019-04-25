@@ -6,13 +6,13 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 12:27:49 by myener            #+#    #+#             */
-/*   Updated: 2019/03/12 12:30:19 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/25 17:05:21 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char    *ft_lltoa(long long int n)
+char	*ft_lltoa(long long int n)
 {
 	int		i;
 	int		neg;

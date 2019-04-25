@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 14:37:03 by myener            #+#    #+#             */
-/*   Updated: 2019/04/24 16:24:40 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/25 17:22:43 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void			permissionprinter(struct stat buf)
 	ft_printf((buf.st_mode & S_IXOTH) ? "x " : "- ");
 }
 
-void	time_formatter(struct stat buf)
+void				time_formatter(struct stat buf)
 {
 	char	*tm;
 	int		i;
@@ -41,10 +41,10 @@ void	time_formatter(struct stat buf)
 	tm = ft_strchr(tm, ' ');
 	i = (ft_strlen(tm) - 9);
 	tm[i] = '\0';
-	ft_printf("%s ", tm); // last modification time;
+	ft_printf("%s ", tm);
 }
 
-int		get_file_info(const char *name)
+int					get_file_info(const char *name)
 {
 	struct stat		buf;
 	struct passwd	*pw;
@@ -53,13 +53,12 @@ int		get_file_info(const char *name)
 	stat(name, &buf);
 	pw = getpwuid(buf.st_uid);
 	gr = getgrgid(buf.st_gid);
-
 	permissionprinter(buf);
-	ft_printf("%d\t", buf.st_nlink); // nb hardlinks;
-	ft_printf("%s ", pw->pw_name); // user name;
-	ft_printf("%s ", gr->gr_name); // group name;
-	ft_printf("%lld\t", buf.st_size); // size (octets);
+	ft_printf("%d\t", buf.st_nlink);
+	ft_printf("%s ", pw->pw_name);
+	ft_printf("%s ", gr->gr_name);
+	ft_printf("%lld\t", buf.st_size);
 	time_formatter(buf);
-	ft_printf("%s\n", name); // file name;
+	ft_printf("%s\n", name);
 	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 18:40:23 by myener            #+#    #+#             */
-/*   Updated: 2019/02/28 21:01:39 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/25 17:09:10 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long long int ft_atoll(const char *str)
+long long int	ft_atoll(const char *str)
 {
 	int				i;
 	int				neg;
