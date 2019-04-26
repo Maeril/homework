@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:40:21 by myener            #+#    #+#             */
-/*   Updated: 2019/04/25 17:26:53 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/26 18:16:13 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,46 @@ void		listfill(const char *name, t_lsdata *list, struct dirent *repo)
 	list->date_sec = buf.st_mtime;
 }
 
-static void	ls_printer(t_lsdata *list, t_lsflag *flag, const char *name)
+void	ls_printer(const char *filename, t_lsflag *flag, int i)
+{
+	int			dot;
+	struct stat	buf;
+
+	stat(filename, &buf);
+	dot = starts_with_dot((char *)filename);
+	if (i == 0 && flag->a && !flag->l)
+		ft_printf("\033[1;36m. \033[0m");
+	if (S_ISDIR(buf.st_mode))
+		ft_putstr("\033[1;36m");
+	else if (buf.st_mode & S_IXUSR)
+		ft_putstr("\033[1;31m");
+	else if (S_ISLNK(buf.st_mode))
+		ft_putstr("\033[1;35m");
+	else if (S_ISBLK(buf.st_mode) || S_ISCHR(buf.st_mode))
+		ft_putstr("\033[1;33m");
+	if (flag->l && !dot)
+		ft_printf("%s \n", filename);
+	else if (flag->l && (flag->a && dot))
+		ft_printf("%s \n", filename);
+	else if (!flag->l && !dot)
+		ft_printf("%s ", filename);
+	else if (!flag->l && (flag->a && dot))
+		ft_printf("%s ", filename);
+	ft_putstr("\033[0m");
+}
+
+static void	ls_print_manager(t_lsdata *list, t_lsflag *flag, const char *name)
 {
 	int		i;
-	int		dot;
 
 	i = 0;
-	dot = 0;
 	while (list)
 	{
 		if (!flag->r && !flag->t)
 			list = sort_list_alpha(list);
 		if (flag->l || flag->r || flag->t || (flag->t && flag->a && flag->l))
 			flag_manager(flag, name, list);
-		dot = starts_with_dot(list->filename);
-		if (!flag->l && !dot)
-			ft_printf("%s ", list->filename);
-		else if (!flag->l && flag->a && dot == 1)
-			ft_printf("%s ", list->filename);
+		ls_printer(list->filename, flag, i);
 		if (flag->big_r)
 			recursive(name, list, flag);
 		list = list->next;
@@ -71,7 +93,7 @@ int			ft_ls(const char *name, t_lsflag *lsflag)
 			node->next = head;
 			head = node;
 		}
-		ls_printer(head, lsflag, name);
+		ls_print_manager(head, lsflag, name);
 		ft_putchar('\n');
 		return (1);
 	}

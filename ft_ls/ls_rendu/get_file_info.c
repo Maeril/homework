@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 14:37:03 by myener            #+#    #+#             */
-/*   Updated: 2019/04/25 17:22:43 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/26 18:12:37 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,5 @@ int					get_file_info(const char *name)
 	ft_printf("%s ", gr->gr_name);
 	ft_printf("%lld\t", buf.st_size);
 	time_formatter(buf);
-	ft_printf("%s\n", name);
 	return (0);
 }
