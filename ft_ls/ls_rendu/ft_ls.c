@@ -6,19 +6,21 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:40:21 by myener            #+#    #+#             */
-/*   Updated: 2019/04/26 18:16:13 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/27 19:56:55 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void		listfill(const char *name, t_lsdata *list, struct dirent *repo)
+static void		listfill(const char *name, t_lsdata *list,
+					struct dirent *repo, t_lsdata *next)
 {
 	struct stat		buf;
 
 	stat(name, &buf);
 	list->filename = repo->d_name;
 	list->date_sec = buf.st_mtime;
+	list->next = next;
 }
 
 void	ls_printer(const char *filename, t_lsflag *flag, int i)
@@ -49,7 +51,7 @@ void	ls_printer(const char *filename, t_lsflag *flag, int i)
 	ft_putstr("\033[0m");
 }
 
-static void	ls_print_manager(t_lsdata *list, t_lsflag *flag, const char *name)
+static int	ls_print_manager(t_lsdata *list, t_lsflag *flag, const char *name)
 {
 	int		i;
 
@@ -66,6 +68,8 @@ static void	ls_print_manager(t_lsdata *list, t_lsflag *flag, const char *name)
 		list = list->next;
 		i++;
 	}
+	ft_putchar('\n');
+	return (1);
 }
 
 int			ft_ls(const char *name, t_lsflag *lsflag)
@@ -78,24 +82,19 @@ int			ft_ls(const char *name, t_lsflag *lsflag)
 
 	dir = opendir(name);
 	node = NULL;
-	if (readdir(dir))
+	if ((repo = readdir(dir)))
 	{
 		node = list_malloc(node);
-		repo = readdir(dir);
-		listfill(name, node, repo);
-		node->next = NULL;
+		listfill(name, node, repo, NULL);
 		head = node;
 		while ((repo = readdir(dir)) != NULL)
 		{
 			node = list_malloc(node);
 			tmp = ft_free_join(ft_strjoin(name, "/"), repo->d_name);
-			listfill(tmp, node, repo);
-			node->next = head;
+			listfill(tmp, node, repo, head);
 			head = node;
 		}
-		ls_print_manager(head, lsflag, name);
-		ft_putchar('\n');
-		return (1);
+		return (ls_print_manager(head, lsflag, name));
 	}
 	closedir(dir);
 	return (0);
