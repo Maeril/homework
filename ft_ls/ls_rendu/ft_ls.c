@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:40:21 by myener            #+#    #+#             */
-/*   Updated: 2019/04/27 19:56:55 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/28 15:30:48 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,12 @@ void	ls_printer(const char *filename, t_lsflag *flag, int i)
 	ft_putstr("\033[0m");
 }
 
-static int	ls_print_manager(t_lsdata *list, t_lsflag *flag, const char *name)
+static int	ls_print_manager(t_lsdata *list, t_lsflag *flag, const char *name,
+							int lvl)
 {
 	int		i;
+	char	*tmp;
+	DIR		*isdir;
 
 	i = 0;
 	while (list)
@@ -64,15 +67,22 @@ static int	ls_print_manager(t_lsdata *list, t_lsflag *flag, const char *name)
 			flag_manager(flag, name, list);
 		ls_printer(list->filename, flag, i);
 		if (flag->big_r)
-			recursive(name, list, flag);
+		{
+			tmp = ft_strjoin(ft_strjoin(name, "/"), list->filename);
+			isdir = opendir(tmp);
+			if ((isdir != NULL) && (ft_strcmp(list->filename, ".") != 0)
+			&& (ft_strcmp(list->filename, "..") != 0))
+				ft_ls(tmp, flag, (lvl + 1));
+		}
 		list = list->next;
 		i++;
 	}
-	ft_putchar('\n');
+	if (!flag->l && lvl == 0)
+		ft_putchar('\n');
 	return (1);
 }
 
-int			ft_ls(const char *name, t_lsflag *lsflag)
+int			ft_ls(const char *name, t_lsflag *lsflag, int lvl)
 {
 	DIR				*dir;
 	struct dirent	*repo;
@@ -94,7 +104,7 @@ int			ft_ls(const char *name, t_lsflag *lsflag)
 			listfill(tmp, node, repo, head);
 			head = node;
 		}
-		return (ls_print_manager(head, lsflag, name));
+		return (ls_print_manager(head, lsflag, name, lvl));
 	}
 	closedir(dir);
 	return (0);
@@ -111,18 +121,18 @@ int			main(int argc, char **argv)
 		ls_struct_malloc(&lsflag);
 		initializer(&lsflag);
 		if (argc == 1)
-			return (ft_ls(empty, &lsflag));
+			return (ft_ls(empty, &lsflag, 0));
 		else if (argc == 2 && argv[1][0] != '-')
 		{
 			name = argv[1];
-			return (ft_ls(name, &lsflag));
+			return (ft_ls(name, &lsflag, 0));
 		}
 		else if ((argc == 2 || argc == 3) && argv[1][0] == '-')
 		{
 			ls_parser(&lsflag, argv[1]);
 			if (argc == 3)
 				name = argv[2];
-			return (ft_ls((argc == 2 ? empty : name), &lsflag));
+			return (ft_ls((argc == 2 ? empty : name), &lsflag, 0));
 		}
 		ls_struct_free(&lsflag);
 	}

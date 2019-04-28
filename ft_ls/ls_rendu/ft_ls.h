@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 15:43:08 by myener            #+#    #+#             */
-/*   Updated: 2019/04/26 18:12:33 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/28 15:29:29 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct			s_lsdata
 
 void					flag_manager(t_lsflag *flag, const char *name,
 						t_lsdata *list);
-int						ft_ls(const char *name, t_lsflag *lsflag);
+int						ft_ls(const char *name, t_lsflag *lsflag, int lvl);
 int						get_file_info(const char *name);
 void					initializer(t_lsflag *lsflag);
 t_lsdata				*list_malloc(t_lsdata *lsdata);

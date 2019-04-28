@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 18:02:03 by myener            #+#    #+#             */
-/*   Updated: 2019/04/25 17:00:13 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/28 14:37:13 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_lsdata	*list_malloc(t_lsdata *lsdata)
 	if (!(lsdata = malloc(sizeof(t_lsdata))))
 		return (NULL);
 	lsdata->filename = NULL;
+	lsdata->date_sec = 0;
 	lsdata->next = NULL;
 	return (lsdata);
 }

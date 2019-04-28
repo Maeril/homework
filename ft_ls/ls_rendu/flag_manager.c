@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 18:19:42 by myener            #+#    #+#             */
-/*   Updated: 2019/04/26 18:16:18 by myener           ###   ########.fr       */
+/*   Updated: 2019/04/28 14:51:47 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,6 @@ void		flag_manager(t_lsflag *flag, const char *name, t_lsdata *list)
 			get_file_info(tmp);
 		}
 	}
-}
-
-void		recursive(const char *name, t_lsdata *list, t_lsflag *flag)
-{
-	char	*tmp;
-	DIR		*isdir;
-
-	tmp = ft_strjoin(ft_strjoin(name, "/"), list->filename);
-	isdir = opendir(tmp);
-	if ((isdir != NULL) && (ft_strcmp(list->filename, "..") != 0))
-		ft_ls(tmp, flag);
 }
 
 int			starts_with_dot(char *filename)
