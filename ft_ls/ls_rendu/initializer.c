@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 18:02:03 by myener            #+#    #+#             */
-/*   Updated: 2019/05/01 11:48:47 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/01 16:39:37 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,6 @@ void		initializer(t_lsflag *lsflag)
 	lsflag->t = 0;
 }
 
-void		ls_struct_malloc(t_lsflag *lsflag)
-{
-	if (!(lsflag = malloc(sizeof(t_lsflag))))
-		return ;
-}
-
 t_lsdata	*list_malloc(t_lsdata *lsdata)
 {
 	if (!(lsdata = malloc(sizeof(t_lsdata))))
@@ -40,18 +34,12 @@ t_lsdata	*list_malloc(t_lsdata *lsdata)
 
 void		list_free(t_lsdata *head)
 {
-   t_lsdata *tmp;
+	t_lsdata	*tmp;
 
-   while (head != NULL)
-    {
-    	tmp = head;
-    	head = head->next;
-    	free(tmp);
-    }
-}
-
-void		ls_struct_free(t_lsflag *lsflag)
-{
-	if (lsflag)
-		free(lsflag);
+	while (head != NULL)
+	{
+		tmp = head;
+		head = head->next;
+		free(tmp);
+	}
 }

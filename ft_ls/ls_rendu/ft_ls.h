@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 15:43:08 by myener            #+#    #+#             */
-/*   Updated: 2019/05/01 11:47:49 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/01 16:42:56 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,9 @@ void					initializer(t_lsflag *lsflag);
 t_lsdata				*list_malloc(t_lsdata *lsdata);
 void					list_free(t_lsdata *lsdata);
 void					ls_parser(t_lsflag *lsflag, char *str);
-void					ls_printer(char *name, t_lsflag *flag, int i);
-void					ls_struct_malloc(t_lsflag *lsflag);
-void					ls_struct_free(t_lsflag *lsflag);
-void					padding(struct stat buf);
-void					recursive(const char *name, t_lsdata *list,
-						t_lsflag *flag);
+void					ls_printer(t_lsdata *list, t_lsflag *flag, int i);
+int						ls_print_manager(t_lsdata *list, t_lsflag *flag,
+						const char *name, int lvl);
 t_lsdata				*sort_list_revalpha(t_lsdata *head);
 t_lsdata				*sort_list_alpha(t_lsdata *head);
 t_lsdata				*sort_list_revdate(t_lsdata *head);
