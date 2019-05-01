@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 18:19:42 by myener            #+#    #+#             */
-/*   Updated: 2019/04/28 14:51:47 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/01 12:22:02 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ void		flag_manager(t_lsflag *flag, const char *name, t_lsdata *list)
 		list = sort_list_revalpha(list);
 	if (flag->l && flag->a)
 	{
-		tmp = ft_strjoin(name, "/");
-		tmp = ft_strjoin(tmp, list->filename);
+		tmp = ft_freejoin(ft_freejoin(name, "/"), list->filename);
 		get_file_info(tmp);
 	}
 	else if (flag->l && !flag->a)
@@ -32,7 +31,7 @@ void		flag_manager(t_lsflag *flag, const char *name, t_lsdata *list)
 		dot = starts_with_dot(list->filename);
 		if (!dot)
 		{
-			tmp = ft_free_join(ft_strjoin(name, "/"), list->filename);
+			tmp = ft_freejoin(ft_freejoin(name, "/"), list->filename);
 			get_file_info(tmp);
 		}
 	}

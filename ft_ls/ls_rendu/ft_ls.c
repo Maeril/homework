@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:40:21 by myener            #+#    #+#             */
-/*   Updated: 2019/04/28 15:30:48 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/01 12:58:11 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void		listfill(const char *name, t_lsdata *list,
 	list->next = next;
 }
 
-void	ls_printer(const char *filename, t_lsflag *flag, int i)
+void	ls_printer(char *filename, t_lsflag *flag, int i)
 {
 	int			dot;
 	struct stat	buf;
@@ -54,11 +54,13 @@ void	ls_printer(const char *filename, t_lsflag *flag, int i)
 static int	ls_print_manager(t_lsdata *list, t_lsflag *flag, const char *name,
 							int lvl)
 {
-	int		i;
-	char	*tmp;
-	DIR		*isdir;
+	int				i;
+	char			*tmp;
+	DIR				*isdir;
+	t_lsdata		*head;
 
 	i = 0;
+	head = list;
 	while (list)
 	{
 		if (!flag->r && !flag->t)
@@ -68,17 +70,24 @@ static int	ls_print_manager(t_lsdata *list, t_lsflag *flag, const char *name,
 		ls_printer(list->filename, flag, i);
 		if (flag->big_r)
 		{
-			tmp = ft_strjoin(ft_strjoin(name, "/"), list->filename);
+			tmp = ft_strjoin(ft_freejoin(name, "/"), list->filename);
 			isdir = opendir(tmp);
 			if ((isdir != NULL) && (ft_strcmp(list->filename, ".") != 0)
 			&& (ft_strcmp(list->filename, "..") != 0))
+			{
+				closedir(isdir);
 				ft_ls(tmp, flag, (lvl + 1));
+			}
+			if (isdir)
+				closedir(isdir);
+			free(tmp);
 		}
 		list = list->next;
 		i++;
 	}
 	if (!flag->l && lvl == 0)
 		ft_putchar('\n');
+	list_free(head);
 	return (1);
 }
 
@@ -100,10 +109,11 @@ int			ft_ls(const char *name, t_lsflag *lsflag, int lvl)
 		while ((repo = readdir(dir)) != NULL)
 		{
 			node = list_malloc(node);
-			tmp = ft_free_join(ft_strjoin(name, "/"), repo->d_name);
+			tmp = ft_freejoin(ft_freejoin(name, "/"), repo->d_name);
 			listfill(tmp, node, repo, head);
 			head = node;
 		}
+		free(repo);
 		return (ls_print_manager(head, lsflag, name, lvl));
 	}
 	closedir(dir);

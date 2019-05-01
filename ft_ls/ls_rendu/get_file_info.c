@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 14:37:03 by myener            #+#    #+#             */
-/*   Updated: 2019/04/28 14:40:28 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/01 10:54:35 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void				time_formatter(struct stat buf, int sizelen)
 	tm = ft_strchr(tm, ' ');
 	i = (ft_strlen(tm) - 9);
 	tm[i] = '\0';
-	ft_printf(sizelen <= 2 ? "\t%s " : "%s ", tm);
+	ft_printf(sizelen <= 2 ? "%s " : "%s ", tm);
 }
 
 int					get_file_info(const char *name)

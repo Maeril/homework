@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 15:49:54 by myener            #+#    #+#              #
-#    Updated: 2019/04/23 16:14:03 by myener           ###   ########.fr        #
+#    Updated: 2019/05/01 11:38:08 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRCS =	ft_ls.c					\
 		parser.c				\
 		sort_list.c
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -g -Wall -Wextra -Werror
 
 OBJS	:=	$(addprefix $(OBJDIR)/,$(SRCS:.c=.o))
 SRCS	:=	$(addprefix $(SRCDIR)/,$(SRCS))

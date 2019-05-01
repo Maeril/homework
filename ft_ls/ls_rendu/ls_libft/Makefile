@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 17:52:34 by myener            #+#    #+#              #
-#    Updated: 2019/04/19 14:51:37 by myener           ###   ########.fr        #
+#    Updated: 2019/05/01 12:14:49 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS	=	ft_abs.c \
 			ft_atoi.c \
 			ft_atoll.c \
 			ft_floatmod.c \
+			ft_freejoin.c \
 			ft_memmove.c \
 			ft_memcpy.c \
 			ft_memset.c \
@@ -93,7 +94,6 @@ SRCS	=	ft_abs.c \
 			ft_strndup.c \
 			ft_strnlen.c \
 			ft_isblank.c \
-			ft_free_join.c \
 			rounder.c
 
 
