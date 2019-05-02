@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 14:37:03 by myener            #+#    #+#             */
-/*   Updated: 2019/05/01 16:34:06 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/02 14:35:16 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ int					get_file_info(const char *name)
 	ft_printf("%d\t", buf.st_nlink);
 	ft_printf("%s ", pw->pw_name);
 	ft_printf("%s ", gr->gr_name);
-	ft_printf("%lld\t", buf.st_size);
+	ft_putnbr_long(buf.st_size);
+	ft_putchar('\t');
 	sizelen = ft_intlen(buf.st_size);
 	time_formatter(buf, sizelen);
 	return (0);

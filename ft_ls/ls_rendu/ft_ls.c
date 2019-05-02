@@ -6,28 +6,39 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:40:21 by myener            #+#    #+#             */
-/*   Updated: 2019/05/01 16:50:51 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/02 16:11:55 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static void		listfill(const char *name, t_lsdata *list,
+static t_lsdata	*listfill(const char *name, t_lsdata *list,
 					struct dirent *repo, t_lsdata *next)
 {
 	struct stat		buf;
+	char			*tmp;
 
+	if (next != NULL)
+		tmp = ft_free_join(ft_strjoin(name, "/"), repo->d_name);
+	list = list_malloc(list);
 	stat(name, &buf);
 	list->filename = repo->d_name;
 	list->date_sec = buf.st_mtime;
 	list->next = next;
+	if (next != NULL)
+		free(tmp);
+	return (list);
 }
 
-void			ls_printer(t_lsdata *list, t_lsflag *flag, int i)
+static void		ls_printer(t_lsdata *list, t_lsflag *flag, int i, const char *n)
 {
 	int			dot;
 	struct stat	buf;
 
+	if (!flag->r && !flag->t)
+		list = sort_list_alpha(list);
+	if (flag->l || flag->r || flag->t || (flag->t && flag->a && flag->l))
+		flag_manager(flag, n, list);
 	stat(list->filename, &buf);
 	dot = starts_with_dot((char *)list->filename);
 	if (i == 0 && flag->a && !flag->l)
@@ -40,18 +51,14 @@ void			ls_printer(t_lsdata *list, t_lsflag *flag, int i)
 		ft_putstr("\033[1;35m");
 	else if (S_ISBLK(buf.st_mode) || S_ISCHR(buf.st_mode))
 		ft_putstr("\033[1;33m");
-	if (flag->l && !dot)
+	if ((flag->l && !dot) || (flag->l && (flag->a && dot)))
 		ft_printf("%s \n", list->filename);
-	else if (flag->l && (flag->a && dot))
-		ft_printf("%s \n", list->filename);
-	else if (!flag->l && !dot)
-		ft_printf("%s ", list->filename);
-	else if (!flag->l && (flag->a && dot))
+	else if ((!flag->l && !dot) || (!flag->l && (flag->a && dot)))
 		ft_printf("%s ", list->filename);
 	ft_putstr("\033[0m");
 }
 
-int				ls_print_manager(t_lsdata *list, t_lsflag *flag,
+static int		ls_print_manager(t_lsdata *list, t_lsflag *flag,
 						const char *name, int lvl)
 {
 	int				i;
@@ -63,87 +70,72 @@ int				ls_print_manager(t_lsdata *list, t_lsflag *flag,
 	head = list;
 	while (list)
 	{
-		if (!flag->r && !flag->t)
-			list = sort_list_alpha(list);
-		if (flag->l || flag->r || flag->t || (flag->t && flag->a && flag->l))
-			flag_manager(flag, name, list);
-		ls_printer(list, flag, i);
+		ls_printer(list, flag, i, name);
 		if (flag->big_r)
 		{
 			tmp = ft_free_join(ft_strjoin(name, "/"), list->filename);
-			isdir = opendir(tmp);
-			if ((isdir != NULL) && (ft_strcmp(list->filename, ".") != 0)
+			if ((isdir = opendir(tmp)) && (ft_strcmp(list->filename, ".") != 0)
 			&& (ft_strcmp(list->filename, "..") != 0))
 				ft_ls(tmp, flag, (lvl + 1));
 			free(tmp);
-			if (isdir)
-				closedir(isdir);
+			(isdir) ? closedir(isdir) : 0;
 		}
 		list = list->next;
 		i++;
 	}
-	if (!flag->l && lvl == 0)
-		ft_putchar('\n');
+	(!flag->l && lvl == 0) ? ft_putchar('\n') : 0;
 	list_free(head);
 	return (1);
 }
 
-int				ft_ls(const char *name, t_lsflag *lsflag, int lvl)
+int				ft_ls(const char *name, t_lsflag *flag, int lvl)
 {
 	DIR				*dir;
 	struct dirent	*repo;
-	char			*tmp;
 	t_lsdata		*node;
 	t_lsdata		*head;
-	int				ret;
 
 	dir = opendir(name);
 	node = NULL;
 	if ((repo = readdir(dir)))
 	{
-		node = list_malloc(node);
-		listfill(name, node, repo, NULL);
+		node = listfill(name, node, repo, NULL);
 		head = node;
 		while ((repo = readdir(dir)) != NULL)
 		{
-			node = list_malloc(node);
-			tmp = ft_free_join(ft_strjoin(name, "/"), repo->d_name);
-			listfill(tmp, node, repo, head);
+			node = listfill(name, node, repo, head);
 			head = node;
-			free(tmp);
 		}
-		ret = ls_print_manager(head, lsflag, name, lvl);
-		if (dir)
-			closedir(dir);
-		return (ret);
+		flag->ret = ls_print_manager(head, flag, name, lvl);
+		(dir) ? closedir(dir) : 0;
+		return (flag->ret);
 	}
-	if (dir && (repo = readdir(dir)) == NULL)
-		closedir(dir);
+	(dir && (repo = readdir(dir)) == NULL) ? closedir(dir) : 0;
 	return (0);
 }
 
 int				main(int argc, char **argv)
 {
-	t_lsflag	lsflag;
+	t_lsflag	flag;
 	const char	*name;
 	const char	empty[] = ".";
 
 	if (argc >= 1 || argc <= 3)
 	{
-		initializer(&lsflag);
+		initializer(&flag);
 		if (argc == 1)
-			return (ft_ls(empty, &lsflag, 0));
+			return (ft_ls(empty, &flag, 0));
 		else if (argc == 2 && argv[1][0] != '-')
 		{
 			name = argv[1];
-			return (ft_ls(name, &lsflag, 0));
+			return (ft_ls(name, &flag, 0));
 		}
 		else if ((argc == 2 || argc == 3) && argv[1][0] == '-')
 		{
-			ls_parser(&lsflag, argv[1]);
+			ls_parser(&flag, argv[1]);
 			if (argc == 3)
 				name = argv[2];
-			return (ft_ls((argc == 2 ? empty : name), &lsflag, 0));
+			return (ft_ls((argc == 2 ? empty : name), &flag, 0));
 		}
 	}
 	return (0);

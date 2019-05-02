@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 15:49:54 by myener            #+#    #+#              #
-#    Updated: 2019/05/01 16:20:54 by myener           ###   ########.fr        #
+#    Updated: 2019/05/02 16:06:38 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,6 @@ SRCS =	ft_ls.c					\
 		flag_manager.c			\
 		get_file_info.c			\
 		initializer.c			\
-		parser.c				\
 		sort_list.c
 
 FLAGS = -g -Wall -Wextra -Werror

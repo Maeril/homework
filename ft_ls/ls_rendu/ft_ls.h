@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 15:43:08 by myener            #+#    #+#             */
-/*   Updated: 2019/05/01 16:42:56 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/02 16:11:36 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct			s_lsflag
 	int					l;
 	int					r;
 	int					t;
+	int					ret;
 }						t_lsflag;
 
 typedef struct			s_lsdata
@@ -44,19 +45,17 @@ typedef struct			s_lsdata
 
 void					flag_manager(t_lsflag *flag, const char *name,
 						t_lsdata *list);
-int						ft_ls(const char *name, t_lsflag *lsflag, int lvl);
+int						ft_ls(const char *name, t_lsflag *flag, int lvl);
 int						get_file_info(const char *name);
-void					initializer(t_lsflag *lsflag);
-t_lsdata				*list_malloc(t_lsdata *lsdata);
-void					list_free(t_lsdata *lsdata);
-void					ls_parser(t_lsflag *lsflag, char *str);
-void					ls_printer(t_lsdata *list, t_lsflag *flag, int i);
-int						ls_print_manager(t_lsdata *list, t_lsflag *flag,
-						const char *name, int lvl);
+void					initializer(t_lsflag *flag);
+t_lsdata				*list_malloc(t_lsdata *data);
+void					list_free(t_lsdata *data);
+void					ls_parser(t_lsflag *flag, char *str);
+void					ls_spacesaver(t_lsdata *node, const char *name,
+						struct dirent *repo);
 t_lsdata				*sort_list_revalpha(t_lsdata *head);
 t_lsdata				*sort_list_alpha(t_lsdata *head);
 t_lsdata				*sort_list_revdate(t_lsdata *head);
 int						starts_with_dot(char *filename);
-int						swap_list_data(t_lsdata *p1, t_lsdata *p2);
 
 #endif
