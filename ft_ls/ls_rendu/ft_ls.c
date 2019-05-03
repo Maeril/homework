@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:40:21 by myener            #+#    #+#             */
-/*   Updated: 2019/05/02 16:11:55 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/03 15:52:58 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,9 @@ int				ft_ls(const char *name, t_lsflag *flag, int lvl)
 
 	dir = opendir(name);
 	node = NULL;
-	if ((repo = readdir(dir)))
+	if (!dir)
+		ft_printf("%s\n", name);
+	else if (dir && (repo = readdir(dir)))
 	{
 		node = listfill(name, node, repo, NULL);
 		head = node;
