@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 18:50:55 by myener            #+#    #+#             */
-/*   Updated: 2019/04/29 22:06:39 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/03 16:46:19 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int		count_words(char *str)
 				str++;
 		}
 	}
+	wordcount += 1;
 	return (wordcount);
 }
 
@@ -70,7 +71,7 @@ char	*saveword(char *str)
 
 	while (!is_space(str[i]) && str[i])
 		i++;
-	word = malloc(sizeof(char) * (i + 1));
+	word = malloc(sizeof(char) * (i + 2));
 	size = i;
 	i = 0;
 	while (i <= size)
@@ -97,6 +98,7 @@ void	rev_wstr(char *str)
 			str++;
 		if (!is_space(*str) && *str)
 		{
+			printf("word saved is %s\n", saveword(str));
 			tab[i] = saveword(str);
 			i++;
 			while (!is_space(*str) && *str)
