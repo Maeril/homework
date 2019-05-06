@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 18:50:55 by myener            #+#    #+#             */
-/*   Updated: 2019/05/03 16:46:19 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/05 22:47:47 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*saveword(char *str)
 	word = malloc(sizeof(char) * (i + 2));
 	size = i;
 	i = 0;
-	while (i <= size)
+	while (i <= size && !is_space(str[i]))
 	{
 		word[i] = str[i];
 		i++;
@@ -86,19 +86,17 @@ char	*saveword(char *str)
 void	rev_wstr(char *str)
 {
 	int		i = 0;
-	int		j = 0;
 	int 	k = 0;
 	char	**tab;
 	int		wc = count_words(str);
 
-	tab = malloc(sizeof(char *) * count_words(str) + 1);
+	tab = malloc(sizeof(char *) * wc + 1);
 	while (*str)
 	{
 		while (is_space(*str) && *str)
 			str++;
 		if (!is_space(*str) && *str)
 		{
-			printf("word saved is %s\n", saveword(str));
 			tab[i] = saveword(str);
 			i++;
 			while (!is_space(*str) && *str)
@@ -106,14 +104,15 @@ void	rev_wstr(char *str)
 		}
 	}
 	tab[i] = NULL;
-	while (tab[j])
-		j++;
-	j--;
-	while (tab[j])
+	i--;
+	while (tab[i])
 	{
-		ft_putstr(tab[j]);
-		j--;
+		ft_putstr(tab[i]);
+		if (i != 0)
+			ft_putchar(' ');
+		i--;
 	}
+	ft_putchar('\n');
 }
 
 int		main(int argc, char **argv)
