@@ -6,13 +6,14 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 15:43:08 by myener            #+#    #+#             */
-/*   Updated: 2019/05/02 16:11:36 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/09 16:21:57 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LS_H
 
 # define FT_LS_H
+# define ARG_MAX 262143
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
@@ -34,6 +35,7 @@ typedef struct			s_lsflag
 	int					r;
 	int					t;
 	int					ret;
+	int					notaflag;
 }						t_lsflag;
 
 typedef struct			s_lsdata
@@ -47,8 +49,12 @@ void					flag_manager(t_lsflag *flag, const char *name,
 						t_lsdata *list);
 int						ft_ls(const char *name, t_lsflag *flag, int lvl);
 int						get_file_info(const char *name);
+void					inexistant_file(const char *name, DIR *dir);
 void					initializer(t_lsflag *flag);
+int						is_flag(char *str);
 t_lsdata				*list_malloc(t_lsdata *data);
+t_lsdata				*listfill(const char *name, t_lsdata *list,
+						struct dirent *repo, t_lsdata *next);
 void					list_free(t_lsdata *data);
 void					ls_parser(t_lsflag *flag, char *str);
 void					ls_spacesaver(t_lsdata *node, const char *name,

@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 18:02:03 by myener            #+#    #+#             */
-/*   Updated: 2019/05/02 16:08:20 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/09 16:05:24 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void		initializer(t_lsflag *flag)
 	flag->r = 0;
 	flag->t = 0;
 	flag->ret = 0;
+	flag->notaflag = 0;
 }
 
 t_lsdata	*list_malloc(t_lsdata *data)
@@ -31,6 +32,24 @@ t_lsdata	*list_malloc(t_lsdata *data)
 	data->date_sec = 0;
 	data->next = NULL;
 	return (data);
+}
+
+t_lsdata	*listfill(const char *name, t_lsdata *list,
+					struct dirent *repo, t_lsdata *next)
+{
+	struct stat		buf;
+	char			*tmp;
+
+	if (next != NULL)
+		tmp = ft_free_join(ft_strjoin(name, "/"), repo->d_name);
+	list = list_malloc(list);
+	stat(name, &buf);
+	list->filename = repo->d_name;
+	list->date_sec = buf.st_mtime;
+	list->next = next;
+	if (next != NULL)
+		free(tmp);
+	return (list);
 }
 
 void		list_free(t_lsdata *head)

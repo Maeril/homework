@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 18:19:42 by myener            #+#    #+#             */
-/*   Updated: 2019/05/02 16:12:51 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/09 15:58:46 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,29 @@ void		flag_manager(t_lsflag *flag, const char *name, t_lsdata *list)
 	}
 }
 
+int			is_flag(char *str)
+{
+	int i;
+
+	i = 0;
+	if (str[0] == '-' && str[1] != '-')
+	{
+		while (str[i])
+		{
+			if (str[i] == 'l' || str[i] == 'a' || str[i] == 'r'
+				|| str[i] == 'R' || str[i] == 't')
+				return (1);
+			i++;
+		}
+	}
+	else if (str[0] == '-' && str[1] == '-')
+	{
+		ft_putstr("ls: illegal option -- -\n");
+		ft_putstr("usage: ./ft_ls [-alrRt] [file ...]\n");
+	}
+	return (0);
+}
+
 void		ls_parser(t_lsflag *flag, char *str)
 {
 	int		i;
@@ -72,4 +95,15 @@ void		ls_parser(t_lsflag *flag, char *str)
 int			starts_with_dot(char *filename)
 {
 	return (filename[0] == '.' ? 1 : 0);
+}
+
+void		inexistant_file(const char *name, DIR *dir)
+{
+	struct stat		buf;
+
+	stat(name, &buf);
+	if (!dir && (S_ISDIR(buf.st_mode)))
+		ft_printf("ls: %s: Permission denied\n", name);
+	else
+		ft_printf("ls: %s: No such file or directory\n", name);
 }

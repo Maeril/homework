@@ -6,29 +6,11 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:40:21 by myener            #+#    #+#             */
-/*   Updated: 2019/05/03 15:52:58 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/09 16:21:48 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-static t_lsdata	*listfill(const char *name, t_lsdata *list,
-					struct dirent *repo, t_lsdata *next)
-{
-	struct stat		buf;
-	char			*tmp;
-
-	if (next != NULL)
-		tmp = ft_free_join(ft_strjoin(name, "/"), repo->d_name);
-	list = list_malloc(list);
-	stat(name, &buf);
-	list->filename = repo->d_name;
-	list->date_sec = buf.st_mtime;
-	list->next = next;
-	if (next != NULL)
-		free(tmp);
-	return (list);
-}
 
 static void		ls_printer(t_lsdata *list, t_lsflag *flag, int i, const char *n)
 {
@@ -98,7 +80,7 @@ int				ft_ls(const char *name, t_lsflag *flag, int lvl)
 	dir = opendir(name);
 	node = NULL;
 	if (!dir)
-		ft_printf("%s\n", name);
+		inexistant_file(name, dir);
 	else if (dir && (repo = readdir(dir)))
 	{
 		node = listfill(name, node, repo, NULL);
@@ -108,7 +90,7 @@ int				ft_ls(const char *name, t_lsflag *flag, int lvl)
 			node = listfill(name, node, repo, head);
 			head = node;
 		}
-		flag->ret = ls_print_manager(head, flag, name, lvl);
+		flag->ret += ls_print_manager(head, flag, name, lvl);
 		(dir) ? closedir(dir) : 0;
 		return (flag->ret);
 	}
@@ -116,28 +98,52 @@ int				ft_ls(const char *name, t_lsflag *flag, int lvl)
 	return (0);
 }
 
+static void		mainsaver(char **argv, int i, const char *name, t_lsflag *flag)
+{
+	while (argv[i])
+	{
+		if (is_flag(argv[i]))
+			ls_parser(flag, argv[i]);
+		flag->notaflag = !is_flag(argv[i]) ? flag->notaflag + 1 : 0;
+		i++;
+	}
+	i = 1;
+	while (argv[i])
+	{
+		if (!flag->notaflag)
+			ft_ls(".", flag, 0);
+		if (!is_flag(argv[i]))
+		{
+			if (flag->notaflag > 1)
+				ft_printf("\033[1;36m%s\033[0m:\n", argv[i]);
+			name = argv[i];
+			ft_ls(name, flag, 0);
+			if (flag->notaflag > 1 && argv[i + 1])
+				ft_putchar('\n');
+		}
+		i++;
+	}
+}
+
 int				main(int argc, char **argv)
 {
+	int			i;
 	t_lsflag	flag;
 	const char	*name;
-	const char	empty[] = ".";
 
-	if (argc >= 1 || argc <= 3)
+	if (argc >= 1 || argc <= ARG_MAX)
 	{
 		initializer(&flag);
 		if (argc == 1)
-			return (ft_ls(empty, &flag, 0));
-		else if (argc == 2 && argv[1][0] != '-')
+			return (ft_ls(".", &flag, 0));
+		else
 		{
-			name = argv[1];
-			return (ft_ls(name, &flag, 0));
-		}
-		else if ((argc == 2 || argc == 3) && argv[1][0] == '-')
-		{
-			ls_parser(&flag, argv[1]);
-			if (argc == 3)
-				name = argv[2];
-			return (ft_ls((argc == 2 ? empty : name), &flag, 0));
+			i = 1;
+			flag.notaflag = 0;
+			if (!is_flag(argv[i]) && argv[i][0] == '-' && argv[i][1] == '-')
+				return (0);
+			mainsaver(argv, i, name, &flag);
+			return (flag.ret);
 		}
 	}
 	return (0);
