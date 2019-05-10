@@ -1,9 +1,0 @@
-PARTIE RESEAU & SECURITE
-
-3) Pour attribuer une IP statique :
-https://technique.arscenic.org/reseau/article/attribuer-une-ip-fixe-a-un-serveur
-(bien se rappeler de configurer la VM en NAT, et que le masque en /30 est 255.255.255.252).
-
-4) https://www.wikihow.com/Add-or-Change-the-Default-Gateway-in-Linux
-https://kb.iu.edu/d/aews
-https://www.howtogeek.com/howto/linux/security-tip-disable-root-ssh-login-on-linux/
