@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 18:02:03 by myener            #+#    #+#             */
-/*   Updated: 2019/05/09 16:05:24 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/17 14:50:30 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_lsdata	*listfill(const char *name, t_lsdata *list,
 	if (next != NULL)
 		tmp = ft_free_join(ft_strjoin(name, "/"), repo->d_name);
 	list = list_malloc(list);
-	stat(name, &buf);
+	stat(repo->d_name, &buf);
 	list->filename = repo->d_name;
 	list->date_sec = buf.st_mtime;
 	list->next = next;
