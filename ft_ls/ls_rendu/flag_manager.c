@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 18:19:42 by myener            #+#    #+#             */
-/*   Updated: 2019/05/09 15:58:46 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/20 17:26:33 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void		inexistant_file(const char *name, DIR *dir)
 {
 	struct stat		buf;
 
-	stat(name, &buf);
+	lstat(name, &buf);
 	if (!dir && (S_ISDIR(buf.st_mode)))
 		ft_printf("ls: %s: Permission denied\n", name);
 	else
