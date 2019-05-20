@@ -6,12 +6,11 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 18:50:55 by myener            #+#    #+#             */
-/*   Updated: 2019/05/05 22:47:47 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/06 22:47:21 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 void	ft_putchar(char c)

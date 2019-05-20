@@ -6,17 +6,11 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/05 21:03:36 by myener            #+#    #+#             */
-/*   Updated: 2019/05/05 22:47:54 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/06 21:08:44 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "flood_fill.h"
-
-static void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
 
 static void	place(t_point *size, int i, int j, char c, char **tab)
 {
