@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 18:02:03 by myener            #+#    #+#             */
-/*   Updated: 2019/05/20 19:20:47 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/21 15:47:33 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ void		initializer(t_lsflag *flag)
 	flag->r = 0;
 	flag->t = 0;
 	flag->ret = 0;
+	flag->rt = 0;
 	flag->notaflag = 0;
+	flag->intrus = 0;
 }
 
 void		symlink_manager(t_lsdata *list, const char *name, struct stat buf)
@@ -38,7 +40,7 @@ void		symlink_manager(t_lsdata *list, const char *name, struct stat buf)
 	if (S_ISLNK(buf.st_mode))
 		ft_printf("\033[0m-> %s", str);
 	ft_putchar('\n');
-	free (str);
+	free(str);
 }
 
 t_lsdata	*list_malloc(t_lsdata *data)

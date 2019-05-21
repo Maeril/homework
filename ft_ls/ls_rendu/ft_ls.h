@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 15:43:08 by myener            #+#    #+#             */
-/*   Updated: 2019/05/20 16:24:01 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/21 15:43:01 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@ typedef struct			s_lsflag
 	int					l;
 	int					r;
 	int					t;
+	int					rt;
 	int					ret;
 	int					notaflag;
+	int					intrus;
+	char				c_intrus;
 }						t_lsflag;
 
 typedef struct			s_lsdata
@@ -49,7 +52,7 @@ void					flag_manager(t_lsflag *flag, const char *name,
 						t_lsdata *list);
 int						ft_ls(const char *name, t_lsflag *flag, int lvl);
 int						get_file_info(const char *name);
-void					inexistant_file(const char *name, DIR *dir);
+void					inexistant_file(const char *name, t_lsflag *flag);
 void					initializer(t_lsflag *flag);
 int						is_flag(char *str);
 t_lsdata				*list_malloc(t_lsdata *data);
@@ -62,6 +65,7 @@ void					ls_spacesaver(t_lsdata *node, const char *name,
 t_lsdata				*sort_list_revalpha(t_lsdata *head);
 t_lsdata				*sort_list_alpha(t_lsdata *head);
 t_lsdata				*sort_list_revdate(t_lsdata *head);
+t_lsdata				*sort_list_date(t_lsdata *head);
 int						starts_with_dot(char *filename);
 void					symlink_manager(t_lsdata *list, const char *name,
 						struct stat buf);

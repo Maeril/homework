@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:40:21 by myener            #+#    #+#             */
-/*   Updated: 2019/05/20 18:07:54 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/21 15:41:21 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void		ls_printer(t_lsdata *list, t_lsflag *flag, int i, const char *n)
 	int			dot;
 	struct stat	buf;
 
-	if (!flag->r && !flag->t)
+	if (!flag->r && !flag->t && !flag->rt)
 		list = sort_list_alpha(list);
 	if (flag->l || flag->r || flag->t || (flag->t && flag->a && flag->l))
 		flag_manager(flag, n, list);
@@ -79,8 +79,8 @@ int				ft_ls(const char *name, t_lsflag *flag, int lvl)
 
 	dir = opendir(name);
 	node = NULL;
-	if (!dir)
-		inexistant_file(name, dir);
+	if (!dir || flag->intrus)
+		inexistant_file(name, flag);
 	else if (dir && (repo = readdir(dir)))
 	{
 		node = listfill(name, node, repo, NULL);

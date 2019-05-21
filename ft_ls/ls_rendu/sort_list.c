@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:42:23 by myener            #+#    #+#             */
-/*   Updated: 2019/05/02 16:05:44 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/21 15:47:34 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,27 @@ t_lsdata	*sort_list_revdate(t_lsdata *head)
 		while ((p1->next != NULL))
 		{
 			if (p1->date_sec < p1->next->date_sec)
+				swap_list_data(p1, p1->next);
+			p1 = p1->next;
+		}
+		p1 = head;
+		p2 = p2->next;
+	}
+	return (p1);
+}
+
+t_lsdata	*sort_list_date(t_lsdata *head)
+{
+	t_lsdata	*p1;
+	t_lsdata	*p2;
+
+	p1 = head;
+	p2 = head;
+	while (p2->next != NULL)
+	{
+		while ((p1->next != NULL))
+		{
+			if (p1->date_sec > p1->next->date_sec)
 				swap_list_data(p1, p1->next);
 			p1 = p1->next;
 		}
