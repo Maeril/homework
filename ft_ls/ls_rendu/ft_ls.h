@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 15:43:08 by myener            #+#    #+#             */
-/*   Updated: 2019/05/21 15:43:01 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/22 18:15:22 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ t_lsdata				*listfill(const char *name, t_lsdata *list,
 						struct dirent *repo, t_lsdata *next);
 void					list_free(t_lsdata *data);
 void					ls_parser(t_lsflag *flag, char *str);
+char					*ls_printer_helper(struct stat *buf, t_lsflag *flag,
+								t_lsdata *list, char *tmp);
 void					ls_spacesaver(t_lsdata *node, const char *name,
 						struct dirent *repo);
 t_lsdata				*sort_list_revalpha(t_lsdata *head);
@@ -67,7 +69,5 @@ t_lsdata				*sort_list_alpha(t_lsdata *head);
 t_lsdata				*sort_list_revdate(t_lsdata *head);
 t_lsdata				*sort_list_date(t_lsdata *head);
 int						starts_with_dot(char *filename);
-void					symlink_manager(t_lsdata *list, const char *name,
-						struct stat buf);
 
 #endif

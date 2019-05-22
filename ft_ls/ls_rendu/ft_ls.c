@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:40:21 by myener            #+#    #+#             */
-/*   Updated: 2019/05/21 15:41:21 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/22 18:16:03 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 static void		ls_printer(t_lsdata *list, t_lsflag *flag, int i, const char *n)
 {
-	int			dot;
+	char		*tmp;
 	struct stat	buf;
 
+	ft_putstr("\033[0m");
 	if (!flag->r && !flag->t && !flag->rt)
 		list = sort_list_alpha(list);
 	if (flag->l || flag->r || flag->t || (flag->t && flag->a && flag->l))
 		flag_manager(flag, n, list);
-	lstat(list->filename, &buf);
-	dot = starts_with_dot((char *)list->filename);
+	tmp = ft_free_join(ft_strjoin(n, "/"), list->filename);
+	lstat(tmp, &buf);
 	if (i == 0 && flag->a && !flag->l)
 		ft_printf("\033[1;36m. \033[0m");
 	if (S_ISDIR(buf.st_mode))
@@ -33,11 +34,8 @@ static void		ls_printer(t_lsdata *list, t_lsflag *flag, int i, const char *n)
 		ft_putstr("\033[1;35m");
 	else if (S_ISBLK(buf.st_mode) || S_ISCHR(buf.st_mode))
 		ft_putstr("\033[1;33m");
-	if ((flag->l && !dot) || (flag->l && (flag->a && dot)))
-		symlink_manager(list, n, buf);
-	else if ((!flag->l && !dot) || (!flag->l && (flag->a && dot)))
-		ft_printf("%s ", list->filename);
-	ft_putstr("\033[0m");
+	tmp = ls_printer_helper(&buf, flag, list, tmp);
+	free(tmp);
 }
 
 static int		ls_print_manager(t_lsdata *list, t_lsflag *flag,

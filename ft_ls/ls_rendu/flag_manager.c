@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 18:19:42 by myener            #+#    #+#             */
-/*   Updated: 2019/05/21 15:44:46 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/22 18:08:34 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ void		flag_manager(t_lsflag *flag, const char *name, t_lsdata *list)
 		list = sort_list_date(list);
 	if (flag->l && flag->a)
 	{
-		tmp = ft_strjoin(name, "/");
-		tmp = ft_free_join(tmp, list->filename);
+		tmp = ft_free_join(ft_strjoin(name, "/"), list->filename);
 		get_file_info(tmp);
 		free(tmp);
 	}
@@ -35,8 +34,7 @@ void		flag_manager(t_lsflag *flag, const char *name, t_lsdata *list)
 		dot = starts_with_dot(list->filename);
 		if (!dot)
 		{
-			tmp = ft_strjoin(name, "/");
-			tmp = ft_free_join(tmp, list->filename);
+			tmp = ft_free_join(ft_strjoin(name, "/"), list->filename);
 			get_file_info(tmp);
 			free(tmp);
 		}
@@ -80,27 +78,19 @@ void		ls_parser(t_lsflag *flag, char *str)
 			flag->intrus = 1;
 			break ;
 		}
-		if (str[i] == 'R')
-			flag->big_r = 1;
-		if (str[i] == 'a')
-			flag->a = 1;
-		if (str[i] == 'l')
-			flag->l = 1;
-		if (str[i] == 'r')
-			flag->r = 1;
-		if (str[i] == 't')
-			flag->t = 1;
-		if (flag->big_r || flag->a || flag->l || flag->r || flag->t)
-			flag->flag = 1;
-		if (flag->r && flag->t)
+		str[i] == 'R' ? flag->big_r = 1 : 0;
+		str[i] == 'a' ? flag->a = 1 : 0;
+		str[i] == 'l' ? flag->l = 1 : 0;
+		str[i] == 'r' ? flag->r = 1 : 0;
+		str[i] == 't' ? flag->t = 1 : 0;
+		flag->flag = (flag->big_r || flag->a || flag->l || flag->r || flag->t);
+		if ((flag->rt = (flag->r && flag->t)))
 		{
 			flag->r = 0;
 			flag->t = 0;
-			flag->rt = 1;
 		}
 		i++;
 	}
-	printf("str = %s, i = %d,  R = %d, r = %d, a = %d, l = %d, t = %d\n", str, i, flag->big_r, flag->r, flag->a, flag->l, flag->t);
 }
 
 int			starts_with_dot(char *filename)

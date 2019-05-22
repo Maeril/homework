@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 18:02:03 by myener            #+#    #+#             */
-/*   Updated: 2019/05/21 15:47:33 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/22 18:16:00 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,6 @@ void		initializer(t_lsflag *flag)
 	flag->intrus = 0;
 }
 
-void		symlink_manager(t_lsdata *list, const char *name, struct stat buf)
-{
-	char	*str;
-	char	*tmp;
-
-	if (!(str = malloc(sizeof(char) * buf.st_size + 1)))
-		return ;
-	str[buf.st_size] = '\0';
-	tmp = ft_free_join(ft_strjoin(name, "/"), list->filename);
-	readlink(tmp, str, buf.st_size + 1);
-	ft_printf("%s ", list->filename);
-	if (S_ISLNK(buf.st_mode))
-		ft_printf("\033[0m-> %s", str);
-	ft_putchar('\n');
-	free(str);
-}
-
 t_lsdata	*list_malloc(t_lsdata *data)
 {
 	if (!(data = malloc(sizeof(t_lsdata))))
@@ -51,6 +34,35 @@ t_lsdata	*list_malloc(t_lsdata *data)
 	data->date_sec = 0;
 	data->next = NULL;
 	return (data);
+}
+
+char		*ls_printer_helper(struct stat *buf, t_lsflag *flag,
+								t_lsdata *list, char *tmp)
+{
+	int		dot;
+	char	*str;
+
+	dot = starts_with_dot((char *)list->filename);
+	if ((flag->l && !dot) || (flag->l && (flag->a && dot)))
+	{
+		ft_printf("%s ", list->filename);
+		if (S_ISLNK(buf->st_mode))
+		{
+			if (!(str = malloc(sizeof(char) * buf->st_size + 1)))
+				return (0);
+			readlink(tmp, str, buf->st_size);
+			str[buf->st_size] = '\0';
+			ft_printf("\033[0m-> %s", str);
+			free(str);
+		}
+		ft_putchar('\n');
+	}
+	else if ((!flag->l && !dot) || (!flag->l && (flag->a && dot)))
+	{
+		ft_printf("%s ", list->filename);
+		ft_putstr("\033[0m");
+	}
+	return (tmp);
 }
 
 t_lsdata	*listfill(const char *name, t_lsdata *list,
