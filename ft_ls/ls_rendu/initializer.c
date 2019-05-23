@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 18:02:03 by myener            #+#    #+#             */
-/*   Updated: 2019/05/22 18:16:00 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/23 16:11:23 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ t_lsdata	*listfill(const char *name, t_lsdata *list,
 	lstat(tmp, &buf);
 	list->filename = repo->d_name;
 	list->date_sec = buf.st_mtime;
+	list->size = buf.st_size;
 	list->next = next;
 	if (next != NULL)
 		free(tmp);

@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:40:21 by myener            #+#    #+#             */
-/*   Updated: 2019/05/22 18:16:03 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/23 16:11:17 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ static int		ls_print_manager(t_lsdata *list, t_lsflag *flag,
 	head = list;
 	while (list)
 	{
-		ls_printer(list, flag, i, name);
-		if (flag->big_r)
+		if ((ft_strcmp(list->filename, "") != 0))
+			ls_printer(list, flag, i, name);
+		if (flag->big_r && (ft_strcmp(list->filename, "") != 0))
 		{
 			tmp = ft_free_join(ft_strjoin(name, "/"), list->filename);
 			if ((isdir = opendir(tmp)) && (ft_strcmp(list->filename, ".") != 0)

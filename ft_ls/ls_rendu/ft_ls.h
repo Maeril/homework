@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 15:43:08 by myener            #+#    #+#             */
-/*   Updated: 2019/05/22 18:15:22 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/23 16:25:11 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,15 @@ typedef struct			s_lsdata
 {
 	char				*filename;
 	long long int		date_sec;
+	long long int		size;
 	struct s_lsdata		*next;
 }						t_lsdata;
 
+int						ends_with_slash(const char *name);
 void					flag_manager(t_lsflag *flag, const char *name,
 						t_lsdata *list);
 int						ft_ls(const char *name, t_lsflag *flag, int lvl);
-int						get_file_info(const char *name);
+int						get_file_info(const char *name, t_lsdata *list);
 void					inexistant_file(const char *name, t_lsflag *flag);
 void					initializer(t_lsflag *flag);
 int						is_flag(char *str);

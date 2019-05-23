@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 14:37:03 by myener            #+#    #+#             */
-/*   Updated: 2019/05/22 16:42:18 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/23 16:25:10 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void				time_formatter(struct stat buf, int sizelen)
 	ft_printf(sizelen <= 2 ? "%s " : "%s ", tm);
 }
 
-int					get_file_info(const char *name)
+int					get_file_info(const char *name, t_lsdata *list)
 {
 	struct stat		buf;
 	struct passwd	*pw;
@@ -52,15 +52,29 @@ int					get_file_info(const char *name)
 	int				sizelen;
 
 	lstat(name, &buf);
-	pw = getpwuid(buf.st_uid);
-	gr = getgrgid(buf.st_gid);
-	permissionprinter(buf);
-	ft_printf("%d\t", buf.st_nlink);
-	ft_printf("%s ", pw->pw_name);
-	ft_printf("%s ", gr->gr_name);
-	ft_putnbr_long(buf.st_size);
-	ft_putchar('\t');
-	sizelen = ft_intlen(buf.st_size);
-	time_formatter(buf, sizelen);
+	// if (buf.st_size >= 0 && buf.st_size < 1000000000)
+	// {
+		pw = getpwuid(buf.st_uid);
+		gr = getgrgid(buf.st_gid);
+		permissionprinter(buf);
+		ft_printf("%d\t", buf.st_nlink);
+		ft_printf("%s ", pw->pw_name);
+		ft_printf("%s ", gr->gr_name);
+		ft_putnbr_long(buf.st_size);
+		ft_putchar('\t');
+		sizelen = ft_intlen(buf.st_size);
+		time_formatter(buf, sizelen);
+	// }
 	return (0);
+}
+
+
+int		ends_with_slash(const char *name)
+{
+	int		i;
+
+	i = 0;
+	while (name[i])
+		i++;
+	return (name[i] == '/' ? 1 : 0);
 }
