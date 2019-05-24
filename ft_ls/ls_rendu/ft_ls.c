@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:40:21 by myener            #+#    #+#             */
-/*   Updated: 2019/05/23 16:11:17 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/24 17:27:30 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static void		ls_printer(t_lsdata *list, t_lsflag *flag, int i, const char *n)
 	ft_putstr("\033[0m");
 	if (!flag->r && !flag->t && !flag->rt)
 		list = sort_list_alpha(list);
-	if (flag->l || flag->r || flag->t || (flag->t && flag->a && flag->l))
-		flag_manager(flag, n, list);
 	tmp = ft_free_join(ft_strjoin(n, "/"), list->filename);
 	lstat(tmp, &buf);
+	if (flag->l || flag->r || flag->t || (flag->t && flag->a && flag->l))
+		flag_manager(flag, n, list);
 	if (i == 0 && flag->a && !flag->l)
 		ft_printf("\033[1;36m. \033[0m");
 	if (S_ISDIR(buf.st_mode))

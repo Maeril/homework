@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 14:37:03 by myener            #+#    #+#             */
-/*   Updated: 2019/05/23 16:25:10 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/24 17:07:51 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void				time_formatter(struct stat buf, int sizelen)
 	ft_printf(sizelen <= 2 ? "%s " : "%s ", tm);
 }
 
-int					get_file_info(const char *name, t_lsdata *list)
+int					get_file_info(const char *name/*, t_lsdata *list*/)
 {
 	struct stat		buf;
 	struct passwd	*pw;

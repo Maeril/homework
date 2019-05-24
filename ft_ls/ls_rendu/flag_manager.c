@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 18:19:42 by myener            #+#    #+#             */
-/*   Updated: 2019/05/23 16:23:25 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/24 17:27:31 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,19 @@ void		flag_manager(t_lsflag *flag, const char *name, t_lsdata *list)
 	char	*tmp;
 	int		dot;
 
+	dot = starts_with_dot(list->filename);
 	if (flag->t && !flag->r)
 		list = sort_list_revdate(list);
 	else if (flag->r && !flag->t)
 		list = sort_list_revalpha(list);
 	else if (flag->rt)
 		list = sort_list_date(list);
-	printf("\nsize = >%lld<\n", list->size);
-	if (flag->l && flag->a)
+	if (flag->l && (flag->a || (!flag->a &&!dot)))
 	{
-		tmp = ft_free_join(ft_strjoin(name, "/"), list->filename);
-		get_file_info(tmp, list);
-		free(tmp);
-	}
-	else if (flag->l && !flag->a)
-	{
-		dot = starts_with_dot(list->filename);
-		if (!dot)
-		{
-			tmp = ends_with_slash(name) ? ft_strjoin(name, list->filename)
+		tmp = ends_with_slash(name) ? ft_strjoin(name, list->filename)
 			: ft_free_join(ft_strjoin(name, "/"), list->filename);
-			get_file_info(tmp, list);
-			free(tmp);
-		}
+		get_file_info(tmp/*, list*/);
+		free(tmp);
 	}
 }
 
