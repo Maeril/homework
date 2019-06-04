@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 18:02:03 by myener            #+#    #+#             */
-/*   Updated: 2019/05/24 17:26:03 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/29 15:54:45 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ char		*ls_printer_helper(struct stat *buf, t_lsflag *flag,
 	dot = starts_with_dot((char *)list->filename);
 	if ((flag->l && !dot) || (flag->l && (flag->a && dot)))
 	{
-		ft_printf("%s ", list->filename);
+		if (!(ft_strcmp(list->filename, "")))
+			ft_putstr(". ");
+		ft_printf( "%s ", list->filename);
 		if (S_ISLNK(buf->st_mode))
 		{
 			if (!(str = malloc(sizeof(char) * buf->st_size + 1)))

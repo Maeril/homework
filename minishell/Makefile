@@ -6,43 +6,39 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 15:49:54 by myener            #+#    #+#              #
-#    Updated: 2019/06/04 17:20:59 by myener           ###   ########.fr        #
+#    Updated: 2019/06/04 16:17:37 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY: all, clean, fclean, re
-NAME = ft_ls
+NAME = minishell
 
 SRCDIR	:=	./
 OBJDIR	:=	./objs
 
-SRCS =	ft_ls.c					\
-		flag_manager.c			\
-		get_file_info.c			\
-		initializer.c			\
-		sort_list.c
+SRCS = 
 
 FLAGS = -Wall -Wextra -Werror
 
 OBJS	:=	$(addprefix $(OBJDIR)/,$(SRCS:.c=.o))
 SRCS	:=	$(addprefix $(SRCDIR)/,$(SRCS))
-LIBPRINTF = ls_libft/ft_printf/libftprintf.a
-LIBFT = ls_libft/libft.a
+LIBPRINTF = libft/ft_printf/libftprintf.a
+LIBFT = libft/libft.a
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBPRINTF) $(LIBFT) ft_ls.h
+$(NAME): $(OBJS) $(LIBPRINTF) $(LIBFT) minishell.h
 	@printf "\e[36m Creating: \e[32m$(NAME)\n"
-	@gcc $(FLAGS) $(LIBFT) $(LIBPRINTF) $(OBJS) -o ft_ls
+	@gcc $(FLAGS) $(LIBFT) $(LIBPRINTF) $(OBJS) -o minishell
 
 %.o: %.c
 	@gcc $(FLAGS) -c $< -o $@
 
 $(LIBPRINTF):
-	@make -C ls_libft/ft_printf
+	@make -C libft/ft_printf
 
 $(LIBFT):
-	@make -C ls_libft
+	@make -C libft
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@printf "\e[34m Compiling: \e[0m$< -> $@\n"
@@ -50,14 +46,14 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@gcc $(FLAGS) -c $< -o $@
 
 clean:
-	@printf "\e[34m Cleaning ft_ls:	\e[0m$(OBJDIR)\e[0m\n"
+	@printf "\e[34m Cleaning minishell:	\e[0m$(OBJDIR)\e[0m\n"
 	@rm -rf $(OBJDIR)
-	@make clean -C ls_libft/ft_printf
-	@make clean -C ls_libft
+	@make clean -C libft/ft_printf
+	@make clean -C libft
 
 fclean: clean
 	@printf "\e[36m Removing: \e[0m"
-	@printf "\e[32mft_ls \e[0m\n"
-	@rm -rf ft_ls ls_libft/ft_printf/libftprintf.a ls_libft/libft.a
+	@printf "\e[32mminishell \e[0m\n"
+	@rm -rf minishell libft/ft_printf/libftprintf.a libft/libft.a
 
 re: fclean $(NAME)

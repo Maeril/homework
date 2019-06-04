@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:40:21 by myener            #+#    #+#             */
-/*   Updated: 2019/05/24 17:27:30 by myener           ###   ########.fr       */
+/*   Updated: 2019/05/29 16:37:09 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,27 @@ static void		ls_printer(t_lsdata *list, t_lsflag *flag, int i, const char *n)
 	struct stat	buf;
 
 	ft_putstr("\033[0m");
-	if (!flag->r && !flag->t && !flag->rt)
-		list = sort_list_alpha(list);
-	tmp = ft_free_join(ft_strjoin(n, "/"), list->filename);
+	list = sort_list_alpha(list);
+	if (flag->t && !flag->r)
+		list = sort_list_revdate(list);
+	else if (flag->r && !flag->t)
+		list = sort_list_revalpha(list);
+	else if (flag->rt)
+		list = sort_list_date(list);
+	tmp = ends_with_slash(n) ? ft_strjoin(n, list->filename)
+			: ft_free_join(ft_strjoin(n, "/"), list->filename);
 	lstat(tmp, &buf);
-	if (flag->l || flag->r || flag->t || (flag->t && flag->a && flag->l))
-		flag_manager(flag, n, list);
+	if (flag->l)
+		flag_manager(flag, &buf, list);
 	if (i == 0 && flag->a && !flag->l)
 		ft_printf("\033[1;36m. \033[0m");
-	if (S_ISDIR(buf.st_mode))
+	if (S_ISDIR(buf.st_mode) || S_ISBLK(buf.st_mode))
 		ft_putstr("\033[1;36m");
 	else if ((buf.st_mode & S_IXUSR) && !S_ISLNK(buf.st_mode))
 		ft_putstr("\033[1;31m");
 	else if (S_ISLNK(buf.st_mode))
 		ft_putstr("\033[1;35m");
-	else if (S_ISBLK(buf.st_mode) || S_ISCHR(buf.st_mode))
+	else if (S_ISCHR(buf.st_mode))
 		ft_putstr("\033[1;33m");
 	tmp = ls_printer_helper(&buf, flag, list, tmp);
 	free(tmp);
