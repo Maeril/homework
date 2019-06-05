@@ -6,32 +6,28 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:40:21 by myener            #+#    #+#             */
-/*   Updated: 2019/05/29 16:37:09 by myener           ###   ########.fr       */
+/*   Updated: 2019/06/05 19:11:32 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static void		ls_printer(t_lsdata *list, t_lsflag *flag, int i, const char *n)
+static void		ls_printer(t_lsdata *list, t_lsflag *flag, const char *n)
 {
 	char		*tmp;
 	struct stat	buf;
 
 	ft_putstr("\033[0m");
 	list = sort_list_alpha(list);
-	if (flag->t && !flag->r)
-		list = sort_list_revdate(list);
-	else if (flag->r && !flag->t)
-		list = sort_list_revalpha(list);
-	else if (flag->rt)
-		list = sort_list_date(list);
+	if (flag->t || flag->r)
+		list = (flag->r && !flag->t) ? sort_list_revalpha(list) :
+		sort_list_revdate(list);
+	list = flag->rt ? sort_list_date(list) : list;
 	tmp = ends_with_slash(n) ? ft_strjoin(n, list->filename)
 			: ft_free_join(ft_strjoin(n, "/"), list->filename);
 	lstat(tmp, &buf);
 	if (flag->l)
 		flag_manager(flag, &buf, list);
-	if (i == 0 && flag->a && !flag->l)
-		ft_printf("\033[1;36m. \033[0m");
 	if (S_ISDIR(buf.st_mode) || S_ISBLK(buf.st_mode))
 		ft_putstr("\033[1;36m");
 	else if ((buf.st_mode & S_IXUSR) && !S_ISLNK(buf.st_mode))
@@ -47,17 +43,15 @@ static void		ls_printer(t_lsdata *list, t_lsflag *flag, int i, const char *n)
 static int		ls_print_manager(t_lsdata *list, t_lsflag *flag,
 						const char *name, int lvl)
 {
-	int				i;
 	char			*tmp;
 	DIR				*isdir;
 	t_lsdata		*head;
 
-	i = 0;
 	head = list;
 	while (list)
 	{
 		if ((ft_strcmp(list->filename, "") != 0))
-			ls_printer(list, flag, i, name);
+			ls_printer(list, flag, name);
 		if (flag->big_r && (ft_strcmp(list->filename, "") != 0))
 		{
 			tmp = ft_free_join(ft_strjoin(name, "/"), list->filename);
@@ -68,7 +62,6 @@ static int		ls_print_manager(t_lsdata *list, t_lsflag *flag,
 			(isdir) ? closedir(isdir) : 0;
 		}
 		list = list->next;
-		i++;
 	}
 	(!flag->l && lvl == 0) ? ft_putchar('\n') : 0;
 	list_free(head);

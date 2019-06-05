@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 18:02:03 by myener            #+#    #+#             */
-/*   Updated: 2019/05/29 15:54:45 by myener           ###   ########.fr       */
+/*   Updated: 2019/06/05 19:13:51 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,10 @@ char		*ls_printer_helper(struct stat *buf, t_lsflag *flag,
 	{
 		if (!(ft_strcmp(list->filename, "")))
 			ft_putstr(". ");
-		ft_printf( "%s ", list->filename);
+		ft_printf("%s ", list->filename);
 		if (S_ISLNK(buf->st_mode))
 		{
-			if (!(str = malloc(sizeof(char) * buf->st_size + 1)))
-				return (0);
+			str = ft_strnew(buf->st_size);
 			readlink(tmp, str, buf->st_size);
 			str[buf->st_size] = '\0';
 			ft_printf("\033[0m-> %s", str);

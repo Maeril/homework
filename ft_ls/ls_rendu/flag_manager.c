@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 18:19:42 by myener            #+#    #+#             */
-/*   Updated: 2019/05/29 15:31:10 by myener           ###   ########.fr       */
+/*   Updated: 2019/06/05 19:02:53 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void		flag_manager(t_lsflag *flag, struct stat *buf,
 	int		dot;
 
 	dot = starts_with_dot(list->filename);
-	if (flag->l && (flag->a || (!flag->a &&!dot)))
+	if (flag->l && (flag->a || (!flag->a && !dot)))
 	{
 		get_file_info(buf);
 	}
