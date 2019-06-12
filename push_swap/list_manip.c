@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:05:48 by myener            #+#    #+#             */
-/*   Updated: 2019/06/12 16:26:57 by myener           ###   ########.fr       */
+/*   Updated: 2019/06/12 17:47:45 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,10 @@ t_pslist	*list_malloc(t_pslist *list)
 	return (list);
 }
 
-t_pslist	*listfill(t_pslist *list, t_pslist *next)
+t_pslist	*listfill(t_pslist *list, int data)
 {
-
 	list = list_malloc(list);
-	list->data = /*some int*/;
-	list->next = next;
+	list->data = data;
+	list = list->next;
 	return (list);
 }
