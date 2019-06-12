@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 14:37:03 by myener            #+#    #+#             */
-/*   Updated: 2019/06/05 19:03:00 by myener           ###   ########.fr       */
+/*   Updated: 2019/06/10 18:57:27 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ int					get_file_info(struct stat *buf)
 	struct group	*gr;
 	int				sizelen;
 
-	pw = getpwuid(buf->st_uid);
-	gr = getgrgid(buf->st_gid);
+	if (!(pw = getpwuid(buf->st_uid)))
+		return (0);
+	if (!(gr = getgrgid(buf->st_gid)))
+		return (0);
 	permissionprinter(buf);
 	ft_printf("%d\t", buf->st_nlink);
 	ft_printf("%s ", pw->pw_name);

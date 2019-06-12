@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:42:23 by myener            #+#    #+#             */
-/*   Updated: 2019/05/28 10:53:10 by myener           ###   ########.fr       */
+/*   Updated: 2019/06/10 20:22:47 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	swap_list_data(t_lsdata *p1, t_lsdata *p2)
 	return (1);
 }
 
-t_lsdata	*sort_list_revdate(t_lsdata *head)
+t_lsdata	*sort_list_rd(t_lsdata *head)
 {
 	t_lsdata	*p1;
 	t_lsdata	*p2;
@@ -93,7 +93,7 @@ t_lsdata	*sort_list_alpha(t_lsdata *head)
 	return (p1);
 }
 
-t_lsdata	*sort_list_revalpha(t_lsdata *head)
+t_lsdata	*sort_list_ra(t_lsdata *head)
 {
 	t_lsdata	*p1;
 	t_lsdata	*p2;
