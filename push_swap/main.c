@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:38:48 by myener            #+#    #+#             */
-/*   Updated: 2019/06/12 17:42:04 by myener           ###   ########.fr       */
+/*   Updated: 2019/06/18 14:36:28 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		main(int argc, char **argv)
 		{
 			if (argv[1] == "./checker")
 				checker(&list, argv);
-			else if (argv[1] == "./push_swap")
+			/*else if (argv[1] == "./push_swap")*/
 		}
 	}
 	return (0);
