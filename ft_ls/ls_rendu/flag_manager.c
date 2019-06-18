@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 18:19:42 by myener            #+#    #+#             */
-/*   Updated: 2019/06/05 19:02:53 by myener           ###   ########.fr       */
+/*   Updated: 2019/06/18 18:17:16 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void		flag_manager(t_lsflag *flag, struct stat *buf,
 						t_lsdata *list)
 {
-	int		dot;
+	int			dot;
 
 	dot = starts_with_dot(list->filename);
 	if (flag->l && (flag->a || (!flag->a && !dot)))
@@ -87,13 +87,18 @@ void		inexistant_file(const char *name, t_lsflag *flag)
 
 	lstat(name, &buf);
 	if ((S_ISDIR(buf.st_mode)) && !flag->intrus)
-		ft_printf("ls: %s: Permission denied\n", name);
+		ft_printf("ls: %s: Permission denied", name);
+	else if ((S_ISREG(buf.st_mode)) && !flag->intrus)
+	{
+		(flag->l == 1) ? get_file_info(&buf) : 0;
+		ft_printf("%s ", name);
+	}
 	else if (flag->intrus || name[0] == '-')
 	{
-		ft_printf("ls: illegal option -- %c\n", flag->intrus ?
+		ft_printf("ls: illegal option -- %c", flag->intrus ?
 		flag->c_intrus : name[1]);
-		ft_putstr("usage: ./ft_ls [-alrRt] [file ...]\n");
+		ft_putstr("usage: ./ft_ls [-alrRt] [file ...]");
 	}
 	else
-		ft_printf("ls: %s: No such file or directory\n", name);
+		ft_printf("ls: %s: No such file or directory", name);
 }

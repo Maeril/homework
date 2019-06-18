@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:40:21 by myener            #+#    #+#             */
-/*   Updated: 2019/06/10 20:23:06 by myener           ###   ########.fr       */
+/*   Updated: 2019/06/18 18:01:20 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void		ls_printer(t_lsdata *list, t_lsflag *flag, const char *n)
 			ft_putstr("\033[1;33m");
 		tmp = ls_printer_helper(&buf, flag, list, tmp);
 	}
+	// ft_printf("total %lld\n", list->blocks);
 	free(tmp);
 }
 
@@ -75,12 +76,13 @@ int				ft_ls(const char *name, t_lsflag *flag, int lvl)
 	struct dirent	*repo;
 	t_lsdata		*node;
 	t_lsdata		*head;
+	int				i;
 
 	dir = opendir(name);
 	node = NULL;
-	if (!dir || flag->intrus)
-		inexistant_file(name, flag);
-	else if (dir && (repo = readdir(dir)))
+	i = (!dir || flag->intrus) ? 1 : 0;
+	(i == 1) ? inexistant_file(name, flag) : 0;
+	if (i == 0 && dir && (repo = readdir(dir)))
 	{
 		node = listfill(name, node, repo, NULL);
 		head = node;
@@ -94,11 +96,14 @@ int				ft_ls(const char *name, t_lsflag *flag, int lvl)
 		return (flag->ret);
 	}
 	(dir && (repo = readdir(dir)) == NULL) ? closedir(dir) : 0;
-	return (0);
+	return (i);
 }
 
 static void		mainsaver(char **argv, int i, const char *name, t_lsflag *flag)
 {
+	int		ret;
+
+	ret = 0;
 	while (argv[i])
 	{
 		if (is_flag(argv[i]))
@@ -113,11 +118,9 @@ static void		mainsaver(char **argv, int i, const char *name, t_lsflag *flag)
 			ft_ls(".", flag, 0);
 		if (!is_flag(argv[i]))
 		{
-			if (flag->notaflag > 1)
-				ft_printf("\033[1;36m%s\033[0m:\n", argv[i]);
 			name = argv[i];
-			ft_ls(name, flag, 0);
-			if (flag->notaflag > 1 && argv[i + 1])
+			ret = ft_ls(name, flag, 0);
+			if ((flag->notaflag > 1 && argv[i + 1]) || ret == 1)
 				ft_putchar('\n');
 		}
 		i++;
