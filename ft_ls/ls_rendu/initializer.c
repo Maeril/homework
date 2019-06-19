@@ -31,7 +31,7 @@ t_lsdata	*list_malloc(t_lsdata *data)
 {
 	if (!(data = malloc(sizeof(t_lsdata))))
 		return (NULL);
-	data->filename = NULL;
+	data->fn = NULL;
 	data->blocks = 0;
 	data->date_sec = 0;
 	data->next = NULL;
@@ -44,12 +44,12 @@ char		*ls_printer_helper(struct stat *buf, t_lsflag *flag,
 	int		dot;
 	char	*str;
 
-	dot = (list->filename[0] == '.') ? 1 : 0;
+	dot = (list->fn[0] == '.') ? 1 : 0;
 	if ((flag->l && !dot) || (flag->l && (flag->a && dot)))
 	{
-		if (!(ft_strcmp(list->filename, "")))
+		if (!(ft_strcmp(list->fn, "")))
 			ft_putstr(". ");
-		ft_printf("%s ", list->filename);
+		ft_printf("%s ", list->fn);
 		if (S_ISLNK(buf->st_mode))
 		{
 			str = ft_strnew(buf->st_size);
@@ -62,7 +62,7 @@ char		*ls_printer_helper(struct stat *buf, t_lsflag *flag,
 	}
 	else if ((!flag->l && !dot) || (!flag->l && (flag->a && dot)))
 	{
-		ft_printf("%s ", list->filename);
+		ft_printf("%s ", list->fn);
 		ft_putstr("\033[0m");
 	}
 	return (tmp);
@@ -93,7 +93,7 @@ t_lsdata	*listfill(const char *name, t_lsdata *list,
 		list->blocks = 0;
 		list->size = 0;
 	}
-	list->filename = repo->d_name;
+	list->fn = repo->d_name;
 	list->next = next;
 	if (next != NULL)
 		free(tmp);

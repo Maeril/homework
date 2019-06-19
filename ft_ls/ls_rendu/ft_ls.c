@@ -22,8 +22,8 @@ static void		ls_printer(t_lsdata *list, t_lsflag *flag, const char *n)
 	if (flag->t || flag->r)
 		list = (flag->r && !flag->t) ? sort_list_ra(list) : sort_list_rd(list);
 	list = flag->rt ? sort_list_date(list) : list;
-	tmp = ends_with_slash(n) ? ft_strjoin(n, list->filename)
-			: ft_free_join(ft_strjoin(n, "/"), list->filename);
+	tmp = ends_with_slash(n) ? ft_strjoin(n, list->fn)
+			: ft_free_join(ft_strjoin(n, "/"), list->fn);
 	if (lstat(tmp, &buf) == 0)
 	{
 		if (flag->l)
@@ -49,18 +49,19 @@ static int		ls_print_manager(t_lsdata *list, t_lsflag *flag,
 	t_lsdata		*head;
 
 	head = list;
-	flag->blocks_nb = blocks_counter(head);
-	(flag->l) ? ft_printf("total %lld\n", flag->blocks_nb) : 0;
+	flag->l ? ft_printf("\033[0mtotal %lld\n", flag->blocks_nb) : 0;
 	while (list)
 	{
-		if ((ft_strcmp(list->filename, "") != 0))
-			ls_printer(list, flag, name);
-		if (flag->big_r && (ft_strcmp(list->filename, "") != 0))
+		(ft_strcmp(list->fn, "") != 0) ? ls_printer(list, flag, name) : 0;
+		if (flag->big_r && (ft_strcmp(list->fn, "")))
 		{
-			tmp = ft_free_join(ft_strjoin(name, "/"), list->filename);
-			if ((isdir = opendir(tmp)) && (ft_strcmp(list->filename, ".") != 0)
-			&& (ft_strcmp(list->filename, "..") != 0))
+			tmp = ft_free_join(ft_strjoin(name, "/"), list->fn);
+			if ((isdir = opendir(tmp)) && (ft_strcmp(list->fn, "."))
+			&& (ft_strcmp(list->fn, "..")))
+			{
+				ft_printf("\n\033[0m%s:\n", tmp);
 				ft_ls(tmp, flag, (lvl + 1));
+			}
 			free(tmp);
 			(isdir) ? closedir(isdir) : 0;
 		}
@@ -81,8 +82,7 @@ int				ft_ls(const char *name, t_lsflag *flag, int lvl)
 
 	dir = opendir(name);
 	node = NULL;
-	i = (!dir || flag->intrus) ? 1 : 0;
-	(i == 1) ? inexistant_file(name, flag) : 0;
+	(i = (!dir || flag->intrus)) ? inex_file(name, flag) : 0;
 	if (i == 0 && dir && (repo = readdir(dir)))
 	{
 		node = listfill(name, node, repo, NULL);
@@ -92,6 +92,7 @@ int				ft_ls(const char *name, t_lsflag *flag, int lvl)
 			node = listfill(name, node, repo, head);
 			head = node;
 		}
+		flag->blocks_nb = blocks_counter(head);
 		flag->ret += ls_print_manager(head, flag, name, lvl);
 		(dir) ? closedir(dir) : 0;
 		return (flag->ret);

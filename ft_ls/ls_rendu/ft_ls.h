@@ -44,7 +44,7 @@ typedef struct			s_lsflag
 
 typedef struct			s_lsdata
 {
-	char				*filename;
+	char				*fn;
 	long long int		date_sec;
 	long long int		blocks;
 	long long int		size;
@@ -57,7 +57,7 @@ void					flag_manager(t_lsflag *flag, struct stat *buf,
 									t_lsdata *list);
 int						ft_ls(const char *name, t_lsflag *flag, int lvl);
 int						get_file_info(struct stat *buf);
-void					inexistant_file(const char *name, t_lsflag *flag);
+void					inex_file(const char *name, t_lsflag *flag);
 void					initializer(t_lsflag *flag);
 int						is_flag(char *str);
 t_lsdata				*list_malloc(t_lsdata *data);

@@ -18,9 +18,9 @@ static int	swap_list_data(t_lsdata *p1, t_lsdata *p2)
 	long long int	tmp_date;
 	long long int	tmp_size;
 
-	tmp_name = p1->filename;
-	p1->filename = p2->filename;
-	p2->filename = tmp_name;
+	tmp_name = p1->fn;
+	p1->fn = p2->fn;
+	p2->fn = tmp_name;
 	tmp_date = p1->date_sec;
 	p1->date_sec = p2->date_sec;
 	p2->date_sec = tmp_date;
@@ -83,7 +83,7 @@ t_lsdata	*sort_list_alpha(t_lsdata *head)
 	{
 		while ((p1->next != NULL))
 		{
-			if (ft_strcmp(p1->filename, p1->next->filename) > 0)
+			if (ft_strcmp(p1->fn, p1->next->fn) > 0)
 				swap_list_data(p1, p1->next);
 			p1 = p1->next;
 		}
@@ -104,7 +104,7 @@ t_lsdata	*sort_list_ra(t_lsdata *head)
 	{
 		while ((p1->next != NULL))
 		{
-			if (ft_strcmp(p1->filename, p1->next->filename) < 0)
+			if (ft_strcmp(p1->fn, p1->next->fn) < 0)
 				swap_list_data(p1, p1->next);
 			p1 = p1->next;
 		}
