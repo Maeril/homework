@@ -1,25 +1,7 @@
 {
-	"folders": [
-		{
-			"path": "."
-		},
-		{
-			"path": "/Users/Maeril/Documents/personalprojects/themes_vscode/kataomoi/kataomoi 0.0.1 "
-		},
-		{
-			"path": "/Users/Maeril/Documents/42/lukas"
-		},
-		{
-			"path": "/Users/Maeril/LKs"
-		}
-	],
-	"settings": {
-		"files.associations": {
-			"errno.h": "c",
-			"stdio.h": "c",
-			"stdarg.h": "c",
-			"libft.h": "c",
-			"ft_printf.h": "c"
-		}
-	}
+    "folders": [
+        {
+            "path": "."
+        }
+    ]
 }

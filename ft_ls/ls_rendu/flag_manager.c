@@ -17,7 +17,7 @@ void		flag_manager(t_lsflag *flag, struct stat *buf,
 {
 	int			dot;
 
-	dot = starts_with_dot(list->filename);
+	dot = (list->filename[0] == '.') ? 1 : 0;
 	if (flag->l && (flag->a || (!flag->a && !dot)))
 	{
 		get_file_info(buf);
@@ -76,9 +76,17 @@ void		ls_parser(t_lsflag *flag, char *str)
 	}
 }
 
-int			starts_with_dot(char *filename)
+int			blocks_counter(t_lsdata *list)
 {
-	return (filename[0] == '.' ? 1 : 0);
+	long long int blocks;
+
+	blocks = 0;
+	while (list->next != NULL)
+	{
+		blocks += list->blocks;
+		list = list->next;
+	}
+	return (blocks);
 }
 
 void		inexistant_file(const char *name, t_lsflag *flag)

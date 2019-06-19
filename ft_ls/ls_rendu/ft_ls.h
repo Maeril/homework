@@ -38,6 +38,7 @@ typedef struct			s_lsflag
 	int					ret;
 	int					notaflag;
 	int					intrus;
+	long long int		blocks_nb;
 	char				c_intrus;
 }						t_lsflag;
 
@@ -45,10 +46,12 @@ typedef struct			s_lsdata
 {
 	char				*filename;
 	long long int		date_sec;
+	long long int		blocks;
 	long long int		size;
 	struct s_lsdata		*next;
 }						t_lsdata;
 
+int						blocks_counter(t_lsdata *list);
 int						ends_with_slash(const char *name);
 void					flag_manager(t_lsflag *flag, struct stat *buf,
 									t_lsdata *list);
@@ -70,6 +73,5 @@ t_lsdata				*sort_list_ra(t_lsdata *head);
 t_lsdata				*sort_list_alpha(t_lsdata *head);
 t_lsdata				*sort_list_rd(t_lsdata *head);
 t_lsdata				*sort_list_date(t_lsdata *head);
-int						starts_with_dot(char *filename);
 
 #endif

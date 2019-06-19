@@ -22,6 +22,7 @@ void		initializer(t_lsflag *flag)
 	flag->t = 0;
 	flag->ret = 0;
 	flag->rt = 0;
+	flag->blocks_nb = 0;
 	flag->notaflag = 0;
 	flag->intrus = 0;
 }
@@ -31,6 +32,7 @@ t_lsdata	*list_malloc(t_lsdata *data)
 	if (!(data = malloc(sizeof(t_lsdata))))
 		return (NULL);
 	data->filename = NULL;
+	data->blocks = 0;
 	data->date_sec = 0;
 	data->next = NULL;
 	return (data);
@@ -42,7 +44,7 @@ char		*ls_printer_helper(struct stat *buf, t_lsflag *flag,
 	int		dot;
 	char	*str;
 
-	dot = starts_with_dot((char *)list->filename);
+	dot = (list->filename[0] == '.') ? 1 : 0;
 	if ((flag->l && !dot) || (flag->l && (flag->a && dot)))
 	{
 		if (!(ft_strcmp(list->filename, "")))
@@ -81,11 +83,14 @@ t_lsdata	*listfill(const char *name, t_lsdata *list,
 	{
 		lstat(tmp, &buf);
 		list->date_sec = buf.st_mtime;
+		if (buf.st_blocks)
+			list->blocks = buf.st_blocks;
 		list->size = buf.st_size;
 	}
 	else
 	{
 		list->date_sec = 0;
+		list->blocks = 0;
 		list->size = 0;
 	}
 	list->filename = repo->d_name;

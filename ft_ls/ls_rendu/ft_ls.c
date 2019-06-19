@@ -31,14 +31,13 @@ static void		ls_printer(t_lsdata *list, t_lsflag *flag, const char *n)
 		if (S_ISDIR(buf.st_mode) || S_ISBLK(buf.st_mode))
 			ft_putstr("\033[1;36m");
 		else if ((buf.st_mode & S_IXUSR) && !S_ISLNK(buf.st_mode))
-			ft_putstr("\033[1;31m");
+			ft_putstr("\033[31m");
 		else if (S_ISLNK(buf.st_mode))
-			ft_putstr("\033[1;35m");
+			ft_putstr("\033[35m");
 		else if (S_ISCHR(buf.st_mode))
 			ft_putstr("\033[1;33m");
 		tmp = ls_printer_helper(&buf, flag, list, tmp);
 	}
-	// ft_printf("total %lld\n", list->blocks);
 	free(tmp);
 }
 
@@ -50,6 +49,8 @@ static int		ls_print_manager(t_lsdata *list, t_lsflag *flag,
 	t_lsdata		*head;
 
 	head = list;
+	flag->blocks_nb = blocks_counter(head);
+	(flag->l) ? ft_printf("total %lld\n", flag->blocks_nb) : 0;
 	while (list)
 	{
 		if ((ft_strcmp(list->filename, "") != 0))
