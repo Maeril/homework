@@ -48,8 +48,7 @@ static int		ls_print_manager(t_lsdata *list, t_lsflag *flag,
 	DIR				*isdir;
 	t_lsdata		*head;
 
-	head = list;
-	flag->l ? ft_printf("\033[0mtotal %lld\n", flag->blocks_nb) : 0;
+	head = ls_pm_saver(list, flag);
 	while (list)
 	{
 		(ft_strcmp(list->fn, "") != 0) ? ls_printer(list, flag, name) : 0;
@@ -114,9 +113,9 @@ static void		mainsaver(char **argv, int i, const char *name, t_lsflag *flag)
 		i++;
 	}
 	i = 1;
-	while (argv[i] && i == 1)
+	while (argv[i])
 	{
-		if (!flag->notaflag)
+		if (!flag->notaflag && i == 1)
 			ft_ls(".", flag, 0);
 		if (!is_flag(argv[i]))
 		{

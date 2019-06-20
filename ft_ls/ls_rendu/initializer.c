@@ -80,19 +80,10 @@ t_lsdata	*listfill(const char *name, t_lsdata *list,
 		tmp = NULL;
 	list = list_malloc(list);
 	if (tmp)
-	{
 		lstat(tmp, &buf);
-		list->date_sec = buf.st_mtime;
-		if (buf.st_blocks)
-			list->blocks = buf.st_blocks;
-		list->size = buf.st_size;
-	}
-	else
-	{
-		list->date_sec = 0;
-		list->blocks = 0;
-		list->size = 0;
-	}
+	list->date_sec = tmp ? buf.st_mtime : 0;
+	list->blocks = tmp ? buf.st_blocks : 0;
+	list->size = tmp ? buf.st_size : 0;
 	list->fn = repo->d_name;
 	list->next = next;
 	if (next != NULL)

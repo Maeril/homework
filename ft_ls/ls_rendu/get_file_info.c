@@ -74,3 +74,14 @@ int					ends_with_slash(const char *name)
 		i++;
 	return (name[i] == '/' ? 1 : 0);
 }
+
+t_lsdata			*ls_pm_saver(t_lsdata *list, t_lsflag *flag)
+{
+	if (flag->l)
+	{
+		ft_putstr("\033[0mtotal ");
+		ft_putnbr(flag->blocks_nb);
+		ft_putchar('\n');
+	}
+	return (list);
+}

@@ -93,20 +93,22 @@ void		inex_file(const char *name, t_lsflag *flag)
 {
 	struct stat		buf;
 
-	lstat(name, &buf);
-	if ((S_ISDIR(buf.st_mode)) && !flag->intrus)
-		ft_printf("ls: %s: Permission denied", name);
-	else if ((S_ISREG(buf.st_mode)) && !flag->intrus)
+	if (lstat(name, &buf) == 0)
 	{
-		(flag->l == 1) ? get_file_info(&buf) : 0;
-		ft_printf("%s ", name);
+		if ((S_ISDIR(buf.st_mode)) && !flag->intrus)
+			ft_printf("ls: %s: Permission denied", name);
+		else if ((S_ISREG(buf.st_mode)) && !flag->intrus)
+		{
+			(flag->l == 1) ? get_file_info(&buf) : 0;
+			ft_printf("%s ", name);
+		}
+		else if (flag->intrus || name[0] == '-')
+		{
+			ft_printf("ls: illegal option -- %c", flag->intrus ?
+			flag->c_intrus : name[1]);
+			ft_putstr("usage: ./ft_ls [-alrRt] [file ...]");
+		}
+		else
+			ft_printf("ls: %s: No such file or directory", name);
 	}
-	else if (flag->intrus || name[0] == '-')
-	{
-		ft_printf("ls: illegal option -- %c", flag->intrus ?
-		flag->c_intrus : name[1]);
-		ft_putstr("usage: ./ft_ls [-alrRt] [file ...]");
-	}
-	else
-		ft_printf("ls: %s: No such file or directory", name);
 }

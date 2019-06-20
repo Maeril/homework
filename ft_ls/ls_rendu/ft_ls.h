@@ -65,6 +65,7 @@ t_lsdata				*listfill(const char *name, t_lsdata *list,
 						struct dirent *repo, t_lsdata *next);
 void					list_free(t_lsdata *data);
 void					ls_parser(t_lsflag *flag, char *str);
+t_lsdata				*ls_pm_saver(t_lsdata *list, t_lsflag *flag);
 char					*ls_printer_helper(struct stat *buf, t_lsflag *flag,
 								t_lsdata *list, char *tmp);
 void					ls_spacesaver(t_lsdata *node, const char *name,
