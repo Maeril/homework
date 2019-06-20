@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:40:21 by myener            #+#    #+#             */
-/*   Updated: 2019/06/18 18:01:20 by myener           ###   ########.fr       */
+/*   Updated: 2019/06/20 15:13:51 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ static void		mainsaver(char **argv, int i, const char *name, t_lsflag *flag)
 		i++;
 	}
 	i = 1;
-	while (argv[i])
+	while (argv[i] && i == 1)
 	{
 		if (!flag->notaflag)
 			ft_ls(".", flag, 0);
