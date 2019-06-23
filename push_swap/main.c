@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:38:48 by myener            #+#    #+#             */
-/*   Updated: 2019/06/18 14:36:28 by myener           ###   ########.fr       */
+/*   Updated: 2019/06/23 19:36:33 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,15 @@ int		main(int argc, char **argv)
 	else if (argc >= 2)
 	{
 		if (bad_arg_checker(argv) == 1) /* if there's a bad argument, output an error message and return */
+			ps_output(1);
+		else if (bad_arg_checker(argv) == 0) /* if all is good then we can proceed */
 		{
-			write(2, "Error\n", 6);
-			return (0);
-		}
-		else if (bad_arg_checker == 0) /* if all is good then we can proceed */
-		{
-			if (argv[1] == "./checker")
+			if (!ft_strcmp(argv[1], "./checker"))
 				checker(&list, argv);
-			/*else if (argv[1] == "./push_swap")*/
+			else if (argv[1] == "./push_swap")
+				push_swap();
+			else
+				ps_output(1);
 		}
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:49:20 by myener            #+#    #+#             */
-/*   Updated: 2019/06/12 17:47:41 by myener           ###   ########.fr       */
+/*   Updated: 2019/06/23 20:38:04 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,26 @@ t_pslist	*convertto_list(char **argv, t_pslist *list)
 	return (list); /* return the filled-up list */
 }
 
+char		**get_instruct(char	**instructions)
+{
+	return (instructions);
+}
+
+t_pslist	*apply_instruct(char **instructions, t_pslist *list)
+{
+	return (list);
+}
+
 void		checker(t_pslist *list, char **argv)
 {
-	t_pslist *curr;
+	char	**instructions;
 
 	list = convertto_list(argv, list); /* put all the arguments in chained list nodes */
-	curr = &list; /* keep track of the head of the chained list */
-	while (curr && curr->next) /* while the chained list exists, go through it */
+	if (check_list(list)) /* if the list is unsorted (if it's sorted "OK" was already outputed), */
 	{
-		if (curr->data > curr->next->data) /* if one data is greater than the next, */
-		{
-			ft_putstr("KO\n"); /* output "KO", as it means the list isn't in ascending order */
-			return ;
-		}
-		curr = curr->next;
+		instructions = get_instruct(instructions);
+		list = apply_instruct(instructions, list);
+		if (check_list(list))  /* if the list is STILL unsorted (if it's sorted "OK" was already outputed), */
+			ps_output(2); /* then output "KO" */
 	}
-	ft_putstr("OK\n"); /* if all is well, output "OK" */
 }
