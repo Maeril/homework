@@ -3,42 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mribouch <mribouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 17:23:52 by myener            #+#    #+#             */
-/*   Updated: 2019/01/29 16:42:25 by mribouch         ###   ########.fr       */
+/*   Updated: 2019/06/24 12:36:47 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static char		*ft_free_join(char *s1, const char *s2)
-{
-	char	*s3;
-	int		i;
-	int		j;
-
-	if (!s1 || !s2)
-		return (NULL);
-	if (!(s3 = ft_strnew(ft_strlen(s1) + ft_strlen(s2))))
-		return (NULL);
-	i = 0;
-	while (s1[i])
-	{
-		s3[i] = s1[i];
-		i++;
-	}
-	j = 0;
-	while (s2[j])
-	{
-		s3[i] = s2[j];
-		i++;
-		j++;
-	}
-	s3[i] = '\0';
-	ft_strdel(&s1);
-	return (s3);
-}
 
 char			*ft_n_strndup(char *str, char *dest, size_t n)
 {

@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:05:48 by myener            #+#    #+#             */
-/*   Updated: 2019/06/23 20:41:39 by myener           ###   ########.fr       */
+/*   Updated: 2019/06/25 16:58:39 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_pslist	*list_malloc(t_pslist *list)
 		return (NULL);
 	list->data = 0;
 	list->next = NULL;
+	list->prev = NULL;
 	return (list);
 }
 
@@ -44,7 +45,7 @@ int			check_length(t_pslist *list)
 	return (i);
 }
 
-int			check_list(t_pslist *list)
+int			check_list(t_pslist *list, t_psflag *flag)
 {
 	t_pslist *curr;
 
@@ -57,5 +58,7 @@ int			check_list(t_pslist *list)
 			return (1); /* then we can proceed to the next step */
 		curr = curr->next;
 	}
-	ps_output(3); /* if all is well, output "OK" -- FOR CHECKER ONLY ? What about push_swap ? */
+	return (flag->ch ? ps_output(3) : 0); /* if all is well and checker was called, output "OK"
+	-- otherwise terminate without outputting anything. */
+
 }

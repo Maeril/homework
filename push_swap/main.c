@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:38:48 by myener            #+#    #+#             */
-/*   Updated: 2019/06/23 19:36:33 by myener           ###   ########.fr       */
+/*   Updated: 2019/06/24 00:44:07 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int		bad_arg_checker(char **argv)
 int		main(int argc, char **argv)
 {
 	t_pslist list;
+	t_psflag flag;
 
 	list.data = 0;
 	if (argc == 1) /* if no parameter is passed, return */
@@ -45,10 +46,10 @@ int		main(int argc, char **argv)
 			ps_output(1);
 		else if (bad_arg_checker(argv) == 0) /* if all is good then we can proceed */
 		{
-			if (!ft_strcmp(argv[1], "./checker"))
-				checker(&list, argv);
-			else if (argv[1] == "./push_swap")
-				push_swap();
+			if ((flag.ch = (!ft_strcmp(argv[1], "./checker"))))
+				checker(&list, &flag, argv);
+			else if ((flag.ps =(!ft_strcmp(argv[1], "./push_swap"))))
+				push_swap(&list, &flag, argv);
 			else
 				ps_output(1);
 		}

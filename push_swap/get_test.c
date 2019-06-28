@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   get_test.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/21 13:52:32 by myener            #+#    #+#             */
-/*   Updated: 2019/06/24 01:15:32 by myener           ###   ########.fr       */
+/*   Created: 2019/06/24 12:23:16 by myener            #+#    #+#             */
+/*   Updated: 2019/06/24 19:42:45 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-void		push_swap(t_pslist *list, t_psflag *flag, char **argv)
+int		main(int argc, char **argv)
 {
-	int	i;
+    char *buffer = NULL;
+    int read;
+    size_t len;
 
-	i = 0;
-	list = convertto_list(argv, list); /* put all the arguments in chained list nodes */
-	if (check_list(list, flag))
-	{
-		if ((i = check_length(list)) == 0)
-			return ; /* "si aucun paramètre n'est passé, ps termine immédiatement et n'affiche rien" */
-		else if (i < /* une certaine valeur */)
-			ps_insertion_sort(list);
-		else
-			ps_quicksort(list);
-	}
+	read = 0;
+	while (read != EOF)
+    	read = get_next_line(0, &buffer);
+    if (-1 != read)
+        puts(buffer);
+    else
+        printf("No line read...\n");
+
+    printf("Size read: %d\n Len: %zu\n", read, len);
+    free(buffer);
+    return 0;
 }
