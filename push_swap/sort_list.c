@@ -6,187 +6,197 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 21:54:55 by myener            #+#    #+#             */
-/*   Updated: 2019/06/28 22:16:20 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/02 20:52:07 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft/libft.h"
+#include "libft/ft_printf/ft_printf.h"
 
-char *Commandes;
-
-typedef	struct
+typedef struct			s_pslist
 {
-	int *Data;
-	int nTaille;
-	char Type;
-}		Pile;
+	int				data;
+	char			type;
+	struct s_pslist	*next;
+	struct s_pslist	*prev;
 
+}						t_pslist;
 
-void rotate(Pile *A, int nStep)
+t_pslist	*list_malloc(t_pslist *list)
 {
-	int i;
-	int	j;
-	int n0;
-	char C[20];
+	if (!(list = malloc(sizeof(t_pslist))))
+		return (NULL);
+	list->data = 0;
+	list->type = 0;
+	list->next = NULL;
+	list->prev = NULL;
+	return (list);
+}
 
-	i = 0;
-	while (i < nStep)
+t_pslist	*nodefill(t_pslist *node, int data)
+{
+	node = list_malloc(node);
+	node->data = data;
+	node->type = 'a';
+	return (node);
+}
+
+t_pslist	*convertto_list(char **argv, t_pslist *list)
+{
+	int			i;
+	t_pslist	*curr;
+
+	curr = list;
+	i = 1; // 1 et pas 0 pour sauter l'executable
+	while (argv[i]) /* while we go through the proof-read arguments*/
 	{
-		n0 = A->Data[0];
-		j = 0;
-		while (j < A->nTaille - 1)
+		curr = nodefill(curr, ft_atoi(argv[i])); /* fill every node with each argument as an int */
+		printf("%d, ", curr->data);
+		curr = curr->next;
+		i++;
+	}
+	printf("\n");
+	return (list); /* return the filled-up list */
+}
+
+void rotate(char *instruc, t_pslist *head) // move all nodes upwards
+{
+	t_pslist	*curr;
+	t_pslist	*tail;
+
+	curr = head;
+	tail = head;
+	curr->next = NULL; // cut curr from the top of the list
+	while (tail && tail->next) // bring tail to the bottom of the list
+		tail = tail->next;
+	curr->prev = tail; // attach curr to end of list
+	tail->next = curr; // same
+	head = head->next; // move head to next node (which is the new head)
+	head->prev = NULL; // clear anything before new head
+	ft_strcat(instruc, (head->type == 'a' ? "ra " : "rb "));
+}
+
+void rrotate(char *instruc, t_pslist *head) // move all nodes downwards
+{
+	t_pslist	*curr;
+	t_pslist	*tail;
+
+	while (tail && tail->next) // bring tail to the bottom of the list
+		tail = tail->next;
+	curr = tail;
+	curr->prev = NULL; // cut curr from the bottom of the list
+	curr->next = head; // attach curr to beginning of list
+	head->prev = curr; // same
+	tail = tail->prev; // move tail to precedent node (which is the new tail)
+	tail->next = NULL; // clear anything after new tail
+	// /!\ here curr is the new head
+	ft_strcat(instruc, (curr->type == 'a' ? "tta " : "ttb "));
+}
+
+void push(char *instruc, t_pslist *src, t_pslist *dest) // push src's head to top of dest
+{
+	t_pslist	*curr;
+
+	curr = src;
+	curr->type = (curr->type == 'a') ? 'b' : 'a'; // change the type to the new pile's
+	curr->next = dest; // attach curr to the beginning of the list
+	dest->prev = curr; // same
+	src = src->next; // move src to its new head
+	src->prev = NULL; // clear anything before new head
+	// ft_strcat(instruc, (dest->type == 'b' ? "pb " : "pa "));
+}
+
+void swap(char *instruc, t_pslist *p1, t_pslist *p2) // swap two nodes inside a same pile
+{
+	int		tmp_data;
+	char	tmp_type;
+
+	tmp_data = p1->data;
+	p1->data = p2->data;
+	p2->data = tmp_data;
+	tmp_type = p1->type;
+	p1->type = p2->type;
+	p2->type = tmp_type;
+	// ft_strcat(instruc, (p1->type == 'a' ? "sa " : "sb "));
+}
+
+// void ps_quicksort(char *instruc, t_pslist *head_a)
+// {
+// 	int	i;
+// 	int	nR;
+// 	int pivot;
+// 	t_pslist *curr;
+
+// 	if (debut == fin)
+// 	// 	return;
+// 	curr = head_a;
+// 	rotate(instruc, curr);
+// 	if (debut + 1 == fin)
+// 	{
+// 		if (A->data[0] > A->data[1])
+// 			swap(instruc, A);
+// 		rrotate(instruc, A, debut);
+// 		return;
+// 	}
+// 	pivot = 0;
+// 	i = 0;
+// 	while (i <= fin - debut)
+// 	{
+// 		pivot += A->data[i];
+// 		i++;
+// 	}
+// 	pivot = (int)(pivot / (fin - debut + 1));
+// 	nR = 0;
+// 	i = 0;
+// 	while (i <= fin - debut)
+// 	{
+// 		if (A->data[0] < pivot)
+// 			push(instruc, A, B);
+// 		else
+// 		{
+// 			rotate(instruc, A, 1);
+// 			nR++;
+// 		}
+// 		i++;
+// 	}
+// 	rrotate(instruc, A, nR);
+// 	nR = B->size;
+// 	while (B->size > 0)
+// 		push(instruc, B, A);
+// 	rrotate(instruc, A, debut);
+// 	ps_quicksort(instruc, A, debut, debut + nR-1);
+// 	ps_quicksort(instruc, A, debut + nR, fin);
+// }
+
+t_pslist *ps_bubblesort(char *instruc, t_pslist *head_a)
+{
+	t_pslist	head_b;
+	t_pslist	*curr_a;
+	t_pslist	*curr_b;
+
+	curr_a = head_a;
+	curr_b = &head_b;
+	while (curr_a && curr_a->next) // comme on a déjà ce while là,
+	{
+		// while (curr_a && curr_a->next) // <- je crois que celui-ci est inutile ?
+		// {
+		if (curr_a->data > curr_a->next->data)
+			swap(instruc, curr_a, curr_a->next);
+		push(instruc, head_a, &head_b);
+		// }
+		while (curr_b && curr_b->next)
 		{
-			A->Data[j] = A->Data[j + 1];
-			j++;
-		}
-		A->Data[A->nTaille - 1] = n0;
-		ft_printf("r%c\n", A->Type);
-		ft_strcat(Commandes, (A->Type == 'a' ? "ra " : "rb "));
-		i++;
-	}
-}
-
-void rrotate(Pile *A, int nStep)
-{
-	int	i;
-	int	j;
-	int n0;
-	char C[20];
-
-	i = 0;
-	while (i < nStep)
-	{
-		n0 = A->Data[A->nTaille - 1];
-		j = A->nTaille - 1;
-		while (j > 0)
-		{
-			A->Data[j] = A->Data[j-1];
-			j--;
-		}
-		A->Data[0] = n0;
-		ft_printf("rr%c\n", A->Type);
-		ft_strcat(Commandes, (A->Type == 'a' ? "tta " : "ttb "));
-		i++;
-	}
-}
-
-void push(Pile *A, Pile *B)
-{
-	int		i;
-	char	C[20];
-
-	if (A->nTaille == 0)
-		return ;
-	i = B->nTaille;
-	while (i > 0)
-	{
-		B->Data[i] = B->Data[i - 1];
-		i--;
-	}
-	B->Data[0] = A->Data[0];
-	B->nTaille++;
-	i = 0;
-	while (i < A->nTaille - 1)
-	{
-		A->Data[i] = A->Data[i + 1];
-		i++;
-	}
-	A->Data[A->nTaille-1] = -1;
-	A->nTaille--;
-	ft_printf("p%c\n", B->Type);
-	ft_strcat(Commandes, (B->Type == 'b' ? "pb " : "pa "));
-}
-
-void swap(Pile * A)
-{
-	int n0;
-	char C[20];
-	n0 = A->Data[0];
-	A->Data[0] = A->Data[1];
-	A->Data[1] = n0;
-	ft_printf("s%c\n", A->Type);
-	ft_strcat(Commandes, (A->Type == 'a' ? "sa " : "sb "));
-}
-
-void Quick(Pile *A, Pile *B, int nLen, int Debut, int Fin)
-{
-	int	i;
-	int	nR;
-	int nPivot;
-
-	if (Debut == Fin)
-		return;
-	rotate(A, Debut);
-	if (Debut + 1 == Fin)
-	{
-		if (A->Data[0] > A->Data[1])
-			swap(A);
-		rrotate(A, Debut);
-		return;
-	}
-	nPivot = 0;
-	i = 0;
-	while (i <= Fin - Debut)
-	{
-		nPivot += A->Data[i];
-		i++;
-	}
-	nPivot = (int)(nPivot / (Fin - Debut + 1));
-	nR = 0;
-	i = 0;
-	while (i <= Fin - Debut)
-	{
-		if (A->Data[0] < nPivot)
-			push(A, B);
-		else
-		{
-			rotate(A, 1);
-			nR++;
-		}
-		i++;
-	}
-	rrotate(A, nR);
-	nR = B->nTaille;
-	while (B->nTaille > 0)
-		push(B, A);
-	rrotate(A, Debut);
-	Quick(A, B, nLen, Debut, Debut + nR-1);
-	Quick(A, B, nLen, Debut + nR, Fin);
-}
-
-void Bubble(Pile *A, Pile *B, int nLen)
-{
-	int i;
-	int Nb;
-
-	Nb = 1;
-	while (Nb > 0)
-	{
-		Nb = 0;
-		i = 0;
-		while (i < nLen - 1)
-		{
-			if (A->Data[0] > A->Data[1])
+			if (curr_b->data < curr_b->next->data)
 			{
-				swap(A);
-				Nb++;
+				swap(instruc, curr_b, curr_b->next);
 			}
-			push(A, B);
-			i++;
+			push(instruc, &head_b, head_a);
+			curr_b = curr_b->next;
 		}
-		i = 0;
-		while (i < nLen - 1)
-		{
-			if (B->Data[0] < B->Data[1])
-			{
-				swap(B);
-				Nb++;
-			}
-			push(B, A);
-			i++;
-		}
-		push(B, A);
+		push(instruc, &head_b, head_a);
+		curr_a = curr_a->next;
 	}
+	return (head_a);
 }
 
 int ps_cleaner(char *src, const char *rem)
@@ -212,78 +222,54 @@ void replace(char *c)
 }
 int main(int argc, char** argv)
 {
-	int	i;
-	int nLong, nSeed, Nb;
-	Pile Pile_A, Pile_B;
-	char code;
+	// int		i;
+	int		Nb;
+	t_pslist	list_a;
+	t_pslist	*head_a;
+	t_pslist	tail_a;
+	t_pslist	*curr;
+	char	*instruc;
 
-	char Type[20];
-	if (argc == 4)
+	if (argc == 1)
+		printf("please enter arguments for the program to sort.\n");
+	else if (argc == 2)
+		printf("nothing to sort, you just entered %s.\n", argv[1]);
+	else if (argc >= 3)
 	{
-		nLong = atoi(argv[1]);
-		nSeed = atoi(argv[2]);
-		code = *argv[3];
-	}
-	else
-	{
-	//	return 0;
-		nLong = 7;
-		nSeed = 5;
-		code = 'q';
-	}
-	if (code == 'q')
-		ft_strcpy(Type, "Quick");
-	else
-		ft_strcpy(Type, "Bubble");
+		head_a = convertto_list(argv, &list_a);
+		instruc = (char *)malloc(1000 * 15);
+		instruc[0] = '\0';
+		// i = 0;
+		// while (i < nLong)
+		// {
+		// 	printf("%d, ", head_a.data[i]);
+		// 	i++;
+		// }
+		// ps_quicksort(instruc, &head_a);
+		// else
+		head_a = ps_bubblesort(instruc, head_a);
 
-	Commandes = (char *)malloc(1000 * 15);
-	Commandes[0] = '\0';
-	printf("\n%d\n", nLong);
-	Pile_A.Data = (int *)malloc(nLong * sizeof(int));
-	Pile_A.nTaille = nLong;
-	Pile_A.Type = 'a';
-	Pile_B.Data = (int *)malloc(nLong * sizeof(int));
-	Pile_B.nTaille = 0;
-	Pile_B.Type = 'b';
-	srand(nSeed);
-	i = 0;
-	while (i < nLong)
-	{
-		Pile_A.Data[i] = (int)(rand() % 1000);
-		i++;
+		curr = head_a;
+		while (curr && curr->next)
+		{
+			printf("%d, ", curr->data);
+			curr = curr->next;
+		}
+		// printf("\n%s\n", instruc);
+		// Nb = 1;
+		// while (Nb > 0) // juste pour afficher les instructions
+		// {
+		// 	Nb = ps_cleaner(instruc, "pa pb ");
+		// 	Nb += ps_cleaner(instruc, "ra tta ");
+		// 	Nb += ps_cleaner(instruc, "tta ra ");
+		// 	Nb += ps_cleaner(instruc, "pb pa ");
+		// 	Nb += ps_cleaner(instruc, "sa sa ");
+		// 	Nb += ps_cleaner(instruc, "sb sb ");
+		// 	printf("modifs = %d\n", Nb);
+		// }
+		// replace(instruc);
+		// printf("\n%s", instruc);
+		// free(instruc);
 	}
-	i = 0;
-	while (i < nLong)
-	{
-		printf("%d, ", Pile_A.Data[i]);
-		i++;
-	}
-	printf("\n");
-	if(code == 'q')
-		Quick(&Pile_A, &Pile_B, nLong, 0, nLong - 1);
-	else
-		Bubble(&Pile_A, &Pile_B, nLong);
-	printf("Type = %s\n", Type);
-	i = 0;
-	while (i < nLong)
-	{
-		printf("%d, ", Pile_A.Data[i]);
-		i++;
-	}
-	printf("\n%s\n", Commandes);
-	Nb = 1;
-	while (Nb > 0)
-	{
-		Nb = ps_cleaner(Commandes, "pa pb ");
-		Nb += ps_cleaner(Commandes, "ra tta ");
-		Nb += ps_cleaner(Commandes, "tta ra ");
-		Nb += ps_cleaner(Commandes, "pb pa ");
-		Nb += ps_cleaner(Commandes, "sa sa ");
-		Nb += ps_cleaner(Commandes, "sb sb ");
-		printf("Nb = %d\n", Nb);
-	}
-	replace(Commandes);
-	printf("\n%s", Commandes);
-	free(Commandes);
 	return (0);
 }
