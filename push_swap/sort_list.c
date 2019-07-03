@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 21:54:55 by myener            #+#    #+#             */
-/*   Updated: 2019/07/02 20:52:07 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/03 19:55:23 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct			s_pslist
 
 }						t_pslist;
 
-t_pslist	*list_malloc(t_pslist *list)
+t_pslist	*node_malloc(t_pslist *list)
 {
 	if (!(list = malloc(sizeof(t_pslist))))
 		return (NULL);
@@ -33,9 +33,9 @@ t_pslist	*list_malloc(t_pslist *list)
 	return (list);
 }
 
-t_pslist	*nodefill(t_pslist *node, int data)
+t_pslist	*node_fill(t_pslist *node, int data)
 {
-	node = list_malloc(node);
+	node = node_malloc(node);
 	node->data = data;
 	node->type = 'a';
 	return (node);
@@ -44,19 +44,26 @@ t_pslist	*nodefill(t_pslist *node, int data)
 t_pslist	*convertto_list(char **argv, t_pslist *list)
 {
 	int			i;
-	t_pslist	*curr;
+	t_pslist	*head;
+	t_pslist	*tmp;
 
-	curr = list;
+	/* first interation OUTSIDE THE LOOP to attach head effectively */
 	i = 1; // 1 et pas 0 pour sauter l'executable
+	list = node_fill(list, ft_atoi(argv[i])); /* fill every node with each argument as an int */
+	head = list;
+	tmp = list; // stock list in tmp
+	i++;
 	while (argv[i]) /* while we go through the proof-read arguments*/
 	{
-		curr = nodefill(curr, ft_atoi(argv[i])); /* fill every node with each argument as an int */
-		printf("%d, ", curr->data);
-		curr = curr->next;
+		list->next = node_fill(list->next, ft_atoi(argv[i])); /* fill every node with each argument as an int */
+		list = list->next; // move current node to next
+		list->prev = tmp; // "pour" tmp into prev
+		tmp = list; // stock list in tmp
 		i++;
 	}
-	printf("\n");
-	return (list); /* return the filled-up list */
+	list->next = NULL;
+	// printf("\n");
+	return (head); /* return the filled-up list */
 }
 
 void rotate(char *instruc, t_pslist *head) // move all nodes upwards
@@ -93,16 +100,35 @@ void rrotate(char *instruc, t_pslist *head) // move all nodes downwards
 	ft_strcat(instruc, (curr->type == 'a' ? "tta " : "ttb "));
 }
 
-void push(char *instruc, t_pslist *src, t_pslist *dest) // push src's head to top of dest
+void push(char *instruc, t_pslist *src, t_pslist *dest, int i) // BUS ERROR
 {
 	t_pslist	*curr;
+	t_pslist	*tmp;
 
+	// printf("push!\n");
 	curr = src;
-	curr->type = (curr->type == 'a') ? 'b' : 'a'; // change the type to the new pile's
-	curr->next = dest; // attach curr to the beginning of the list
-	dest->prev = curr; // same
-	src = src->next; // move src to its new head
-	src->prev = NULL; // clear anything before new head
+	tmp = src->next ? src->next : NULL; // stock src->next in tmp (will be used as new head after)
+	if (i == 0) // only true once, to do the first node's assignation.
+	{
+		printf("push condition 1\n");
+		dest->type = (curr->type == 'a') ? 'b' : 'a'; // change the type to the new pile's
+		dest->data = curr->data;
+		src = tmp; // move src to its new head (kept in tmp before)
+		if (src)
+			src->prev = NULL; // clear anything before new head
+		i++;
+	}
+	else // push next nodes over the first one
+	{
+		printf("push condition 2\n");
+		curr->type = (curr->type == 'a') ? 'b' : 'a'; // change the type to the new pile's
+		curr->next = dest; // attach curr to the beginning of the list
+		dest->prev = curr; // same
+		src = tmp; // move src to its new head (kept in tmp before)
+		if (src)
+			src->prev = NULL; // clear anything before new head
+		dest = dest->prev; // move upwards
+	}
 	// ft_strcat(instruc, (dest->type == 'b' ? "pb " : "pa "));
 }
 
@@ -111,6 +137,7 @@ void swap(char *instruc, t_pslist *p1, t_pslist *p2) // swap two nodes inside a 
 	int		tmp_data;
 	char	tmp_type;
 
+	// printf("swap!\n");
 	tmp_data = p1->data;
 	p1->data = p2->data;
 	p2->data = tmp_data;
@@ -171,29 +198,43 @@ void swap(char *instruc, t_pslist *p1, t_pslist *p2) // swap two nodes inside a 
 t_pslist *ps_bubblesort(char *instruc, t_pslist *head_a)
 {
 	t_pslist	head_b;
+	t_pslist	*tmp_b;
 	t_pslist	*curr_a;
 	t_pslist	*curr_b;
+	int			i;
 
+	i = 0;
 	curr_a = head_a;
-	curr_b = &head_b;
+	tmp_b = node_malloc(&head_b);
 	while (curr_a && curr_a->next) // comme on a déjà ce while là,
 	{
-		// while (curr_a && curr_a->next) // <- je crois que celui-ci est inutile ?
-		// {
-		if (curr_a->data > curr_a->next->data)
-			swap(instruc, curr_a, curr_a->next);
-		push(instruc, head_a, &head_b);
-		// }
-		while (curr_b && curr_b->next)
+		while (curr_a && curr_a->next) // <- je crois que celui-ci est inutile ?
 		{
-			if (curr_b->data < curr_b->next->data)
-			{
-				swap(instruc, curr_b, curr_b->next);
-			}
-			push(instruc, &head_b, head_a);
-			curr_b = curr_b->next;
+;			if (curr_a->data > curr_a->next->data)
+				swap(instruc, curr_a, curr_a->next);
+			push(instruc, head_a, tmp_b, i);
+			curr_a = curr_a->next;
 		}
-		push(instruc, &head_b, head_a);
+		if (tmp_b && !(tmp_b->next))
+		{
+			printf("entre dans b (condition 1)\n");
+			push(instruc, tmp_b, head_a, i);
+		}
+		else
+		{
+			curr_b = tmp_b;
+			while (curr_b && curr_b->next)
+			{
+				printf("entre dans b (condition 2)\n");
+				if (curr_b->data < curr_b->next->data)
+				{
+					swap(instruc, curr_b, curr_b->next);
+				}
+				push(instruc, &head_b, head_a, i);
+				curr_b = curr_b->next;
+			}
+		}
+		push(instruc, &head_b, head_a, i);
 		curr_a = curr_a->next;
 	}
 	return (head_a);
@@ -231,9 +272,9 @@ int main(int argc, char** argv)
 	char	*instruc;
 
 	if (argc == 1)
-		printf("please enter arguments for the program to sort.\n");
+		printf("Please enter arguments for the program to sort.\n");
 	else if (argc == 2)
-		printf("nothing to sort, you just entered %s.\n", argv[1]);
+		printf("Nothing to sort, you just entered %s.\n", argv[1]);
 	else if (argc >= 3)
 	{
 		head_a = convertto_list(argv, &list_a);
@@ -247,14 +288,14 @@ int main(int argc, char** argv)
 		// }
 		// ps_quicksort(instruc, &head_a);
 		// else
-		head_a = ps_bubblesort(instruc, head_a);
-
+		head_a = ps_bubblesort(instruc, head_a); // < infiniloop
 		curr = head_a;
 		while (curr && curr->next)
 		{
-			printf("%d, ", curr->data);
+			printf("%d (type = %c), ", curr->data, curr->type);
 			curr = curr->next;
 		}
+		printf("%d (type = %c).", curr->data, curr->type);
 		// printf("\n%s\n", instruc);
 		// Nb = 1;
 		// while (Nb > 0) // juste pour afficher les instructions
