@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 21:54:55 by myener            #+#    #+#             */
-/*   Updated: 2019/07/03 19:55:23 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/13 15:45:52 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,16 @@ typedef struct			s_pslist
 	struct s_pslist	*prev;
 
 }						t_pslist;
+
+void	pile_print(t_pslist *curr)
+{
+	while (curr && curr->next)
+	{
+		printf("%d, ", curr->data);
+		curr = curr->next;
+	}
+	printf("%d.\n", curr->data);
+}
 
 t_pslist	*node_malloc(t_pslist *list)
 {
@@ -41,7 +51,7 @@ t_pslist	*node_fill(t_pslist *node, int data)
 	return (node);
 }
 
-t_pslist	*convertto_list(char **argv, t_pslist *list)
+t_pslist	*convertto_list(char **argv, t_pslist *list, int *nb)
 {
 	int			i;
 	t_pslist	*head;
@@ -49,6 +59,7 @@ t_pslist	*convertto_list(char **argv, t_pslist *list)
 
 	/* first interation OUTSIDE THE LOOP to attach head effectively */
 	i = 1; // 1 et pas 0 pour sauter l'executable
+	*nb = 0;
 	list = node_fill(list, ft_atoi(argv[i])); /* fill every node with each argument as an int */
 	head = list;
 	tmp = list; // stock list in tmp
@@ -60,75 +71,79 @@ t_pslist	*convertto_list(char **argv, t_pslist *list)
 		list->prev = tmp; // "pour" tmp into prev
 		tmp = list; // stock list in tmp
 		i++;
+		(*nb)++;
 	}
 	list->next = NULL;
 	// printf("\n");
 	return (head); /* return the filled-up list */
 }
 
-void rotate(char *instruc, t_pslist *head) // move all nodes upwards
-{
-	t_pslist	*curr;
-	t_pslist	*tail;
-
-	curr = head;
-	tail = head;
-	curr->next = NULL; // cut curr from the top of the list
-	while (tail && tail->next) // bring tail to the bottom of the list
-		tail = tail->next;
-	curr->prev = tail; // attach curr to end of list
-	tail->next = curr; // same
-	head = head->next; // move head to next node (which is the new head)
-	head->prev = NULL; // clear anything before new head
-	ft_strcat(instruc, (head->type == 'a' ? "ra " : "rb "));
-}
-
-void rrotate(char *instruc, t_pslist *head) // move all nodes downwards
-{
-	t_pslist	*curr;
-	t_pslist	*tail;
-
-	while (tail && tail->next) // bring tail to the bottom of the list
-		tail = tail->next;
-	curr = tail;
-	curr->prev = NULL; // cut curr from the bottom of the list
-	curr->next = head; // attach curr to beginning of list
-	head->prev = curr; // same
-	tail = tail->prev; // move tail to precedent node (which is the new tail)
-	tail->next = NULL; // clear anything after new tail
-	// /!\ here curr is the new head
-	ft_strcat(instruc, (curr->type == 'a' ? "tta " : "ttb "));
-}
-
-void push(char *instruc, t_pslist *src, t_pslist *dest, int i) // BUS ERROR
-{
-	t_pslist	*curr;
+void rotate(char *instruc, t_pslist **head, int nb) // move all nodes upwards - head becomes tail
+{		 									 // nb = number of rotates
+	int			i;
 	t_pslist	*tmp;
+	t_pslist	*tail;
 
-	// printf("push!\n");
-	curr = src;
-	tmp = src->next ? src->next : NULL; // stock src->next in tmp (will be used as new head after)
-	if (i == 0) // only true once, to do the first node's assignation.
+
+	i = 0;
+	while (i < nb)
 	{
-		printf("push condition 1\n");
-		dest->type = (curr->type == 'a') ? 'b' : 'a'; // change the type to the new pile's
-		dest->data = curr->data;
-		src = tmp; // move src to its new head (kept in tmp before)
-		if (src)
-			src->prev = NULL; // clear anything before new head
+;		tail = *head;
+		tmp = *head; // old head
+		(*head) = tmp->next;
+		while (tail && tail->next) // bring tail to the bottom of the list
+			tail = tail->next;
+		tail->next = tmp; // attach curr to end of list
+		tmp->prev = tail; // clear anything before new head
+		tmp->next = NULL;
 		i++;
 	}
-	else // push next nodes over the first one
+	// ft_strcat(instruc, (head->type == 'a' ? "ra " : "rb "));
+}
+
+void rrotate(char *instruc, t_pslist **head, int nb) // move all nodes downwards - tail becomes head
+{											  // nb = number of rrotates
+	int			i;
+	t_pslist	*tmp;
+	t_pslist	*tail;
+
+	i = 0;
+	while (i < nb)
 	{
-		printf("push condition 2\n");
-		curr->type = (curr->type == 'a') ? 'b' : 'a'; // change the type to the new pile's
-		curr->next = dest; // attach curr to the beginning of the list
-		dest->prev = curr; // same
-		src = tmp; // move src to its new head (kept in tmp before)
-		if (src)
-			src->prev = NULL; // clear anything before new head
-		dest = dest->prev; // move upwards
+		tail = *head;
+		tmp = tail;
+		while (tail && tail->next) // bring tail to the bottom of the list
+			tail = tail->next;
+		tail->next = (*head);
+		(*head) = tail;
+		(*head)->prev = NULL;
+		tail = tmp->prev;
+		tail->next = NULL;
+		i++;
 	}
+	// ft_strcat(instruc, (head->type == 'a' ? "ra " : "rb "));
+}
+
+void push(char *instruc, t_pslist **src, t_pslist **dest) // BUS ERROR
+{
+	t_pslist	*tmp;
+	t_pslist	*tmp_dest;
+
+	if (!(*src))
+		return ;
+	tmp = (*src)->next;
+	if (*src)
+		(*src)->type = ((*src)->type == 'a' ? 'b' : 'a'); // change type
+	tmp_dest = (*dest);
+	(*dest) = (*src); // move as pile B's head (aka NULL for the 1st node)
+	(*dest)->next = tmp_dest; // attach to old head
+	(*dest)->prev = NULL; // clear anything before head
+	(*src)->prev = NULL; // already null'd but you never kow
+	if (tmp_dest)
+		tmp_dest->prev = (*src); //SGFLT
+	(*src) = tmp; // change src(pile A's head)'s pointed content to new head_a
+	if (*src)
+		(*src)->prev = NULL; // clear anything before new head_a
 	// ft_strcat(instruc, (dest->type == 'b' ? "pb " : "pa "));
 }
 
@@ -137,7 +152,6 @@ void swap(char *instruc, t_pslist *p1, t_pslist *p2) // swap two nodes inside a 
 	int		tmp_data;
 	char	tmp_type;
 
-	// printf("swap!\n");
 	tmp_data = p1->data;
 	p1->data = p2->data;
 	p2->data = tmp_data;
@@ -147,96 +161,111 @@ void swap(char *instruc, t_pslist *p1, t_pslist *p2) // swap two nodes inside a 
 	// ft_strcat(instruc, (p1->type == 'a' ? "sa " : "sb "));
 }
 
-// void ps_quicksort(char *instruc, t_pslist *head_a)
-// {
-// 	int	i;
-// 	int	nR;
-// 	int pivot;
-// 	t_pslist *curr;
-
-// 	if (debut == fin)
-// 	// 	return;
-// 	curr = head_a;
-// 	rotate(instruc, curr);
-// 	if (debut + 1 == fin)
-// 	{
-// 		if (A->data[0] > A->data[1])
-// 			swap(instruc, A);
-// 		rrotate(instruc, A, debut);
-// 		return;
-// 	}
-// 	pivot = 0;
-// 	i = 0;
-// 	while (i <= fin - debut)
-// 	{
-// 		pivot += A->data[i];
-// 		i++;
-// 	}
-// 	pivot = (int)(pivot / (fin - debut + 1));
-// 	nR = 0;
-// 	i = 0;
-// 	while (i <= fin - debut)
-// 	{
-// 		if (A->data[0] < pivot)
-// 			push(instruc, A, B);
-// 		else
-// 		{
-// 			rotate(instruc, A, 1);
-// 			nR++;
-// 		}
-// 		i++;
-// 	}
-// 	rrotate(instruc, A, nR);
-// 	nR = B->size;
-// 	while (B->size > 0)
-// 		push(instruc, B, A);
-// 	rrotate(instruc, A, debut);
-// 	ps_quicksort(instruc, A, debut, debut + nR-1);
-// 	ps_quicksort(instruc, A, debut + nR, fin);
-// }
-
-t_pslist *ps_bubblesort(char *instruc, t_pslist *head_a)
+int		*sort_int_tab(int *tab, unsigned int size)
 {
-	t_pslist	head_b;
-	t_pslist	*tmp_b;
-	t_pslist	*curr_a;
-	t_pslist	*curr_b;
-	int			i;
+	int i = 0;
+	int j;
+	int tmp;
 
-	i = 0;
-	curr_a = head_a;
-	tmp_b = node_malloc(&head_b);
-	while (curr_a && curr_a->next) // comme on a déjà ce while là,
+	if (size <= 1)
+		return (0);
+	while(i < size)
 	{
-		while (curr_a && curr_a->next) // <- je crois que celui-ci est inutile ?
+		j = 0;
+		while (j < size - 1)
 		{
-;			if (curr_a->data > curr_a->next->data)
-				swap(instruc, curr_a, curr_a->next);
-			push(instruc, head_a, tmp_b, i);
-			curr_a = curr_a->next;
-		}
-		if (tmp_b && !(tmp_b->next))
-		{
-			printf("entre dans b (condition 1)\n");
-			push(instruc, tmp_b, head_a, i);
-		}
-		else
-		{
-			curr_b = tmp_b;
-			while (curr_b && curr_b->next)
+			if (tab[j] > tab[j + 1])
 			{
-				printf("entre dans b (condition 2)\n");
-				if (curr_b->data < curr_b->next->data)
-				{
-					swap(instruc, curr_b, curr_b->next);
-				}
-				push(instruc, &head_b, head_a, i);
-				curr_b = curr_b->next;
+				tmp = tab[j];
+				tab[j] = tab[j + 1];
+				tab[j + 1] = tmp;
 			}
+			j++;
 		}
-		push(instruc, &head_b, head_a, i);
-		curr_a = curr_a->next;
+		i++;
 	}
+	return (tab);
+}
+
+int		median_calculator(t_pslist *head) // OK !
+{
+	int			s; // size
+	int			*tab;
+	t_pslist	*curr;
+
+	curr = head;
+	s = 0;
+	while (curr && curr->next) // count size of the list
+	{
+		curr = curr->next;
+		s++;
+	}
+	if (!(tab = malloc(sizeof(int) * s)))
+		return (-1);
+	curr = head;
+	s = 0;
+	while (curr && curr->next) // while we go through the list,
+	{
+		tab[s] = curr->data; // stock list's data in tab
+		curr = curr->next;
+		s++;
+	}
+	tab[s] = curr->data; // last node
+	tab = sort_int_tab(tab, s);
+	s /= 2;
+	return (tab[s]); // return the int on the middle of the tab, so size / 2
+}
+
+t_pslist *ps_quicksort(char *instruc, t_pslist *head_a, int deb, int fin)
+{
+	int			i;
+	int			nr;
+	int			np;
+	int			pivot;
+	t_pslist	*head_b;
+	t_pslist	*curr_b;
+
+	pivot = median_calculator(head_a);
+	printf("pivot = %d\n", pivot);
+	head_b = NULL;
+	i = deb;
+	nr = 0;
+	np = 0;
+	if (deb == fin)
+		return (0);
+	rotate(instruc, &head_a, deb); // pseudo code
+	printf("data = %d\n", head_a->data);
+	printf("deb = %d && fin = %d\n", deb, fin);
+	if ((deb + 1) == fin)
+	{
+		if (head_a->data > head_a->next->data)
+			swap(instruc, head_a, head_a->next);
+		rrotate(instruc, &head_a, deb); // pseudo code
+	}
+	while (head_a && head_a->next && i < fin) // fin - 1 pour eviter de repasser 2 fois sur le debut de la liste
+	{
+		if (head_a->data <= pivot)
+		{
+			printf("data = %d, push !\n", head_a->data);
+			push(instruc, &head_a, &head_b);
+			np++;
+		}
+		if (head_a->data > pivot)
+		{
+			printf("data = %d, rotate !\n", head_a->data);
+			rotate(instruc, &head_a, 1/*???*/); // "fin" car on doit rotate tout a la fin de la pile A ?
+			nr++;
+		}
+		i++;
+	}
+	while (head_b)
+	{
+		printf ("push back in pile A\n");
+		push(instruc, &head_b, &head_a);
+	}
+	rrotate(instruc, &head_a, deb); // pseudo code
+	ps_quicksort(instruc, head_a, deb, (deb + np) - 1); // sort all small nums (which are in the beginning of the list)
+	ps_quicksort(instruc, head_a, (deb + np), fin); // sort all big nums (which are right after)
 	return (head_a);
 }
 
@@ -263,13 +292,11 @@ void replace(char *c)
 }
 int main(int argc, char** argv)
 {
-	// int		i;
-	int		Nb;
+	int			nb;
+	char		*instruc;
 	t_pslist	list_a;
 	t_pslist	*head_a;
-	t_pslist	tail_a;
 	t_pslist	*curr;
-	char	*instruc;
 
 	if (argc == 1)
 		printf("Please enter arguments for the program to sort.\n");
@@ -277,7 +304,7 @@ int main(int argc, char** argv)
 		printf("Nothing to sort, you just entered %s.\n", argv[1]);
 	else if (argc >= 3)
 	{
-		head_a = convertto_list(argv, &list_a);
+		head_a = convertto_list(argv, &list_a, &nb);
 		instruc = (char *)malloc(1000 * 15);
 		instruc[0] = '\0';
 		// i = 0;
@@ -288,14 +315,14 @@ int main(int argc, char** argv)
 		// }
 		// ps_quicksort(instruc, &head_a);
 		// else
-		head_a = ps_bubblesort(instruc, head_a); // < infiniloop
 		curr = head_a;
+		curr = ps_quicksort(instruc, head_a, 0, nb); // ici deb = 0 & fin = la "vraie" fin
 		while (curr && curr->next)
 		{
-			printf("%d (type = %c), ", curr->data, curr->type);
+			printf("%d, ", curr->data);
 			curr = curr->next;
 		}
-		printf("%d (type = %c).", curr->data, curr->type);
+		printf("%d.\n", curr->data);
 		// printf("\n%s\n", instruc);
 		// Nb = 1;
 		// while (Nb > 0) // juste pour afficher les instructions
@@ -314,3 +341,43 @@ int main(int argc, char** argv)
 	}
 	return (0);
 }
+
+
+// t_pslist *ps_bubblesort(char *instruc, t_pslist *head_a)
+// {
+// 	t_pslist	head_b;
+// 	t_pslist	*tmp_b;
+// 	t_pslist	*curr_a;
+// 	t_pslist	*curr_b;
+
+// 	curr_a = head_a;
+// 	tmp_b = node_malloc(&head_b);
+// 	while (curr_a && curr_a->next)
+// 	{
+// 		while (curr_a && curr_a->next)
+// 		{
+// ;			if (curr_a->data > curr_a->next->data)
+// 				swap(instruc, curr_a, curr_a->next);
+// 			push(instruc, head_a, tmp_b);
+// 			curr_a = curr_a->next;
+// 		}
+// 		if (tmp_b && !(tmp_b->next))
+// 		{
+// 			push(instruc, tmp_b, head_a);
+// 		}
+// 		else
+// 		{
+// 			curr_b = tmp_b;
+// 			while (curr_b && curr_b->next)
+// 			{
+// 				if (curr_b->data < curr_b->next->data)
+// 					swap(instruc, curr_b, curr_b->next);
+// 				push(instruc, &head_b, head_a);
+// 				curr_b = curr_b->next;
+// 			}
+// 		}
+// 		push(instruc, &head_b, head_a);
+// 		curr_a = curr_a->next;
+// 	}
+// 	return (head_a);
+// }
