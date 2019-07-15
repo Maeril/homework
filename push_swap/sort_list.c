@@ -22,6 +22,21 @@ typedef struct			s_pslist
 
 }						t_pslist;
 
+int			check_list(t_pslist **head)
+{
+	t_pslist *curr;
+
+	curr = (*head); /* keep track of the head of the chained list */
+	while (curr && curr->next) /* while the chained list exists, go through it */
+	{
+		if (curr->data > curr->next->data) /* if one data is greater than the next, */
+			return (0); /* return 0 to signify the error */
+		curr = curr->next;
+	}
+	return (1); /* if all is sorted return 1 */
+
+}
+
 void	pile_print(t_pslist *curr)
 {
 	while (curr && curr->next)
@@ -86,17 +101,21 @@ void rotate(char *instruc, t_pslist **head, int nb) // move all nodes upwards - 
 
 
 	i = 0;
-	while (i < nb)
+	if ((*head)->next)
 	{
-;		tail = *head;
-		tmp = *head; // old head
-		(*head) = tmp->next;
-		while (tail && tail->next) // bring tail to the bottom of the list
-			tail = tail->next;
-		tail->next = tmp; // attach curr to end of list
-		tmp->prev = tail; // clear anything before new head
-		tmp->next = NULL;
-		i++;
+		while (i < nb)
+		{
+;			tail = *head;
+			tmp = *head; // keep head position in tmp
+			(*head) = tmp->next; // move head to new position
+			while (tail && tail->next) // bring tail to the bottom of the list
+				tail = tail->next;
+			tail->next = tmp; // attach tmp to end of list
+			tmp->prev = tail;
+			tmp->next = NULL; // clear anything after new tail
+			(*head)->prev = NULL; // clear anything before new head
+			i++;
+		}
 	}
 	// ft_strcat(instruc, (head->type == 'a' ? "ra " : "rb "));
 }
@@ -108,18 +127,23 @@ void rrotate(char *instruc, t_pslist **head, int nb) // move all nodes downwards
 	t_pslist	*tail;
 
 	i = 0;
-	while (i < nb)
+	if ((*head)->next) // make sure there is at least two nodes, otherwise nothing to be done
 	{
-		tail = *head;
-		tmp = tail;
-		while (tail && tail->next) // bring tail to the bottom of the list
-			tail = tail->next;
-		tail->next = (*head);
-		(*head) = tail;
-		(*head)->prev = NULL;
-		tail = tmp->prev;
-		tail->next = NULL;
-		i++;
+		while (i < nb)
+		{
+			printf("rrotate a\n");
+			tail = *head;
+			while (tail && tail->next) // bring tail to the bottom of the list
+				tail = tail->next;
+			tmp = tail;	// keep tail position in tmp
+			tail = tail->prev; // move tail to new position
+			tmp->next = (*head); // attach tmp to beginning of the list
+			(*head)->prev = tmp;
+			(*head) = (*head)->prev;
+			tmp->prev = NULL; // clear anything before new head
+			tail->next = NULL; // clear anything after new tail
+			i++;
+		}
 	}
 	// ft_strcat(instruc, (head->type == 'a' ? "ra " : "rb "));
 }
@@ -163,13 +187,14 @@ void swap(char *instruc, t_pslist *p1, t_pslist *p2) // swap two nodes inside a 
 
 int		*sort_int_tab(int *tab, unsigned int size)
 {
-	int i = 0;
+	int i;
 	int j;
 	int tmp;
 
 	if (size <= 1)
 		return (0);
-	while(i < size)
+	i = 0;
+	while (i < size)
 	{
 		j = 0;
 		while (j < size - 1)
@@ -211,7 +236,7 @@ int		median_calculator(t_pslist *head) // OK !
 		s++;
 	}
 	tab[s] = curr->data; // last node
-	tab = sort_int_tab(tab, s);
+	tab = sort_int_tab(tab, s + 1);
 	s /= 2;
 	return (tab[s]); // return the int on the middle of the tab, so size / 2
 }
@@ -225,45 +250,57 @@ t_pslist *ps_quicksort(char *instruc, t_pslist *head_a, int deb, int fin)
 	t_pslist	*head_b;
 	t_pslist	*curr_b;
 
-	pivot = median_calculator(head_a);
-	printf("pivot = %d\n", pivot);
 	head_b = NULL;
 	i = deb;
-	nr = 0;
-	np = 0;
-	if (deb == fin)
+	if (check_list(&head_a) == 1) // if ALREADY SORTED, finish now
+		return (head_a);
+	if (deb == fin) // if only 1 node, finish now
 		return (0);
-	rotate(instruc, &head_a, deb); // pseudo code
-	printf("data = %d\n", head_a->data);
-	printf("deb = %d && fin = %d\n", deb, fin);
-	if ((deb + 1) == fin)
+	// rotate(instruc, &head_a, deb);
+	if ((deb + 1) == fin) // if only 2 nodes
 	{
 		if (head_a->data > head_a->next->data)
 			swap(instruc, head_a, head_a->next);
-		rrotate(instruc, &head_a, deb); // pseudo code
+		// // rrotate(instruc, &head_a, deb); // pseudo code
+		return (head_a);
 	}
-	while (head_a && head_a->next && i < fin) // fin - 1 pour eviter de repasser 2 fois sur le debut de la liste
+	pivot = median_calculator(head_a);
+	nr = 0;
+	np = 0;
+	if (head_a->data <= pivot)
+	{
+		printf ("push b \n");
+		push(instruc, &head_a, &head_b);
+		np++;
+	}
+	else if (head_a->data > pivot)
+	{
+		printf ("rotate a \n");
+		rotate(instruc, &head_a, 1);
+		nr++;
+	}
+	while ((head_a && head_a->next) && (i < fin)) // "fin - 1" car un des nodes a deja ete traite juste avant
 	{
 		if (head_a->data <= pivot)
 		{
-			printf("data = %d, push !\n", head_a->data);
+			printf ("push b \n");
 			push(instruc, &head_a, &head_b);
 			np++;
 		}
-		if (head_a->data > pivot)
+		else if (head_a->data > pivot)
 		{
-			printf("data = %d, rotate !\n", head_a->data);
-			rotate(instruc, &head_a, 1/*???*/); // "fin" car on doit rotate tout a la fin de la pile A ?
+			printf ("rotate a\n");
+			rotate(instruc, &head_a, 1);
 			nr++;
 		}
 		i++;
 	}
+	rrotate(instruc, &head_a, nr);
 	while (head_b)
 	{
-		printf ("push back in pile A\n");
+		printf ("push a \n");
 		push(instruc, &head_b, &head_a);
 	}
-	rrotate(instruc, &head_a, deb); // pseudo code
 	ps_quicksort(instruc, head_a, deb, (deb + np) - 1); // sort all small nums (which are in the beginning of the list)
 	ps_quicksort(instruc, head_a, (deb + np), fin); // sort all big nums (which are right after)
 	return (head_a);
@@ -341,43 +378,3 @@ int main(int argc, char** argv)
 	}
 	return (0);
 }
-
-
-// t_pslist *ps_bubblesort(char *instruc, t_pslist *head_a)
-// {
-// 	t_pslist	head_b;
-// 	t_pslist	*tmp_b;
-// 	t_pslist	*curr_a;
-// 	t_pslist	*curr_b;
-
-// 	curr_a = head_a;
-// 	tmp_b = node_malloc(&head_b);
-// 	while (curr_a && curr_a->next)
-// 	{
-// 		while (curr_a && curr_a->next)
-// 		{
-// ;			if (curr_a->data > curr_a->next->data)
-// 				swap(instruc, curr_a, curr_a->next);
-// 			push(instruc, head_a, tmp_b);
-// 			curr_a = curr_a->next;
-// 		}
-// 		if (tmp_b && !(tmp_b->next))
-// 		{
-// 			push(instruc, tmp_b, head_a);
-// 		}
-// 		else
-// 		{
-// 			curr_b = tmp_b;
-// 			while (curr_b && curr_b->next)
-// 			{
-// 				if (curr_b->data < curr_b->next->data)
-// 					swap(instruc, curr_b, curr_b->next);
-// 				push(instruc, &head_b, head_a);
-// 				curr_b = curr_b->next;
-// 			}
-// 		}
-// 		push(instruc, &head_b, head_a);
-// 		curr_a = curr_a->next;
-// 	}
-// 	return (head_a);
-// }
