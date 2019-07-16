@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 13:52:32 by myener            #+#    #+#             */
-/*   Updated: 2019/06/24 01:15:32 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/16 17:56:13 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void		push_swap(t_pslist *list, t_psflag *flag, char **argv)
 {
-	int	i;
+	int		i;
+	int 	nb; // indicates the end of the list, is filled during convertto_list
+	// char	*instruc; // les instructions sont stockees la pour les cleaner avant d'output
 
 	i = 0;
-	list = convertto_list(argv, list); /* put all the arguments in chained list nodes */
-	if (check_list(list, flag))
+	list = convertto_list(argv, list, &nb); /* put all the arguments in chained list nodes */
+	if (check_list(list, flag)) // if list isn't sorted yet,
 	{
 		if ((i = check_length(list)) == 0)
 			return ; /* "si aucun paramètre n'est passé, ps termine immédiatement et n'affiche rien" */
-		else if (i < /* une certaine valeur */)
-			ps_insertion_sort(list);
 		else
-			ps_quicksort(list);
+			ps_quicksort(/* instruc, */&list, 0, nb); /* else we can proceed to sorting */
 	}
 }

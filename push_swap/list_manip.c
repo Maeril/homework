@@ -6,28 +6,29 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:05:48 by myener            #+#    #+#             */
-/*   Updated: 2019/06/25 16:58:39 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/16 17:49:46 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_pslist	*list_malloc(t_pslist *list)
+t_pslist	*node_malloc(t_pslist *node)
 {
-	if (!(list = malloc(sizeof(t_pslist))))
+	if (!(node = malloc(sizeof(t_pslist))))
 		return (NULL);
-	list->data = 0;
-	list->next = NULL;
-	list->prev = NULL;
-	return (list);
+	node->data = 0;
+	node->type = 0;
+	node->next = NULL;
+	node->prev = NULL;
+	return (node);
 }
 
-t_pslist	*listfill(t_pslist *list, int data)
+t_pslist	*node_fill(t_pslist *node, int data)
 {
-	list = list_malloc(list);
-	list->data = data;
-	list = list->next;
-	return (list);
+	node = node_malloc(node);
+	node->data = data;
+	node->type = 'a';
+	return (node);
 }
 
 int			check_length(t_pslist *list)
@@ -45,7 +46,7 @@ int			check_length(t_pslist *list)
 	return (i);
 }
 
-int			check_list(t_pslist *list, t_psflag *flag)
+int			check_list(t_pslist *list, t_psflag *flag) // check whether list is already sorted
 {
 	t_pslist *curr;
 
@@ -55,10 +56,10 @@ int			check_list(t_pslist *list, t_psflag *flag)
 		if (!(curr->data >= '0' && curr->data <= '9'))
 			ps_output(1);
 		if (curr->data > curr->next->data) /* if one data is greater than the next, */
-			return (1); /* then we can proceed to the next step */
+			return (1); /* then it's unsorted and we can proceed to the next step */
 		curr = curr->next;
 	}
 	return (flag->ch ? ps_output(3) : 0); /* if all is well and checker was called, output "OK"
-	-- otherwise terminate without outputting anything. */
+	-- otherwise terminate without outputting anything (since it means it's already sorted). */
 
 }

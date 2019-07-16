@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 15:49:54 by myener            #+#    #+#              #
-#    Updated: 2019/06/23 20:19:59 by myener           ###   ########.fr        #
+#    Updated: 2019/07/16 17:59:50 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,18 @@ OBJDIR	:=	./objs
 SRCS_NAME_PS =	checker.c				\
 				list_manip.c			\
 				main.c					\
+				movements.c				\
 				output.c				\
 				push_swap.c				\
 				sort_list.c
 
 SRCS_NAME_CH =	checker.c				\
+				list_manip.c			\
 				main.c					\
-				output.c
+				movements.c				\
+				push_swap.c				\
+				output.c				\
+				sort_list.c
 
 FLAGS =	 -Wall -Wextra -Werror
 
