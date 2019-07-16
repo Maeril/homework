@@ -6,11 +6,21 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:49:20 by myener            #+#    #+#             */
-/*   Updated: 2019/07/16 17:31:39 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/16 19:46:06 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	pile_print(t_pslist *curr)
+{
+	while (curr && curr->next)
+	{
+		printf("%d, ", curr->data);
+		curr = curr->next;
+	}
+	printf("%d.\n", curr->data);
+}
 
 t_pslist	*convertto_list(char **argv, t_pslist *list, int *nb)
 {
@@ -41,36 +51,52 @@ t_pslist	*convertto_list(char **argv, t_pslist *list, int *nb)
 
 char		**get_instruct(char	**instructions)
 {
-    int read;
+	int		i;
+	int		size;
+    size_t	read;
 
+	size = 0;
 	read = 0;
-	while (read != EOF)
-    	read = get_next_line(0, instructions);
-    if (read != -1) /*if there was no error*/
-        ft_putstr(*instructions); /* not needed in push_swap, to be deleted */
-    else
-        ft_printf("No line read...\n");
+	while ((read=get_next_line(0, instructions)) > 0)
+		size++;
+	i = 0;
+	while (instructions[i])
+	{
+		ft_putstr(instructions[i]);
+		i++;
+	}
+    // else
+        // ft_printf("No line read...\n");
     return (instructions);
 }
 
-t_pslist	*apply_instruct(char **inst, t_pslist *list)
+t_pslist	*apply_instruct(char **inst, t_pslist *head_a)
 {
 	int i;
+	t_pslist	*head_b;
 
 	i = 0;
 	while (inst[i] != NULL)
 	{
 		if (!(ft_strcmp(inst[i], "sa")) || !(ft_strcmp(inst[i], "ss"))) // swap a ou swap a & b
+			swap(head_a, head_a->next);
 		if (!(ft_strcmp(inst[i], "sb")) || !(ft_strcmp(inst[i], "ss"))) // swap b ou swap a & b
+			swap(head_b, head_b->next);
 		if (!(ft_strcmp(inst[i], "pa"))) // push a
+			push(&head_b, &head_a);
 		if (!(ft_strcmp(inst[i], "pb"))) // push b
+			push(&head_a, &head_b);
 		if (!(ft_strcmp(inst[i], "ra")) || !(ft_strcmp(inst[i], "rr"))) // rotate a ou rotate a & b
+			rotate(&head_a, 1);
 		if (!(ft_strcmp(inst[i], "rb")) || !(ft_strcmp(inst[i], "rr"))) // rotate b ou rotate a & b
+			rotate(&head_b, 1);
 		if (!(ft_strcmp(inst[i], "rra")) || !(ft_strcmp(inst[i], "rrr"))) // reverse rotate a ou reverse rotate a & b
+			rrotate(&head_a, 1);
 		if (!(ft_strcmp(inst[i], "rrb")) || !(ft_strcmp(inst[i], "rrr"))) // reverse rotate b ou reverse rotate a & b
+			rrotate(&head_b, 1);
 		i++;
 	}
-	return (list);
+	return (head_a);
 }
 
 void		checker(t_pslist *list, t_psflag *flag, char **argv)

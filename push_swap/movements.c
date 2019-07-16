@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:37:08 by myener            #+#    #+#             */
-/*   Updated: 2019/07/16 17:54:55 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/16 18:52:20 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void push(/* char *instruc , */t_pslist **src, t_pslist **dest) // BUS ERROR
 	(*dest)->prev = NULL; // clear anything before head
 	(*src)->prev = NULL; // already null'd but you never kow
 	if (tmp_dest)
-		tmp_dest->prev = (*src); //SGFLT
+		tmp_dest->prev = (*src);
 	(*src) = tmp; // change src(pile A's head)'s pointed content to new head_a
 	if (*src)
 		(*src)->prev = NULL; // clear anything before new head_a
@@ -73,7 +73,6 @@ void rrotate(/* char *instruc , */t_pslist **head, int nb) // move all nodes dow
 	{
 		while (i < nb)
 		{
-			printf("rra\n");
 			tail = *head;
 			while (tail && tail->next) // bring tail to the bottom of the list
 				tail = tail->next;

@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:11:10 by myener            #+#    #+#             */
-/*   Updated: 2019/07/16 17:56:27 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/16 19:03:08 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,13 @@ t_pslist *ps_quicksort(/* char *instruc , */t_pslist **head_a, int deb, int fin)
 	np = 0;
 	if ((*head_a)->data <= pivot)
 	{
-		printf ("pb\n");
+		printf("pb\n");
 		push(/* instruc, */head_a, &head_b);
 		np++;
 	}
 	else if ((*head_a)->data > pivot)
 	{
-		printf ("ra\n");
+		printf("ra\n");
 		rotate(/* instruc, */head_a, 1);
 		nr++;
 	}
@@ -98,22 +98,23 @@ t_pslist *ps_quicksort(/* char *instruc , */t_pslist **head_a, int deb, int fin)
 	{
 		if ((*head_a)->data <= pivot)
 		{
-			printf ("pb\n");
+			printf("pb\n");
 			push(/* instruc, */head_a, &head_b);
 			np++;
 		}
 		else if ((*head_a)->data > pivot)
 		{
-			printf ("ra\n");
+			printf("ra\n");
 			rotate(/* instruc, */head_a, 1);
 			nr++;
 		}
 		i++;
 	}
+	printf("rra\n"); // maybe le mettre dans un while avec nr--
 	rrotate(/* instruc, */head_a, nr);
 	while (head_b)
 	{
-		printf ("pa\n");
+		printf("pa\n");
 		push(/* instruc, */&head_b, head_a);
 	}
 	rrotate(/* instruc, */head_a, deb);

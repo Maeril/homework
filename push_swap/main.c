@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:38:48 by myener            #+#    #+#             */
-/*   Updated: 2019/06/24 00:44:07 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/16 18:41:35 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		bad_arg_checker(char **argv)
 	int i;
 	int	j;
 
-	i = 0;
+	i = 1; // 1 and not 0 to jump over the executable name
 	while (argv[i] != NULL) /* go through the string list */
 	{
 		j = 0;
@@ -46,9 +46,9 @@ int		main(int argc, char **argv)
 			ps_output(1);
 		else if (bad_arg_checker(argv) == 0) /* if all is good then we can proceed */
 		{
-			if ((flag.ch = (!ft_strcmp(argv[1], "./checker"))))
+			if ((flag.ch = (!ft_strcmp(argv[0], "./checker"))))
 				checker(&list, &flag, argv);
-			else if ((flag.ps =(!ft_strcmp(argv[1], "./push_swap"))))
+			else if ((flag.ps =(!ft_strcmp(argv[0], "./push_swap"))))
 				push_swap(&list, &flag, argv);
 			else
 				ps_output(1);
