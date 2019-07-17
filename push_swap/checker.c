@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:49:20 by myener            #+#    #+#             */
-/*   Updated: 2019/07/16 19:46:06 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/17 17:29:59 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,21 @@ t_pslist	*convertto_list(char **argv, t_pslist *list, int *nb)
 char		**get_instruct(char	**instructions)
 {
 	int		i;
-	int		size;
-    size_t	read;
+    int 	r;
 
-	size = 0;
-	read = 0;
-	while ((read=get_next_line(0, instructions)) > 0)
-		size++;
+	r = 1;
 	i = 0;
-	while (instructions[i])
+	if (!(instructions = malloc(sizeof(char*) * 25)))
+		return (NULL);
+    while (r != 0 && r != -1)
 	{
-		ft_putstr(instructions[i]);
+		if (!(instructions[i] = malloc(sizeof(char) * 6)))
+			return (NULL);
+		ft_bzero(instructions[i], 5);
+        r = read(0, instructions[i], 5);
 		i++;
 	}
-    // else
-        // ft_printf("No line read...\n");
+	instructions[i] = NULL;
     return (instructions);
 }
 
@@ -78,21 +78,21 @@ t_pslist	*apply_instruct(char **inst, t_pslist *head_a)
 	i = 0;
 	while (inst[i] != NULL)
 	{
-		if (!(ft_strcmp(inst[i], "sa")) || !(ft_strcmp(inst[i], "ss"))) // swap a ou swap a & b
+		if (!(ft_strcmp(inst[i], "sa\n")) || !(ft_strcmp(inst[i], "ss\n"))) // swap a ou swap a & b
 			swap(head_a, head_a->next);
-		if (!(ft_strcmp(inst[i], "sb")) || !(ft_strcmp(inst[i], "ss"))) // swap b ou swap a & b
+		if (!(ft_strcmp(inst[i], "sb\n")) || !(ft_strcmp(inst[i], "ss\n"))) // swap b ou swap a & b
 			swap(head_b, head_b->next);
-		if (!(ft_strcmp(inst[i], "pa"))) // push a
+		if (!(ft_strcmp(inst[i], "pa\n"))) // push a
 			push(&head_b, &head_a);
-		if (!(ft_strcmp(inst[i], "pb"))) // push b
+		if (!(ft_strcmp(inst[i], "pb\n"))) // push b
 			push(&head_a, &head_b);
-		if (!(ft_strcmp(inst[i], "ra")) || !(ft_strcmp(inst[i], "rr"))) // rotate a ou rotate a & b
+		if (!(ft_strcmp(inst[i], "ra\n")) || !(ft_strcmp(inst[i], "rr\n"))) // rotate a ou rotate a & b
 			rotate(&head_a, 1);
-		if (!(ft_strcmp(inst[i], "rb")) || !(ft_strcmp(inst[i], "rr"))) // rotate b ou rotate a & b
+		if (!(ft_strcmp(inst[i], "rb\n")) || !(ft_strcmp(inst[i], "rr\n"))) // rotate b ou rotate a & b
 			rotate(&head_b, 1);
-		if (!(ft_strcmp(inst[i], "rra")) || !(ft_strcmp(inst[i], "rrr"))) // reverse rotate a ou reverse rotate a & b
+		if (!(ft_strcmp(inst[i], "rra\n")) || !(ft_strcmp(inst[i], "rrr\n"))) // reverse rotate a ou reverse rotate a & b
 			rrotate(&head_a, 1);
-		if (!(ft_strcmp(inst[i], "rrb")) || !(ft_strcmp(inst[i], "rrr"))) // reverse rotate b ou reverse rotate a & b
+		if (!(ft_strcmp(inst[i], "rrb\n")) || !(ft_strcmp(inst[i], "rrr\n"))) // reverse rotate b ou reverse rotate a & b
 			rrotate(&head_b, 1);
 		i++;
 	}
