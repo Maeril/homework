@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:49:20 by myener            #+#    #+#             */
-/*   Updated: 2019/07/17 17:29:59 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/18 16:27:35 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,32 +70,34 @@ char		**get_instruct(char	**instructions)
     return (instructions);
 }
 
-t_pslist	*apply_instruct(char **inst, t_pslist *head_a)
+t_pslist	*apply_instruct(char **inst, t_pslist *head_a, t_psflag *flag)
 {
-	int i;
+	int 		i;
 	t_pslist	*head_b;
 
 	i = 0;
+	head_b = NULL;
 	while (inst[i] != NULL)
 	{
 		if (!(ft_strcmp(inst[i], "sa\n")) || !(ft_strcmp(inst[i], "ss\n"))) // swap a ou swap a & b
-			swap(head_a, head_a->next);
+			swap(head_a, head_a->next, flag);
 		if (!(ft_strcmp(inst[i], "sb\n")) || !(ft_strcmp(inst[i], "ss\n"))) // swap b ou swap a & b
-			swap(head_b, head_b->next);
+			swap(head_b, head_b->next, flag);
 		if (!(ft_strcmp(inst[i], "pa\n"))) // push a
-			push(&head_b, &head_a);
+			push(&head_b, &head_a, flag);
 		if (!(ft_strcmp(inst[i], "pb\n"))) // push b
-			push(&head_a, &head_b);
+			push(&head_a, &head_b, flag);
 		if (!(ft_strcmp(inst[i], "ra\n")) || !(ft_strcmp(inst[i], "rr\n"))) // rotate a ou rotate a & b
-			rotate(&head_a, 1);
+			rotate(&head_a, 1, flag);
 		if (!(ft_strcmp(inst[i], "rb\n")) || !(ft_strcmp(inst[i], "rr\n"))) // rotate b ou rotate a & b
-			rotate(&head_b, 1);
+			rotate(&head_b, 1, flag);
 		if (!(ft_strcmp(inst[i], "rra\n")) || !(ft_strcmp(inst[i], "rrr\n"))) // reverse rotate a ou reverse rotate a & b
-			rrotate(&head_a, 1);
+			rrotate(&head_a, 1, flag);
 		if (!(ft_strcmp(inst[i], "rrb\n")) || !(ft_strcmp(inst[i], "rrr\n"))) // reverse rotate b ou reverse rotate a & b
-			rrotate(&head_b, 1);
+			rrotate(&head_b, 1, flag);
 		i++;
 	}
+	free(head_b);
 	return (head_a);
 }
 
@@ -109,7 +111,7 @@ void		checker(t_pslist *list, t_psflag *flag, char **argv)
 	if (check_list(list, flag)) /* if the list is unsorted (if it's sorted "OK" was already outputed), */
 	{
 		instructions = get_instruct(instructions);
-		list = apply_instruct(instructions, list);
+		list = apply_instruct(instructions, list, flag);
 		if (check_list(list, flag))  /* if the list is STILL unsorted (if it's sorted "OK" was already outputed), */
 			ps_output(2); /* then output "KO" */
 	}

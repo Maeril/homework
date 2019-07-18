@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 13:52:32 by myener            #+#    #+#             */
-/*   Updated: 2019/07/16 18:41:39 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/18 15:32:53 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ void		push_swap(t_pslist *list, t_psflag *flag, char **argv)
 		if ((i = check_length(list)) == 0)
 			return ; /* "si aucun paramètre n'est passé, ps termine immédiatement et n'affiche rien" */
 		else
-			ps_quicksort(/* instruc, */&list, 0, nb); /* else we can proceed to sorting */
+			ps_quicksort(/* instruc, */&list, 0, nb, flag); /* else we can proceed to sorting */
 	}
 }

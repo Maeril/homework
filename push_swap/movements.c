@@ -6,13 +6,13 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:37:08 by myener            #+#    #+#             */
-/*   Updated: 2019/07/16 18:52:20 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/18 15:56:44 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void push(/* char *instruc , */t_pslist **src, t_pslist **dest) // BUS ERROR
+void push(/* char *instruc , */t_pslist **src, t_pslist **dest, t_psflag *flag) // BUS ERROR
 {
 	t_pslist	*tmp;
 	t_pslist	*tmp_dest;
@@ -20,8 +20,9 @@ void push(/* char *instruc , */t_pslist **src, t_pslist **dest) // BUS ERROR
 	if (!(*src))
 		return ;
 	tmp = (*src)->next;
-	if (*src)
-		(*src)->type = ((*src)->type == 'a' ? 'b' : 'a'); // change type
+	(*src)->type = ((*src)->type == 'a' ? 'b' : 'a'); // change type
+	if (flag->ps)
+		ft_printf("p%c\n", (*src)->type);
 	tmp_dest = (*dest);
 	(*dest) = (*src); // move as pile B's head (aka NULL for the 1st node)
 	(*dest)->next = tmp_dest; // attach to old head
@@ -35,7 +36,7 @@ void push(/* char *instruc , */t_pslist **src, t_pslist **dest) // BUS ERROR
 	// strcat(instruc, (dest->type == 'b' ? "pb " : "pa "));
 }
 
-void rotate(/* char *instruc , */t_pslist **head, int nb) // move all nodes upwards - head becomes tail
+void rotate(/* char *instruc , */t_pslist **head, int nb, t_psflag *flag) // move all nodes upwards - head becomes tail
 {		 									 // nb = number of rotates
 	int			i;
 	t_pslist	*tmp;
@@ -47,6 +48,8 @@ void rotate(/* char *instruc , */t_pslist **head, int nb) // move all nodes upwa
 	{
 		while (i < nb)
 		{
+			if (flag->ps)
+				ft_printf("r%c\n", (*head)->type = 'a' ? 'a' : 'b');
 ;			tail = *head;
 			tmp = *head; // keep head position in tmp
 			(*head) = tmp->next; // move head to new position
@@ -62,7 +65,7 @@ void rotate(/* char *instruc , */t_pslist **head, int nb) // move all nodes upwa
 	// strcat(instruc, (head->type == 'a' ? "ra " : "rb "));
 }
 
-void rrotate(/* char *instruc , */t_pslist **head, int nb) // move all nodes downwards - tail becomes head
+void rrotate(/* char *instruc , */t_pslist **head, int nb, t_psflag *flag) // move all nodes downwards - tail becomes head
 {											  // nb = number of rrotates
 	int			i;
 	t_pslist	*tmp;
@@ -73,6 +76,8 @@ void rrotate(/* char *instruc , */t_pslist **head, int nb) // move all nodes dow
 	{
 		while (i < nb)
 		{
+			if (flag->ps)
+				ft_printf("rr%c\n", (*head)->type = 'a' ? 'a' : 'b');
 			tail = *head;
 			while (tail && tail->next) // bring tail to the bottom of the list
 				tail = tail->next;
@@ -89,11 +94,13 @@ void rrotate(/* char *instruc , */t_pslist **head, int nb) // move all nodes dow
 	// strcat(instruc, (head->type == 'a' ? "ra " : "rb "));
 }
 
-void swap(/* char *instruc , */t_pslist *p1, t_pslist *p2) // swap two nodes inside a same pile
+void swap(/* char *instruc , */t_pslist *p1, t_pslist *p2, t_psflag *flag) // swap two nodes inside a same pile
 {
 	int		tmp_data;
 	char	tmp_type;
 
+	if (flag->ps)
+		ft_printf("s%c\n", p1->type = 'a' ? 'a' : 'b');
 	tmp_data = p1->data;
 	p1->data = p2->data;
 	p2->data = tmp_data;

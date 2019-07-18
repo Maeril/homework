@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:38:48 by myener            #+#    #+#             */
-/*   Updated: 2019/07/16 18:41:35 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/18 14:02:44 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int		main(int argc, char **argv)
 	t_psflag flag;
 
 	list.data = 0;
+	flag.ch = 0;
+	flag.ps = 0;
 	if (argc == 1) /* if no parameter is passed, return */
 		return (0);
 	else if (argc >= 2)

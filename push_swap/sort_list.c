@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:11:10 by myener            #+#    #+#             */
-/*   Updated: 2019/07/17 17:29:14 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/18 15:43:18 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		mean_calculator(t_pslist *head, int deb, int fin)
 	return (tot / (fin - deb + 1));
 }
 
-t_pslist *ps_quicksort(/* char *instruc , */t_pslist **head_a, int deb, int fin)
+t_pslist *ps_quicksort(/* char *instruc , */t_pslist **head_a, int deb, int fin, t_psflag *flag)
 {
 	int			i;
 	int			nr;
@@ -80,58 +80,45 @@ t_pslist *ps_quicksort(/* char *instruc , */t_pslist **head_a, int deb, int fin)
 	pivot = mean_calculator((*head_a), deb, fin);
 	if (deb == fin) // if only 1 node, finish now
 		return (0);
-	ft_putstr("ra\n"); // maybe le mettre dans un while avec nr--
-	rotate(/* instruc, */head_a, deb);
+	rotate(/* instruc, */head_a, deb, flag);
 	if ((deb + 1) == fin) // if only 2 nodes
 	{
 		if ((*head_a)->data > (*head_a)->next->data)
-		{
-			printf("sa\n");
-			swap(/* instruc, */(*head_a), (*head_a)->next);
-		}
-		ft_putstr("rra\n"); // maybe le mettre dans un while avec nr--
-		rrotate(/* instruc, */head_a, deb); // pseudo code
+			swap(/* instruc, */(*head_a), (*head_a)->next, flag);
+		rrotate(/* instruc, */head_a, deb, flag);
 		return ((*head_a));
 	}
 	nr = 0;
 	np = 0;
 	if ((*head_a)->data <= pivot)
 	{
-		ft_putstr("pb\n");
-		push(/* instruc, */head_a, &head_b);
+		push(/* instruc, */head_a, &head_b, flag);
 		np++;
 	}
 	else if ((*head_a)->data > pivot)
 	{
-		printf("ra\n");
-		rotate(/* instruc, */head_a, 1);
+		rotate(/* instruc, */head_a, 1, flag);
 		nr++;
 	}
 	while ((head_a && (*head_a)->next) && (i < fin)) // "fin - 1" car un des nodes a deja ete traite juste avant
 	{
 		if ((*head_a)->data <= pivot)
 		{
-			ft_putstr("pb\n");
-			push(/* instruc, */head_a, &head_b);
+			push(/* instruc, */head_a, &head_b, flag);
 			np++;
 		}
 		else if ((*head_a)->data > pivot)
 		{
-			ft_putstr("ra\n");
-			rotate(/* instruc, */head_a, 1);
+			rotate(/* instruc, */head_a, 1, flag);
 			nr++;
 		}
 		i++;
 	}
-	ft_putstr("rra\n"); // maybe le mettre dans un while avec nr--
-	rrotate(/* instruc, */head_a, nr);
+	rrotate(/* instruc, */head_a, nr, flag);
 	while (head_b)
-	{
-		ft_putstr("pa\n");
-		push(/* instruc, */&head_b, head_a);
-	}
-	rrotate(/* instruc, */head_a, deb);
-	ps_quicksort(/* instruc, */head_a, deb, (deb + np) - 1); // sort all small nums (which are in the beginning of the list)
-	ps_quicksort(/* instruc, */head_a, (deb + np), fin); // sort all big nums (which are right ar)
+		push(/* instruc, */&head_b, head_a, flag);
+	rrotate(/* instruc, */head_a, deb, flag);
+	ps_quicksort(/* instruc, */head_a, deb, (deb + np) - 1, flag); // sort all small nums (which are in the beginning of the list)
+	ps_quicksort(/* instruc, */head_a, (deb + np), fin, flag); // sort all big nums (which are right ar)
 	return ((*head_a));
 }
