@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:53:33 by myener            #+#    #+#             */
-/*   Updated: 2019/07/18 15:42:57 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/19 14:33:01 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct			s_psflag
 {
 	int		ch;
 	int		ps;
+	char	*instruc;
 }						t_psflag;
 
 typedef struct			s_pslist
