@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 15:49:54 by myener            #+#    #+#              #
-#    Updated: 2019/07/19 13:56:12 by myener           ###   ########.fr        #
+#    Updated: 2019/07/22 14:57:20 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRCDIR	:=	./
 OBJDIR	:=	./objs
 
 SRCS_NAME_PS =	checker.c				\
+				checker_vetting.c		\
 				list_manip.c			\
 				main.c					\
 				movements.c				\
@@ -25,6 +26,7 @@ SRCS_NAME_PS =	checker.c				\
 				quicksort.c
 
 SRCS_NAME_CH =	checker.c				\
+				checker_vetting.c		\
 				list_manip.c			\
 				main.c					\
 				movements.c				\

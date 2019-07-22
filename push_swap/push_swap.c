@@ -6,11 +6,12 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 13:52:32 by myener            #+#    #+#             */
-/*   Updated: 2019/07/19 17:55:45 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/22 15:14:57 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 
 int			pattern_match(char *s1, char *s2)
 {
@@ -24,7 +25,7 @@ int			pattern_match(char *s1, char *s2)
 	return (0);
 }
 
-int			final_tab_len(char **tab) // calculate neededlength of final array
+int			final_tab_len(char **tab) // calculate needed length of final array
 {									// once the bad strings are removed
 	int	i;
 	int	j;
@@ -42,15 +43,13 @@ int			final_tab_len(char **tab) // calculate neededlength of final array
 	return (i - j);
 }
 
-char		**duplicate_cleaner(char *string)
+char		**duplicate_cleaner(char **tab1)
 {
 	int		i;
 	int		j;
 	int		len;
-	char	**tab1;
 	char	**tab2;
 
-	tab1 = ft_strsplit(string, ' ');
 	i = 0;
 	len = final_tab_len(tab1);
 	if (!(tab2 = malloc(sizeof(char*) * len + 1)))
@@ -76,6 +75,24 @@ char		**duplicate_cleaner(char *string)
 	return (tab2);
 }
 
+char		**papb_cleaner(char **tab)
+{
+	int i;
+
+	i = 0;
+	while (tab[i] && tab[i + 1])
+	{
+		if (pattern_match(tab[i], tab[i + 1]))
+		{
+			tab = duplicate_cleaner(tab);
+			tab = papb_cleaner(tab);
+		}
+		i++;
+	}
+	tab = duplicate_cleaner(tab);
+	return (tab);
+}
+
 void		push_swap(t_pslist *list, t_psflag *flag, char **argv)
 {
 	int		i;
@@ -91,8 +108,10 @@ void		push_swap(t_pslist *list, t_psflag *flag, char **argv)
 		else
 			ps_quicksort(&list, 0, nb, flag); /* else we can proceed to sorting */
 	}
-	// printf("instructions = %s\n", flag->instruc);
-	output = duplicate_cleaner(flag->instruc);
+	// printf("instructions = %s, len = %zu\n", flag->instruc, ft_strlen(flag->instruc));
+	output = ft_strsplit(flag->instruc, ' ');
+	if (ft_strlen(flag->instruc) > 4) // 4 c'est la taille qu'aurait au max une chaine avec juste 1 instructions.
+		output = papb_cleaner(output);
 	i = 0;
 	while (output[i])
 	{
