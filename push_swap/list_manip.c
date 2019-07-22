@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:05:48 by myener            #+#    #+#             */
-/*   Updated: 2019/07/16 18:43:40 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/22 16:21:11 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,16 @@ int			check_list(t_pslist *list, t_psflag *flag) // check whether list is alread
 	t_pslist *curr;
 
 	curr = list; /* keep track of the head of the chained list */
-	while (curr && curr->next) /* while the chained list exists, go through it */
+	while (curr) /* while the chained list exists, go through it */
 	{
+		if (!curr->next)
+			break ;
 		if (curr->data > curr->next->data) /* if one data is greater than the next, */
 			return (1); /* then it's unsorted and we can proceed to the next step */
 		curr = curr->next;
 	}
-	return (flag->ch ? ps_output(3) : 0); /* if all is well and checker was called, output "OK"
-	-- otherwise terminate without outputting anything (since it means it's already sorted). */
+	if (flag->ch)
+		return (ps_output(3)); /* if all is well and checker was called, output "OK" */
+	return (0);
 
 }
