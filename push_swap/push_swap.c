@@ -6,12 +6,11 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 13:52:32 by myener            #+#    #+#             */
-/*   Updated: 2019/07/22 15:14:57 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/23 19:31:53 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 int			pattern_match(char *s1, char *s2)
 {
@@ -43,7 +42,7 @@ int			final_tab_len(char **tab) // calculate needed length of final array
 	return (i - j);
 }
 
-char		**duplicate_cleaner(char **tab1)
+char		**duplicate_cleaner(char **tab1, int nb) // ne semble pas fonctionner
 {
 	int		i;
 	int		j;
@@ -59,8 +58,8 @@ char		**duplicate_cleaner(char **tab1)
 	while (tab1[i])
 	{
 		if (tab1[i + 1] == NULL)
-			break;
-		if (pattern_match(tab1[i], tab1[i + 1])) // if mutually cancelling strings appear,
+			break ;
+		if (i == nb) // if mutually cancelling strings appear,
 			i += 2; // increment i twice to "jump over" these array ranks
 		else // else instructions are OK, so transfer them normally
 		{
@@ -69,27 +68,34 @@ char		**duplicate_cleaner(char **tab1)
 			i++;
 		}
 	}
-	tab2[j] = ft_strdup(tab1[i]);
-	if (pattern_match(tab2[j - 1], tab2[j])) // if mutually cancelling strings appear,
-		tab2[j - 1] = NULL;
+	// tab2[j] = ft_strdup(tab1[i]);
+	if (pattern_match(tab2[j - 2], tab2[j - 1])) // if mutually cancelling strings appear,
+		tab2[j - 2] = NULL;
 	return (tab2);
 }
 
 char		**papb_cleaner(char **tab)
 {
 	int i;
+	int j;
 
 	i = 0;
 	while (tab[i] && tab[i + 1])
 	{
-		if (pattern_match(tab[i], tab[i + 1]))
+		if (ft_strcmp(tab[i], "na"))
 		{
-			tab = duplicate_cleaner(tab);
-			tab = papb_cleaner(tab);
+			j = i + 1;
+			while (tab[j] && !ft_strcmp(tab[j], "na"))
+				j++;
+			if (tab[j] && pattern_match(tab[i], tab[j]))
+			{
+				tab[i] = "na";
+				tab[j] = "na";
+				i -= 2;
+			}
 		}
 		i++;
 	}
-	tab = duplicate_cleaner(tab);
 	return (tab);
 }
 
@@ -101,21 +107,23 @@ void		push_swap(t_pslist *list, t_psflag *flag, char **argv)
 
 	i = 0;
 	list = convertto_list(argv, list, &nb); /* put all the arguments in chained list nodes */
-	if (check_list(list, flag)) // if list isn't sorted yet,
+	if (check_list(list, flag) == 0) // if list isn't sorted yet,
+		return ;
+	else
 	{
 		if ((i = check_length(list)) == 0)
 			return ; /* "si aucun paramètre n'est passé, ps termine immédiatement et n'affiche rien" */
 		else
 			ps_quicksort(&list, 0, nb, flag); /* else we can proceed to sorting */
 	}
-	// printf("instructions = %s, len = %zu\n", flag->instruc, ft_strlen(flag->instruc));
 	output = ft_strsplit(flag->instruc, ' ');
-	if (ft_strlen(flag->instruc) > 4) // 4 c'est la taille qu'aurait au max une chaine avec juste 1 instructions.
+	if (ft_strlen(flag->instruc) > 4) // si il y a plus d'une instruction
 		output = papb_cleaner(output);
 	i = 0;
 	while (output[i])
 	{
-		ft_putendl(output[i]);
+		if (ft_strcmp(output[i], "na"))
+			ft_putendl(output[i]);
 		i++;
 	}
 }

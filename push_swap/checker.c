@@ -6,21 +6,11 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:49:20 by myener            #+#    #+#             */
-/*   Updated: 2019/07/22 15:40:59 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/23 17:21:51 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// void	pile_print(t_pslist *curr)
-// {
-// 	while (curr && curr->next)
-// 	{
-// 		printf("%d, ", curr->data);
-// 		curr = curr->next;
-// 	}
-// 	printf("%d.\n", curr->data);
-// }
 
 int		max_min_checker(char **argv)
 {
@@ -30,9 +20,7 @@ int		max_min_checker(char **argv)
 	while (argv[i])
 	{
 		if (ft_atoll(argv[i]) > MAX_INT || ft_atoll(argv[i]) < MIN_INT)
-		{
 			return (1);
-		}
 		i++;
 	}
 	return (0);
@@ -61,7 +49,6 @@ t_pslist	*convertto_list(char **argv, t_pslist *list, int *nb)
 		(*nb)++;
 	}
 	list->next = NULL;
-	// printf("\n");
 	return (head); /* return the filled-up list */
 }
 
