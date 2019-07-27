@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:53:33 by myener            #+#    #+#             */
-/*   Updated: 2019/07/22 15:36:44 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/27 17:20:54 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,14 @@ void		checker(t_pslist *list, t_psflag *flag, char **argv);
 int			check_length(t_pslist *list);
 int			check_list(t_pslist *list, t_psflag *flag);
 t_pslist	*convertto_list(char **argv, t_pslist *list, int *nb);
+char		**duplicate_cleaner(char **tab1, int nb);
 int			duplicate_finder(t_pslist *list);
+int			final_tab_len(char **tab);
 t_pslist	*node_malloc(t_pslist *node);
 t_pslist	*node_fill(t_pslist *node, int data);
+char		**papb_cleaner(char **tab);
+int			pattern_match(char *s1, char *s2);
+t_pslist	*ps_bubblesort(t_pslist **head_a, t_psflag *flag);
 t_pslist	*ps_quicksort(/* char *instruc , */t_pslist **head_a, int deb, int fin, t_psflag *flag);
 int			ps_output(int i);
 void		push(/* char *instruc , */t_pslist **src, t_pslist **dest, t_psflag *flag);

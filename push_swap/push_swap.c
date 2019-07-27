@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 13:52:32 by myener            #+#    #+#             */
-/*   Updated: 2019/07/23 19:31:53 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/27 17:39:57 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int			final_tab_len(char **tab) // calculate needed length of final array
 	return (i - j);
 }
 
-char		**duplicate_cleaner(char **tab1, int nb) // ne semble pas fonctionner
+char		**duplicate_cleaner(char **tab1, int nb)
 {
 	int		i;
 	int		j;
@@ -102,10 +102,12 @@ char		**papb_cleaner(char **tab)
 void		push_swap(t_pslist *list, t_psflag *flag, char **argv)
 {
 	int		i;
+	int		qs;
 	int 	nb; // indicates the end of the list, is filled during convertto_list
 	char	**output; // les instructions sont stockees la pour les cleaner avant d'output
 
 	i = 0;
+	qs = 0;
 	list = convertto_list(argv, list, &nb); /* put all the arguments in chained list nodes */
 	if (check_list(list, flag) == 0) // if list isn't sorted yet,
 		return ;
@@ -113,11 +115,16 @@ void		push_swap(t_pslist *list, t_psflag *flag, char **argv)
 	{
 		if ((i = check_length(list)) == 0)
 			return ; /* "si aucun paramètre n'est passé, ps termine immédiatement et n'affiche rien" */
+		else if ((i = check_length(list)) > 4 && (i <= 6)) // for small lists do a bubblesort
+			ps_bubblesort(&list, flag);
 		else
-			ps_quicksort(&list, 0, nb, flag); /* else we can proceed to sorting */
+		{
+			ps_quicksort(&list, 0, nb, flag); /* else do a quicksort */
+			qs = 1;
+		}
 	}
 	output = ft_strsplit(flag->instruc, ' ');
-	if (ft_strlen(flag->instruc) > 4) // si il y a plus d'une instruction
+	if (ft_strlen(flag->instruc) > 4 && qs) // si il y a plus d'une instruction
 		output = papb_cleaner(output);
 	i = 0;
 	while (output[i])

@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 15:49:54 by myener            #+#    #+#              #
-#    Updated: 2019/07/23 18:58:22 by myener           ###   ########.fr        #
+#    Updated: 2019/07/24 15:47:06 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRCS_NAME_PS =	checker.c				\
 				movements.c				\
 				output.c				\
 				push_swap.c				\
-				quicksort.c
+				sorting_algs.c
 
 SRCS_NAME_CH =	checker.c				\
 				checker_vetting.c		\
@@ -32,7 +32,7 @@ SRCS_NAME_CH =	checker.c				\
 				movements.c				\
 				output.c				\
 				push_swap.c				\
-				quicksort.c
+				sorting_algs.c
 
 FLAGS =	 -Wall -Wextra -Werror -g
 
