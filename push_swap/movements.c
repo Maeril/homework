@@ -31,7 +31,7 @@ void push(t_pslist **src, t_pslist **dest, t_psflag *flag) // BUS ERROR
 	(*src) = tmp; // change src(pile A's head)'s pointed content to new head_a
 	if (*src)
 		(*src)->prev = NULL; // clear anything before new head_a
-	flag->instruc = flag->instruc ? ft_strjoin(flag->instruc,
+	flag->instruc = flag->instruc ? ft_free_join(flag->instruc,
 	((*dest)->type == 'b' ? "pb " : "pa ")) :
 	ft_strdup(((*dest)->type == 'b' ? "pb " : "pa "));
 }
@@ -48,7 +48,7 @@ void rotate(t_pslist **head, int nb, t_psflag *flag) // move all nodes upwards -
 	{
 		while (i < nb)
 		{
-			flag->instruc = flag->instruc ? ft_strjoin(flag->instruc,
+			flag->instruc = flag->instruc ? ft_free_join(flag->instruc,
 			((*head)->type == 'a' ? "ra " : "rb ")) :
 			ft_strdup(((*head)->type == 'a' ? "ra " : "rb "));
 			tail = *head;
@@ -76,7 +76,7 @@ void rrotate(t_pslist **head, int nb, t_psflag *flag) // move all nodes downward
 	{
 		while (i < nb)
 		{
-			flag->instruc = flag->instruc ? ft_strjoin(flag->instruc,
+			flag->instruc = flag->instruc ? ft_free_join(flag->instruc,
 			((*head)->type == 'a' ? "rra " : "rrb ")) :
 			ft_strdup(((*head)->type == 'a' ? "rra " : "rrb "));
 			tail = *head;
@@ -107,7 +107,7 @@ void swap(t_pslist *p1, t_pslist *p2, t_psflag *flag) // swap two nodes inside a
 	tmp_type = p1->type;
 	p1->type = p2->type;
 	p2->type = tmp_type;
-	flag->instruc = flag->instruc ? ft_strjoin((flag->instruc),
+	flag->instruc = flag->instruc ? ft_free_join((flag->instruc),
 	(p1->type == 'a' ? "sa " : "sb ")) :
 	ft_strdup((p1->type == 'a' ? "sa " : "sb "));
 }

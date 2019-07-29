@@ -22,6 +22,52 @@ void	pile_print(t_pslist *curr) // A SUPPRIMER AVANT RENDU
 	printf("%d.\n", curr->data);
 }
 
+// t_pslist	**three_sort(t_pslist **head, t_psflag *flag)
+// {
+// 	int			biggest;
+// 	int 		smallest;
+// 	t_pslist	*curr;
+
+// 	curr = (*head);
+// 	while (curr)
+// 	{
+// 		if (!curr->next)
+// 			break ;
+// 		if (curr->data > biggest)
+// 			biggest = curr->data;
+// 		curr = curr->next;
+// 	}
+// 	curr = (*head);
+// 	while (curr)
+// 	{
+// 		if (!curr->next)
+// 			break ;
+// 		if (curr->data < smallest)
+// 			smallest = curr->data;
+// 		curr = curr->next;
+// 	}
+// 	if ((*head)->data == biggest)
+// 	{
+// 		if ((*head)->next->data == smallest)
+// 			rotate(head, 1, flag);
+// 		else
+// 		{
+// 			rotate(head, 1, flag);
+// 			swap((*head), (*head)->next, flag);
+// 		}
+// 	}
+// 	else if ((*head)->data == smallest)
+// 	{
+// 		if ((*head)->next->data == biggest)
+// 			swap((*head)->next, (*head)->next->next, flag);
+// 		else
+// 			return (head);
+// 	}
+// 	else // aka if it's mid
+// 		(*head)->next->data == biggest ? rrotate(head, 1, flag) : swap((*head), (*head)->next, flag);
+// 	return (head);
+// }
+
 int		same_data(t_pslist *curr, int fin)
 {
 	int	i;
@@ -113,7 +159,7 @@ t_pslist *ps_quicksort(t_pslist **head_a, int deb, int fin, t_psflag *flag)
 	head_b = NULL;
 	i = deb;
 	pivot = mean_calculator((*head_a), deb, fin);
-//	printf("deb = %d, fin = %d, pivot = %d\n", deb, fin, pivot);
+	// printf("deb = %d, fin = %d, pivot = %d\n", deb, fin, pivot);
 	if (deb == fin) // if only 1 node or list already sorted, finish now
 		return (0);
 	rotate(head_a, deb, flag);
@@ -124,6 +170,8 @@ t_pslist *ps_quicksort(t_pslist **head_a, int deb, int fin, t_psflag *flag)
 		rrotate(head_a, deb, flag);
 		return ((*head_a));
 	}
+	// if ((deb + 2) == fin) // if only 3 nodes
+	// 	return (*(three_sort(head_a, flag)));
 	if (same_data(*head_a, (fin - deb)))
 	{
 		rrotate(head_a, deb, flag);
@@ -131,6 +179,7 @@ t_pslist *ps_quicksort(t_pslist **head_a, int deb, int fin, t_psflag *flag)
 	}
 	nr = 0;
 	np = 0;
+	// printf("coucou\n");
 	if ((*head_a)->data <= pivot)
 	{
 		push(head_a, &head_b, flag);

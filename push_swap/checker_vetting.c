@@ -67,7 +67,7 @@ int		duplicate_finder(t_pslist *list) // find duplicates using hash table
 	int			*tab;
 
 	high = find_highest_value(list); // find the highest value (to allocate enough memory)
-	if (!(tab = malloc(sizeof(int) * high)))
+	if (!(tab = malloc(sizeof(int) * (high + 1))))
 		return (0);
 	tab = initialize_tab(tab, high); // fill the array with some sweet Z's
 	while (list) // while we go through the list,
@@ -75,12 +75,19 @@ int		duplicate_finder(t_pslist *list) // find duplicates using hash table
 		if (!list->next)
 			break;
 		if (tab[list->data] == 1) // if the data has already been encountered,
+		{
+			free (tab);
 			return (1); // return 1 (AKA "yep, that duplicate officer")
+		}
 		else if (tab[list->data] == 0) // else if that's the first time we encounter it
 			tab[list->data] = 1; // "switch" it on so we know we've encountered it already later on
 		list = list->next;
 	}
 	if (tab[list->data] == 1) // last node check
-			return (1);
+	{
+		free (tab);
+		return (1);
+	}
+	free (tab);
 	return (0);
 }

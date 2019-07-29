@@ -32,29 +32,30 @@ int		bad_arg_checker(char **argv)
 	return (0); /* if all is well, return 0 (false) */
 }
 
-// int		main(int argc, char **argv)
-// {
-// 	t_pslist list;
-// 	t_psflag flag;
+int		main(int argc, char **argv)
+{
+	t_pslist list;
+	t_psflag flag;
 
-// 	list.data = 0;
-// 	flag.ch = 0;
-// 	flag.ps = 0;
-// 	if (argc == 1) /* if no parameter is passed, return */
-// 		return (0);
-// 	else if (argc >= 2)
-// 	{
-// 		if (bad_arg_checker(argv) == 1) /* if there's a bad argument, output an error message and return */
-// 			ps_output(1);
-// 		else if (bad_arg_checker(argv) == 0) /* if all is good then we can proceed */
-// 		{
-// 			if ((flag.ch = (!ft_strcmp(argv[0], "./checker"))))
-// 				checker(&list, &flag, argv);
-// 			else if ((flag.ps =(!ft_strcmp(argv[0], "./push_swap"))))
-// 				push_swap(&list, &flag, argv);
-// 			else
-// 				ps_output(1);
-// 		}
-// 	}
-// 	return (0);
-// }
+	list.data = 0;
+	flag.ch = 0;
+	flag.ps = 0;
+	flag.instruc = NULL;
+	if (argc == 1) /* if no parameter is passed, return */
+		return (0);
+	else if (argc >= 2)
+	{
+		if (bad_arg_checker(argv) == 1) /* if there's a bad argument, output an error message and return */
+			ps_output(1);
+		else if (bad_arg_checker(argv) == 0) /* if all is good then we can proceed */
+		{
+			if ((flag.ch = (!ft_strcmp(argv[0], "./checker"))))
+				checker(&list, &flag, argv);
+			else if ((flag.ps =(!ft_strcmp(argv[0], "./push_swap"))))
+				push_swap(&list, &flag, argv);
+			else
+				ps_output(1);
+		}
+	}
+	return (0);
+}

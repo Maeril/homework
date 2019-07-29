@@ -31,6 +31,18 @@ t_pslist	*node_fill(t_pslist *node, int data)
 	return (node);
 }
 
+void		list_free(t_pslist *head)
+{
+	t_pslist	*tmp;
+
+	while (head != NULL)
+	{
+		tmp = head;
+		head = head->next;
+		free(tmp);
+	}
+}
+
 int			check_length(t_pslist *list)
 {
 	int			i;

@@ -59,7 +59,7 @@ char		**get_instruct(char	**instructions)
 
 	r = 1;
 	i = 0;
-	if (!(instructions = malloc(sizeof(char*) * 25)))
+	if (!(instructions = malloc(sizeof(char*) * (3 + 1)))) // trouver un moyen d'avoir le bon nombre d'instructions au depart car c'est de la que vient le + gros leak !!
 		return (NULL);
     while (r != 0 && r != -1)
 	{
@@ -126,11 +126,23 @@ void		checker(t_pslist *list, t_psflag *flag, char **argv)
 		instructions = get_instruct(instructions);
 		if (bad_instructions(instructions))
 		{
+			while (*instructions)
+			{
+				free(*instructions);
+				instructions++;
+			}
 			ps_output(1);
 			return ; // and quit
 		}
 		list = apply_instruct(instructions, list, flag);
 		if (check_list(list, flag))  /* if the list is STILL unsorted (if it's sorted "OK" was already outputed), */
 			ps_output(2); /* then output "KO" */
+		while (*instructions)
+		{
+			free(*instructions);
+			instructions++;
+		}
 	}
+	list_free(list);
+	free(flag->instruc);
 }

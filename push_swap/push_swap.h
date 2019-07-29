@@ -44,6 +44,7 @@ t_pslist	*convertto_list(char **argv, t_pslist *list, int *nb);
 char		**duplicate_cleaner(char **tab1, int nb);
 int			duplicate_finder(t_pslist *list);
 int			final_tab_len(char **tab);
+void		list_free(t_pslist *head);
 t_pslist	*node_malloc(t_pslist *node);
 t_pslist	*node_fill(t_pslist *node, int data);
 char		**papb_cleaner(char **tab);
