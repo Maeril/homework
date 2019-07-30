@@ -54,7 +54,10 @@ int		main(int argc, char **argv)
 			else if ((flag.ps =(!ft_strcmp(argv[0], "./push_swap"))))
 				push_swap(&list, &flag, argv);
 			else
+			{
 				ps_output(1);
+				exit (0);
+			}
 		}
 	}
 	return (0);

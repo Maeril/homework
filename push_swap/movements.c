@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:37:08 by myener            #+#    #+#             */
-/*   Updated: 2019/07/19 17:15:34 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/30 16:15:16 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,16 @@ void rotate(t_pslist **head, int nb, t_psflag *flag) // move all nodes upwards -
 	t_pslist	*tmp;
 	t_pslist	*tail;
 
-
 	i = 0;
+	tmp = NULL;
+	tail = NULL;
 	if ((*head)->next)
 	{
 		while (i < nb)
 		{
-			flag->instruc = flag->instruc ? ft_free_join(flag->instruc,
+			flag->instruc = (flag->instruc ? ft_free_join(flag->instruc,
 			((*head)->type == 'a' ? "ra " : "rb ")) :
-			ft_strdup(((*head)->type == 'a' ? "ra " : "rb "));
+			ft_strdup(((*head)->type == 'a' ? "ra " : "rb ")));
 			tail = *head;
 			tmp = *head; // keep head position in tmp
 			(*head) = tmp->next; // move head to new position
@@ -72,13 +73,15 @@ void rrotate(t_pslist **head, int nb, t_psflag *flag) // move all nodes downward
 	t_pslist	*tail;
 
 	i = 0;
+	tmp = NULL;
+	tail = NULL;
 	if ((*head)->next) // make sure there is at least two nodes, otherwise nothing to be done
 	{
 		while (i < nb)
 		{
-			flag->instruc = flag->instruc ? ft_free_join(flag->instruc,
+			flag->instruc = (flag->instruc ? ft_free_join(flag->instruc,
 			((*head)->type == 'a' ? "rra " : "rrb ")) :
-			ft_strdup(((*head)->type == 'a' ? "rra " : "rrb "));
+			ft_strdup(((*head)->type == 'a' ? "rra " : "rrb ")));
 			tail = *head;
 			while (tail && tail->next) // bring tail to the bottom of the list
 				tail = tail->next;
@@ -99,15 +102,13 @@ void swap(t_pslist *p1, t_pslist *p2, t_psflag *flag) // swap two nodes inside a
 	int		tmp_data;
 	char	tmp_type;
 
-	// if (flag->ps)
-		// ft_printf("s%c\n", p1->type = 'a' ? 'a' : 'b');
 	tmp_data = p1->data;
 	p1->data = p2->data;
 	p2->data = tmp_data;
 	tmp_type = p1->type;
 	p1->type = p2->type;
 	p2->type = tmp_type;
-	flag->instruc = flag->instruc ? ft_free_join((flag->instruc),
+	flag->instruc = (flag->instruc ? ft_free_join((flag->instruc),
 	(p1->type == 'a' ? "sa " : "sb ")) :
-	ft_strdup((p1->type == 'a' ? "sa " : "sb "));
+	ft_strdup((p1->type == 'a' ? "sa " : "sb ")));
 }

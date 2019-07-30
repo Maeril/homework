@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 15:49:54 by myener            #+#    #+#              #
-#    Updated: 2019/07/24 15:47:06 by myener           ###   ########.fr        #
+#    Updated: 2019/07/30 16:29:16 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRCS_NAME_PS =	checker.c				\
 				movements.c				\
 				output.c				\
 				push_swap.c				\
-				sorting_algs.c
+				sorting_algs.c			\
+				split.c
 
 SRCS_NAME_CH =	checker.c				\
 				checker_vetting.c		\
@@ -32,9 +33,10 @@ SRCS_NAME_CH =	checker.c				\
 				movements.c				\
 				output.c				\
 				push_swap.c				\
-				sorting_algs.c
+				sorting_algs.c			\
+				split.c
 
-FLAGS =	 -Wall -Wextra -Werror -g
+FLAGS =	 -Wall -Wextra -Werror -g3
 
 OBJS_PS	:=	$(addprefix $(OBJDIR)/,$(SRCS_NAME_PS:.c=.o))
 OBJS_CH	:=	$(addprefix $(OBJDIR)/,$(SRCS_NAME_CH:.c=.o))
@@ -49,7 +51,7 @@ all: $(NAME_PS) $(NAME_CH)
 
 $(NAME_PS): $(OBJS_PS) $(LIBPRINTF) $(LIBFT) push_swap.h
 	@printf "\e[36m Creating: \e[32m$(NAME_PS)\n"
-	@gcc $(FLAGS) $(LIBFT) $(LIBPRINTF) $(OBJS_PS) -o $(NAME_PS) -fsanitize=address
+	@gcc $(FLAGS) $(LIBFT) $(LIBPRINTF) $(OBJS_PS) -o $(NAME_PS)
 
 $(NAME_CH): $(OBJS_CH) $(LIBPRINTF) $(LIBFT) push_swap.h
 	@printf "\e[36m Creating: \e[32m$(NAME_CH)\n"

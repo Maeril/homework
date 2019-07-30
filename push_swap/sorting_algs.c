@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:11:10 by myener            #+#    #+#             */
-/*   Updated: 2019/07/29 16:19:27 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/30 15:22:50 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,6 +207,7 @@ t_pslist *ps_quicksort(t_pslist **head_a, int deb, int fin, t_psflag *flag)
 	rrotate(head_a, nr, flag);
 	while (head_b)
 		push(&head_b, head_a, flag);
+	free (head_b);
 	rrotate(head_a, deb, flag);
 	ps_quicksort(head_a, deb, (deb + np) - 1, flag); // sort all small nums (which are in the beginning of the list)
 	ps_quicksort(head_a, (deb + np), fin, flag); // sort all big nums (which are right ar)

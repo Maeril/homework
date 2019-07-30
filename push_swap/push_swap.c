@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 13:52:32 by myener            #+#    #+#             */
-/*   Updated: 2019/07/27 17:39:57 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/30 17:04:34 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ char		**duplicate_cleaner(char **tab1, int nb)
 			i++;
 		}
 	}
-	// tab2[j] = ft_strdup(tab1[i]);
 	if (pattern_match(tab2[j - 2], tab2[j - 1])) // if mutually cancelling strings appear,
 		tab2[j - 2] = NULL;
+	tab_free(tab1);
 	return (tab2);
 }
 
@@ -99,7 +99,7 @@ char		**papb_cleaner(char **tab)
 	return (tab);
 }
 
-void		push_swap(t_pslist *list, t_psflag *flag, char **argv)
+char		**push_swap(t_pslist *list, t_psflag *flag, char **argv)
 {
 	int		i;
 	int		qs;
@@ -109,12 +109,18 @@ void		push_swap(t_pslist *list, t_psflag *flag, char **argv)
 	i = 0;
 	qs = 0;
 	list = convertto_list(argv, list, &nb); /* put all the arguments in chained list nodes */
-	if (check_list(list, flag) == 0) // if list isn't sorted yet,
-		return ;
+	if (check_list(list, flag) == 0) // if list is sorted yet, finish immediately
+	{
+		list_free(list);
+		exit (0);
+	}
 	else
 	{
 		if ((i = check_length(list)) == 0)
-			return ; /* "si aucun paramètre n'est passé, ps termine immédiatement et n'affiche rien" */
+		{
+			list_free(list);
+			exit (0); /* "si aucun paramètre n'est passé, ps termine immédiatement et n'affiche rien" */
+		}
 		else if ((i = check_length(list)) > 4 && (i <= 6)) // for small lists do a bubblesort
 			ps_bubblesort(&list, flag);
 		else
@@ -123,14 +129,24 @@ void		push_swap(t_pslist *list, t_psflag *flag, char **argv)
 			qs = 1;
 		}
 	}
-	output = ft_strsplit(flag->instruc, ' ');
+	list_free(list);
+	output = ft_spacesplit(flag->instruc);
 	if (ft_strlen(flag->instruc) > 4 && qs) // si il y a plus d'une instruction
 		output = papb_cleaner(output);
 	i = 0;
-	while (output[i])
-	{
-		if (ft_strcmp(output[i], "na"))
-			ft_putendl(output[i]);
-		i++;
-	}
+	if (flag->ch)
+		return (output);
+	else if (flag->ps)
+		while (output[i])
+		{
+			if (ft_strcmp(output[i], "na"))
+			{
+				ft_putendl(output[i]);
+				free(output[i]);
+			}
+			i++;
+		}
+	free(flag->instruc);
+	free(output);
+	return (NULL);
 }

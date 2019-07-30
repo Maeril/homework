@@ -6,11 +6,24 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:19:57 by myener            #+#    #+#             */
-/*   Updated: 2019/07/22 16:02:18 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/30 16:40:58 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	tab_free(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
 
 int		bad_instructions(char **instruc)
 {
@@ -19,15 +32,14 @@ int		bad_instructions(char **instruc)
 	i = 0;
 	while (instruc[i])
 	{
-		if (!ft_strcmp(instruc[i], "sa\n") || !ft_strcmp(instruc[i], "sb\n")
-			|| !ft_strcmp(instruc[i], "pa\n") || !ft_strcmp(instruc[i], "pb\n")
-			|| !ft_strcmp(instruc[i], "ra\n") || !ft_strcmp(instruc[i], "rb\n")
-			|| !ft_strcmp(instruc[i], "rra\n") || !ft_strcmp(instruc[i], "rrb\n")
-			|| !ft_strcmp(instruc[i], "ss\n") || !ft_strcmp(instruc[i], "rrr\n")
-			|| !ft_strcmp(instruc[i], "rr\n") || !ft_strcmp(instruc[i], ""))
-			i++;
-		else
+		if (ft_strcmp(instruc[i], "sa\n") && ft_strcmp(instruc[i], "sb\n")
+			&& ft_strcmp(instruc[i], "pa\n") && ft_strcmp(instruc[i], "pb\n")
+			&& ft_strcmp(instruc[i], "ra\n") && ft_strcmp(instruc[i], "rb\n")
+			&& ft_strcmp(instruc[i], "rra\n") && ft_strcmp(instruc[i], "rrb\n")
+			&& ft_strcmp(instruc[i], "ss\n") && ft_strcmp(instruc[i], "rrr\n")
+			&& ft_strcmp(instruc[i], "rr\n") && ft_strcmp(instruc[i], ""))
 			return (1);
+		i++;
 	}
 	return (0);
 }

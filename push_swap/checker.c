@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:49:20 by myener            #+#    #+#             */
-/*   Updated: 2019/07/23 17:21:51 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/30 16:09:59 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,25 +52,37 @@ t_pslist	*convertto_list(char **argv, t_pslist *list, int *nb)
 	return (head); /* return the filled-up list */
 }
 
-char		**get_instruct(char	**instructions)
+char		**get_instruct(t_pslist *list, t_psflag *flag, char **av, char	**instructions)
 {
 	int		i;
     int 	r;
+    int 	len;
+	char	**output;
 
-	r = 1;
+	output = push_swap(list, flag, av);
 	i = 0;
-	if (!(instructions = malloc(sizeof(char*) * (3 + 1)))) // trouver un moyen d'avoir le bon nombre d'instructions au depart car c'est de la que vient le + gros leak !!
-		return (NULL);
-    while (r != 0 && r != -1)
+	len = 0;
+	while (output[i])
 	{
-		if (!(instructions[i] = malloc(sizeof(char) * 6)))
+		if (ft_strcmp(output[i], "na"))
+			len++;
+		i++;
+	}
+	tab_free(output);
+	i = 0;
+	if (!(instructions = malloc(sizeof(char*) * (len + 1)))) // trouver un moyen d'avoir le bon nombre d'instructions au depart car c'est de la que vient le + gros leak !!
+		return (NULL);
+    i = 0;
+	r = 1;
+	while (r != 0 && r != -1)
+	{
+		if (!(instructions[i] = malloc(sizeof(char) * (4 + 1))))
 			return (NULL);
 		ft_bzero(instructions[i], 5);
         r = read(0, instructions[i], 5);
 		i++;
 	}
-	instructions[i] = NULL;
-    return (instructions);
+	return (instructions);
 }
 
 t_pslist	*apply_instruct(char **inst, t_pslist *head_a, t_psflag *flag)
@@ -80,7 +92,7 @@ t_pslist	*apply_instruct(char **inst, t_pslist *head_a, t_psflag *flag)
 
 	i = 0;
 	head_b = NULL;
-	while (inst[i] != NULL)
+	while (inst[i])
 	{
 		if (!(ft_strcmp(inst[i], "sa\n")) || !(ft_strcmp(inst[i], "ss\n"))) // swap a ou swap a & b
 			swap(head_a, head_a->next, flag);
@@ -100,7 +112,6 @@ t_pslist	*apply_instruct(char **inst, t_pslist *head_a, t_psflag *flag)
 			rrotate(&head_b, 1, flag);
 		i++;
 	}
-	free(head_b);
 	return (head_a);
 }
 
@@ -109,40 +120,31 @@ void		checker(t_pslist *list, t_psflag *flag, char **argv)
 	int		nb; // nb indicate the list's ending point, it isn't needed for checker
 	char	**instructions;
 
-	instructions = NULL;
-	if (max_min_checker(argv)) // if there's a number that is superior/inferior to MAX/MIN_INT,
-	{
-		ps_output(1); // output "Error\n"
-		return ; // and quit
-	}
 	list = convertto_list(argv, list, &nb); /* put all the arguments in chained list nodes */
-	if (duplicate_finder(list)) // if there's a duplicate,
+	if (max_min_checker(argv) || duplicate_finder(list)) // if there's a duplicate,
 	{
+		list_free(list);
 		ps_output(1); // output "Error\n"
-		return ; // and quit
+		exit (0); // and quit
 	}
+	instructions = NULL;
 	if (check_list(list, flag)) /* if the list is unsorted (if it's sorted "OK" was already outputed), */
 	{
-		instructions = get_instruct(instructions);
+		instructions = get_instruct(list, flag, argv, instructions);
 		if (bad_instructions(instructions))
 		{
-			while (*instructions)
-			{
-				free(*instructions);
-				instructions++;
-			}
-			ps_output(1);
-			return ; // and quit
+			ps_output(1); // output "Error\n"
+			exit (0); // and quit
 		}
-		list = apply_instruct(instructions, list, flag);
+		if (instructions)
+		{
+			list = apply_instruct(instructions, list, flag);
+			tab_free(instructions);
+		}
 		if (check_list(list, flag))  /* if the list is STILL unsorted (if it's sorted "OK" was already outputed), */
 			ps_output(2); /* then output "KO" */
-		while (*instructions)
-		{
-			free(*instructions);
-			instructions++;
-		}
 	}
 	list_free(list);
 	free(flag->instruc);
+	exit (0);
 }
