@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 13:52:32 by myener            #+#    #+#             */
-/*   Updated: 2019/07/30 17:04:34 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/31 17:10:47 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ char		**duplicate_cleaner(char **tab1, int nb)
 	}
 	if (pattern_match(tab2[j - 2], tab2[j - 1])) // if mutually cancelling strings appear,
 		tab2[j - 2] = NULL;
-	tab_free(tab1);
 	return (tab2);
 }
 
@@ -89,8 +88,10 @@ char		**papb_cleaner(char **tab)
 				j++;
 			if (tab[j] && pattern_match(tab[i], tab[j]))
 			{
-				tab[i] = "na";
-				tab[j] = "na";
+				ft_bzero(tab[i], ft_strlen(tab[i]));
+				tab[i] = ft_free_join(tab[i], "na");
+				ft_bzero(tab[j], ft_strlen(tab[j]));
+				tab[j] = ft_free_join(tab[j], "na");
 				i -= 2;
 			}
 		}
@@ -137,16 +138,8 @@ char		**push_swap(t_pslist *list, t_psflag *flag, char **argv)
 	if (flag->ch)
 		return (output);
 	else if (flag->ps)
-		while (output[i])
-		{
-			if (ft_strcmp(output[i], "na"))
-			{
-				ft_putendl(output[i]);
-				free(output[i]);
-			}
-			i++;
-		}
-	free(flag->instruc);
+		ps_displayer(output);
 	free(output);
+	free(flag->instruc);
 	return (NULL);
 }

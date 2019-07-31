@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:19:57 by myener            #+#    #+#             */
-/*   Updated: 2019/07/30 16:40:58 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/31 17:35:31 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	tab_free(char **tab)
 		free(tab[i]);
 		i++;
 	}
-	free(tab);
 }
 
 int		bad_instructions(char **instruc)
@@ -95,11 +94,11 @@ int		duplicate_finder(t_pslist *list) // find duplicates using hash table
 			tab[list->data] = 1; // "switch" it on so we know we've encountered it already later on
 		list = list->next;
 	}
-	if (tab[list->data] == 1) // last node check
-	{
-		free (tab);
-		return (1);
-	}
+	// if (tab[list->data] == 1) // last node check
+	// {
+	// 	free (tab);
+	// 	return (1);
+	// }
 	free (tab);
 	return (0);
 }

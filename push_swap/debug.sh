@@ -6,22 +6,22 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/29 23:00:29 by myener            #+#    #+#              #
-#    Updated: 2019/07/29 23:12:06 by myener           ###   ########.fr        #
+#    Updated: 2019/07/31 17:51:58 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 printf "\n======== Basic Test ========\n"
 
 # printf "1. Expect OK         : " ; printf "" | ./checker 1
-printf "2. Expect OK         : " ; printf "" | ./checker -1
+# printf "2. Expect OK         : " ; printf "" | ./checker -1
 # printf "3. Expect OK         : " ; printf "" | ./checker 0
 # printf "4. Expect OK         : " ; printf "sa\n" | ./checker 2 1
 # printf "5. Expect OK         : " ; printf "" | ./checker 1 2
-printf "6. Expect OK         : " ; printf "" | ./checker -1 1
+# printf "6. Expect OK         : " ; printf "" | ./checker -1 1
 # printf "7. Expect OK         : " ; printf "pb\npa\n" | ./checker 1
 printf "8. Expect OK         : " ; printf "" | ./checker -2147483648 0 2147483647
 # printf "9. Expect OK (*)     : " ; printf "" | ./checker 01 002
-printf "11.Expect OK (*)     : " ; printf "" | ./checker +1 +02
+# printf "11.Expect OK (*)     : " ; printf "" | ./checker +1 +02
 # printf "12.Expect KO         : " ; printf "" | ./checker 2 1
 printf "13.Expect KO         : " ; printf "sa\n" | ./checker 1 2
 printf "14.Expect KO         : " ; printf "pb\n" | ./checker 1

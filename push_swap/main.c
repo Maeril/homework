@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:38:48 by myener            #+#    #+#             */
-/*   Updated: 2019/07/25 21:47:07 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/31 17:51:09 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,28 @@ int		bad_arg_checker(char **argv)
 		j = 0;
 		while (argv[i][j] != '\0') /* go through each character of each string */
 		{
-			if (!(argv[i][j] >= '0' && argv[i][j] <= '9')) /* if one isn't a number, return 1 (true)*/
+			if (argv[i][j] == '-' || argv[i][j] == '+') /* if the first character is a - or a + (still valid), */
+			{
+				j++; /* then jump over it to investigate further, */
+				while (argv[i][j]) /* go through the entire string, */
+				{
+					if (!(argv[i][j] >= '0' && argv[i][j] <= '9')) /* and if at some point it's not a digit, */
+						return (1);
+					j++;
+				}
+				return (0); /* else all is good :) */
+			}
+			else if (argv[i][j + 1] >= '0' && argv[i][j + 1] <= '9') /* else if it's already a digit, */
+			{
+				while (argv[i][j]) /* go through the entire string, */
+				{
+					if (!(argv[i][j + 1] >= '0' && argv[i][j + 1] <= '9')) /* and if at some point it's not a digit, */
+						return (1);
+					j++;
+				}
+				return (0); /* else all is good :) */
+			}
+			else if (argv[i][j] != '-' && argv[i][j] != '+' && !(argv[i][j] >= '0' && argv[i][j] <= '9')) /* else if none of that is true, */
 				return (1);
 			j++;
 		}

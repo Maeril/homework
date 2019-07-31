@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:49:20 by myener            #+#    #+#             */
-/*   Updated: 2019/07/30 16:09:59 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/31 17:56:01 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ char		**get_instruct(t_pslist *list, t_psflag *flag, char **av, char	**instructi
 		i++;
 	}
 	tab_free(output);
+	free(output);
 	i = 0;
 	if (!(instructions = malloc(sizeof(char*) * (len + 1)))) // trouver un moyen d'avoir le bon nombre d'instructions au depart car c'est de la que vient le + gros leak !!
 		return (NULL);

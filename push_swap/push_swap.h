@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:53:33 by myener            #+#    #+#             */
-/*   Updated: 2019/07/30 17:11:17 by myener           ###   ########.fr       */
+/*   Updated: 2019/07/31 16:40:59 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ t_pslist	*node_fill(t_pslist *node, int data);
 char		**papb_cleaner(char **tab);
 int			pattern_match(char *s1, char *s2);
 t_pslist	*ps_bubblesort(t_pslist **head_a, t_psflag *flag);
+void		ps_displayer(char **out);
 t_pslist	*ps_quicksort(t_pslist **head_a, int deb, int fin, t_psflag *flag);
 int			ps_output(int i);
 void		push(t_pslist **src, t_pslist **dest, t_psflag *flag);
