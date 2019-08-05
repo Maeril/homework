@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:49:20 by myener            #+#    #+#             */
-/*   Updated: 2019/07/31 17:56:01 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/05 21:36:29 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,27 +62,31 @@ char		**get_instruct(t_pslist *list, t_psflag *flag, char **av, char	**instructi
 	output = push_swap(list, flag, av);
 	i = 0;
 	len = 0;
-	while (output[i])
+	if (output)
 	{
-		if (ft_strcmp(output[i], "na"))
-			len++;
-		i++;
+		while (output[i])
+		{
+			if (ft_strcmp(output[i], "na"))
+				len++;
+			i++;
+		}
+		tab_free(output);
+		free(output);
 	}
-	tab_free(output);
-	free(output);
 	i = 0;
-	if (!(instructions = malloc(sizeof(char*) * (len + 1)))) // trouver un moyen d'avoir le bon nombre d'instructions au depart car c'est de la que vient le + gros leak !!
-		return (NULL);
+	if (!(instructions = malloc(sizeof(char*) * (len + 1))))
+		exit (0);
     i = 0;
 	r = 1;
 	while (r != 0 && r != -1)
 	{
 		if (!(instructions[i] = malloc(sizeof(char) * (4 + 1))))
-			return (NULL);
+			exit (0);
 		ft_bzero(instructions[i], 5);
         r = read(0, instructions[i], 5);
 		i++;
 	}
+	instructions[i] = NULL;
 	return (instructions);
 }
 
@@ -124,28 +128,29 @@ void		checker(t_pslist *list, t_psflag *flag, char **argv)
 	list = convertto_list(argv, list, &nb); /* put all the arguments in chained list nodes */
 	if (max_min_checker(argv) || duplicate_finder(list)) // if there's a duplicate,
 	{
-		list_free(list);
+		// list_free(list);
 		ps_output(1); // output "Error\n"
 		exit (0); // and quit
 	}
 	instructions = NULL;
-	if (check_list(list, flag)) /* if the list is unsorted (if it's sorted "OK" was already outputed), */
+	instructions = get_instruct(list, flag, argv, instructions);
+	if (bad_instructions(instructions))
 	{
-		instructions = get_instruct(list, flag, argv, instructions);
-		if (bad_instructions(instructions))
-		{
-			ps_output(1); // output "Error\n"
-			exit (0); // and quit
-		}
-		if (instructions)
-		{
-			list = apply_instruct(instructions, list, flag);
-			tab_free(instructions);
-		}
-		if (check_list(list, flag))  /* if the list is STILL unsorted (if it's sorted "OK" was already outputed), */
-			ps_output(2); /* then output "KO" */
+		// list_free(list);
+		ps_output(1); // output "Error\n"
+		exit (0); // and quit
 	}
-	list_free(list);
-	free(flag->instruc);
+	if (instructions)
+	{
+		list = apply_instruct(instructions, list, flag);
+		// tab_free(instructions);
+	}
+	if (check_list(list))  /* if the list is STILL unsorted, */
+		ps_output(2); /* then output "KO" */
+	else
+		ps_output(3); /* else it's sorted so output "OK" */
+	// list_free(list);
+	if (flag->instruc)
+		free(flag->instruc);
 	exit (0);
 }

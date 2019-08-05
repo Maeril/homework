@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:53:33 by myener            #+#    #+#             */
-/*   Updated: 2019/07/31 16:40:59 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/05 21:09:34 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct			s_pslist
 int			bad_instructions(char **instruc);
 void		checker(t_pslist *list, t_psflag *flag, char **argv);
 int			check_length(t_pslist *list);
-int			check_list(t_pslist *list, t_psflag *flag);
+int			check_list(t_pslist *list);
 t_pslist	*convertto_list(char **argv, t_pslist *list, int *nb);
 char		**duplicate_cleaner(char **tab1, int nb);
 int			duplicate_finder(t_pslist *list);

@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:19:57 by myener            #+#    #+#             */
-/*   Updated: 2019/07/31 17:35:31 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/05 21:33:55 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,13 @@ int		duplicate_finder(t_pslist *list) // find duplicates using hash table
 	tab = initialize_tab(tab, high); // fill the array with some sweet Z's
 	while (list) // while we go through the list,
 	{
-		if (!list->next)
-			break;
 		if (tab[list->data] == 1) // if the data has already been encountered,
 		{
 			free (tab);
 			return (1); // return 1 (AKA "yep, that duplicate officer")
 		}
+		if (!list->next)
+			break;
 		else if (tab[list->data] == 0) // else if that's the first time we encounter it
 			tab[list->data] = 1; // "switch" it on so we know we've encountered it already later on
 		list = list->next;

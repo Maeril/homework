@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 13:52:32 by myener            #+#    #+#             */
-/*   Updated: 2019/07/31 17:10:47 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/05 21:36:28 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,12 +110,12 @@ char		**push_swap(t_pslist *list, t_psflag *flag, char **argv)
 	i = 0;
 	qs = 0;
 	list = convertto_list(argv, list, &nb); /* put all the arguments in chained list nodes */
-	if (check_list(list, flag) == 0) // if list is sorted yet, finish immediately
+	if ((check_list(list) == 0) && flag->ps) // if list is sorted yet (and flag = ps), finish immediately
 	{
 		list_free(list);
 		exit (0);
 	}
-	else
+	if (check_list(list))
 	{
 		if ((i = check_length(list)) == 0)
 		{
@@ -131,12 +131,15 @@ char		**push_swap(t_pslist *list, t_psflag *flag, char **argv)
 		}
 	}
 	list_free(list);
-	output = ft_spacesplit(flag->instruc);
-	if (ft_strlen(flag->instruc) > 4 && qs) // si il y a plus d'une instruction
-		output = papb_cleaner(output);
+	if (flag->instruc)
+	{
+		output = ft_spacesplit(flag->instruc);
+		if (ft_strlen(flag->instruc) > 4 && qs) // si il y a plus d'une instruction
+			output = papb_cleaner(output);
+	}
 	i = 0;
 	if (flag->ch)
-		return (output);
+		return (flag->instruc ? output : NULL);
 	else if (flag->ps)
 		ps_displayer(output);
 	free(output);
