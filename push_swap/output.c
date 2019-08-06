@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 19:21:03 by myener            #+#    #+#             */
-/*   Updated: 2019/07/31 17:08:42 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/06 15:17:49 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ void	ps_displayer(char **out)
 int		ps_output(int i)
 {
 	if (i == 1)
+	{
 		write(2, "Error\n", 6);
+		exit (0);
+	}
 	else if (i == 2)
 		write(1, "KO\n", 3); /* output "KO" means the list isn't in ascending order */
 	else if (i == 3)

@@ -6,21 +6,21 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:11:10 by myener            #+#    #+#             */
-/*   Updated: 2019/07/30 15:22:50 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/06 12:03:41 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pile_print(t_pslist *curr) // A SUPPRIMER AVANT RENDU
-{
-	while (curr && curr->next)
-	{
-		printf("%d, ", curr->data);
-		curr = curr->next;
-	}
-	printf("%d.\n", curr->data);
-}
+// void	pile_print(t_pslist *curr) // A SUPPRIMER AVANT RENDU
+// {
+// 	while (curr && curr->next)
+// 	{
+// 		printf("%d, ", curr->data);
+// 		curr = curr->next;
+// 	}
+// 	printf("%d.\n", curr->data);
+// }
 
 // t_pslist	**three_sort(t_pslist **head, t_psflag *flag)
 // {

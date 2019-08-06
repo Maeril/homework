@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:38:48 by myener            #+#    #+#             */
-/*   Updated: 2019/08/05 21:33:50 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/06 15:18:39 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int		bad_arg_checker(char **argv)
 			if (argv[i][j] == '-' || argv[i][j] == '+') /* if the first character is a - or a + (still valid), */
 			{
 				j++; /* then jump over it to investigate further, */
+				if (!argv[i][j])
+					return (1);
 				while (argv[i][j]) /* go through the entire string, */
 				{
 					if (!(argv[i][j] >= '0' && argv[i][j] <= '9')) /* and if at some point it's not a digit, */
@@ -34,11 +36,13 @@ int		bad_arg_checker(char **argv)
 				}
 				return (0); /* else all is good :) */
 			}
-			else if (argv[i][j + 1] >= '0' && argv[i][j + 1] <= '9') /* else if it's already a digit, */
+			else if (argv[i][j] >= '0' && argv[i][j] <= '9') /* else if it's already a digit, */
 			{
+				// printf("coucou\n");
 				while (argv[i][j]) /* go through the entire string, */
 				{
-					if (!(argv[i][j + 1] >= '0' && argv[i][j + 1] <= '9')) /* and if at some point it's not a digit, */
+					// printf("argv[i][j] = %c\n", argv[i][j]);
+					if (argv[i][j + 1] && !(argv[i][j + 1] >= '0' && argv[i][j + 1] <= '9')) /* and if at some point it's not a digit, */
 						return (1);
 					j++;
 				}
@@ -77,7 +81,6 @@ int		main(int argc, char **argv)
 			else
 			{
 				ps_output(1);
-				exit (0);
 			}
 		}
 	}

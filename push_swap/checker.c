@@ -6,11 +6,21 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:49:20 by myener            #+#    #+#             */
-/*   Updated: 2019/08/05 21:36:29 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/06 15:36:10 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	pile_print(t_pslist *curr)
+{
+	while (curr && curr->next)
+	{
+		printf("%d, ", curr->data);
+		curr = curr->next;
+	}
+	printf("%d.\n", curr->data);
+}
 
 int		max_min_checker(char **argv)
 {
@@ -55,13 +65,14 @@ t_pslist	*convertto_list(char **argv, t_pslist *list, int *nb)
 char		**get_instruct(t_pslist *list, t_psflag *flag, char **av, char	**instructions)
 {
 	int		i;
+	int		j;
     int 	r;
     int 	len;
 	char	**output;
 
 	output = push_swap(list, flag, av);
 	i = 0;
-	len = 0;
+	len = output ? 1 : 4;
 	if (output)
 	{
 		while (output[i])
@@ -78,12 +89,15 @@ char		**get_instruct(t_pslist *list, t_psflag *flag, char **av, char	**instructi
 		exit (0);
     i = 0;
 	r = 1;
-	while (r != 0 && r != -1)
+	while (r != 0)
 	{
 		if (!(instructions[i] = malloc(sizeof(char) * (4 + 1))))
 			exit (0);
 		ft_bzero(instructions[i], 5);
         r = read(0, instructions[i], 5);
+		j = 0;
+		if (instructions[i][j] == '\0' && instructions[i][j + 1])
+			ps_output(1);
 		i++;
 	}
 	instructions[i] = NULL;
@@ -93,9 +107,12 @@ char		**get_instruct(t_pslist *list, t_psflag *flag, char **av, char	**instructi
 t_pslist	*apply_instruct(char **inst, t_pslist *head_a, t_psflag *flag)
 {
 	int 		i;
+	int			pa;
+	int			pb;
 	t_pslist	*head_b;
 
 	i = 0;
+	pa = pb = 0;
 	head_b = NULL;
 	while (inst[i])
 	{
@@ -104,9 +121,15 @@ t_pslist	*apply_instruct(char **inst, t_pslist *head_a, t_psflag *flag)
 		if (!(ft_strcmp(inst[i], "sb\n")) || !(ft_strcmp(inst[i], "ss\n"))) // swap b ou swap a & b
 			swap(head_b, head_b->next, flag);
 		if (!(ft_strcmp(inst[i], "pa\n"))) // push a
+		{
 			push(&head_b, &head_a, flag);
+			pa++;
+		}
 		if (!(ft_strcmp(inst[i], "pb\n"))) // push b
+		{
 			push(&head_a, &head_b, flag);
+			pb++;
+		}
 		if (!(ft_strcmp(inst[i], "ra\n")) || !(ft_strcmp(inst[i], "rr\n"))) // rotate a ou rotate a & b
 			rotate(&head_a, 1, flag);
 		if (!(ft_strcmp(inst[i], "rb\n")) || !(ft_strcmp(inst[i], "rr\n"))) // rotate b ou rotate a & b
@@ -116,6 +139,11 @@ t_pslist	*apply_instruct(char **inst, t_pslist *head_a, t_psflag *flag)
 		if (!(ft_strcmp(inst[i], "rrb\n")) || !(ft_strcmp(inst[i], "rrr\n"))) // reverse rotate b ou reverse rotate a & b
 			rrotate(&head_b, 1, flag);
 		i++;
+	}
+	if (pa < pb)
+	{
+		ps_output(2); /* then output "KO" */
+		return (NULL);
 	}
 	return (head_a);
 }
@@ -130,7 +158,6 @@ void		checker(t_pslist *list, t_psflag *flag, char **argv)
 	{
 		// list_free(list);
 		ps_output(1); // output "Error\n"
-		exit (0); // and quit
 	}
 	instructions = NULL;
 	instructions = get_instruct(list, flag, argv, instructions);
@@ -138,17 +165,19 @@ void		checker(t_pslist *list, t_psflag *flag, char **argv)
 	{
 		// list_free(list);
 		ps_output(1); // output "Error\n"
-		exit (0); // and quit
 	}
 	if (instructions)
 	{
 		list = apply_instruct(instructions, list, flag);
 		// tab_free(instructions);
 	}
-	if (check_list(list))  /* if the list is STILL unsorted, */
-		ps_output(2); /* then output "KO" */
-	else
-		ps_output(3); /* else it's sorted so output "OK" */
+	if (list)
+	{
+		if (check_list(list))  /* if the list is STILL unsorted, */
+			ps_output(2); /* then output "KO" */
+		else
+			ps_output(3); /* else it's sorted so output "OK" */
+	}
 	// list_free(list);
 	if (flag->instruc)
 		free(flag->instruc);

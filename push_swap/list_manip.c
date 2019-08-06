@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:05:48 by myener            #+#    #+#             */
-/*   Updated: 2019/08/05 21:33:52 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/06 13:43:28 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int			check_length(t_pslist *list)
 	int			i;
 	t_pslist	*curr;
 
-	i = 0;
+	i = 1;
 	curr = list;
 	while (curr && curr->next) /* while the chained list exists, go through it */
 	{
