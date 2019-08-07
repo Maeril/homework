@@ -6,21 +6,11 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:49:20 by myener            #+#    #+#             */
-/*   Updated: 2019/08/06 15:36:10 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/07 16:17:10 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	pile_print(t_pslist *curr)
-{
-	while (curr && curr->next)
-	{
-		printf("%d, ", curr->data);
-		curr = curr->next;
-	}
-	printf("%d.\n", curr->data);
-}
 
 int		max_min_checker(char **argv)
 {
@@ -91,11 +81,16 @@ char		**get_instruct(t_pslist *list, t_psflag *flag, char **av, char	**instructi
 	r = 1;
 	while (r != 0)
 	{
-		if (!(instructions[i] = malloc(sizeof(char) * (4 + 1))))
+		if (!(instructions[i] = malloc(sizeof(char) * (20 + 1))))
 			exit (0);
-		ft_bzero(instructions[i], 5);
-        r = read(0, instructions[i], 5);
+		ft_bzero(instructions[i], 21);
+        r = read(0, instructions[i], 21);
 		j = 0;
+		// if (input_checker(instructions[i])) // si il y a plus d'une instruction par ligne
+		// {
+		// 	instructions = ft_spacesplit(instructions[i]);
+		// 	return (instructions);
+		// }
 		if (instructions[i][j] == '\0' && instructions[i][j + 1])
 			ps_output(1);
 		i++;

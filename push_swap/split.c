@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 14:53:02 by myener            #+#    #+#             */
-/*   Updated: 2019/07/31 17:20:01 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/07 16:16:51 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*malloc_word(char *str)
 	return (word);
 }
 
-char	**ft_spacesplit(char *str)
+char	**ft_spacesplit(char *str) // divise selon les espaces
 {
 	int i;
 	char **arr;
