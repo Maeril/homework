@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:19:57 by myener            #+#    #+#             */
-/*   Updated: 2019/08/07 16:16:33 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/12 17:10:09 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,22 @@ void	tab_free(char **tab)
 
 int		bad_instructions(char **instruc)
 {
-	int	i;
+	// int	i;
 
-	i = 0;
-	while (instruc[i])
+	// i = 0;
+	while (*instruc != NULL)
 	{
-		if (ft_strcmp(instruc[i], "sa\n") && ft_strcmp(instruc[i], "sb\n")
-			&& ft_strcmp(instruc[i], "pa\n") && ft_strcmp(instruc[i], "pb\n")
-			&& ft_strcmp(instruc[i], "ra\n") && ft_strcmp(instruc[i], "rb\n")
-			&& ft_strcmp(instruc[i], "rra\n") && ft_strcmp(instruc[i], "rrb\n")
-			&& ft_strcmp(instruc[i], "ss\n") && ft_strcmp(instruc[i], "rrr\n")
-			&& ft_strcmp(instruc[i], "rr\n") && ft_strcmp(instruc[i], ""))
+		// printf("i = %d\n", i);
+		if (ft_strcmp(*instruc, "sa") && ft_strcmp(*instruc, "sb")
+			&& ft_strcmp(*instruc, "pa") && ft_strcmp(*instruc, "pb")
+			&& ft_strcmp(*instruc, "ra") && ft_strcmp(*instruc, "rb")
+			&& ft_strcmp(*instruc, "rra") && ft_strcmp(*instruc, "rrb")
+			&& ft_strcmp(*instruc, "ss") && ft_strcmp(*instruc, "rrr")
+			&& ft_strcmp(*instruc, "rr") && ft_strcmp(*instruc, ""))
 			return (1);
-		i++;
+		// if (!instruc[i + 1])
+		// i++;
+		instruc++;
 	}
 	return (0);
 }

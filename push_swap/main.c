@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:38:48 by myener            #+#    #+#             */
-/*   Updated: 2019/08/06 15:18:39 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/12 16:22:50 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ int		main(int argc, char **argv)
 			if ((flag.ch = (!ft_strcmp(argv[0], "./checker"))))
 				checker(&list, &flag, argv);
 			else if ((flag.ps =(!ft_strcmp(argv[0], "./push_swap"))))
+				push_swap(&list, &flag, argv);
+			else if ((flag.ps =(!ft_strcmp(argv[0], "/Users/myener/Desktop/homework/push_swap/push_swap"))))
 				push_swap(&list, &flag, argv);
 			else
 			{

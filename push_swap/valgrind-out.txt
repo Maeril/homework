@@ -1,0 +1,185 @@
+==30476== Memcheck, a memory error detector
+==30476== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==30476== Using Valgrind-3.15.0-608cb11914-20190413 and LibVEX; rerun with -h for copyright info
+==30476== Command: ./push_swap 2 0 1
+==30476== Parent PID: 14610
+==30476== 
+--30476-- 
+--30476-- Valgrind options:
+--30476--    --leak-check=full
+--30476--    --track-origins=yes
+--30476--    --verbose
+--30476--    --log-file=valgrind-out.txt
+--30476-- Output from sysctl({CTL_KERN,KERN_VERSION}):
+--30476--   Darwin Kernel Version 16.7.0: Thu Jun 15 17:36:27 PDT 2017; root:xnu-3789.70.16~2/RELEASE_X86_64
+--30476-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-rdtscp-sse3-ssse3-avx
+--30476-- Page sizes: currently 4096, max supported 4096
+--30476-- Valgrind library directory: /Users/myener/.brew/Cellar/valgrind/3.15.0/lib/valgrind
+--30476-- ./push_swap (rx at 0x100000000, rw at 0x100004000)
+--30476--    reading syms   from primary file (51 180)
+--30476-- run: /usr/bin/dsymutil "./push_swap"
+--30476--    dsyms= ./push_swap.dSYM/Contents/Resources/DWARF/push_swap
+--30476--    reading dwarf3 from dsyms file
+--30476-- /usr/lib/dyld (rx at 0x100007000, rw at 0x100045000)
+--30476--    reading syms   from primary file (6 1223)
+--30476-- Scheduler: using generic scheduler lock implementation.
+--30476-- Reading suppressions file: /Users/myener/.brew/Cellar/valgrind/3.15.0/lib/valgrind/default.supp
+==30476== embedded gdbserver: reading from /var/folders/zz/zyxvpxvq6csfxvn_n0003rww000y77/T//vgdb-pipe-from-vgdb-to-30476-by-myener-on-???
+==30476== embedded gdbserver: writing to   /var/folders/zz/zyxvpxvq6csfxvn_n0003rww000y77/T//vgdb-pipe-to-vgdb-from-30476-by-myener-on-???
+==30476== embedded gdbserver: shared mem   /var/folders/zz/zyxvpxvq6csfxvn_n0003rww000y77/T//vgdb-pipe-shared-mem-vgdb-30476-by-myener-on-???
+==30476== 
+==30476== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==30476== don't want to do, unless you know exactly what you're doing,
+==30476== or are doing some strange experiment):
+==30476==   /Users/myener/.brew/Cellar/valgrind/3.15.0/lib/valgrind/../../bin/vgdb --pid=30476 ...command...
+==30476== 
+==30476== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==30476==   /path/to/gdb ./push_swap
+==30476== and then give GDB the following command
+==30476==   target remote | /Users/myener/.brew/Cellar/valgrind/3.15.0/lib/valgrind/../../bin/vgdb --pid=30476
+==30476== --pid is optional if only one valgrind process is running
+==30476== 
+--30476-- REDIR: 0x10002d620 (dyld:strcmp) redirected to 0x25805895d (???)
+--30476-- REDIR: 0x100027130 (dyld:arc4random) redirected to 0x2580589fb (???)
+--30476-- REDIR: 0x100026fe0 (dyld:strlen) redirected to 0x25805892c (???)
+--30476-- REDIR: 0x100026f40 (dyld:strcpy) redirected to 0x258058979 (???)
+--30476-- REDIR: 0x10002a7dd (dyld:strcat) redirected to 0x25805893d (???)
+--30476-- REDIR: 0x10002a81b (dyld:strlcat) redirected to 0x258058996 (???)
+--30476-- /Users/myener/.brew/Cellar/valgrind/3.15.0/lib/valgrind/vgpreload_core-amd64-darwin.so (rx at 0x100092000, rw at 0x100098000)
+--30476--    reading syms   from primary file (3 88)
+--30476--    dSYM= /Users/myener/.brew/Cellar/valgrind/3.15.0/lib/valgrind/vgpreload_core-amd64-darwin.so.dSYM/Contents/Resources/DWARF/vgpreload_core-amd64-darwin.so
+--30476-- /Users/myener/.brew/Cellar/valgrind/3.15.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so (rx at 0x10009c000, rw at 0x1000a5000)
+--30476--    reading syms   from primary file (72 96)
+--30476--    dSYM= /Users/myener/.brew/Cellar/valgrind/3.15.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so.dSYM/Contents/Resources/DWARF/vgpreload_memcheck-amd64-darwin.so
+--30476-- /usr/lib/libSystem.B.dylib (rx at 0x1000ab000, rw at 0x1000ad000)
+--30476--    reading syms   from primary file (31 5)
+--30476-- /usr/lib/system/libcache.dylib (rx at 0x1000b2000, rw at 0x1000b7000)
+--30476--    reading syms   from primary file (32 29)
+--30476-- /usr/lib/system/libcommonCrypto.dylib (rx at 0x1000bc000, rw at 0x1000c7000)
+--30476--    reading syms   from primary file (214 167)
+--30476-- /usr/lib/system/libcompiler_rt.dylib (rx at 0x1000d4000, rw at 0x1000dc000)
+--30476--    reading syms   from primary file (510 8)
+--30476-- /usr/lib/system/libcopyfile.dylib (rx at 0x1000e9000, rw at 0x1000f2000)
+--30476--    reading syms   from primary file (13 35)
+--30476-- /usr/lib/system/libcorecrypto.dylib (rx at 0x1000f8000, rw at 0x10017c000)
+--30476--    reading syms   from primary file (479 678)
+--30476-- /usr/lib/system/libdispatch.dylib (rx at 0x100197000, rw at 0x1001c9000)
+--30476--    reading syms   from primary file (258 910)
+--30476-- /usr/lib/system/libdyld.dylib (rx at 0x100202000, rw at 0x100208000)
+--30476--    reading syms   from primary file (98 130)
+--30476-- /usr/lib/system/libkeymgr.dylib (rx at 0x100210000, rw at 0x100211000)
+--30476--    reading syms   from primary file (12 3)
+--30476-- /usr/lib/system/liblaunch.dylib (rx at 0x100215000, rw at 0x100216000)
+--30476--    reading syms   from primary file (113 3)
+--30476-- /usr/lib/system/libmacho.dylib (rx at 0x10021d000, rw at 0x100223000)
+--30476--    reading syms   from primary file (102 1)
+--30476-- /usr/lib/system/libquarantine.dylib (rx at 0x100229000, rw at 0x10022c000)
+--30476--    reading syms   from primary file (67 32)
+--30476-- /usr/lib/system/libremovefile.dylib (rx at 0x100232000, rw at 0x100234000)
+--30476--    reading syms   from primary file (15 4)
+--30476-- /usr/lib/system/libsystem_asl.dylib (rx at 0x100239000, rw at 0x100252000)
+--30476--    reading syms   from primary file (222 224)
+--30476-- /usr/lib/system/libsystem_blocks.dylib (rx at 0x10025f000, rw at 0x100260000)
+--30476--    reading syms   from primary file (21 6)
+--30476-- /usr/lib/system/libsystem_c.dylib (rx at 0x100264000, rw at 0x1002f2000)
+--30476--    reading syms   from primary file (1331 777)
+--30476-- /usr/lib/system/libsystem_configuration.dylib (rx at 0x100319000, rw at 0x10031d000)
+--30476--    reading syms   from primary file (38 75)
+--30476-- /usr/lib/system/libsystem_coreservices.dylib (rx at 0x100324000, rw at 0x100328000)
+--30476--    reading syms   from primary file (14 36)
+--30476-- /usr/lib/system/libsystem_coretls.dylib (rx at 0x10032d000, rw at 0x100346000)
+--30476--    reading syms   from primary file (130 250)
+--30476-- /usr/lib/system/libsystem_dnssd.dylib (rx at 0x100351000, rw at 0x100358000)
+--30476--    reading syms   from primary file (49 24)
+--30476-- /usr/lib/system/libsystem_info.dylib (rx at 0x10035d000, rw at 0x100387000)
+--30476--    reading syms   from primary file (523 519)
+--30476-- /usr/lib/system/libsystem_kernel.dylib (rx at 0x10039c000, rw at 0x1003bf000)
+--30476--    reading syms   from primary file (1179 98)
+--30476-- /usr/lib/system/libsystem_m.dylib (rx at 0x1003d6000, rw at 0x10041e000)
+--30476--    reading syms   from primary file (605 1)
+--30476-- /usr/lib/system/libsystem_malloc.dylib (rx at 0x10042a000, rw at 0x100449000)
+--30476--    reading syms   from primary file (117 253)
+--30476-- /usr/lib/system/libsystem_network.dylib (rx at 0x100455000, rw at 0x1004af000)
+--30476--    reading syms   from primary file (730 584)
+--30476-- /usr/lib/system/libsystem_networkextension.dylib (rx at 0x1004d1000, rw at 0x1004db000)
+--30476--    reading syms   from primary file (89 229)
+--30476-- /usr/lib/system/libsystem_notify.dylib (rx at 0x1004e6000, rw at 0x1004f0000)
+--30476--    reading syms   from primary file (113 54)
+--30476-- /usr/lib/system/libsystem_platform.dylib (rx at 0x1004f7000, rw at 0x100500000)
+--30476--    reading syms   from primary file (158 105)
+--30476-- /usr/lib/system/libsystem_pthread.dylib (rx at 0x100508000, rw at 0x100513000)
+--30476--    reading syms   from primary file (174 79)
+--30476-- /usr/lib/system/libsystem_sandbox.dylib (rx at 0x10051f000, rw at 0x100523000)
+--30476--    reading syms   from primary file (85 9)
+--30476-- /usr/lib/system/libsystem_secinit.dylib (rx at 0x100529000, rw at 0x10052b000)
+--30476--    reading syms   from primary file (1 7)
+--30476-- /usr/lib/system/libsystem_symptoms.dylib (rx at 0x100530000, rw at 0x100538000)
+--30476--    reading syms   from primary file (8 66)
+--30476-- /usr/lib/system/libsystem_trace.dylib (rx at 0x10053e000, rw at 0x100552000)
+--30476--    reading syms   from primary file (101 236)
+--30476-- /usr/lib/system/libunwind.dylib (rx at 0x100560000, rw at 0x100566000)
+--30476--    reading syms   from primary file (102 52)
+--30476-- /usr/lib/system/libxpc.dylib (rx at 0x10056d000, rw at 0x100597000)
+--30476--    reading syms   from primary file (515 825)
+--30476-- /usr/lib/libobjc.A.dylib (rx at 0x1005b6000, rw at 0x10098c000)
+--30476--    reading syms   from primary file (368 886)
+--30476-- /usr/lib/libc++abi.dylib (rx at 0x100a69000, rw at 0x100a93000)
+--30476--    reading syms   from primary file (339 188)
+--30476-- /usr/lib/libc++.1.dylib (rx at 0x100aa2000, rw at 0x100af9000)
+--30476--    reading syms   from primary file (1979 1610)
+--30476-- REDIR: 0x1004f8760 (libsystem_platform.dylib:_platform_memcmp) redirected to 0x10009f849 (_platform_memcmp)
+--30476-- REDIR: 0x1004f8cc0 (libsystem_platform.dylib:_platform_strncmp) redirected to 0x10009f055 (_platform_strncmp)
+--30476-- REDIR: 0x100265b40 (libsystem_c.dylib:strlen) redirected to 0x10009ece6 (strlen)
+--30476-- REDIR: 0x1004f9280 (libsystem_platform.dylib:_platform_strcmp) redirected to 0x10009f0d1 (_platform_strcmp)
+--30476-- REDIR: 0x10042ed61 (libsystem_malloc.dylib:calloc) redirected to 0x10009dbcf (calloc)
+--30476-- REDIR: 0x10042e3dc (libsystem_malloc.dylib:malloc_default_zone) redirected to 0x10009e911 (malloc_default_zone)
+--30476-- REDIR: 0x10042c217 (libsystem_malloc.dylib:malloc_zone_malloc) redirected to 0x10009d81b (malloc_zone_malloc)
+--30476-- REDIR: 0x10042e3e7 (libsystem_malloc.dylib:malloc_zone_calloc) redirected to 0x10009ddbd (malloc_zone_calloc)
+--30476-- REDIR: 0x10042b1e8 (libsystem_malloc.dylib:malloc) redirected to 0x10009d5b0 (malloc)
+--30476-- REDIR: 0x1004f8fa0 (libsystem_platform.dylib:_platform_memmove$VARIANT$Ivybridge) redirected to 0x10009ff83 (_platform_memmove$VARIANT$Ivybridge)
+--30476-- REDIR: 0x10042e4af (libsystem_malloc.dylib:malloc_zone_from_ptr) redirected to 0x10009e952 (malloc_zone_from_ptr)
+--30476-- REDIR: 0x10042ddd5 (libsystem_malloc.dylib:free) redirected to 0x10009d991 (free)
+--30476-- REDIR: 0x10042ef10 (libsystem_malloc.dylib:realloc) redirected to 0x10009df51 (realloc)
+==30476== 
+==30476== HEAP SUMMARY:
+==30476==     in use at exit: 18,274 bytes in 162 blocks
+==30476==   total heap usage: 196 allocs, 34 frees, 24,615 bytes allocated
+==30476== 
+==30476== Searching for pointers to 162 not-freed blocks
+==30476== Checked 9,919,720 bytes
+==30476== 
+==30476== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
+==30476==    at 0x10009DC8A: calloc (in /Users/myener/.brew/Cellar/valgrind/3.15.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==30476==    by 0x1005B7832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==30476==    by 0x1005CAD6A: map_images (in /usr/lib/libobjc.A.dylib)
+==30476==    by 0x10000C03B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==30476==    by 0x10000C255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==30476==    by 0x10020500A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==30476==    by 0x1005B7072: _objc_init (in /usr/lib/libobjc.A.dylib)
+==30476==    by 0x10019868D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==30476==    by 0x10019863A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==30476==    by 0x1000AC9D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==30476==    by 0x10001CA1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==30476==    by 0x10001CC1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==30476== 
+==30476== LEAK SUMMARY:
+==30476==    definitely lost: 0 bytes in 0 blocks
+==30476==    indirectly lost: 0 bytes in 0 blocks
+==30476==      possibly lost: 72 bytes in 3 blocks
+==30476==    still reachable: 200 bytes in 6 blocks
+==30476==         suppressed: 18,002 bytes in 153 blocks
+==30476== Reachable blocks (those to which a pointer was found) are not shown.
+==30476== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==30476== 
+==30476== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
+--30476-- 
+--30476-- used_suppression:      5 OSX1012:19-Leak /Users/myener/.brew/Cellar/valgrind/3.15.0/lib/valgrind/default.supp:924 suppressed: 8,792 bytes in 5 blocks
+--30476-- used_suppression:      8 OSX1012:17-Leak /Users/myener/.brew/Cellar/valgrind/3.15.0/lib/valgrind/default.supp:906 suppressed: 3,872 bytes in 61 blocks
+--30476-- used_suppression:      3 OSX1012:16-Leak /Users/myener/.brew/Cellar/valgrind/3.15.0/lib/valgrind/default.supp:897 suppressed: 3,072 bytes in 48 blocks
+--30476-- used_suppression:     15 OSX1012:10-Leak /Users/myener/.brew/Cellar/valgrind/3.15.0/lib/valgrind/default.supp:839 suppressed: 2,146 bytes in 35 blocks
+--30476-- used_suppression:      4 OSX1012:18-Leak /Users/myener/.brew/Cellar/valgrind/3.15.0/lib/valgrind/default.supp:915 suppressed: 120 bytes in 4 blocks
+--30476-- used_suppression:      1 OSX1012:dyld-5 /Users/myener/.brew/Cellar/valgrind/3.15.0/lib/valgrind/default.supp:1283
+--30476-- used_suppression:      2 OSX1012:dyld-4 /Users/myener/.brew/Cellar/valgrind/3.15.0/lib/valgrind/default.supp:1275
+--30476-- used_suppression:      1 OSX1012:dyld-3 /Users/myener/.brew/Cellar/valgrind/3.15.0/lib/valgrind/default.supp:1267
+==30476== 
+==30476== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
