@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:49:20 by myener            #+#    #+#             */
-/*   Updated: 2019/08/12 17:24:26 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/13 17:34:43 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,48 +52,45 @@ t_pslist	*convertto_list(char **argv, t_pslist *list, int *nb)
 	return (head); /* return the filled-up list */
 }
 
-char		**get_instruct(/*t_pslist *list, t_psflag *flag, char **av, */char	**instructions)
+char		**get_instruct(t_pslist *list, t_psflag *flag, char **av, char	**instructions)
 {
 	int		i;
 	int		j;
     int 	r;
-    // int 	len;
-	// char	**output;
+    int 	len;
+	char	**output;
 
-	// output = push_swap(list, flag, av);
-	// i = 0;
-	// len = output ? 1 : 4;
-	// if (output)
-	// {
-	// 	while (output[i])
-	// 	{
-	// 		if (ft_strcmp(output[i], "na"))
-	// 			len++;
-	// 		i++;
-	// 	}
-	// 	tab_free(output);
-	// 	free(output);
-	// }
-	// i = 0;
-	// if (!(instructions = malloc(sizeof(char*) * (len + 1))))
-		// exit (0);
-    // i = 0;
+	output = push_swap(list, flag, av);
+	i = 0;
+	len = output ? 1 : 4;
+	if (output)
+	{
+		while (output[i])
+		{
+			if (ft_strcmp(output[i], "na"))
+				len++;
+			i++;
+		}
+		tab_free(output);
+		free(output);
+	}
+	i = 0;
+	if (!(instructions = malloc(sizeof(char*) * (len + 1))))
+		exit (0);
+    i = 0;
 	r = 1;
 	while (r != 0)
 	{
-		// printf("(･O･)!!\n");
-        r = get_next_line(0, instructions);
-		// if (instructions[i][j] == '\0' && instructions[i][j + 1])
-		// 	ps_output(1);
-		// i++;
-	}
-	i = 0;
-	while (instructions[i])
-	{
+		if (!(instructions[i] = malloc(sizeof(char) * (4 + 1))))
+			exit (0);
+		ft_bzero(instructions[i], 5);
+        r = read(0, instructions[i], 5);
+		j = 0;
+		if (instructions[i][j] == '\0' && instructions[i][j + 1])
+			ps_output(1);
 		i++;
-		printf("i = %d\n", i);
 	}
-	// instructions[i] = NULL;
+	instructions[i] = NULL;
 	return (instructions);
 }
 
@@ -149,21 +146,20 @@ void		checker(t_pslist *list, t_psflag *flag, char **argv)
 	list = convertto_list(argv, list, &nb); /* put all the arguments in chained list nodes */
 	if (max_min_checker(argv) || duplicate_finder(list)) // if there's a duplicate,
 	{
-		// list_free(list);
+		list_free(list);
 		ps_output(1); // output "Error\n"
 	}
 	instructions = NULL;
-	instructions = get_instruct(instructions);
+	instructions = get_instruct(list, flag, argv, instructions);
 	if (bad_instructions(instructions))
 	{
-		// list_free(list);
+		list_free(list);
 		ps_output(1); // output "Error\n"
 	}
-	printf("(･ω<)☆\n");
 	if (instructions)
 	{
 		list = apply_instruct(instructions, list, flag);
-		// tab_free(instructions);
+		tab_free(instructions);
 	}
 	if (list)
 	{
@@ -172,7 +168,7 @@ void		checker(t_pslist *list, t_psflag *flag, char **argv)
 		else
 			ps_output(3); /* else it's sorted so output "OK" */
 	}
-	// list_free(list);
+	list_free(list);
 	if (flag->instruc)
 		free(flag->instruc);
 	exit (0);

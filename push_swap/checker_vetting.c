@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:19:57 by myener            #+#    #+#             */
-/*   Updated: 2019/08/12 17:10:09 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/13 17:43:09 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,15 @@ void	tab_free(char **tab)
 
 int		bad_instructions(char **instruc)
 {
-	// int	i;
-
-	// i = 0;
 	while (*instruc != NULL)
 	{
-		// printf("i = %d\n", i);
-		if (ft_strcmp(*instruc, "sa") && ft_strcmp(*instruc, "sb")
-			&& ft_strcmp(*instruc, "pa") && ft_strcmp(*instruc, "pb")
-			&& ft_strcmp(*instruc, "ra") && ft_strcmp(*instruc, "rb")
-			&& ft_strcmp(*instruc, "rra") && ft_strcmp(*instruc, "rrb")
-			&& ft_strcmp(*instruc, "ss") && ft_strcmp(*instruc, "rrr")
-			&& ft_strcmp(*instruc, "rr") && ft_strcmp(*instruc, ""))
+		if (ft_strcmp(*instruc, "sa\n") && ft_strcmp(*instruc, "sb\n")
+			&& ft_strcmp(*instruc, "pa\n") && ft_strcmp(*instruc, "pb\n")
+			&& ft_strcmp(*instruc, "ra\n") && ft_strcmp(*instruc, "rb\n")
+			&& ft_strcmp(*instruc, "rra\n") && ft_strcmp(*instruc, "rrb\n")
+			&& ft_strcmp(*instruc, "ss\n") && ft_strcmp(*instruc, "rrr\n")
+			&& ft_strcmp(*instruc, "rr\n") && ft_strcmp(*instruc, ""))
 			return (1);
-		// if (!instruc[i + 1])
-		// i++;
 		instruc++;
 	}
 	return (0);
@@ -82,17 +76,11 @@ int		duplicate_finder(t_pslist *list) // find duplicates using hash table
 	int			*tab;
 
 	len = check_length(list);
-	if (len == 3)
-	{
-		if (list->data == list->next->data || list->data == list->next->next->data
-			|| list->next->data == list->next->next->data)
+	if ((len == 3 && (list->data == list->next->data
+		|| list->data == list->next->next->data
+		|| list->next->data == list->next->next->data))
+		|| (len == 2 && (list->data == list->next->data)))
 				return (1);
-	}
-	else if (len == 2)
-	{
-		if (list->data == list->next->data)
-			return (1);
-	}
 	else
 	{
 		high = find_highest_value(list); // find the highest value (to allocate enough memory)

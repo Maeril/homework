@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:05:48 by myener            #+#    #+#             */
-/*   Updated: 2019/08/07 16:17:34 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/13 17:44:25 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,5 @@ int			check_list(t_pslist *list) // check whether list is already sorted
 			return (1); /* then it's unsorted and we can proceed to the next step */
 		curr = curr->next;
 	}
-	// if (flag->ch)
-	// 	return (ps_output(3)); /* if all is well and checker was called, output "OK" */
 	return (0);
-
 }

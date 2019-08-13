@@ -6,67 +6,11 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:11:10 by myener            #+#    #+#             */
-/*   Updated: 2019/08/06 12:03:41 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/13 17:49:42 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// void	pile_print(t_pslist *curr) // A SUPPRIMER AVANT RENDU
-// {
-// 	while (curr && curr->next)
-// 	{
-// 		printf("%d, ", curr->data);
-// 		curr = curr->next;
-// 	}
-// 	printf("%d.\n", curr->data);
-// }
-
-// t_pslist	**three_sort(t_pslist **head, t_psflag *flag)
-// {
-// 	int			biggest;
-// 	int 		smallest;
-// 	t_pslist	*curr;
-
-// 	curr = (*head);
-// 	while (curr)
-// 	{
-// 		if (!curr->next)
-// 			break ;
-// 		if (curr->data > biggest)
-// 			biggest = curr->data;
-// 		curr = curr->next;
-// 	}
-// 	curr = (*head);
-// 	while (curr)
-// 	{
-// 		if (!curr->next)
-// 			break ;
-// 		if (curr->data < smallest)
-// 			smallest = curr->data;
-// 		curr = curr->next;
-// 	}
-// 	if ((*head)->data == biggest)
-// 	{
-// 		if ((*head)->next->data == smallest)
-// 			rotate(head, 1, flag);
-// 		else
-// 		{
-// 			rotate(head, 1, flag);
-// 			swap((*head), (*head)->next, flag);
-// 		}
-// 	}
-// 	else if ((*head)->data == smallest)
-// 	{
-// 		if ((*head)->next->data == biggest)
-// 			swap((*head)->next, (*head)->next->next, flag);
-// 		else
-// 			return (head);
-// 	}
-// 	else // aka if it's mid
-// 		(*head)->next->data == biggest ? rrotate(head, 1, flag) : swap((*head), (*head)->next, flag);
-// 	return (head);
-// }
 
 int		same_data(t_pslist *curr, int fin)
 {

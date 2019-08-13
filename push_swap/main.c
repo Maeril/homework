@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:38:48 by myener            #+#    #+#             */
-/*   Updated: 2019/08/12 16:22:50 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/13 17:45:12 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,8 @@ int		bad_arg_checker(char **argv)
 			}
 			else if (argv[i][j] >= '0' && argv[i][j] <= '9') /* else if it's already a digit, */
 			{
-				// printf("coucou\n");
 				while (argv[i][j]) /* go through the entire string, */
 				{
-					// printf("argv[i][j] = %c\n", argv[i][j]);
 					if (argv[i][j + 1] && !(argv[i][j + 1] >= '0' && argv[i][j + 1] <= '9')) /* and if at some point it's not a digit, */
 						return (1);
 					j++;
@@ -59,8 +57,9 @@ int		bad_arg_checker(char **argv)
 
 int		main(int argc, char **argv)
 {
-	t_pslist list;
-	t_psflag flag;
+	int			ret;
+	t_pslist	list;
+	t_psflag 	flag;
 
 	list.data = 0;
 	flag.ch = 0;
@@ -70,9 +69,9 @@ int		main(int argc, char **argv)
 		return (0);
 	else if (argc >= 2)
 	{
-		if (bad_arg_checker(argv) == 1) /* if there's a bad argument, output an error message and return */
+		if ((ret = bad_arg_checker(argv)) == 1) /* if there's a bad argument, output an error message and return */
 			ps_output(1);
-		else if (bad_arg_checker(argv) == 0) /* if all is good then we can proceed */
+		else if (ret == 0) /* if all is good then we can proceed */
 		{
 			if ((flag.ch = (!ft_strcmp(argv[0], "./checker"))))
 				checker(&list, &flag, argv);
@@ -81,9 +80,7 @@ int		main(int argc, char **argv)
 			else if ((flag.ps =(!ft_strcmp(argv[0], "/Users/myener/Desktop/homework/push_swap/push_swap"))))
 				push_swap(&list, &flag, argv);
 			else
-			{
 				ps_output(1);
-			}
 		}
 	}
 	return (0);

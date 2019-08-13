@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/29 23:00:29 by myener            #+#    #+#              #
-#    Updated: 2019/08/07 16:17:32 by myener           ###   ########.fr        #
+#    Updated: 2019/08/13 17:00:30 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,28 +67,28 @@ printf "17.Expect Error      : " ; printf "sa\nrra\nls\n" | ./checker 1 2
 printf "18.Expect Error      : " ; printf "\n" | ./checker 1 2
 printf "19.Expect Error      : " ; printf "ss\nls\n" | ./checker 2 1
 
-printf "\n\n======= Args Space ========\n"
+# printf "\n\n======= Args Space ========\n"
 
-printf "In my opinion, this is a bonus.\n"
-printf "1. Expect Nothing/Err: " ; ./checker ""
-printf "2. Expect Nothing/Err: " ; ./checker "        "
-printf "3. Expect OK/Err     : " ; ./checker "" 1
-printf "4. Expect OK/Err     : " ; ./checker "        " 1
-printf "5. Expect OK/Err     : " ; ./checker 1 ""
-printf "6. Expect OK/Err     : " ; ./checker 1 "        "
-printf "7. Expect OK         : " ; printf "" | ./checker "1       "
-printf "8. Expect OK         : " ; printf "" | ./checker "       1"
-printf "9. Expect OK         : " ; printf "" | ./checker "       1      "
-printf "10.Expect OK         : " ; printf "sa\n" | ./checker "2 1" 22
-printf "11.Expect OK         : " ; printf "sa\n" | ./checker "2 "1 22
-printf "12.Expect OK         : " ; printf "sa\n" | ./checker 2 " 1" 22
-printf "13.Expect OK         : " ; printf "ra\n" | ./checker 2"1" 3 4
-printf "14.Expect OK         : " ; printf "ra\n" | ./checker "1"2 3 4
-printf "15.Expect OK         : " ; printf "sa\n" | ./checker 2" 1" 22
-printf "16.Expect OK         : " ; printf "sa\n" | ./checker "2 "1 22
-printf "17.Expect OK         : " ; printf "ra\n" | ./checker 1"2  " 3 4
-printf "18.Expect OK         : " ; printf "ra\n" | ./checker "   1"2 3 4
-printf "19.Expect OK         : " ; printf "sa\n" | ./checker 1"     "
-printf "20.Expect OK         : " ; printf "" | ./checker "      "1
-printf "21.Expect OK         : " ; printf "" | ./checker ""1
-printf "22.Expect OK         : " ; printf "" | ./checker 1""
+# printf "In my opinion, this is a bonus.\n"
+# printf "1. Expect Nothing/Err: " ; ./checker ""
+# printf "2. Expect Nothing/Err: " ; ./checker "        "
+# printf "3. Expect OK/Err     : " ; ./checker "" 1
+# printf "4. Expect OK/Err     : " ; ./checker "        " 1
+# printf "5. Expect OK/Err     : " ; ./checker 1 ""
+# printf "6. Expect OK/Err     : " ; ./checker 1 "        "
+# printf "7. Expect OK         : " ; printf "" | ./checker "1       "
+# printf "8. Expect OK         : " ; printf "" | ./checker "       1"
+# printf "9. Expect OK         : " ; printf "" | ./checker "       1      "
+# printf "10.Expect OK         : " ; printf "sa\n" | ./checker "2 1" 22
+# printf "11.Expect OK         : " ; printf "sa\n" | ./checker "2 "1 22
+# printf "12.Expect OK         : " ; printf "sa\n" | ./checker 2 " 1" 22
+# printf "13.Expect OK         : " ; printf "ra\n" | ./checker 2"1" 3 4
+# printf "14.Expect OK         : " ; printf "ra\n" | ./checker "1"2 3 4
+# printf "15.Expect OK         : " ; printf "sa\n" | ./checker 2" 1" 22
+# printf "16.Expect OK         : " ; printf "sa\n" | ./checker "2 "1 22
+# printf "17.Expect OK         : " ; printf "ra\n" | ./checker 1"2  " 3 4
+# printf "18.Expect OK         : " ; printf "ra\n" | ./checker "   1"2 3 4
+# printf "19.Expect OK         : " ; printf "sa\n" | ./checker 1"     "
+# printf "20.Expect OK         : " ; printf "" | ./checker "      "1
+# printf "21.Expect OK         : " ; printf "" | ./checker ""1
+# printf "22.Expect OK         : " ; printf "" | ./checker 1""
