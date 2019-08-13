@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:19:57 by myener            #+#    #+#             */
-/*   Updated: 2019/08/13 17:43:09 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/13 18:12:01 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		find_highest_value(t_pslist *list)
 	while (list)
 	{
 		if (!list->next)
-			break;
+			break ;
 		if (list->data > i)
 			i = list->data;
 		list = list->next;
@@ -56,7 +56,7 @@ int		find_highest_value(t_pslist *list)
 	return (i);
 }
 
-int	*initialize_tab(int *tab, int len)
+int		*initialize_tab(int *tab, int len)
 {
 	int i;
 
@@ -69,38 +69,32 @@ int	*initialize_tab(int *tab, int len)
 	return (tab);
 }
 
-int		duplicate_finder(t_pslist *list) // find duplicates using hash table
+int		duplicate_finder(t_pslist *l) // find duplicates using hash table
 {
-	int			len;
 	int			high;
 	int			*tab;
 
-	len = check_length(list);
-	if ((len == 3 && (list->data == list->next->data
-		|| list->data == list->next->next->data
-		|| list->next->data == list->next->next->data))
-		|| (len == 2 && (list->data == list->next->data)))
-				return (1);
-	else
+	if (((check_length(l) == 3) && (l->data == l->next->data
+	|| l->data == l->next->next->data || l->next->data == l->next->next->data))
+	|| ((check_length(l) == 2) && (l->data == l->next->data)))
+		return (1);
+	high = find_highest_value(l); // find the highest value (to allocate enough memory)
+	if (!(tab = malloc(sizeof(int) * (high + 1))))
+		return (0);
+	tab = initialize_tab(tab, high); // fill the array with some sweet Z's
+	while (l) // while we go through the list,
 	{
-		high = find_highest_value(list); // find the highest value (to allocate enough memory)
-		if (!(tab = malloc(sizeof(int) * (high + 1))))
-			return (0);
-		tab = initialize_tab(tab, high); // fill the array with some sweet Z's
-		while (list) // while we go through the list,
+		if (tab[l->data] == 1) // if the data has already been encountered,
 		{
-			if (tab[list->data] == 1) // if the data has already been encountered,
-			{
-				free (tab);
-				return (1); // return 1 (AKA "yep, that duplicate officer")
-			}
-			if (!list->next)
-				break;
-			if (tab[list->data] == 0) // else if that's the first time we encounter it
-				tab[list->data] = 1; // "switch" it on so we know we've encountered it already later on
-			list = list->next;
+			free(tab);
+			return (1); // return 1 (AKA "yep, that duplicate officer")
 		}
-		free (tab);
+		if (!l->next)
+			break ;
+		if (tab[l->data] == 0) // else if that's the first time we encounter it
+			tab[l->data] = 1; // "switch" it on so we know we've encountered it already later on
+		l = l->next;
 	}
+	free(tab);
 	return (0);
 }
