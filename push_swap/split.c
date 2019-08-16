@@ -6,13 +6,13 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 14:53:02 by myener            #+#    #+#             */
-/*   Updated: 2019/08/13 17:49:41 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/16 16:20:30 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			ft_isspace(char c)
+int		ft_isspace(char c)
 {
 	return (c == ' ');
 }
@@ -38,8 +38,8 @@ int		count_words(char *str)
 
 char	*malloc_word(char *str)
 {
-	char *word;
-	int	i;
+	int		i;
+	char	*word;
 
 	i = 0;
 	while (str[i] && !ft_isspace(str[i]))
@@ -56,10 +56,10 @@ char	*malloc_word(char *str)
 	return (word);
 }
 
-char	**ft_spacesplit(char *str) // divise selon les espaces
+char	**ft_spacesplit(char *str)
 {
-	int i;
-	char **arr;
+	int		i;
+	char	**arr;
 
 	i = 0;
 	if (!(arr = malloc(sizeof(char*) * (count_words(str) + 1))))

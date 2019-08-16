@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:05:48 by myener            #+#    #+#             */
-/*   Updated: 2019/08/13 17:44:25 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/16 14:50:13 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int			check_length(t_pslist *list)
 
 	i = 1;
 	curr = list;
-	while (curr && curr->next) /* while the chained list exists, go through it */
+	while (curr && curr->next)
 	{
 		i++;
 		curr = curr->next;
@@ -58,17 +58,17 @@ int			check_length(t_pslist *list)
 	return (i);
 }
 
-int			check_list(t_pslist *list) // check whether list is already sorted
+int			check_list(t_pslist *list)
 {
 	t_pslist *curr;
 
-	curr = list; /* keep track of the head of the chained list */
-	while (curr) /* while the chained list exists, go through it */
+	curr = list;
+	while (curr)
 	{
 		if (!curr->next)
 			break ;
-		if (curr->data > curr->next->data) /* if one data is greater than the next, */
-			return (1); /* then it's unsorted and we can proceed to the next step */
+		if (curr->data > curr->next->data)
+			return (1);
 		curr = curr->next;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:11:10 by myener            #+#    #+#             */
-/*   Updated: 2019/08/13 17:49:42 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/16 15:08:23 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,41 +31,41 @@ int		same_data(t_pslist *curr, int fin)
 
 t_pslist *ps_bubblesort(t_pslist **head_a, t_psflag *flag)
 {
-    int 		swapd;
+	int 		swapd;
 	t_pslist	*curr;
-    t_pslist	*lptr;
+	t_pslist	*lptr;
 
 	lptr = NULL;
 	curr = (*head_a);
 	if (!curr)
 		return (NULL);
-    swapd = 0;
-    while (curr->next != lptr)
-    {
-        if (curr->data > curr->next->data)
-        {
-            swap(curr, curr->next, flag);
-            swapd = 1;
-        }
-        curr = curr->next;
-    }
-    lptr = curr;
-    while (swapd)
+	swapd = 0;
+	while (curr->next != lptr)
 	{
-        swapd = 0;
+		if (curr->data > curr->next->data)
+		{
+			swap(curr, curr->next, flag);
+			swapd = 1;
+		}
+		curr = curr->next;
+	}
+	lptr = curr;
+	while (swapd)
+	{
+		swapd = 0;
 		if (!curr->next)
 			break ;
 		while (curr->next != lptr)
-        {
-            if (curr->data > curr->next->data)
-            {
-                swap(curr, curr->next, flag);
-                swapd = 1;
-            }
-            curr = curr->next;
-        }
-        lptr = curr;
-    }
+		{
+			if (curr->data > curr->next->data)
+			{
+				swap(curr, curr->next, flag);
+				swapd = 1;
+			}
+			curr = curr->next;
+		}
+		lptr = curr;
+	}
 	return ((*head_a));
 }
 
@@ -103,19 +103,16 @@ t_pslist *ps_quicksort(t_pslist **head_a, int deb, int fin, t_psflag *flag)
 	head_b = NULL;
 	i = deb;
 	pivot = mean_calculator((*head_a), deb, fin);
-	// printf("deb = %d, fin = %d, pivot = %d\n", deb, fin, pivot);
-	if (deb == fin) // if only 1 node or list already sorted, finish now
+	if (deb == fin)
 		return (0);
 	rotate(head_a, deb, flag);
-	if ((deb + 1) == fin) // if only 2 nodes
+	if ((deb + 1) == fin)
 	{
 		if ((*head_a)->data > (*head_a)->next->data)
 			swap((*head_a), (*head_a)->next, flag);
 		rrotate(head_a, deb, flag);
 		return ((*head_a));
 	}
-	// if ((deb + 2) == fin) // if only 3 nodes
-	// 	return (*(three_sort(head_a, flag)));
 	if (same_data(*head_a, (fin - deb)))
 	{
 		rrotate(head_a, deb, flag);
@@ -123,7 +120,6 @@ t_pslist *ps_quicksort(t_pslist **head_a, int deb, int fin, t_psflag *flag)
 	}
 	nr = 0;
 	np = 0;
-	// printf("coucou\n");
 	if ((*head_a)->data <= pivot)
 	{
 		push(head_a, &head_b, flag);
@@ -153,7 +149,7 @@ t_pslist *ps_quicksort(t_pslist **head_a, int deb, int fin, t_psflag *flag)
 		push(&head_b, head_a, flag);
 	free (head_b);
 	rrotate(head_a, deb, flag);
-	ps_quicksort(head_a, deb, (deb + np) - 1, flag); // sort all small nums (which are in the beginning of the list)
-	ps_quicksort(head_a, (deb + np), fin, flag); // sort all big nums (which are right ar)
+	ps_quicksort(head_a, deb, (deb + np) - 1, flag);
+	ps_quicksort(head_a, (deb + np), fin, flag);
 	return ((*head_a));
 }

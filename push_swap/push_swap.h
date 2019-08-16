@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:53:33 by myener            #+#    #+#             */
-/*   Updated: 2019/08/07 16:17:35 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/16 16:22:13 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_pslist	*ps_bubblesort(t_pslist **head_a, t_psflag *flag);
 void		ps_displayer(char **out);
 t_pslist	*ps_quicksort(t_pslist **head_a, int deb, int fin, t_psflag *flag);
 int			ps_output(int i);
-void		push(t_pslist **src, t_pslist **dest, t_psflag *flag);
+int			push(t_pslist **src, t_pslist **dest, t_psflag *flag);
 char		**push_swap(t_pslist *list, t_psflag *flag, char **argv);
 void		rotate(t_pslist **head, int nb, t_psflag *flag);
 void		rrotate(t_pslist **head, int nb, t_psflag *flag);

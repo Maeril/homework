@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 19:21:03 by myener            #+#    #+#             */
-/*   Updated: 2019/08/13 18:13:20 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/16 14:54:21 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		ps_output(int i)
 		exit(0);
 	}
 	else if (i == 2)
-		write(1, "KO\n", 3); /* output "KO" means the list isn't in ascending order */
+		write(1, "KO\n", 3);
 	else if (i == 3)
 		write(1, "OK\n", 3);
 	return (0);

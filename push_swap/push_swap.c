@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 13:52:32 by myener            #+#    #+#             */
-/*   Updated: 2019/08/13 17:46:36 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/16 14:55:14 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int			pattern_match(char *s1, char *s2)
 	return (0);
 }
 
-int			final_tab_len(char **tab) // calculate needed length of final array
-{									// once the bad strings are removed
+int			final_tab_len(char **tab)
+{
 	int	i;
 	int	j;
 
@@ -59,16 +59,16 @@ char		**duplicate_cleaner(char **tab1, int nb)
 	{
 		if (tab1[i + 1] == NULL)
 			break ;
-		if (i == nb) // if mutually cancelling strings appear,
-			i += 2; // increment i twice to "jump over" these array ranks
-		else // else instructions are OK, so transfer them normally
+		if (i == nb)
+			i += 2;
+		else
 		{
 			tab2[j] = ft_strdup(tab1[i]);
 			j++;
 			i++;
 		}
 	}
-	if (pattern_match(tab2[j - 2], tab2[j - 1])) // if mutually cancelling strings appear,
+	if (pattern_match(tab2[j - 2], tab2[j - 1]))
 		tab2[j - 2] = NULL;
 	return (tab2);
 }
@@ -104,13 +104,13 @@ char		**push_swap(t_pslist *list, t_psflag *flag, char **argv)
 {
 	int		i;
 	int		qs;
-	int 	nb; // indicates the end of the list, is filled during convertto_list
-	char	**output; // les instructions sont stockees la pour les cleaner avant d'output
+	int 	nb;
+	char	**output;
 
 	i = 0;
 	qs = 0;
-	list = convertto_list(argv, list, &nb); /* put all the arguments in chained list nodes */
-	if ((check_list(list) == 0) && flag->ps) // if list is sorted yet (and flag = ps), finish immediately
+	list = convertto_list(argv, list, &nb);
+	if ((check_list(list) == 0) && flag->ps)
 	{
 		list_free(list);
 		exit (0);
@@ -120,13 +120,13 @@ char		**push_swap(t_pslist *list, t_psflag *flag, char **argv)
 		if ((i = check_length(list)) == 0)
 		{
 			list_free(list);
-			exit (0); /* "si aucun paramètre n'est passé, ps termine immédiatement et n'affiche rien" */
+			exit (0);
 		}
-		else if ((i = check_length(list)) > 4 && (i <= 6)) // for small lists do a bubblesort
+		else if ((i = check_length(list)) > 4 && (i <= 6))
 			ps_bubblesort(&list, flag);
 		else
 		{
-			ps_quicksort(&list, 0, nb, flag); /* else do a quicksort */
+			ps_quicksort(&list, 0, nb, flag);
 			qs = 1;
 		}
 	}
@@ -134,7 +134,7 @@ char		**push_swap(t_pslist *list, t_psflag *flag, char **argv)
 	if (flag->instruc)
 	{
 		output = ft_spacesplit(flag->instruc);
-		if (ft_strlen(flag->instruc) > 4 && qs) // si il y a plus d'une instruction
+		if (ft_strlen(flag->instruc) > 4 && qs)
 			output = papb_cleaner(output);
 	}
 	i = 0;

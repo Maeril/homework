@@ -6,75 +6,90 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:38:48 by myener            #+#    #+#             */
-/*   Updated: 2019/08/13 18:23:18 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/16 15:54:14 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		bad_arg_checker(char **argv)
+int		is_sign(char **av, int i, int j)
+{
+	return ((av[i][j] == '-' || av[i][j] == '+') ? 1 : 0);
+}
+
+int		is_digit(char **av, int i, int j)
+{
+	return ((av[i][j] >= '0' && av[i][j] <= '9') ? 1 : 0);
+}
+
+int		bad_arg_check_saver(char **av, int i, int j)
+{
+	if (is_sign(av, i, j))
+	{
+		j++;
+		if (!av[i][j])
+			return (1);
+		while (av[i][j])
+		{
+			if (!is_digit(av, i, j))
+				return (1);
+			j++;
+		}
+	}
+	else if (is_digit(av, i, j))
+		while (av[i][j])
+		{
+			if (av[i][j + 1] && !is_digit(av, i, j + 1))
+				return (1);
+			j++;
+		}
+	return (0);
+}
+
+int		bad_arg_checker(char **av)
 {
 	int i;
 	int	j;
 
-	i = 1; // 1 and not 0 to jump over the executable name
-	while (argv[i] != NULL) /* go through the string list */
+	i = 1;
+	while (av[i] != NULL)
 	{
 		j = 0;
-		while (argv[i][j] != '\0') /* go through each character of each string */
+		while (av[i][j] != '\0')
 		{
-			if (argv[i][j] == '-' || argv[i][j] == '+') /* if the first character is a - or a + (still valid), */
-			{
-				j++; /* then jump over it to investigate further, */
-				if (!argv[i][j])
-					return (1);
-				while (argv[i][j]) /* go through the entire string, */
-				{
-					if (!(argv[i][j] >= '0' && argv[i][j] <= '9')) /* and if at some point it's not a digit, */
-						return (1);
-					j++;
-				}
-				return (0); /* else all is good :) */
-			}
-			else if (argv[i][j] >= '0' && argv[i][j] <= '9') /* else if it's already a digit, */
-			{
-				while (argv[i][j]) /* go through the entire string, */
-				{
-					if (argv[i][j + 1] && !(argv[i][j + 1] >= '0' && argv[i][j + 1] <= '9')) /* and if at some point it's not a digit, */
-						return (1);
-					j++;
-				}
-				return (0); /* else all is good :) */
-			}
-			else if (argv[i][j] != '-' && argv[i][j] != '+' && !(argv[i][j] >= '0' && argv[i][j] <= '9')) /* else if none of that is true, */
+			if (is_sign(av, i, j) || is_digit(av, i, j))
+				return (bad_arg_check_saver(av, i, j));
+			else if (!is_sign(av, i, j) && !is_digit(av, i, j))
 				return (1);
 			j++;
 		}
 		i++;
 	}
-	return (0); /* if all is well, return 0 (false) */
+	return (0);
 }
 
-int		main(int argc, char **argv)
+int		main(int ac, char **av)
 {
+	const char	*str;
 	t_pslist	list;
-	t_psflag 	flag;
+	t_psflag	flag;
 
 	list.data = 0;
 	flag.ch = 0;
 	flag.ps = 0;
 	flag.instruc = NULL;
-	if (!(argc >= 2)) /* if no parameter is passed, return */
+	str = "/Users/myener/Desktop/homework/push_swap/push_swap";
+	if (!(ac >= 2))
 		return (0);
-	if ((bad_arg_checker(argv)) == 1) /* if there's a bad argument, output an error message and return */
+	if ((bad_arg_checker(av)) == 1)
 		ps_output(1);
-	else if ((bad_arg_checker(argv)) == 0) /* if all is good then we can proceed */
+	else if ((bad_arg_checker(av)) == 0)
 	{
-		if ((flag.ch = (!ft_strcmp(argv[0], "./checker"))))
-			checker(&list, &flag, argv);
-		else if ((flag.ps = (!ft_strcmp(argv[0], "./push_swap")
-		|| !ft_strcmp(argv[0], "/Users/myener/Desktop/homework/push_swap/push_swap"))))
-			push_swap(&list, &flag, argv);
+		if ((flag.ch = (!ft_strcmp(av[0], "./checker"))))
+			checker(&list, &flag, av);
+		else if ((flag.ps = (!ft_strcmp(av[0], "./push_swap")
+		|| !ft_strcmp(av[0], str))))
+			push_swap(&list, &flag, av);
 		else
 			ps_output(1);
 	}

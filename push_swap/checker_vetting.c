@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:19:57 by myener            #+#    #+#             */
-/*   Updated: 2019/08/13 18:12:01 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/16 15:13:12 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ int		find_highest_value(t_pslist *list)
 	i = 0;
 	while (list)
 	{
-		if (!list->next)
-			break ;
 		if (list->data > i)
 			i = list->data;
+		if (!list->next)
+			break ;
 		list = list->next;
 	}
 	return (i);
@@ -69,7 +69,7 @@ int		*initialize_tab(int *tab, int len)
 	return (tab);
 }
 
-int		duplicate_finder(t_pslist *l) // find duplicates using hash table
+int		duplicate_finder(t_pslist *l)
 {
 	int			high;
 	int			*tab;
@@ -78,21 +78,19 @@ int		duplicate_finder(t_pslist *l) // find duplicates using hash table
 	|| l->data == l->next->next->data || l->next->data == l->next->next->data))
 	|| ((check_length(l) == 2) && (l->data == l->next->data)))
 		return (1);
-	high = find_highest_value(l); // find the highest value (to allocate enough memory)
-	if (!(tab = malloc(sizeof(int) * (high + 1))))
+	high = find_highest_value(l);
+	if (high == 2147483647 || !(tab = malloc(sizeof(int) * (high + 1))))
 		return (0);
-	tab = initialize_tab(tab, high); // fill the array with some sweet Z's
-	while (l) // while we go through the list,
+	tab = initialize_tab(tab, high);
+	while (l)
 	{
-		if (tab[l->data] == 1) // if the data has already been encountered,
-		{
-			free(tab);
-			return (1); // return 1 (AKA "yep, that duplicate officer")
-		}
+		(tab[l->data] == 1) ? free(tab) : 0;
+		if (tab[l->data] == 1)
+			return (1);
 		if (!l->next)
 			break ;
-		if (tab[l->data] == 0) // else if that's the first time we encounter it
-			tab[l->data] = 1; // "switch" it on so we know we've encountered it already later on
+		if (tab[l->data] == 0)
+			tab[l->data] = 1;
 		l = l->next;
 	}
 	free(tab);
