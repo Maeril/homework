@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:53:33 by myener            #+#    #+#             */
-/*   Updated: 2019/08/19 12:24:10 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/19 13:22:50 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef struct			s_psflag
 	int		ch;
 	int		ps;
 	int		pivot;
+	int		nr;
+	int		np;
 	char	*instruc;
 }						t_psflag;
 
@@ -45,6 +47,7 @@ int			cmp(char *s1, char *s2);
 t_pslist	*convertto_list(char **argv, t_pslist *list, int *nb);
 char		**duplicate_cleaner(char **tab1, int nb);
 int			duplicate_finder(t_pslist *list);
+void		flag_init(t_psflag *flag);
 int			final_tab_len(char **tab);
 char		**ft_spacesplit(char *str);
 void		list_free(t_pslist *head);

@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:37:08 by myener            #+#    #+#             */
-/*   Updated: 2019/08/19 10:14:02 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/19 14:21:38 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ int		rrot(t_pslist **head, int rot, t_psflag *f)
 			tmp->next = (*head);
 			(*head)->prev = tmp;
 			(*head) = (*head)->prev;
-			tmp->prev = NULL;
 			tail->next = NULL;
 			rot--;
 		}
