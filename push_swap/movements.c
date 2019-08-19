@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:37:08 by myener            #+#    #+#             */
-/*   Updated: 2019/08/16 16:22:05 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/19 10:14:02 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		push(t_pslist **src, t_pslist **dest, t_psflag *flag)
 	return (1);
 }
 
-void	rotate(t_pslist **head, int rot, t_psflag *f)
+int		rot(t_pslist **head, int rot, t_psflag *f)
 {
 	t_pslist	*tmp;
 	t_pslist	*tail;
@@ -65,9 +65,10 @@ void	rotate(t_pslist **head, int rot, t_psflag *f)
 			(*head)->prev = NULL;
 			rot--;
 		}
+	return (1);
 }
 
-void	rrotate(t_pslist **head, int rot, t_psflag *f)
+int		rrot(t_pslist **head, int rot, t_psflag *f)
 {
 	t_pslist	*tmp;
 	t_pslist	*tail;
@@ -94,9 +95,10 @@ void	rrotate(t_pslist **head, int rot, t_psflag *f)
 			tail->next = NULL;
 			rot--;
 		}
+	return (1);
 }
 
-void	swap(t_pslist *p1, t_pslist *p2, t_psflag *f)
+int		swap(t_pslist *p1, t_pslist *p2, t_psflag *f)
 {
 	int		tmp_data;
 	char	tmp_type;
@@ -112,4 +114,5 @@ void	swap(t_pslist *p1, t_pslist *p2, t_psflag *f)
 		(p1->type == 'a' ? "sa " : "sb "));
 	else
 		f->instruc = ft_strdup((p1->type == 'a' ? "sa " : "sb "));
+	return (1);
 }

@@ -6,13 +6,13 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:11:10 by myener            #+#    #+#             */
-/*   Updated: 2019/08/16 15:08:23 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/19 12:27:02 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		same_data(t_pslist *curr, int fin)
+int			same_data(t_pslist *curr, int fin)
 {
 	int	i;
 
@@ -29,47 +29,36 @@ int		same_data(t_pslist *curr, int fin)
 	return (1);
 }
 
-t_pslist *ps_bubblesort(t_pslist **head_a, t_psflag *flag)
+t_pslist	*ps_bubblesort(t_pslist **h_a, t_psflag *f)
 {
-	int 		swapd;
-	t_pslist	*curr;
+	int			swapd;
+	t_pslist	*c;
 	t_pslist	*lptr;
 
-	lptr = NULL;
-	curr = (*head_a);
-	if (!curr)
-		return (NULL);
+	(!(c = (*h_a))) ? exit(0) : 0;
 	swapd = 0;
-	while (curr->next != lptr)
+	while (c->next != NULL)
 	{
-		if (curr->data > curr->next->data)
-		{
-			swap(curr, curr->next, flag);
-			swapd = 1;
-		}
-		curr = curr->next;
+		swapd = (c->data > c->next->data) ? swap(c, c->next, f) : swapd;
+		c = c->next;
 	}
-	lptr = curr;
+	lptr = c;
 	while (swapd)
 	{
 		swapd = 0;
-		if (!curr->next)
+		if (!c->next)
 			break ;
-		while (curr->next != lptr)
+		while (c->next != lptr)
 		{
-			if (curr->data > curr->next->data)
-			{
-				swap(curr, curr->next, flag);
-				swapd = 1;
-			}
-			curr = curr->next;
+			swapd = (c->data > c->next->data) ? swap(c, c->next, f) : swapd;
+			c = c->next;
 		}
-		lptr = curr;
+		lptr = c;
 	}
-	return ((*head_a));
+	return ((*h_a));
 }
 
-int		mean_calculator(t_pslist *head, int deb, int fin)
+int			mean_calculator(t_pslist *head, int deb, int fin)
 {
 	int			s;
 	t_pslist	*curr;
@@ -92,64 +81,44 @@ int		mean_calculator(t_pslist *head, int deb, int fin)
 	return (tot / (fin - deb + 1));
 }
 
-t_pslist *ps_quicksort(t_pslist **head_a, int deb, int fin, t_psflag *flag)
+t_pslist	*ps_quicksort(t_pslist **h_a, int deb, int fin, t_psflag *f)
 {
 	int			i;
 	int			nr;
 	int			np;
-	int			pivot;
 	t_pslist	*head_b;
 
 	head_b = NULL;
-	i = deb;
-	pivot = mean_calculator((*head_a), deb, fin);
+	f->pivot = mean_calculator((*h_a), deb, fin);
 	if (deb == fin)
 		return (0);
-	rotate(head_a, deb, flag);
+	rot(h_a, deb, f);
 	if ((deb + 1) == fin)
 	{
-		if ((*head_a)->data > (*head_a)->next->data)
-			swap((*head_a), (*head_a)->next, flag);
-		rrotate(head_a, deb, flag);
-		return ((*head_a));
+		(*h_a)->data > (*h_a)->next->data ? swap((*h_a), (*h_a)->next, f) : 0;
+		rrot(h_a, deb, f);
+		return ((*h_a));
 	}
-	if (same_data(*head_a, (fin - deb)))
-	{
-		rrotate(head_a, deb, flag);
-		return ((*head_a));
-	}
+	(same_data(*h_a, (fin - deb))) ? rrot(h_a, deb, f) : 0;
+	if (same_data(*h_a, (fin - deb)))
+		return ((*h_a));
 	nr = 0;
 	np = 0;
-	if ((*head_a)->data <= pivot)
+	np += ((*h_a)->data <= f->pivot) ? push(h_a, &head_b, f) : 0;
+	nr += ((*h_a)->data > f->pivot) ? rot(h_a, 1, f) : 0;
+	i = deb;
+	while ((h_a && (*h_a)->next) && (i < fin))
 	{
-		push(head_a, &head_b, flag);
-		np++;
-	}
-	else if ((*head_a)->data > pivot)
-	{
-		rotate(head_a, 1, flag);
-		nr++;
-	}
-	while ((head_a && (*head_a)->next) && (i < fin))
-	{
-		if ((*head_a)->data <= pivot)
-		{
-			push(head_a, &head_b, flag);
-			np++;
-		}
-		else if ((*head_a)->data > pivot)
-		{
-			rotate(head_a, 1, flag);
-			nr++;
-		}
+		np += ((*h_a)->data <= f->pivot) ? push(h_a, &head_b, f) : 0;
+		nr += ((*h_a)->data > f->pivot) ? rot(h_a, 1, f) : 0;
 		i++;
 	}
-	rrotate(head_a, nr, flag);
+	rrot(h_a, nr, f);
 	while (head_b)
-		push(&head_b, head_a, flag);
-	free (head_b);
-	rrotate(head_a, deb, flag);
-	ps_quicksort(head_a, deb, (deb + np) - 1, flag);
-	ps_quicksort(head_a, (deb + np), fin, flag);
-	return ((*head_a));
+		push(&head_b, h_a, f);
+	free(head_b);
+	rrot(h_a, deb, f);
+	ps_quicksort(h_a, deb, (deb + np) - 1, f);
+	ps_quicksort(h_a, (deb + np), fin, f);
+	return ((*h_a));
 }

@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 15:49:54 by myener            #+#    #+#              #
-#    Updated: 2019/08/12 15:43:06 by myener           ###   ########.fr        #
+#    Updated: 2019/08/19 09:03:49 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,20 +21,20 @@ SRCS_NAME_PS =	checker.c				\
 				list_manip.c			\
 				main.c					\
 				movements.c				\
-				output.c				\
 				push_swap.c				\
 				sorting_algs.c			\
-				split.c
+				split.c					\
+				tools.c
 
 SRCS_NAME_CH =	checker.c				\
 				checker_vetting.c		\
 				list_manip.c			\
 				main.c					\
 				movements.c				\
-				output.c				\
 				push_swap.c				\
 				sorting_algs.c			\
-				split.c
+				split.c					\
+				tools.c
 
 FLAGS =	 -Wall -Wextra -Werror -ggdb3
 

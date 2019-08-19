@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:19:57 by myener            #+#    #+#             */
-/*   Updated: 2019/08/16 15:13:12 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/19 08:54:21 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int		duplicate_finder(t_pslist *l)
 	if (high == 2147483647 || !(tab = malloc(sizeof(int) * (high + 1))))
 		return (0);
 	tab = initialize_tab(tab, high);
-	while (l)
+	while (l && l->data >= 0)
 	{
 		(tab[l->data] == 1) ? free(tab) : 0;
 		if (tab[l->data] == 1)

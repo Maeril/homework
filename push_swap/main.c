@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:38:48 by myener            #+#    #+#             */
-/*   Updated: 2019/08/16 15:54:14 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/19 12:27:00 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int		main(int ac, char **av)
 	list.data = 0;
 	flag.ch = 0;
 	flag.ps = 0;
+	flag.pivot = 0;
 	flag.instruc = NULL;
 	str = "/Users/myener/Desktop/homework/push_swap/push_swap";
 	if (!(ac >= 2))

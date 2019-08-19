@@ -6,11 +6,16 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 14:53:02 by myener            #+#    #+#             */
-/*   Updated: 2019/08/16 16:20:30 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/19 12:06:16 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int		cmp(char *s1, char *s2)
+{
+	return ((!ft_strcmp(s1, s2)) ? 1 : 0);
+}
 
 int		ft_isspace(char c)
 {

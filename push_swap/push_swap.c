@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 13:52:32 by myener            #+#    #+#             */
-/*   Updated: 2019/08/16 14:55:14 by myener           ###   ########.fr       */
+/*   Updated: 2019/08/19 12:26:58 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int			final_tab_len(char **tab)
 	while (tab[i])
 	{
 		if (tab[i + 1] == NULL)
-			break;
+			break ;
 		if (pattern_match(tab[i], tab[i + 1]))
 			j++;
 		i++;
@@ -49,7 +49,6 @@ char		**duplicate_cleaner(char **tab1, int nb)
 	int		len;
 	char	**tab2;
 
-	i = 0;
 	len = final_tab_len(tab1);
 	if (!(tab2 = malloc(sizeof(char*) * len + 1)))
 		return (NULL);
@@ -59,9 +58,8 @@ char		**duplicate_cleaner(char **tab1, int nb)
 	{
 		if (tab1[i + 1] == NULL)
 			break ;
-		if (i == nb)
-			i += 2;
-		else
+		i += (i == nb) ? 2 : 0;
+		if (i != nb)
 		{
 			tab2[j] = ft_strdup(tab1[i]);
 			j++;
@@ -103,45 +101,24 @@ char		**papb_cleaner(char **tab)
 char		**push_swap(t_pslist *list, t_psflag *flag, char **argv)
 {
 	int		i;
+	int		nb;
 	int		qs;
-	int 	nb;
 	char	**output;
 
 	i = 0;
 	qs = 0;
 	list = convertto_list(argv, list, &nb);
-	if ((check_list(list) == 0) && flag->ps)
-	{
-		list_free(list);
-		exit (0);
-	}
+	(check_list(list) == 0) && flag->ps ? list_free(list) : 0;
+	(check_list(list) == 0) && flag->ps ? exit(0) : 0;
 	if (check_list(list))
-	{
-		if ((i = check_length(list)) == 0)
-		{
-			list_free(list);
-			exit (0);
-		}
-		else if ((i = check_length(list)) > 4 && (i <= 6))
-			ps_bubblesort(&list, flag);
-		else
-		{
-			ps_quicksort(&list, 0, nb, flag);
-			qs = 1;
-		}
-	}
+		qs = push_swap_saver(i, nb, list, flag);
 	list_free(list);
-	if (flag->instruc)
-	{
-		output = ft_spacesplit(flag->instruc);
-		if (ft_strlen(flag->instruc) > 4 && qs)
-			output = papb_cleaner(output);
-	}
-	i = 0;
+	output = flag->instruc ? ft_spacesplit(flag->instruc) : NULL;
+	output = flag->instruc && ft_strlen(flag->instruc) > 4 && qs ?
+	papb_cleaner(output) : 0;
 	if (flag->ch)
 		return (flag->instruc ? output : NULL);
-	else if (flag->ps)
-		ps_displayer(output);
+	flag->ps ? ps_displayer(output) : 0;
 	free(output);
 	free(flag->instruc);
 	return (NULL);
