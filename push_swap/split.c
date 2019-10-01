@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 14:53:02 by myener            #+#    #+#             */
-/*   Updated: 2019/08/19 12:06:16 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/01 17:19:50 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,6 @@ char	**ft_spacesplit(char *str)
 				str++;
 		}
 	}
-	arr[i] = NULL;
+	arr[i] = NULL ? arr[i] : NULL;
 	return (arr);
 }

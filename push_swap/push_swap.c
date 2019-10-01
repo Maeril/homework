@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 13:52:32 by myener            #+#    #+#             */
-/*   Updated: 2019/08/19 12:26:58 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/01 17:25:04 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,25 @@ char		**duplicate_cleaner(char **tab1, int nb)
 	return (tab2);
 }
 
+void		display_tab(char **tab) // a retirer avant de rendre !!
+{
+	printf("TEST:\n");
+	while(tab)
+	{
+		if (*tab)
+			printf("%s\n", *tab);
+		tab++;
+	}
+	printf("END TEST\n");
+}
+
 char		**papb_cleaner(char **tab)
 {
 	int i;
 	int j;
 
 	i = 0;
-	while (tab[i] && tab[i + 1])
+	while (tab[i])
 	{
 		if (ft_strcmp(tab[i], "na"))
 		{
@@ -107,6 +119,7 @@ char		**push_swap(t_pslist *list, t_psflag *flag, char **argv)
 
 	i = 0;
 	qs = 0;
+	output = NULL;
 	list = convertto_list(argv, list, &nb);
 	(check_list(list) == 0) && flag->ps ? list_free(list) : 0;
 	(check_list(list) == 0) && flag->ps ? exit(0) : 0;
@@ -115,7 +128,7 @@ char		**push_swap(t_pslist *list, t_psflag *flag, char **argv)
 	list_free(list);
 	output = flag->instruc ? ft_spacesplit(flag->instruc) : NULL;
 	output = flag->instruc && ft_strlen(flag->instruc) > 4 && qs ?
-	papb_cleaner(output) : 0;
+	papb_cleaner(output) : output;
 	if (flag->ch)
 		return (flag->instruc ? output : NULL);
 	flag->ps ? ps_displayer(output) : 0;
