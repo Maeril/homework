@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 13:52:32 by myener            #+#    #+#             */
-/*   Updated: 2019/10/01 17:25:04 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/02 15:14:02 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char		**duplicate_cleaner(char **tab1, int nb)
 void		display_tab(char **tab) // a retirer avant de rendre !!
 {
 	printf("TEST:\n");
-	while(tab)
+	while(*tab)
 	{
 		if (*tab)
 			printf("%s\n", *tab);
@@ -83,31 +83,71 @@ void		display_tab(char **tab) // a retirer avant de rendre !!
 	printf("END TEST\n");
 }
 
+// char		**papb_cleaner(char **tab)
+// {
+// 	int i;
+// 	int j;
+
+// 	i = 0;
+// 	while (tab[i])
+// 	{
+// 		if (ft_strcmp(tab[i], "na"))
+// 		{
+// 			j = i + 1;
+// 			while (tab[j] && !ft_strcmp(tab[j], "na")) // segfault is here
+// 				j++;
+// 			if (tab[j] && pattern_match(tab[i], tab[j]))
+// 			{
+// 				ft_bzero(tab[i], ft_strlen(tab[i]));
+// 				tab[i] = ft_free_join(tab[i], "na");
+// 				ft_bzero(tab[j], ft_strlen(tab[j]));
+// 				tab[j] = ft_free_join(tab[j], "na");
+// 				i -= 2;
+// 			}
+// 		}
+// 		i++;
+// 	}
+// 	return (tab);
+// }
+
 char		**papb_cleaner(char **tab)
 {
-	int i;
-	int j;
+	int 	i;
+	int 	j;
+	int		ln;
+	char	**arr;
 
 	i = 0;
+	ln = 0;
 	while (tab[i])
 	{
-		if (ft_strcmp(tab[i], "na"))
-		{
-			j = i + 1;
-			while (tab[j] && !ft_strcmp(tab[j], "na"))
-				j++;
-			if (tab[j] && pattern_match(tab[i], tab[j]))
-			{
-				ft_bzero(tab[i], ft_strlen(tab[i]));
-				tab[i] = ft_free_join(tab[i], "na");
-				ft_bzero(tab[j], ft_strlen(tab[j]));
-				tab[j] = ft_free_join(tab[j], "na");
-				i -= 2;
-			}
-		}
+		if (tab[i + 1] && !pattern_match(tab[i], tab[i + 1]))
+			ln++;
 		i++;
 	}
-	return (tab);
+	printf("ln = %d\n", ln);
+	if (!(arr = malloc(sizeof(char*) * ln + 1)))
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (tab[i] && tab[i + 1])
+	{
+		if (tab[i + 1] && pattern_match(tab[i], tab[i + 1]))
+			i += 2;
+		arr[j] = ft_strdup(tab[i]);
+		i++;
+		j++;
+	}
+	arr[j] = NULL;
+	display_tab(arr);
+	// i = 0;
+	// while (arr[i])
+	// {
+	// 	if (arr[i + 1] && pattern_match(arr[i], arr[i + 1]))
+	// 		papb_cleaner(arr);
+	// 	i++;
+	// }
+	return (arr);
 }
 
 char		**push_swap(t_pslist *list, t_psflag *flag, char **argv)
@@ -115,19 +155,19 @@ char		**push_swap(t_pslist *list, t_psflag *flag, char **argv)
 	int		i;
 	int		nb;
 	int		qs;
+	int		ret;
 	char	**output;
 
 	i = 0;
 	qs = 0;
-	output = NULL;
 	list = convertto_list(argv, list, &nb);
-	(check_list(list) == 0) && flag->ps ? list_free(list) : 0;
-	(check_list(list) == 0) && flag->ps ? exit(0) : 0;
+	((ret = duplicate_finder(list))) && flag->ps ? list_free(list) : 0;
+	ret && flag->ps ? ps_output(1) : 0;
 	if (check_list(list))
 		qs = push_swap_saver(i, nb, list, flag);
 	list_free(list);
 	output = flag->instruc ? ft_spacesplit(flag->instruc) : NULL;
-	output = flag->instruc && ft_strlen(flag->instruc) > 4 && qs ?
+	output = output && ft_strlen(flag->instruc) > 4 && qs ?
 	papb_cleaner(output) : output;
 	if (flag->ch)
 		return (flag->instruc ? output : NULL);
