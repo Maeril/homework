@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 19:21:03 by myener            #+#    #+#             */
-/*   Updated: 2019/10/01 16:11:24 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/06 16:05:08 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@ int			push_swap_saver(int i, int nb, t_pslist *list, t_psflag *flag)
 	qs = 0;
 	(i = check_length(list)) == 0 ? list_free(list) : 0;
 	(i = check_length(list)) == 0 ? exit(0) : 0;
-	(i = check_length(list)) > 4 && (i <= 6) ? ps_bubblesort(&list, flag)
-	: ps_quicksort(&list, 0, nb, flag);
+	ps_quicksort(&list, 0, nb, flag);
 	if (!((i = check_length(list)) > 4 && (i <= 6)))
 		qs = 1;
 	return (qs);

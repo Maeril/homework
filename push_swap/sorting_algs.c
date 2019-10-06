@@ -6,11 +6,24 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:11:10 by myener            #+#    #+#             */
-/*   Updated: 2019/08/19 14:16:34 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/06 18:14:58 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void		print_pile(t_pslist **h_a)
+{
+	t_pslist	*curr;
+
+	curr = (*h_a);
+	while (curr)
+	{
+		printf("%d  ", curr->data);
+		curr = curr->next;
+	}
+	printf("\n\n");
+}
 
 int			same_data(t_pslist *curr, int fin)
 {
@@ -27,35 +40,6 @@ int			same_data(t_pslist *curr, int fin)
 		i++;
 	}
 	return (1);
-}
-
-t_pslist	*ps_bubblesort(t_pslist **h_a, t_psflag *f)
-{
-	int			swapd;
-	t_pslist	*c;
-	t_pslist	*lptr;
-
-	(!(c = (*h_a))) ? exit(0) : 0;
-	swapd = 0;
-	while (c->next != NULL)
-	{
-		swapd = (c->data > c->next->data) ? swap(c, c->next, f) : swapd;
-		c = c->next;
-	}
-	lptr = c;
-	while (swapd)
-	{
-		swapd = 0;
-		if (!c->next)
-			break ;
-		while (c->next != lptr)
-		{
-			swapd = (c->data > c->next->data) ? swap(c, c->next, f) : swapd;
-			c = c->next;
-		}
-		lptr = c;
-	}
-	return ((*h_a));
 }
 
 int			mean_calculator(t_pslist *head, int deb, int fin)
@@ -90,10 +74,10 @@ void		ps_quicksort_saver(t_pslist **h_a, t_psflag *f, int deb, int fin)
 	f->nr = 0;
 	f->np = 0;
 	head_b = NULL;
-	f->np += ((*h_a)->data <= f->pivot) ? push(h_a, &head_b, f) : 0;
-	f->nr += ((*h_a)->data > f->pivot) ? rot(h_a, 1, f) : 0;
+	// f->np += ((*h_a)->data <= f->pivot) ? push(h_a, &head_b, f) : 0;
+	// f->nr += ((*h_a)->data > f->pivot) ? rot(h_a, 1, f) : 0;
 	i = deb;
-	while ((h_a && (*h_a)->next) && (i < fin))
+	while (i <= fin)
 	{
 		f->np += ((*h_a)->data <= f->pivot) ? push(h_a, &head_b, f) : 0;
 		f->nr += ((*h_a)->data > f->pivot) ? rot(h_a, 1, f) : 0;
@@ -107,7 +91,11 @@ void		ps_quicksort_saver(t_pslist **h_a, t_psflag *f, int deb, int fin)
 
 t_pslist	*ps_quicksort(t_pslist **h_a, int deb, int fin, t_psflag *f)
 {
+	int		n;
+
 	f->pivot = mean_calculator((*h_a), deb, fin);
+	// printf("deb = %d, fin = %d, pivot = %d\n", deb, fin, f->pivot);
+	// print_pile(h_a);
 	if (deb == fin)
 		return (0);
 	rot(h_a, deb, f);
@@ -117,12 +105,16 @@ t_pslist	*ps_quicksort(t_pslist **h_a, int deb, int fin, t_psflag *f)
 		rrot(h_a, deb, f);
 		return ((*h_a));
 	}
+	// ajouter if (y en a 3) //
 	(same_data(*h_a, (fin - deb))) ? rrot(h_a, deb, f) : 0;
 	if (same_data(*h_a, (fin - deb)))
 		return ((*h_a));
 	ps_quicksort_saver(h_a, f, deb, fin);
 	rrot(h_a, deb, f);
-	ps_quicksort(h_a, deb, (deb + f->np) - 1, f);
-	ps_quicksort(h_a, (deb + f->np), fin, f);
+	n = f->np;
+	// printf("1) AVANT RECURSIVE: deb = %d, deb+n - 1 = %d\n", deb, (deb+n) - 1);
+	ps_quicksort(h_a, deb, (deb + n) - 1, f);
+	// printf("2) AVANT RECURSIVE: deb+n = %d, fin = %d\n", deb+n, fin);
+	ps_quicksort(h_a, (deb + n), fin, f);
 	return ((*h_a));
 }
