@@ -6,11 +6,28 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:37:08 by myener            #+#    #+#             */
-/*   Updated: 2019/08/19 14:21:38 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/07 20:24:49 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int			same_data(t_pslist *curr, int fin)
+{
+	int	i;
+
+	i = 0;
+	while (curr && i < fin)
+	{
+		if (!curr->next)
+			break ;
+		if (curr->data != curr->next->data)
+			return (0);
+		curr = curr->next;
+		i++;
+	}
+	return (1);
+}
 
 int		push(t_pslist **src, t_pslist **dest, t_psflag *flag)
 {

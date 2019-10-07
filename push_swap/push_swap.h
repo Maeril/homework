@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:53:33 by myener            #+#    #+#             */
-/*   Updated: 2019/10/06 16:05:18 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/07 20:24:43 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ char		**push_swap(t_pslist *list, t_psflag *flag, char **argv);
 int			push_swap_saver(int i, int nb, t_pslist *list, t_psflag *flag);
 int			rot(t_pslist **head, int nb, t_psflag *flag);
 int			rrot(t_pslist **head, int nb, t_psflag *flag);
+int			same_data(t_pslist *curr, int fin);
 int			swap(t_pslist *p1, t_pslist *p2, t_psflag *flag);
 void		tab_free(char **tab);
 
