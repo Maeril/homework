@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raw.c                                              :+:      :+:    :+:   */
+/*   .raw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 21:54:55 by myener            #+#    #+#             */
-/*   Updated: 2019/07/16 17:42:54 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/07 20:38:35 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@
 
 // }
 
-void	pile_print(t_pslist *curr)
-{
-	while (curr && curr->next)
-	{
-		printf("%d, ", curr->data);
-		curr = curr->next;
-	}
-	printf("%d.\n", curr->data);
-}
+// void	pile_print(t_pslist *curr)
+// {
+// 	while (curr && curr->next)
+// 	{
+// 		printf("%d, ", curr->data);
+// 		curr = curr->next;
+// 	}
+// 	printf("%d.\n", curr->data);
+// }
 
 // t_pslist	*node_malloc(t_pslist *list)
 // {

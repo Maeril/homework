@@ -6,63 +6,64 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:38:48 by myener            #+#    #+#             */
-/*   Updated: 2019/10/02 11:19:35 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/07 21:37:41 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		is_sign(char **av, int i, int j)
+int		is_sign(char *arg, int i)
 {
-	return ((av[i][j] == '-' || av[i][j] == '+') ? 1 : 0);
+	return ((arg[i] == '-' || arg[i] == '+') ? 1 : 0);
 }
 
-int		is_digit(char **av, int i, int j)
+int		is_digit(char *arg, int i)
 {
-	return ((av[i][j] >= '0' && av[i][j] <= '9') ? 1 : 0);
+	return ((arg[i] >= '0' && arg[i] <= '9') ? 1 : 0);
 }
 
-int		bad_arg_check_saver(char **av, int i, int j)
+int		bad_arg_check_saver(char *arg)
 {
-	if (is_sign(av, i, j))
+	int	i;
+
+	i = 0;
+	if (is_sign(arg, i))
 	{
-		j++;
-		if (!av[i][j])
-			return (1);
-		while (av[i][j])
+		i++;
+		if (!arg[i] || (arg[i] == '0' && !arg[i + 1]))
+			ps_output(1);
+		while (arg[i])
 		{
-			if (!is_digit(av, i, j))
-				return (1);
-			j++;
+			if (!is_digit(arg, i))
+				ps_output(1);
+			i++;
 		}
 	}
-	else if (is_digit(av, i, j))
-		while (av[i][j])
+	else if (is_digit(arg, i))
+	{
+		while (arg[i])
 		{
-			if (av[i][j + 1] && !is_digit(av, i, j + 1))
-				return (1);
-			j++;
+			if (!is_digit(arg, i))
+				ps_output(1);
+			i++;
 		}
+	}
 	return (0);
 }
 
-int		bad_arg_checker(char **av)
+int		bad_arg_checker(char **tab)
 {
 	int i;
-	int	j;
 
 	i = 1;
-	while (av[i] != NULL)
+	while (tab[i])
 	{
-		j = 0;
-		while (av[i][j] != '\0')
-		{
-			if (is_sign(av, i, j) || is_digit(av, i, j))
-				return (bad_arg_check_saver(av, i, j));
-			else if (!is_sign(av, i, j) && !is_digit(av, i, j))
-				return (1);
-			j++;
-		}
+		if ((tab[i][0] == '-' || tab[i][0] == '+')
+			|| (tab[i][0] >= '0' && tab[i][0] <= '9'))
+			(bad_arg_check_saver(tab[i]));
+		if ((tab[i][0] != '-' && tab[i][0] != '+')
+			&& (tab[i][0] <= '0' && tab[i][0] >= '9'))
+			return (1);
 		i++;
 	}
 	return (0);
