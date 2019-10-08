@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 13:52:32 by myener            #+#    #+#             */
-/*   Updated: 2019/10/06 16:31:09 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/08 18:07:06 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,32 +71,6 @@ char		**duplicate_cleaner(char **tab1, int nb)
 	return (tab2);
 }
 
-void		display_tab(char **tab) // a retirer avant de rendre !!
-{
-	printf("TEST:\n");
-	while(*tab)
-	{
-		if (*tab)
-			printf("%s\n", *tab);
-		tab++;
-	}
-	printf("END TEST\n");
-}
-
-// int			itsamatch(char **tab)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (tab[i + 1])
-// 	{
-// 		if (pattern_match(tab[i], tab[i + 1]))
-// 			return (1);
-// 		i++;
-// 	}
-// 	return (0);
-// }
-
 char		**papb_cleaner(char **tab)
 {
 	int i;
@@ -108,7 +82,7 @@ char		**papb_cleaner(char **tab)
 		if (ft_strcmp(tab[i], "na"))
 		{
 			j = i + 1;
-			while (tab[j] && !ft_strcmp(tab[j], "na")) // segfault is here
+			while (tab[j] && !ft_strcmp(tab[j], "na"))
 				j++;
 			if (tab[j] && pattern_match(tab[i], tab[j]))
 			{
@@ -128,17 +102,20 @@ char		**push_swap(t_pslist *list, t_psflag *flag, char **argv)
 {
 	int		i;
 	int		nb;
-	int		qs;
 	int		ret;
 	char	**output;
 
 	i = 0;
-	qs = 0;
 	list = convertto_list(argv, list, &nb);
 	((ret = duplicate_finder(list))) && flag->ps ? list_free(list) : 0;
 	ret && flag->ps ? ps_output(1) : 0;
 	if (check_list(list))
-		qs = push_swap_saver(i, nb, list, flag);
+		push_swap_saver(i, nb, list, flag);
+	else
+	{
+		list_free(list);
+		exit(0);
+	}
 	list_free(list);
 	output = flag->instruc ? ft_spacesplit(flag->instruc) : NULL;
 	output = output && ft_strlen(flag->instruc) > 4 ?

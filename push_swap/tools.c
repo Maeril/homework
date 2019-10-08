@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 19:21:03 by myener            #+#    #+#             */
-/*   Updated: 2019/10/06 16:05:08 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/08 18:06:41 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void		flag_init(t_psflag *flag)
 	flag->nr = 0;
 	flag->pivot = 0;
 	flag->ps = 0;
+	flag->t = 0;
 }
 
 int			max_min_checker(char **argv)
@@ -64,15 +65,12 @@ int			ps_output(int i)
 	return (0);
 }
 
-int			push_swap_saver(int i, int nb, t_pslist *list, t_psflag *flag)
+void			push_swap_saver(int i, int nb, t_pslist *list, t_psflag *flag)
 {
-	int		qs;
 
-	qs = 0;
 	(i = check_length(list)) == 0 ? list_free(list) : 0;
 	(i = check_length(list)) == 0 ? exit(0) : 0;
+	flag->t = nb + 1;
 	ps_quicksort(&list, 0, nb, flag);
-	if (!((i = check_length(list)) > 4 && (i <= 6)))
-		qs = 1;
-	return (qs);
+	return ;
 }

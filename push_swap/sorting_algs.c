@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:11:10 by myener            #+#    #+#             */
-/*   Updated: 2019/10/07 21:03:16 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/08 18:13:46 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,50 +41,50 @@ void		three_args_saver(t_pslist **h_a, t_psflag *f, int c)
 
 	head_b = NULL;
 	if ((*h_a)->data <= ((*h_a)->next)->data && c <= (*h_a)->data)
-    {
-        rot(h_a, 1, f);
-        swap(*h_a, (*h_a)->next, f);
-        rrot(h_a, 1, f);
-        swap(*h_a, (*h_a)->next, f);
-    }
-    else if ((*h_a)->data >= c && c >= ((*h_a)->next)->data)
-    {
-        swap(*h_a, (*h_a)->next, f);
-        rot(h_a, 1, f);
-        swap(*h_a, (*h_a)->next, f);
-        rrot(h_a, 1, f);
-    }
-    else if ((*h_a)->data >= ((*h_a)->next)->data && ((*h_a)->next)->data >= c)
-    {
-        swap(*h_a, (*h_a)->next, f);
-    	push(h_a, &head_b, f);
-        swap(*h_a, (*h_a)->next, f);
-    	push(&head_b, h_a, f);
-        swap(*h_a, (*h_a)->next, f);
-    }
+	{
+		rot(h_a, 1, f);
+		swap(*h_a, (*h_a)->next, f);
+		rrot(h_a, 1, f);
+		swap(*h_a, (*h_a)->next, f);
+	}
+	else if ((*h_a)->data >= c && c >= ((*h_a)->next)->data)
+	{
+		swap(*h_a, (*h_a)->next, f);
+		rot(h_a, 1, f);
+		swap(*h_a, (*h_a)->next, f);
+		rrot(h_a, 1, f);
+	}
+	else if ((*h_a)->data >= ((*h_a)->next)->data && ((*h_a)->next)->data >= c)
+	{
+		swap(*h_a, (*h_a)->next, f);
+		push(h_a, &head_b, f);
+		swap(*h_a, (*h_a)->next, f);
+		push(&head_b, h_a, f);
+		swap(*h_a, (*h_a)->next, f);
+	}
 }
 
-void		three_args(t_pslist **h_a, t_psflag	*f)
+void		three_args(t_pslist **h_a, t_psflag *f)
 {
 	int			c;
 	t_pslist	*head_b;
 
-    c = (((*h_a)->next)->next)->data;
+	c = (((*h_a)->next)->next)->data;
 	head_b = NULL;
-    if ((*h_a)->data <= ((*h_a)->next)->data && ((*h_a)->next)->data <= c)
-        return;
-    else if ((*h_a)->data <= c && c <= ((*h_a)->next)->data)
-    {
-        push(h_a, &head_b, f);
-        swap(*h_a, (*h_a)->next, f);
-        push(&head_b, h_a, f);
-    }
-    else if (((*h_a)->next)->data <= (*h_a)->data && (*h_a)->data <= c)
-        swap(*h_a, (*h_a)->next, f);
-    else if (((*h_a)->data <= ((*h_a)->next)->data && c <= (*h_a)->data)
-    || ((*h_a)->data >= c && c >= ((*h_a)->next)->data)
+	if ((*h_a)->data <= ((*h_a)->next)->data && ((*h_a)->next)->data <= c)
+		return ;
+	else if ((*h_a)->data <= c && c <= ((*h_a)->next)->data)
+	{
+		push(h_a, &head_b, f);
+		swap(*h_a, (*h_a)->next, f);
+		push(&head_b, h_a, f);
+	}
+	else if (((*h_a)->next)->data <= (*h_a)->data && (*h_a)->data <= c)
+		swap(*h_a, (*h_a)->next, f);
+	else if (((*h_a)->data <= ((*h_a)->next)->data && c <= (*h_a)->data)
+	|| ((*h_a)->data >= c && c >= ((*h_a)->next)->data)
 	|| ((*h_a)->data >= ((*h_a)->next)->data && ((*h_a)->next)->data >= c))
-        three_args_saver(h_a, f, c);
+		three_args_saver(h_a, f, c);
 }
 
 void		ps_quicksort_saver(t_pslist **h_a, t_psflag *f, int deb, int fin)
@@ -116,20 +116,20 @@ t_pslist	*ps_quicksort(t_pslist **h_a, int deb, int fin, t_psflag *f)
 	f->pivot = mean_calculator((*h_a), deb, fin);
 	if (deb == fin)
 		return (0);
-	rot(h_a, deb, f);
+	deb < (f->t / 2) ? rot(h_a, deb, f) : rrot(h_a, f->t - deb, f);
 	if ((deb + 1 == fin) || (deb != 0 && fin != 2 && deb + 2 == fin))
 	{
 		(deb + 1 == fin && (*h_a)->data > (*h_a)->next->data) ?
 		swap((*h_a), (*h_a)->next, f) : 0;
 		(deb != 0 && fin != 2 && deb + 2 == fin) ? three_args(h_a, f) : 0;
-		rrot(h_a, deb, f);
+		deb < (f->t / 2) ? rrot(h_a, deb, f) : rot(h_a, f->t - deb, f);
 		return ((*h_a));
 	}
 	(same_data(*h_a, (fin - deb))) ? rrot(h_a, deb, f) : 0;
 	if (same_data(*h_a, (fin - deb)))
 		return ((*h_a));
 	ps_quicksort_saver(h_a, f, deb, fin);
-	rrot(h_a, deb, f);
+	deb < (f->t / 2) ? rrot(h_a, deb, f) : rot(h_a, f->t - deb, f);
 	n = f->np;
 	ps_quicksort(h_a, deb, (deb + n) - 1, f);
 	ps_quicksort(h_a, (deb + n), fin, f);

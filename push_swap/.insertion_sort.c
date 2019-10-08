@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 14:13:23 by myener            #+#    #+#             */
-/*   Updated: 2019/10/05 17:00:08 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/08 12:53:44 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_pslist	*insert_sort(t_pslist **head, int data)
 	{
 		while(temp != NULL)
 		{
-			if(data > temp->data) //Traverse to location we want to insert the node + 1 node
+			if(data > temp->data) //Travel to location we want to insert the node + 1 node
 			{
 				prev = temp;
 				temp = temp->next;
