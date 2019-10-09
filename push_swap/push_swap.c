@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 13:52:32 by myener            #+#    #+#             */
-/*   Updated: 2019/10/08 18:07:06 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/08 23:37:24 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,13 @@ char		**push_swap(t_pslist *list, t_psflag *flag, char **argv)
 	}
 	list_free(list);
 	output = flag->instruc ? ft_spacesplit(flag->instruc) : NULL;
+	i = 0;
+	// while (output[i])
+	// {
+	// 	printf("%s\n", output[i]);
+	// 	i++;
+	// }
+	// printf("\n\n\n");
 	output = output && ft_strlen(flag->instruc) > 4 ?
 	papb_cleaner(output) : output;
 	if (flag->ch)

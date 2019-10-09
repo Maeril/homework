@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:11:10 by myener            #+#    #+#             */
-/*   Updated: 2019/10/08 18:13:46 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/08 23:37:27 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int			mean_calculator(t_pslist *head, int deb, int fin)
 {
 	int			s;
-	t_pslist	*curr;
 	int			tot;
+	t_pslist	*curr;
 
 	curr = head;
 	s = 0;
@@ -92,7 +92,6 @@ void		ps_quicksort_saver(t_pslist **h_a, t_psflag *f, int deb, int fin)
 	int			i;
 	t_pslist	*head_b;
 
-	i = 0;
 	f->nr = 0;
 	f->np = 0;
 	head_b = NULL;
@@ -103,10 +102,23 @@ void		ps_quicksort_saver(t_pslist **h_a, t_psflag *f, int deb, int fin)
 		f->nr += ((*h_a)->data > f->pivot) ? rot(h_a, 1, f) : 0;
 		i++;
 	}
-	rrot(h_a, f->nr, f);
+	(fin != (f->t - 1) || deb != 0) ? rrot(h_a, f->nr, f) : 0;
 	while (head_b)
 		push(&head_b, h_a, f);
 	head_b ? free(head_b) : 0;
+}
+
+void		pile_print(t_pslist **h_a)
+{
+	t_pslist	*curr;
+
+	curr = (*h_a);
+	while (curr)
+	{
+		printf("%d ", curr->data);
+		curr = curr->next;
+	}
+	printf("\n");
 }
 
 t_pslist	*ps_quicksort(t_pslist **h_a, int deb, int fin, t_psflag *f)
@@ -116,16 +128,19 @@ t_pslist	*ps_quicksort(t_pslist **h_a, int deb, int fin, t_psflag *f)
 	f->pivot = mean_calculator((*h_a), deb, fin);
 	if (deb == fin)
 		return (0);
+	// printf("deb = %d, fin = %d, pivot = %d\n", deb, fin, f->pivot);
+	// pile_print(h_a);
 	deb < (f->t / 2) ? rot(h_a, deb, f) : rrot(h_a, f->t - deb, f);
-	if ((deb + 1 == fin) || (deb != 0 && fin != 2 && deb + 2 == fin))
+	if ((deb + 1 == fin) || (f->t != 3 && deb + 2 == fin))
 	{
 		(deb + 1 == fin && (*h_a)->data > (*h_a)->next->data) ?
 		swap((*h_a), (*h_a)->next, f) : 0;
-		(deb != 0 && fin != 2 && deb + 2 == fin) ? three_args(h_a, f) : 0;
+		(f->t != 3 && (deb + 2 == fin)) ? three_args(h_a, f) : 0;
 		deb < (f->t / 2) ? rrot(h_a, deb, f) : rot(h_a, f->t - deb, f);
 		return ((*h_a));
 	}
-	(same_data(*h_a, (fin - deb))) ? rrot(h_a, deb, f) : 0;
+	if (same_data(*h_a, (fin - deb)))
+		deb < (f->t / 2) ? rrot(h_a, deb, f) : rot(h_a, f->t - deb, f);
 	if (same_data(*h_a, (fin - deb)))
 		return ((*h_a));
 	ps_quicksort_saver(h_a, f, deb, fin);
