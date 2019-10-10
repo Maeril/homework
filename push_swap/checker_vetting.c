@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:19:57 by myener            #+#    #+#             */
-/*   Updated: 2019/10/08 16:18:40 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/10 16:37:32 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,13 @@ int		bad_instructions(char **instruc)
 			&& ft_strcmp(*instruc, "ra\n") && ft_strcmp(*instruc, "rb\n")
 			&& ft_strcmp(*instruc, "rra\n") && ft_strcmp(*instruc, "rrb\n")
 			&& ft_strcmp(*instruc, "ss\n") && ft_strcmp(*instruc, "rrr\n")
-			&& ft_strcmp(*instruc, "rr\n") && ft_strcmp(*instruc, ""))
+			&& ft_strcmp(*instruc, "rr\n") && ft_strcmp(*instruc, "")
+			&& ft_strcmp(*instruc, "sa") && ft_strcmp(*instruc, "sb")
+			&& ft_strcmp(*instruc, "pa") && ft_strcmp(*instruc, "pb")
+			&& ft_strcmp(*instruc, "ra") && ft_strcmp(*instruc, "rb")
+			&& ft_strcmp(*instruc, "rra") && ft_strcmp(*instruc, "rrb")
+			&& ft_strcmp(*instruc, "ss") && ft_strcmp(*instruc, "rrr")
+			&& ft_strcmp(*instruc, "rr"))
 			return (1);
 		instruc++;
 	}

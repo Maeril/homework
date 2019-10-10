@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:49:20 by myener            #+#    #+#             */
-/*   Updated: 2019/10/09 17:58:55 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/10 16:43:50 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_pslist	*convertto_list(char **argv, t_pslist *list, int *nb)
 	return (head);
 }
 
-char		**instruct_reader(char **inst)
+char		**instruct_reader(char **inst) // le probleme est LA
 {
 	int		i;
 	int		j;
@@ -57,6 +57,7 @@ char		**instruct_reader(char **inst)
 		i++;
 	}
 	inst[i] = NULL;
+	// inst = piped_data_cleaner(inst); // trouver quand l'activer
 	return (inst);
 }
 
@@ -94,6 +95,7 @@ t_pslist	*apply_instruct(char **in, t_pslist *h_a, t_psflag *f)
 	h_b = NULL;
 	while (in[i])
 	{
+		printf("in[i] = %s\n", in[i]);
 		if (!h_b && (cmp(in[i], "rrr\n") || cmp(in[i], "rr\n")
 		|| cmp(in[i], "ss\n")))
 			break ;
@@ -113,6 +115,7 @@ t_pslist	*apply_instruct(char **in, t_pslist *h_a, t_psflag *f)
 
 void		checker(t_pslist *list, t_psflag *flag, char **argv)
 {
+	// int		i;
 	int		nb;
 	char	**instructions;
 
@@ -124,6 +127,12 @@ void		checker(t_pslist *list, t_psflag *flag, char **argv)
 	}
 	instructions = NULL;
 	instructions = get_instruct(list, flag, argv, instructions);
+	// i = 0;
+	// while (instructions[i]) // a retirer
+	// {
+	// 	printf("instructions choppées avec instruct_reader = >%s<\n", instructions[i]);
+	// 	i++;
+	// }
 	if (bad_instructions(instructions))
 	{
 		list_free(list);

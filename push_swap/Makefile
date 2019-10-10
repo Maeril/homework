@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 15:49:54 by myener            #+#    #+#              #
-#    Updated: 2019/08/19 09:03:49 by myener           ###   ########.fr        #
+#    Updated: 2019/10/10 16:06:37 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS_NAME_PS =	checker.c				\
 				list_manip.c			\
 				main.c					\
 				movements.c				\
+				pipe_cleaner.c			\
 				push_swap.c				\
 				sorting_algs.c			\
 				split.c					\
@@ -31,6 +32,7 @@ SRCS_NAME_CH =	checker.c				\
 				list_manip.c			\
 				main.c					\
 				movements.c				\
+				pipe_cleaner.c			\
 				push_swap.c				\
 				sorting_algs.c			\
 				split.c					\

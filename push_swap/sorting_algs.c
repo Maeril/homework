@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:11:10 by myener            #+#    #+#             */
-/*   Updated: 2019/10/08 23:37:27 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/10 14:08:18 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,19 +108,6 @@ void		ps_quicksort_saver(t_pslist **h_a, t_psflag *f, int deb, int fin)
 	head_b ? free(head_b) : 0;
 }
 
-void		pile_print(t_pslist **h_a)
-{
-	t_pslist	*curr;
-
-	curr = (*h_a);
-	while (curr)
-	{
-		printf("%d ", curr->data);
-		curr = curr->next;
-	}
-	printf("\n");
-}
-
 t_pslist	*ps_quicksort(t_pslist **h_a, int deb, int fin, t_psflag *f)
 {
 	int			n;
@@ -128,8 +115,6 @@ t_pslist	*ps_quicksort(t_pslist **h_a, int deb, int fin, t_psflag *f)
 	f->pivot = mean_calculator((*h_a), deb, fin);
 	if (deb == fin)
 		return (0);
-	// printf("deb = %d, fin = %d, pivot = %d\n", deb, fin, f->pivot);
-	// pile_print(h_a);
 	deb < (f->t / 2) ? rot(h_a, deb, f) : rrot(h_a, f->t - deb, f);
 	if ((deb + 1 == fin) || (f->t != 3 && deb + 2 == fin))
 	{
