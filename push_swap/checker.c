@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:49:20 by myener            #+#    #+#             */
-/*   Updated: 2019/10/10 16:43:50 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/15 19:36:16 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,51 +37,46 @@ t_pslist	*convertto_list(char **argv, t_pslist *list, int *nb)
 	return (head);
 }
 
-char		**instruct_reader(char **inst) // le probleme est LA
+char	**append_return(char **in)
 {
-	int		i;
-	int		j;
-	int		r;
+	int	i;
 
 	i = 0;
-	r = 1;
-	while (r != 0)
+	while (in[i])
 	{
-		if (!(inst[i] = malloc(sizeof(char) * (4 + 1))))
-			exit(0);
-		ft_bzero(inst[i], 5);
-		r = read(0, inst[i], 5);
-		j = 0;
-		if (inst[i][j] == '\0' && inst[i][j + 1])
+		in[i] = ft_free_join(in[i], "\n");
+		i++;
+	}
+	return (in);
+}
+
+char		**get_instruct(char **inst)
+{
+	int		i;
+	char	*tmp;
+	char	*line;
+	char	*stock;
+
+	i = 0;
+	stock = ft_strnew(1);
+	while (get_next_line(0, &line))
+	{
+		tmp = line;
+		stock = ft_free_join(stock, line);
+		stock = ft_free_join(stock, "\n");
+		free(tmp);
+		i++;
+	}
+	i = 0;
+	while (stock[i])
+	{
+		if (stock[i] == '\n' && stock[i + 1] == '\n')
 			ps_output(1);
 		i++;
 	}
-	inst[i] = NULL;
-	// inst = piped_data_cleaner(inst); // trouver quand l'activer
+	inst = ft_strsplit(stock, '\n');
+	inst = append_return(inst);
 	return (inst);
-}
-
-char		**get_instruct(t_pslist *l, t_psflag *f, char **av, char **inst)
-{
-	int		i;
-	int		len;
-	char	**output;
-
-	output = push_swap(l, f, av);
-	i = 0;
-	len = output ? 1 : 4;
-	if (output)
-		while (output[i])
-		{
-			if (ft_strcmp(output[i], "na"))
-				len++;
-			i++;
-		}
-	output ? tab_free(output) : 0;
-	output ? free(output) : 0;
-	if (!(inst = malloc(sizeof(char*) * (len + 1))))
-		exit(0);
-	return (instruct_reader(inst));
 }
 
 t_pslist	*apply_instruct(char **in, t_pslist *h_a, t_psflag *f)
@@ -95,7 +90,6 @@ t_pslist	*apply_instruct(char **in, t_pslist *h_a, t_psflag *f)
 	h_b = NULL;
 	while (in[i])
 	{
-		printf("in[i] = %s\n", in[i]);
 		if (!h_b && (cmp(in[i], "rrr\n") || cmp(in[i], "rr\n")
 		|| cmp(in[i], "ss\n")))
 			break ;
@@ -103,6 +97,7 @@ t_pslist	*apply_instruct(char **in, t_pslist *h_a, t_psflag *f)
 		cmp(in[i], "sb\n") || cmp(in[i], "ss\n") ? swap(h_b, h_b->next, f) : 0;
 		pa_pb += (!(ft_strcmp(in[i], "pa\n"))) ? push(&h_b, &h_a, f) : 0;
 		pa_pb -= (!(ft_strcmp(in[i], "pb\n"))) ? push(&h_a, &h_b, f) : 0;
+		// printf("pa_pb = %d\n", pa_pb);
 		cmp(in[i], "ra\n") || cmp(in[i], "rr\n") ? rot(&h_a, 1, f) : 0;
 		cmp(in[i], "rb\n") || cmp(in[i], "rr\n") ? rot(&h_b, 1, f) : 0;
 		cmp(in[i], "rra\n") || cmp(in[i], "rrr\n") ? rrot(&h_a, 1, f) : 0;
@@ -126,7 +121,7 @@ void		checker(t_pslist *list, t_psflag *flag, char **argv)
 		ps_output(1);
 	}
 	instructions = NULL;
-	instructions = get_instruct(list, flag, argv, instructions);
+	instructions = get_instruct(instructions);
 	// i = 0;
 	// while (instructions[i]) // a retirer
 	// {

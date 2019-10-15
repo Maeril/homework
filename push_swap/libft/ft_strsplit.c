@@ -6,64 +6,73 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:11:23 by myener            #+#    #+#             */
-/*   Updated: 2018/11/27 16:11:48 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/15 16:18:20 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		notc(const char *cnt, int c)
+static size_t	ft_numword(char const *s, char c)
 {
-	int		i;
-	int		n;
+	size_t	numword;
+	size_t	i;
 
 	i = 0;
-	n = 0;
-	while (cnt[i])
+	numword = 0;
+	while (s[i] != '\0')
 	{
-		if (cnt[i] != c && cnt[i] != '\0')
-			n++;
-		i++;
-	}
-	return (n);
-}
-
-static int		charcount(const char *str, int c)
-{
-	int		i;
-
-	i = 0;
-	while (str[i] != c)
-		i++;
-	return (i);
-}
-
-static char		**fightthepower(char **tab, const char *str, int c)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	while (*str)
-	{
-		if (*str != c)
+		if (s[i] == c)
 		{
-			if (!(tab[i] = malloc(sizeof(char) * (charcount(str, c) + 1))))
-				return (NULL);
-			j = 0;
-			while (*str != c && *str != '\0')
-			{
-				tab[i][j] = *str;
-				j++;
-				str++;
-			}
-			tab[i][j] = '\0';
-			i++;
+			while (s[i] != '\0' && s[i] == c)
+				i++;
 		}
-		if (*str)
-			str++;
+		if (s[i] != '\0' && s[i] != c)
+		{
+			numword++;
+			while (s[i] != '\0' && s[i] != c)
+				i++;
+		}
 	}
-	tab[i] = NULL;
+	return (numword);
+}
+
+static size_t	ft_lenw(char const *s, size_t index, char c)
+
+{
+	size_t	len;
+
+	len = 0;
+	while (s[index] != '\0' && s[index] != c)
+	{
+		len++;
+		index++;
+	}
+	return (len);
+}
+
+static char		**ft_filltab(char **tab, const char *s, char c)
+{
+	size_t	i;
+	size_t	j;
+	size_t	k;
+
+	i = 0;
+	j = 0;
+	while (s[i] != '\0')
+	{
+		while (s[i] != '\0' && s[i] == c)
+			i++;
+		if (s[i] != '\0')
+		{
+			k = 0;
+			if (!(tab[j] = malloc(sizeof(char) * (ft_lenw(s, i, c) + 1))))
+				return (0);
+			while (s[i] != '\0' && s[i] != c)
+				tab[j][k++] = s[i++];
+			tab[j++][k] = '\0';
+		}
+	}
+	tab[j] = 0;
 	return (tab);
 }
 
@@ -71,9 +80,12 @@ char			**ft_strsplit(char const *s, char c)
 {
 	char	**tab;
 
-	if (!s)
-		return (NULL);
-	if (!(tab = malloc(sizeof(*tab) * (notc(s, c) + 1))))
-		return (NULL);
-	return (fightthepower(tab, s, c));
+	if (s)
+	{
+		if (!(tab = (char **)malloc(sizeof(char*) * (ft_numword(s, c) + 1))))
+			return (0);
+		tab = ft_filltab(tab, s, c);
+		return (tab);
+	}
+	return (NULL);
 }
