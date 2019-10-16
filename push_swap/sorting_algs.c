@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:11:10 by myener            #+#    #+#             */
-/*   Updated: 2019/10/10 14:08:18 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/16 16:00:22 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ t_pslist	*ps_quicksort(t_pslist **h_a, int deb, int fin, t_psflag *f)
 	int			n;
 
 	f->pivot = mean_calculator((*h_a), deb, fin);
+	// printf("Deb : {%d} / fin : {%d}\n", deb, fin); << quand decommenté, tranforme l'out de "KO" a "Error" ???
 	if (deb == fin)
 		return (0);
 	deb < (f->t / 2) ? rot(h_a, deb, f) : rrot(h_a, f->t - deb, f);
