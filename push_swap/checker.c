@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:49:20 by myener            #+#    #+#             */
-/*   Updated: 2019/10/16 15:56:44 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/16 16:21:20 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,17 +79,6 @@ char		**get_instruct(char **inst)
 	return (inst);
 }
 
-void	pile_print(t_pslist *curr)
-{
-	while (curr && curr->next)
-	{
-		printf("%d, ", curr->data);
-		curr = curr->next;
-	}
-	printf("%d.\n", curr->data);
-	printf("\n");
-}
-
 t_pslist	*apply_instruct(char **in, t_pslist *h_a, t_psflag *f)
 {
 	int			i;
@@ -113,7 +102,6 @@ t_pslist	*apply_instruct(char **in, t_pslist *h_a, t_psflag *f)
 		cmp(in[i], "rb\n") || cmp(in[i], "rr\n") ? rot(&h_b, 1, f) : 0;
 		cmp(in[i], "rra\n") || cmp(in[i], "rrr\n") ? rrot(&h_a, 1, f) : 0;
 		cmp(in[i], "rrb\n") || cmp(in[i], "rrr\n") ? rrot(&h_b, 1, f) : 0;
-		pile_print(h_a);
 		i++;
 	}
 	pa_pb < 0 ? ps_output(2) : 0;
