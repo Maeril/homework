@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:11:10 by myener            #+#    #+#             */
-/*   Updated: 2019/10/16 18:16:34 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/16 19:20:57 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,17 +87,6 @@ void		three_args(t_pslist **h_a, t_psflag *f)
 		three_args_saver(h_a, f, c);
 }
 
-void	pile_print(t_pslist *curr)
-{
-	while (curr && curr->next)
-	{
-		printf("%d, ", curr->data);
-		curr = curr->next;
-	}
-	printf("%d.\n", curr->data);
-	printf("\n");
-}
-
 void		ps_quicksort_saver(t_pslist **h_a, t_psflag *f, int deb, int fin)
 {
 	int			i;
@@ -107,48 +96,28 @@ void		ps_quicksort_saver(t_pslist **h_a, t_psflag *f, int deb, int fin)
 	f->np = 0;
 	head_b = NULL;
 	i = deb;
-	// printf("COUCOU\n");
-	// pile_print((*h_a));
-	// printf("BYE\n");
-	// ft_printf("\e[33;1mdeb = %d, fin = %d, pivot = %d, taille = %d\n\n\e[0m", deb, fin, f->pivot, f->t);
 	while (i <= fin)
 	{
-		if((*h_a)->data <= f->pivot)
-		{
-			// printf("data pushée= %d\n", (*h_a)->data);
-			push(h_a, &head_b, f);
-			f->np++;
-		}
-		else if ((*h_a)->data > f->pivot)
-		{
-			// printf("data rot= %d\n", (*h_a)->data);
-			rot(h_a, 1, f);
-			f->nr++;
-		}
-		// printf("i = %d\n", i);
+		if ((*h_a)->data <= f->pivot)
+			f->np += push(h_a, &head_b, f);
+		else
+			f->nr += rot(h_a, 1, f);
 		i++;
 	}
-	// ft_printf("\e[33;1mnp = %d, nr = %d\n\n\e[0m", f->np, f->nr);
 	(fin != (f->t - 1) || deb != 0) ? rrot(h_a, f->nr, f) : 0;
 	while (head_b)
 		push(&head_b, h_a, f);
 	head_b ? free(head_b) : 0;
 }
 
-
 t_pslist	*ps_quicksort(t_pslist **h_a, int deb, int fin, t_psflag *f)
 {
 	int			n;
 
 	f->pivot = mean_calculator((*h_a), deb, fin);
-	// ft_printf("\e[36;1mdeb = %d, fin = %d, pivot = %d, taille = %d\n\n\e[0m", deb, fin, f->pivot, f->t);
-	// ft_printf("\e[31;1mAVANT rot du debut:\n\e[0m");
-	// pile_print((*h_a));
 	if (deb == fin)
 		return (0);
 	deb < (f->t / 2) ? rot(h_a, deb, f) : rrot(h_a, f->t - deb, f);
-	// ft_printf("\e[32;1mAPRES rot du debut:\n\e[0m");
-	// pile_print((*h_a));
 	if ((deb + 1 == fin) || (f->t != 3 && deb + 2 == fin))
 	{
 		(deb + 1 == fin && (*h_a)->data > (*h_a)->next->data) ?

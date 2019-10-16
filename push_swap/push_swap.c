@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 13:52:32 by myener            #+#    #+#             */
-/*   Updated: 2019/10/16 15:36:23 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/16 19:23:37 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,17 +100,15 @@ char		**papb_cleaner(char **tab)
 
 char		**push_swap(t_pslist *list, t_psflag *flag, char **argv)
 {
-	int		i;
 	int		nb;
 	int		ret;
 	char	**output;
 
-	i = 0;
 	list = convertto_list(argv, list, &nb);
 	((ret = duplicate_finder(list))) && flag->ps ? list_free(list) : 0;
 	ret && flag->ps ? ps_output(1) : 0;
 	if (check_list(list))
-		push_swap_saver(i, nb, list, flag);
+		push_swap_saver(0, nb, list, flag);
 	else if (flag->ps)
 	{
 		list_free(list);
@@ -118,7 +116,6 @@ char		**push_swap(t_pslist *list, t_psflag *flag, char **argv)
 	}
 	list_free(list);
 	output = flag->instruc ? ft_spacesplit(flag->instruc) : NULL;
-	i = 0;
 	output = output && ft_strlen(flag->instruc) > 4 ?
 	papb_cleaner(output) : output;
 	if (flag->ch)

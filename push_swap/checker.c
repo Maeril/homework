@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:49:20 by myener            #+#    #+#             */
-/*   Updated: 2019/10/16 16:21:20 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/16 19:19:47 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_pslist	*convertto_list(char **argv, t_pslist *list, int *nb)
 	return (head);
 }
 
-char	**append_return(char **in)
+char		**append_return(char **in)
 {
 	int	i;
 
@@ -97,7 +97,6 @@ t_pslist	*apply_instruct(char **in, t_pslist *h_a, t_psflag *f)
 		cmp(in[i], "sb\n") || cmp(in[i], "ss\n") ? swap(h_b, h_b->next, f) : 0;
 		pa_pb += (!(ft_strcmp(in[i], "pa\n"))) ? push(&h_b, &h_a, f) : 0;
 		pa_pb -= (!(ft_strcmp(in[i], "pb\n"))) ? push(&h_a, &h_b, f) : 0;
-		// printf("pa_pb = %d\n", pa_pb);
 		cmp(in[i], "ra\n") || cmp(in[i], "rr\n") ? rot(&h_a, 1, f) : 0;
 		cmp(in[i], "rb\n") || cmp(in[i], "rr\n") ? rot(&h_b, 1, f) : 0;
 		cmp(in[i], "rra\n") || cmp(in[i], "rrr\n") ? rrot(&h_a, 1, f) : 0;
@@ -105,12 +104,11 @@ t_pslist	*apply_instruct(char **in, t_pslist *h_a, t_psflag *f)
 		i++;
 	}
 	pa_pb < 0 ? ps_output(2) : 0;
-	return (pa_pb < 0  ? NULL : h_a);
+	return (pa_pb < 0 ? NULL : h_a);
 }
 
 void		checker(t_pslist *list, t_psflag *flag, char **argv)
 {
-	// int		i;
 	int		nb;
 	char	**instructions;
 
@@ -122,16 +120,10 @@ void		checker(t_pslist *list, t_psflag *flag, char **argv)
 	}
 	instructions = NULL;
 	instructions = get_instruct(instructions);
-	// i = 0;
-	// while (instructions[i]) // a retirer
-	// {
-	// 	printf("instructions choppées avec instruct_reader = >%s<\n", instructions[i]);
-	// 	i++;
-	// }
 	if (bad_instructions(instructions))
 	{
 		list_free(list);
-		ps_output(1); // le truc qui apparait quand on laisse le printf est LA
+		ps_output(1);
 	}
 	if (instructions)
 		list = apply_instruct(instructions, list, flag);

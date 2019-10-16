@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:11:23 by myener            #+#    #+#             */
-/*   Updated: 2019/10/15 16:18:20 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/16 19:13:42 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static size_t	ft_numword(char const *s, char c)
 }
 
 static size_t	ft_lenw(char const *s, size_t index, char c)
-
 {
 	size_t	len;
 
