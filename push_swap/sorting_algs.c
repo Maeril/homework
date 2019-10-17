@@ -6,13 +6,13 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:11:10 by myener            #+#    #+#             */
-/*   Updated: 2019/10/16 19:20:57 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/17 11:10:28 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			mean_calculator(t_pslist *head, int deb, int fin)
+static int	mean_calculator(t_pslist *head, int deb, int fin)
 {
 	int			s;
 	int			tot;
@@ -35,7 +35,7 @@ int			mean_calculator(t_pslist *head, int deb, int fin)
 	return (tot / (fin - deb + 1));
 }
 
-void		three_args_saver(t_pslist **h_a, t_psflag *f, int c)
+static void	three_args_saver(t_pslist **h_a, t_psflag *f, int c)
 {
 	t_pslist	*head_b;
 
@@ -64,7 +64,7 @@ void		three_args_saver(t_pslist **h_a, t_psflag *f, int c)
 	}
 }
 
-void		three_args(t_pslist **h_a, t_psflag *f)
+static void	three_args(t_pslist **h_a, t_psflag *f)
 {
 	int			c;
 	t_pslist	*head_b;
@@ -87,7 +87,7 @@ void		three_args(t_pslist **h_a, t_psflag *f)
 		three_args_saver(h_a, f, c);
 }
 
-void		ps_quicksort_saver(t_pslist **h_a, t_psflag *f, int deb, int fin)
+static void	ps_quicksort_saver(t_pslist **h_a, t_psflag *f, int deb, int fin)
 {
 	int			i;
 	t_pslist	*head_b;

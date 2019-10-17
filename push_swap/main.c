@@ -6,13 +6,13 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:38:48 by myener            #+#    #+#             */
-/*   Updated: 2019/10/16 15:53:42 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/17 11:37:34 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		bad_arg_check_saver(char *arg)
+static int	bad_arg_check_saver(char *arg)
 {
 	int	i;
 
@@ -39,7 +39,7 @@ int		bad_arg_check_saver(char *arg)
 	return (0);
 }
 
-char	**bad_arg_checker_special(char **tab)
+static char	**bad_arg_checker_special(char **tab)
 {
 	int		i;
 	int		j;
@@ -66,7 +66,7 @@ char	**bad_arg_checker_special(char **tab)
 	return (tab);
 }
 
-char	**bad_arg_checker(char **tab)
+static char	**bad_arg_checker(char **tab)
 {
 	int		i;
 
@@ -85,7 +85,7 @@ char	**bad_arg_checker(char **tab)
 	return (tab);
 }
 
-int		main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	const char	*str;
 	t_pslist	list;

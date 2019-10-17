@@ -6,13 +6,13 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:05:48 by myener            #+#    #+#             */
-/*   Updated: 2019/10/15 16:22:08 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/17 11:17:26 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_pslist	*node_malloc(t_pslist *node)
+static t_pslist	*node_malloc(t_pslist *node)
 {
 	if (!(node = malloc(sizeof(t_pslist))))
 		return (NULL);
@@ -23,7 +23,7 @@ t_pslist	*node_malloc(t_pslist *node)
 	return (node);
 }
 
-t_pslist	*node_fill(t_pslist *node, int data)
+t_pslist		*node_fill(t_pslist *node, int data)
 {
 	node = node_malloc(node);
 	node->data = data;
@@ -31,7 +31,7 @@ t_pslist	*node_fill(t_pslist *node, int data)
 	return (node);
 }
 
-void		list_free(t_pslist *head)
+void			list_free(t_pslist *head)
 {
 	t_pslist	*tmp;
 
@@ -43,7 +43,7 @@ void		list_free(t_pslist *head)
 	}
 }
 
-int			check_length(t_pslist *list)
+int				check_length(t_pslist *list)
 {
 	int			i;
 	t_pslist	*curr;
@@ -58,7 +58,7 @@ int			check_length(t_pslist *list)
 	return (i);
 }
 
-int			check_list(t_pslist *list)
+int				check_list(t_pslist *list)
 {
 	t_pslist *curr;
 

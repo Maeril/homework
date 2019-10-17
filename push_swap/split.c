@@ -6,23 +6,23 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 14:53:02 by myener            #+#    #+#             */
-/*   Updated: 2019/10/08 15:25:02 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/17 11:09:38 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		cmp(char *s1, char *s2)
+int			cmp(char *s1, char *s2)
 {
 	return ((!ft_strcmp(s1, s2)) ? 1 : 0);
 }
 
-int		ft_isspace(char c)
+static int	ft_isspace(char c)
 {
 	return (c == ' ');
 }
 
-int		count_words(char *str)
+static int	count_words(char *str)
 {
 	int	count;
 
@@ -41,7 +41,7 @@ int		count_words(char *str)
 	return (count);
 }
 
-char	*malloc_word(char *str)
+static char	*malloc_word(char *str)
 {
 	int		i;
 	char	*word;
@@ -61,7 +61,7 @@ char	*malloc_word(char *str)
 	return (word);
 }
 
-char	**ft_spacesplit(char *str)
+char		**ft_spacesplit(char *str)
 {
 	int		i;
 	char	**arr;

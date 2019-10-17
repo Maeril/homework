@@ -6,13 +6,13 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:49:20 by myener            #+#    #+#             */
-/*   Updated: 2019/10/16 19:19:47 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/17 11:38:03 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_pslist	*convertto_list(char **argv, t_pslist *list, int *nb)
+t_pslist		*convertto_list(char **argv, t_pslist *list, int *nb)
 {
 	int			i;
 	t_pslist	*head;
@@ -37,7 +37,7 @@ t_pslist	*convertto_list(char **argv, t_pslist *list, int *nb)
 	return (head);
 }
 
-char		**append_return(char **in)
+static char		**append_return(char **in)
 {
 	int	i;
 
@@ -50,7 +50,7 @@ char		**append_return(char **in)
 	return (in);
 }
 
-char		**get_instruct(char **inst)
+static char		**get_instruct(char **inst)
 {
 	int		i;
 	char	*tmp;
@@ -79,7 +79,7 @@ char		**get_instruct(char **inst)
 	return (inst);
 }
 
-t_pslist	*apply_instruct(char **in, t_pslist *h_a, t_psflag *f)
+static t_pslist	*apply_instruct(char **in, t_pslist *h_a, t_psflag *f)
 {
 	int			i;
 	int			pa_pb;
@@ -107,7 +107,7 @@ t_pslist	*apply_instruct(char **in, t_pslist *h_a, t_psflag *f)
 	return (pa_pb < 0 ? NULL : h_a);
 }
 
-void		checker(t_pslist *list, t_psflag *flag, char **argv)
+void			checker(t_pslist *list, t_psflag *flag, char **argv)
 {
 	int		nb;
 	char	**instructions;

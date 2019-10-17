@@ -6,13 +6,13 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 13:52:32 by myener            #+#    #+#             */
-/*   Updated: 2019/10/16 19:23:37 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/17 11:14:08 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			pattern_match(char *s1, char *s2)
+static int	pattern_match(char *s1, char *s2)
 {
 	if ((!ft_strcmp(s1, "rra") && !ft_strcmp(s2, "ra"))
 		|| (!ft_strcmp(s1, "ra") && !ft_strcmp(s2, "rra"))
@@ -24,54 +24,7 @@ int			pattern_match(char *s1, char *s2)
 	return (0);
 }
 
-int			final_tab_len(char **tab)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (tab[i])
-	{
-		if (tab[i + 1] == NULL)
-			break ;
-		if (pattern_match(tab[i], tab[i + 1]))
-			j++;
-		i++;
-	}
-	return (i - j);
-}
-
-char		**duplicate_cleaner(char **tab1, int nb)
-{
-	int		i;
-	int		j;
-	int		len;
-	char	**tab2;
-
-	len = final_tab_len(tab1);
-	if (!(tab2 = malloc(sizeof(char*) * len + 1)))
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (tab1[i])
-	{
-		if (tab1[i + 1] == NULL)
-			break ;
-		i += (i == nb) ? 2 : 0;
-		if (i != nb)
-		{
-			tab2[j] = ft_strdup(tab1[i]);
-			j++;
-			i++;
-		}
-	}
-	if (pattern_match(tab2[j - 2], tab2[j - 1]))
-		tab2[j - 2] = NULL;
-	return (tab2);
-}
-
-char		**papb_cleaner(char **tab)
+static char	**papb_cleaner(char **tab)
 {
 	int i;
 	int j;
