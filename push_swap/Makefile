@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 15:49:54 by myener            #+#    #+#              #
-#    Updated: 2019/10/15 19:13:45 by myener           ###   ########.fr        #
+#    Updated: 2019/10/17 11:59:18 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,6 +82,8 @@ clean:
 fclean: clean
 	@printf "\e[36m Removing: \e[0m"
 	@printf "\e[32mpush_swap \e[0m\n"
+	@printf "\e[36m Removing: \e[0m"
+	@printf "\e[32mchecker \e[0m\n"
 	@rm -f $(NAME_PS) $@
 	@rm -f $(NAME_CH) $@
 	@rm -rf libft/ft_printf/libftprintf.a libft/libft.a
