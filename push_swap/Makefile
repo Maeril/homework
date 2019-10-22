@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+         #
+#    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 15:49:54 by myener            #+#    #+#              #
-#    Updated: 2019/10/22 17:47:16 by lbenard          ###   ########.fr        #
+#    Updated: 2019/10/22 18:08:55 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ SRCS_NAME_CH =	checker.c				\
 				split.c					\
 				tools.c
 
-FLAGS =	 -Wall -Wextra -Werror -I libft -ggdb3
+FLAGS =	 -Wall -Wextra -Werror -I libft
 
 OBJS_PS	:=	$(addprefix $(OBJDIR)/,$(SRCS_NAME_PS:.c=.o))
 OBJS_CH	:=	$(addprefix $(OBJDIR)/,$(SRCS_NAME_CH:.c=.o))
