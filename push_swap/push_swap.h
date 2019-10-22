@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:53:33 by myener            #+#    #+#             */
-/*   Updated: 2019/10/17 11:20:55 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/22 17:38:02 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 # define MIN_INT -2147483648
 # include <unistd.h>
 # include <stdlib.h>
-# include "libft/libft.h"
-# include "libft/ft_printf/ft_printf.h"
+# include "libft.h"
 
 typedef struct			s_psflag
 {

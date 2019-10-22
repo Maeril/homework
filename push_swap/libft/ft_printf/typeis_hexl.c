@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   typeis_hexl.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 18:06:02 by myener            #+#    #+#             */
-/*   Updated: 2019/04/04 16:24:31 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/22 17:28:42 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
 static long long	converter(t_data *data)
 {
@@ -31,10 +32,8 @@ static long long	converter(t_data *data)
 static int			troubleshooter(t_data *data, int len)
 {
 	t_lngt *lngt;
-	t_flag *flag;
 
 	lngt = data->lngt;
-	flag = data->flag;
 	lngt->width = (lngt->width && ((lngt->width_value <= len) ||
 		((lngt->prec && (lngt->width_value <= lngt->prec_value))))) ?
 		0 : lngt->width;
@@ -74,9 +73,7 @@ int					typeis_hexl(va_list ap, t_data *data, t_lngt *lngt)
 	int		len;
 	int		prec_len;
 	t_type	*type;
-	t_tool	*tool;
 
-	tool = data->tool;
 	type = data->type;
 	if (type->x)
 	{

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   printer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:21:05 by myener            #+#    #+#             */
-/*   Updated: 2019/04/05 17:43:48 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/22 17:27:46 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
 void		widthprinter_minus(t_data *data, int len)
 {

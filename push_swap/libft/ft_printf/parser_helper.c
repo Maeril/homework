@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parser_helper.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:12:36 by myener            #+#    #+#             */
-/*   Updated: 2019/04/08 21:12:26 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/22 17:27:37 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
 void		parse_width(char *instruc, t_data *data, int i)
 {

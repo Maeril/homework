@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   typeis_ptr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:51:32 by myener            #+#    #+#             */
-/*   Updated: 2019/04/05 13:44:41 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/22 17:28:28 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
 int		typeis_ptr(va_list ap, t_data *data)
 {

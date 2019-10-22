@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 13:57:15 by myener            #+#    #+#             */
-/*   Updated: 2019/05/01 16:10:12 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/22 17:31:37 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdarg.h>
 # include <stdio.h>
+# include "ft_printf/ft_printf.h"
 
 typedef struct	s_list
 {

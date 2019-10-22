@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   typeis_float.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 16:14:29 by myener            #+#    #+#             */
-/*   Updated: 2019/04/08 21:11:33 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/22 17:28:59 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdlib.h>
+#include "libft.h"
 
 static void	troubleshooter(t_data *data, int p_ln, int ln)
 {
@@ -65,11 +66,9 @@ static void	writer(t_data *data, int prec_len, char *str, long long int num)
 int			float_helper(t_data *data, int p_ln, char *str, long long int num)
 {
 	t_lngt	*lngt;
-	t_spec	*spec;
 	t_tool	*tool;
 
 	lngt = data->lngt;
-	spec = data->spec;
 	tool = data->tool;
 	if (((lngt->prec_zero || lngt->prec_rien) && data->spec->flt != 0) ||
 	data->spec->flt || data->spec->flt == 0)

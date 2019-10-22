@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   typeis_str.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:51:38 by myener            #+#    #+#             */
-/*   Updated: 2019/04/06 19:48:41 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/22 17:28:16 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
 static int		troubleshooter(t_data *data, int len)
 {

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
+#    By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 17:52:34 by myener            #+#    #+#              #
-#    Updated: 2019/08/12 16:26:35 by myener           ###   ########.fr        #
+#    Updated: 2019/10/22 17:32:24 by lbenard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,13 +95,31 @@ SRCS	=	ft_abs.c \
 			ft_strnlen.c \
 			ft_isblank.c \
 			get_next_line.c \
-			rounder.c
+			rounder.c \
+			ft_printf/cleaner.c \
+			ft_printf/dispatcher.c \
+			ft_printf/finalizer.c \
+			ft_printf/float_tools.c \
+			ft_printf/ft_printf.c \
+			ft_printf/parser.c \
+			ft_printf/parser_helper.c \
+			ft_printf/printer.c \
+			ft_printf/typeis_int.c \
+			ft_printf/typeis_char.c \
+			ft_printf/typeis_unsign.c \
+			ft_printf/typeis_str.c \
+			ft_printf/typeis_ptr.c \
+			ft_printf/typeis_octal.c \
+			ft_printf/typeis_hexl.c \
+			ft_printf/typeis_hexu.c \
+			ft_printf/typeis_perc.c \
+			ft_printf/typeis_float.c
 
 
 OBJS	:=	$(addprefix $(OBJDIR)/,$(SRCS:.c=.o))
 SRCS	:=	$(addprefix $(SRCDIR)/,$(SRCS))
 
-CFLAGS	=	-Wall -Werror -Wextra
+CFLAGS	=	-Wall -Werror -Wextra -I ./ -I ft_printf
 
 all: $(NAME)
 

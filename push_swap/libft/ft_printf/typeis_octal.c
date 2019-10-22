@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   typeis_octal.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:59:01 by myener            #+#    #+#             */
-/*   Updated: 2019/04/04 16:49:29 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/22 17:28:34 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
 static long long	converter(t_data *data)
 {
@@ -31,10 +32,8 @@ static long long	converter(t_data *data)
 static int			troubleshooter(t_data *data, int len)
 {
 	t_lngt *lngt;
-	t_flag *flag;
 
 	lngt = data->lngt;
-	flag = data->flag;
 	lngt->width = (lngt->width && ((lngt->width_value <= len) ||
 		((lngt->prec && (lngt->width_value <= lngt->prec_value))))) ?
 		0 : lngt->width;

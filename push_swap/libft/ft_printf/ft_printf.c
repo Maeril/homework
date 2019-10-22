@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 11:22:42 by myener            #+#    #+#             */
-/*   Updated: 2019/05/01 16:31:05 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/22 17:27:28 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include "ft_printf.h"
+#include "libft.h"
 
 static int	is_type(const char *format, int i)
 {

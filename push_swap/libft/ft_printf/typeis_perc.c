@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   typeis_perc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:57:23 by myener            #+#    #+#             */
-/*   Updated: 2019/04/04 17:00:05 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/22 17:28:53 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
 int		typeis_perc(t_data *data, t_lngt *lngt)
 {

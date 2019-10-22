@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   typeis_int.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:51:47 by myener            #+#    #+#             */
-/*   Updated: 2019/04/06 19:48:38 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/22 17:27:55 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
 static long long	converter(t_data *data, long long int nb)
 {

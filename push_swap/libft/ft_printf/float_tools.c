@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   float_tools.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 14:34:39 by myener            #+#    #+#             */
-/*   Updated: 2019/04/08 21:01:03 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/22 17:26:45 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
 int		infnan(t_data *data, double num, int len)
 {

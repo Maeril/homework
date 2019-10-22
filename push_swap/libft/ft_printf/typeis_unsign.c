@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   typeis_unsign.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lbenard <lbenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 15:53:22 by myener            #+#    #+#             */
-/*   Updated: 2019/04/05 14:02:13 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/22 17:28:10 by lbenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
 static long long	converter(t_data *data)
 {
