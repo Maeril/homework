@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:38:48 by myener            #+#    #+#             */
-/*   Updated: 2019/10/17 11:37:34 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/22 16:53:52 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,13 @@ int			main(int ac, char **av)
 	if (!(ac >= 2))
 		return (0);
 	av = bad_arg_checker(av);
-	if ((flag.ch = (!ft_strcmp(av[0], "./checker"))))
+	if ((flag.ch = (!ft_strcmp(av[0], "./checker")) && av[1]))
 		checker(&list, &flag, av);
 	else if ((flag.ps = (!ft_strcmp(av[0], "./push_swap")
 	|| !ft_strcmp(av[0], str))))
 		push_swap(&list, &flag, av);
+	else if ((flag.ch = (!ft_strcmp(av[0], "./checker")) && !av[1]))
+		return (0);
 	else
 		ps_output(1);
 	return (0);

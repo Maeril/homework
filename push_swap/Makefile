@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 15:49:54 by myener            #+#    #+#              #
-#    Updated: 2019/10/17 11:59:18 by myener           ###   ########.fr        #
+#    Updated: 2019/10/22 15:43:41 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ SRCS_NAME_CH =	checker.c				\
 				split.c					\
 				tools.c
 
-FLAGS =	 -Wall -Wextra -Werror -ggdb3
+FLAGS =	 -Wall -Wextra -Werror
 
 OBJS_PS	:=	$(addprefix $(OBJDIR)/,$(SRCS_NAME_PS:.c=.o))
 OBJS_CH	:=	$(addprefix $(OBJDIR)/,$(SRCS_NAME_CH:.c=.o))
