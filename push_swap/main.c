@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:38:48 by myener            #+#    #+#             */
-/*   Updated: 2019/10/23 19:20:57 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/25 18:02:07 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,24 +88,25 @@ static char	**bad_arg_checker(char **tab)
 int			main(int ac, char **av)
 {
 	const char	*str;
-	t_pslist	list;
+	t_pslist	*list;
 	t_psflag	flag;
 
-	list.data = 0;
+	list = NULL;
 	flag_init(&flag);
 	str = "/Users/myener/Desktop/homework/push_swap/push_swap";
 	if (!(ac >= 2))
 		return (0);
 	av = bad_arg_checker(av);
 	if ((flag.ch = (!ft_strcmp(av[0], "./checker")) && av[1]))
-		checker(&list, &flag, av);
+		checker(list, &flag, av);
 	else if ((flag.ps = (!ft_strcmp(av[0], "./push_swap")
 	|| !ft_strcmp(av[0], str))))
-		push_swap(&list, &flag, av);
+		push_swap(list, &flag, av);
 	else if ((flag.ch = (!ft_strcmp(av[0], "./checker")) && !av[1]))
 		return (0);
 	else
 		ps_output(1);
+	// printf("mallocs = %d, frees = %d\n", nbmalloc, nbfree);
 	while (42); // a delete avant de rendre
 	return (0);
 }

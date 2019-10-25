@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 19:21:03 by myener            #+#    #+#             */
-/*   Updated: 2019/10/16 19:20:25 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/25 18:01:28 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,17 @@ int			ps_output(int i)
 	return (0);
 }
 
-void		push_swap_saver(int i, int nb, t_pslist *list, t_psflag *flag)
+t_pslist	*push_swap_saver(int i, int nb, t_pslist *list, t_psflag *flag)
 {
-	(i = check_length(list)) == 0 ? list_free(list) : 0;
-	(i = check_length(list)) == 0 ? exit(0) : 0;
+	// pile_print(list);
+	if ((i = check_length(list)) == 0)
+	{
+		list_free(list);
+		exit(0);
+	}
 	flag->t = nb + 1;
 	ps_quicksort(&list, 0, nb, flag);
-	return ;
+	// printf("APRES TRI:\n");
+	// pile_print(list);
+	return (list);
 }

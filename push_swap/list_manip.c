@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:05:48 by myener            #+#    #+#             */
-/*   Updated: 2019/10/23 19:22:15 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/25 18:00:44 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static t_pslist	*node_malloc(t_pslist *node)
 {
 	if (!(node = malloc(sizeof(t_pslist))))
 		return (NULL);
+	nbmalloc++;
 	node->data = 0;
 	node->type = 0;
 	node->next = NULL;
@@ -40,6 +41,7 @@ void			list_free(t_pslist *head)
 		tmp = head;
 		head = head->next;
 		free(tmp);
+		nbfree++;
 	}
 }
 
