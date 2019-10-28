@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:49:20 by myener            #+#    #+#             */
-/*   Updated: 2019/10/23 19:06:03 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/28 15:23:11 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ void			checker(t_pslist *list, t_psflag *flag, char **argv)
 	if (bad_instructions(instructions))
 	{
 		list_free(list);
+		instructions ? tab_free(instructions) : 0;
 		ps_output(1);
 	}
 	if (instructions)
@@ -131,7 +132,6 @@ void			checker(t_pslist *list, t_psflag *flag, char **argv)
 	if (list)
 		check_list(list) ? ps_output(2) : ps_output(3);
 	list_free(list);
-	if (flag->instruc)
-		free(flag->instruc);
+	(flag->instruc) ? free(flag->instruc) : 0;
 	exit(0);
 }

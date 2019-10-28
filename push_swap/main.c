@@ -6,11 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:38:48 by myener            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2019/10/25 18:02:07 by myener           ###   ########.fr       */
-=======
-/*   Updated: 2019/10/24 23:15:58 by myener           ###   ########.fr       */
->>>>>>> ea9bfd036213b4d8524d9683840affe007bdec4f
+/*   Updated: 2019/10/28 15:38:58 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +106,5 @@ int			main(int ac, char **av)
 		return (0);
 	else
 		ps_output(1);
-	// printf("mallocs = %d, frees = %d\n", nbmalloc, nbfree);
-	while (42); // a delete avant de rendre
 	return (0);
 }

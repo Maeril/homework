@@ -6,11 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 13:52:32 by myener            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2019/10/25 18:02:49 by myener           ###   ########.fr       */
-=======
-/*   Updated: 2019/10/24 23:50:48 by myener           ###   ########.fr       */
->>>>>>> ea9bfd036213b4d8524d9683840affe007bdec4f
+/*   Updated: 2019/10/28 14:58:27 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +51,6 @@ static char	**papb_cleaner(char **tab)
 	return (tab);
 }
 
-// void	pile_print(t_pslist *curr) // a delete avant de rendre
-// {
-// 	while (curr && curr->next)
-// 	{
-// 		printf("%d, ", curr->data);
-// 		curr = curr->next;
-// 	}
-// 	printf("%d.\n\n\n", curr->data);
-// }
-
 char		**push_swap(t_pslist *list, t_psflag *flag, char **argv)
 {
 	int			i;
@@ -76,15 +62,11 @@ char		**push_swap(t_pslist *list, t_psflag *flag, char **argv)
 	((ret = duplicate_finder(list))) && flag->ps ? list_free(list) : 0;
 	ret && flag->ps ? ps_output(1) : 0;
 	i = check_list(list);
-	if (i == 1)
+	if (i == 1 || (i == 0 && flag->ps))
 	{
-		list = push_swap_saver(0, nb, list, flag);
+		list = (i == 1) ? push_swap_saver(0, nb, list, flag) : list;
 		list_free(list);
-	}
-	else if (i == 0 && flag->ps)
-	{
-		list_free(list);
-		exit(0);
+		(i == 0 && flag->ps) ? exit(0) : 0;
 	}
 	output = flag->instruc ? ft_spacesplit(flag->instruc) : NULL;
 	output = output && ft_strlen(flag->instruc) > 4 ?
