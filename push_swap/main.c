@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:38:48 by myener            #+#    #+#             */
-/*   Updated: 2019/10/28 15:38:58 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/29 15:43:59 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ static char	**bad_arg_checker_special(char **tab)
 		j++;
 	}
 	tab[i] = NULL;
+	tab_free(stk);
+	str ? free(str) : 0;
 	return (tab);
 }
 

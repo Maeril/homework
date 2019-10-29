@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:53:33 by myener            #+#    #+#             */
-/*   Updated: 2019/10/25 17:18:24 by myener           ###   ########.fr       */
+/*   Updated: 2019/10/29 15:36:29 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "libft.h"
-
-int		nbmalloc;
-int		nbfree;
 
 typedef struct			s_psflag
 {
@@ -70,6 +67,5 @@ int						rrot(t_pslist **head, int nb, t_psflag *flag);
 int						same_data(t_pslist *curr, int fin);
 int						swap(t_pslist *p1, t_pslist *p2, t_psflag *flag);
 void					tab_free(char **tab);
-void					pile_print(t_pslist *curr); // a delete avant de rendre
 
 #endif
