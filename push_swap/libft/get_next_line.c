@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 17:23:52 by myener            #+#    #+#             */
-/*   Updated: 2019/08/12 16:26:37 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/18 17:42:04 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,17 @@ char			*ft_n_strndup(char *str, char *dest, size_t n)
 	return (dest);
 }
 
-void			ft_spacesaver(char **stock, char **tmp, size_t i)
+void			ft_spacesaver(char **stock, char **tmp, char **line, size_t i)
 {
-	*tmp = *stock;
-	*stock = ft_strdup(*stock + i + 1);
-	free(*tmp);
+	*line = ft_n_strndup(*stock, *line, i);
+	if (i < ft_strlen(*stock))
+	{
+		*tmp = *stock;
+		*stock = ft_strdup(*stock + i + 1);
+		free(*tmp);
+	}
+	else
+		ft_strdel(stock);
 }
 
 int				get_next_line(const int fd, char **line)
@@ -54,12 +60,12 @@ int				get_next_line(const int fd, char **line)
 		if (ft_strchr(stock, '\n'))
 			break ;
 	}
+	((readsize < BUFF_SIZE) && (ft_strlen(stock) == 0)) ? free(stock) : 0;
 	if ((readsize < BUFF_SIZE) && (ft_strlen(stock) == 0))
 		return (0);
 	i = 0;
 	while (stock[i] != '\n' && stock[i])
 		i++;
-	*line = ft_n_strndup(stock, *line, i);
-	(i < ft_strlen(stock)) ? ft_spacesaver(&stock, &tmp, i) : ft_strdel(&stock);
+	ft_spacesaver(&stock, &tmp, line, i);
 	return (1);
 }

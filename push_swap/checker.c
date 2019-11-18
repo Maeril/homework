@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:49:20 by myener            #+#    #+#             */
-/*   Updated: 2019/10/28 15:23:11 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/18 17:30:18 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ static char		**get_instruct(char **inst)
 	i = 0;
 	while (stock[i])
 	{
-		if (stock[i] == '\n' && stock[i + 1] == '\n')
-			ps_output(1);
+		(stock[i] == '\n' && stock[i + 1] == '\n') ? ps_output(1) : 0;
 		i++;
 	}
 	inst = ft_strsplit(stock, '\n');
 	inst = append_return(inst);
+	ft_strdel(&stock);
 	return (inst);
 }
 
