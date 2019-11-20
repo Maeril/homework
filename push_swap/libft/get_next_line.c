@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 17:23:52 by myener            #+#    #+#             */
-/*   Updated: 2019/11/18 17:42:04 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/20 18:20:01 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void			ft_spacesaver(char **stock, char **tmp, char **line, size_t i)
 
 int				get_next_line(const int fd, char **line)
 {
-	size_t			i;
 	int				readsize;
 	char			buffer[BUFF_SIZE + 1];
 	static char		*stock = NULL;
@@ -60,12 +59,11 @@ int				get_next_line(const int fd, char **line)
 		if (ft_strchr(stock, '\n'))
 			break ;
 	}
-	((readsize < BUFF_SIZE) && (ft_strlen(stock) == 0)) ? free(stock) : 0;
 	if ((readsize < BUFF_SIZE) && (ft_strlen(stock) == 0))
+	{
+		free(stock);
 		return (0);
-	i = 0;
-	while (stock[i] != '\n' && stock[i])
-		i++;
-	ft_spacesaver(&stock, &tmp, line, i);
+	}
+	ft_spacesaver(&stock, &tmp, line, ft_linelen(stock));
 	return (1);
 }
