@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:53:33 by myener            #+#    #+#             */
-/*   Updated: 2019/10/29 15:36:29 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/20 19:35:37 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 # define PUSH_SWAP_H
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648
-# include <unistd.h>
+# include <errno.h>
+# include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
 # include "libft.h"
 
 typedef struct			s_psflag
