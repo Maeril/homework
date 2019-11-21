@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 19:33:20 by myener            #+#    #+#             */
-/*   Updated: 2019/11/20 19:36:58 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/21 17:07:50 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,26 @@
 # include <unistd.h>
 # include "libft.h"
 
-// typedef struct			s_psflag
-// {
+typedef struct			s_room  // for start room, end room, and classic in-between rooms.
+{
+        char            type;           // 's' if start room, 'e' if end room, 'c' if classic room.
+        int             ant_nb_base;    // nb of ants present from the start.
+        int             ant_nb_curr;    // nb of ants currently present in the room. can only be > 1 if type is 's' or 'e'.
+                                        // when equal to base nb, current iteration is the first.
+        char            *name;          // name / registration number for each room.
+        bool            full;           // true if room full (aka there's an ant in it) ; false otherwise.
+        char            **paths;        // directory containing all the connections this room possesses with other rooms.
+                                        // char tab and not int because start & end can have non-numerical names.
+    	struct s_room	*next;
+}						t_room;
 
-// }						t_psflag;
+typedef struct			s_ant   // a means of registrating each ant, and their progress through the maze.
+{
+	int             ant_nb;         // registration number for each ant, going from 1 to the max number of ants.
+	char	        *position;      // room they are located in currently. can be equal to any *name in t_gate or t_room.
+	struct s_pslist	*next;
+	struct s_pslist	*prev;          // may be unnecessary.
 
-// typedef struct			s_pslist
-// {
-// 	int				data;
-// 	char			type;
-// 	struct s_pslist	*next;
-// 	struct s_pslist	*prev;
-
-// }						t_pslist;
+}						t_ant;
 
 #endif
