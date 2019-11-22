@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 19:33:20 by myener            #+#    #+#             */
-/*   Updated: 2019/11/21 17:07:50 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/22 16:50:26 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648
 # include <errno.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -29,10 +30,9 @@ typedef struct			s_room  // for start room, end room, and classic in-between roo
                                         // when equal to base nb, current iteration is the first.
         char            *name;          // name / registration number for each room.
         bool            full;           // true if room full (aka there's an ant in it) ; false otherwise.
-        char            **paths;        // directory containing all the connections this room possesses with other rooms.
-                                        // char tab and not int because start & end can have non-numerical names.
+    	struct s_room	**paths;        // directory containing all the connections this room possesses with other rooms.
     	struct s_room	*next;
-}						t_room;
+}			        t_room;
 
 typedef struct			s_ant   // a means of registrating each ant, and their progress through the maze.
 {
@@ -41,6 +41,6 @@ typedef struct			s_ant   // a means of registrating each ant, and their progress
 	struct s_pslist	*next;
 	struct s_pslist	*prev;          // may be unnecessary.
 
-}						t_ant;
+}				t_ant;
 
 #endif
