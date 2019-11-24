@@ -8,14 +8,18 @@
 
 #include "push_swap.h"
 
-void	pile_print(t_pslist *curr)
+void	insertion_sort_saver(t_pslist *curr, int min, int stk, int pos)
 {
-	while (curr && curr->next)
+	while (curr)
 	{
-		printf("%d, ", curr->data);
+		if (curr->data < min)
+		{
+			min = curr->data;
+			stk = pos;
+		}
 		curr = curr->next;
+		pos++;
 	}
-	printf("%d.\n", curr->data);
 }
 
 t_pslist *insertion_sort(t_pslist **h_a, int size, t_psflag *flag)
@@ -34,25 +38,13 @@ t_pslist *insertion_sort(t_pslist **h_a, int size, t_psflag *flag)
 		min = (*h_a)->data;
 		pos = 1;
 		stk = 1;
-		while (curr)
-		{
-			if (curr->data < min)
-			{
-				min = curr->data;
-				stk = pos;
-			}
-			curr = curr->next;
-			pos++;
-		}
-		if (stk <= ((size + 1) / 2))
-			rot(h_a, stk - 1, flag);
-		else
-			rrot(h_a, (((size + 1) - stk)), flag);
+		insertion_sort_saver(curr, min, stk, pos);
+		(stk <= ((size + 1) / 2)) ? rot(h_a, stk - 1, flag)
+		: rrot(h_a, (((size + 1) - stk)), flag);
 		push(h_a, &head_b, flag);
 		size--;
 	}
-	if ((*h_a)->data > (*h_a)->next->data)
-		swap((*h_a), (*h_a)->next, flag);
+	((*h_a)->data > (*h_a)->next->data) ? swap((*h_a), (*h_a)->next, flag) : 0;
 	while (head_b)
 		push(&head_b, h_a, flag);
 	return ((*h_a));

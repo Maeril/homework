@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:37:08 by myener            #+#    #+#             */
-/*   Updated: 2019/11/24 16:49:26 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/24 18:08:07 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ int		rrot(t_pslist **head, int rot, t_psflag *f)
 	tail = (*head);
 	while (tail->next)
 		tail = tail->next;
-	f->ch = f->ch;
 	if ((*head)->next)
 		while (rot > 0)
 		{
