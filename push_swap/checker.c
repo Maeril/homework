@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:49:20 by myener            #+#    #+#             */
-/*   Updated: 2019/11/18 17:30:18 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/24 16:48:01 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_pslist		*convertto_list(char **argv, t_pslist *list, int *nb)
 	*nb = 0;
 	list = node_fill(list, ft_atoll(argv[i]));
 	head = list;
-	tmp = NULL;
+	tmp = list;
 	i++;
 	while (argv[i])
 	{

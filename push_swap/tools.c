@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 19:21:03 by myener            #+#    #+#             */
-/*   Updated: 2019/10/28 15:20:09 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/24 16:50:40 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ t_pslist	*push_swap_saver(int i, int nb, t_pslist *list, t_psflag *flag)
 		exit(0);
 	}
 	flag->t = nb + 1;
-	ps_quicksort(&list, 0, nb, flag);
+	if (i == 5)
+		insertion_sort(&list, 5, flag);
+	else
+		ps_quicksort(&list, 0, nb, flag);
 	return (list);
 }

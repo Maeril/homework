@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:37:08 by myener            #+#    #+#             */
-/*   Updated: 2019/10/16 18:06:26 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/24 16:49:26 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,10 @@ int		rrot(t_pslist **head, int rot, t_psflag *f)
 	t_pslist	*tail;
 
 	tmp = NULL;
-	tail = NULL;
+	tail = (*head);
+	while (tail->next)
+		tail = tail->next;
+	f->ch = f->ch;
 	if ((*head)->next)
 		while (rot > 0)
 		{
@@ -100,14 +103,12 @@ int		rrot(t_pslist **head, int rot, t_psflag *f)
 				((*head)->type == 'a' ? "rra " : "rrb "));
 			else
 				f->instruc = ft_strdup((*head)->type == 'a' ? "rra " : "rrb ");
-			tail = *head;
-			while (tail && tail->next)
-				tail = tail->next;
 			tmp = tail;
 			tail = tail->prev;
 			tmp->next = (*head);
 			(*head)->prev = tmp;
 			(*head) = (*head)->prev;
+			(*head)->prev = NULL;
 			tail->next = NULL;
 			rot--;
 		}

@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 19:33:20 by myener            #+#    #+#             */
-/*   Updated: 2019/11/22 16:50:26 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/23 21:33:17 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "libft.h"
+# include "libft/libft.h"
 
 typedef struct			s_room  // for start room, end room, and classic in-between rooms.
 {
+		int				x;				// easting coordinate.
+		int				y;				// northing coordinate.
         char            type;           // 's' if start room, 'e' if end room, 'c' if classic room.
         int             ant_nb_base;    // nb of ants present from the start.
         int             ant_nb_curr;    // nb of ants currently present in the room. can only be > 1 if type is 's' or 'e'.
@@ -31,7 +33,7 @@ typedef struct			s_room  // for start room, end room, and classic in-between roo
         char            *name;          // name / registration number for each room.
         bool            full;           // true if room full (aka there's an ant in it) ; false otherwise.
     	struct s_room	**paths;        // directory containing all the connections this room possesses with other rooms.
-    	struct s_room	*next;
+    	struct s_room	*next;			// may be unnecessary.
 }			        t_room;
 
 typedef struct			s_ant   // a means of registrating each ant, and their progress through the maze.
