@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:53:33 by myener            #+#    #+#             */
-/*   Updated: 2019/11/24 16:46:27 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/25 15:49:36 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int						duplicate_finder(t_pslist *list);
 void					flag_init(t_psflag *flag);
 char					**ft_spacesplit(char *str);
 int						incorrect_read(char **tab);
-t_pslist				*insertion_sort(t_pslist **h_a, int size, t_psflag *flag);
+t_pslist				*insertion_sort(t_pslist **h_a, int sz, t_psflag *f);
 void					list_free(t_pslist *head);
 int						max_min_checker(char **argv);
 t_pslist				*node_fill(t_pslist *node, int data);

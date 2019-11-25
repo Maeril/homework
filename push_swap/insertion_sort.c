@@ -1,51 +1,52 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   insertion_sort.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/19 14:13:23 by myener            #+#    #+#             */
-/*   Updated: 2019/08/19 14:15:55 by myener           ###   ########.fr       */
-/*   Updated: 2019/10/01 15:44:36 by myener           ###   ########.fr       */
+/*   Created: 2019/11/25 14:49:45 by myener            #+#    #+#             */
+/*   Updated: 2019/11/25 15:32:54 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	insertion_sort_saver(t_pslist *curr, int min, int stk, int pos)
+int			insert_sort_init(t_pslist *curr, int *min, int *t, int *pos)
 {
-	while (curr)
+	if (curr->data < *min)
 	{
-		if (curr->data < min)
-		{
-			min = curr->data;
-			stk = pos;
-		}
-		curr = curr->next;
-		pos++;
+		*min = curr->data;
+		*t = *pos;
 	}
+	(*pos)++;
+	return (1);
 }
 
-t_pslist *insertion_sort(t_pslist **h_a, int size, t_psflag *flag)
+t_pslist	*insertion_sort(t_pslist **h_a, int sz, t_psflag *f)
 {
 	int			min;
 	int			pos;
-	int			stk;
+	int			t;
 	t_pslist	*curr;
 	t_pslist	*head_b;
 
-	stk = 0;
+	t = 0;
 	head_b = NULL;
-	while (size > 2)
+	while (sz > 2)
 	{
 		curr = (*h_a);
 		min = (*h_a)->data;
 		pos = 1;
-		stk = 1;
-		insertion_sort_saver(curr, min, stk, pos);
-		(stk <= ((size + 1) / 2)) ? rot(h_a, stk - 1, flag)
-		: rrot(h_a, (((size + 1) - stk)), flag);
-		push(h_a, &head_b, flag);
-		size--;
+		t = 1;
+		while (curr)
+			curr = insert_sort_init(curr, &min, &t, &pos) ? curr->next : curr;
+		t <= (sz + 1) / 2 ? rot(h_a, t - 1, f) : rrot(h_a, ((sz + 1) - t), f);
+		push(h_a, &head_b, f);
+		sz--;
 	}
-	((*h_a)->data > (*h_a)->next->data) ? swap((*h_a), (*h_a)->next, flag) : 0;
+	((*h_a)->data > (*h_a)->next->data) ? swap((*h_a), (*h_a)->next, f) : 0;
 	while (head_b)
-		push(&head_b, h_a, flag);
+		push(&head_b, h_a, f);
 	return ((*h_a));
 }
