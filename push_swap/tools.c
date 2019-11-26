@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 19:21:03 by myener            #+#    #+#             */
-/*   Updated: 2019/11/26 19:56:50 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/26 20:04:28 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int			max_min_checker(char **argv)
 	while (argv[i])
 	{
 		if (ft_atoll(argv[i]) > MAX_INT || ft_atoll(argv[i]) < MIN_INT
-			|| ft_strlen(argv[i]) > 10 )
+			|| ft_strlen(argv[i]) > 10)
 			return (1);
 		i++;
 	}
