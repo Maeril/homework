@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:53:33 by myener            #+#    #+#             */
-/*   Updated: 2019/11/25 15:49:36 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/27 19:07:29 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void					flag_init(t_psflag *flag);
 char					**ft_spacesplit(char *str);
 int						incorrect_read(char **tab);
 t_pslist				*insertion_sort(t_pslist **h_a, int sz, t_psflag *f);
+void    				instructions_displayer(int code, int nb);
 void					list_free(t_pslist *head);
 int						max_min_checker(char **argv);
 t_pslist				*node_fill(t_pslist *node, int data);
@@ -70,5 +71,6 @@ int						rrot(t_pslist **head, int nb, t_psflag *flag);
 int						same_data(t_pslist *curr, int fin);
 int						swap(t_pslist *p1, t_pslist *p2, t_psflag *flag);
 void					tab_free(char **tab);
+char    				**trim_comments(char **in, int i);
 
 #endif

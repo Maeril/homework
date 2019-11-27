@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 19:21:03 by myener            #+#    #+#             */
-/*   Updated: 2019/11/26 20:04:28 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/27 19:21:39 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,28 +41,43 @@ int			max_min_checker(char **argv)
 void		ps_displayer(char **out)
 {
 	int	i;
+	int	nb;
 
 	i = 0;
+	nb = 0;
+	instructions_displayer(2, 0);
 	while (out[i])
 	{
 		if (ft_strcmp(out[i], "na"))
+		{
 			ft_putendl(out[i]);
+			nb++;
+		}
 		free(out[i]);
 		i++;
 	}
+	instructions_displayer(3, nb);
 }
 
 int			ps_output(int i)
 {
 	if (i == 1)
 	{
+		ft_putstr("\033[1;31m");
 		write(2, "Error\n", 6);
 		exit(0);
 	}
 	else if (i == 2)
+	{
+		ft_putstr("\033[1;33m");
 		write(1, "KO\n", 3);
+	}
 	else if (i == 3)
+	{
+		ft_putstr("\033[1;32m");
 		write(1, "OK\n", 3);
+	}
+	ft_putstr("\033[0m");
 	return (0);
 }
 

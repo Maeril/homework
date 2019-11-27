@@ -6,11 +6,24 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:49:20 by myener            #+#    #+#             */
-/*   Updated: 2019/11/24 16:48:01 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/27 19:22:54 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void			display_tab(char **tab, const char *name) // a supprimer: debug
+{
+	int i;
+
+	printf("\nContent of %s:\n", name);
+	i = 0;
+	while (tab[i])
+	{
+		ft_putstr(tab[i]);
+		i++;
+	}
+}
 
 t_pslist		*convertto_list(char **argv, t_pslist *list, int *nb)
 {
@@ -39,15 +52,26 @@ t_pslist		*convertto_list(char **argv, t_pslist *list, int *nb)
 
 static char		**append_return(char **in)
 {
-	int	i;
+	int		i;
+	int		j;
+	int		len;
+	char	**out;
 
 	i = 0;
+	j = 0;
+	len = 0;
+	out = NULL;
 	while (in[i])
 	{
 		in[i] = ft_free_join(in[i], "\n");
 		i++;
 	}
-	return (in);
+	// display_tab(in, "in"); // debug
+	if (in[0][1] == '[' && in[0][2] == '1' && in[0][3] == ';')
+		out = trim_comments(in, i);
+	// if (out != NULL)
+	// 	display_tab(out, "out"); // debug
+	return (out ? out : in);
 }
 
 static char		**get_instruct(char **inst)
@@ -119,6 +143,7 @@ void			checker(t_pslist *list, t_psflag *flag, char **argv)
 		ps_output(1);
 	}
 	instructions = NULL;
+	instructions_displayer(1, 0);
 	instructions = get_instruct(instructions);
 	if (bad_instructions(instructions))
 	{
@@ -133,5 +158,4 @@ void			checker(t_pslist *list, t_psflag *flag, char **argv)
 		check_list(list) ? ps_output(2) : ps_output(3);
 	list_free(list);
 	(flag->instruc) ? free(flag->instruc) : 0;
-	exit(0);
 }

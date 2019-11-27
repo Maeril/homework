@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 15:49:54 by myener            #+#    #+#              #
-#    Updated: 2019/11/23 23:44:59 by myener           ###   ########.fr        #
+#    Updated: 2019/11/27 17:20:24 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ NAME_CH = checker
 SRCDIR	:=	./
 OBJDIR	:=	./objs
 
-SRCS_NAME_PS =	checker.c				\
+SRCS_NAME_PS =	bonus.c					\
+				checker.c				\
 				checker_vetting.c		\
 				insertion_sort.c		\
 				list_manip.c			\
@@ -27,7 +28,8 @@ SRCS_NAME_PS =	checker.c				\
 				split.c					\
 				tools.c
 
-SRCS_NAME_CH =	checker.c				\
+SRCS_NAME_CH =	bonus.c					\
+				checker.c				\
 				checker_vetting.c		\
 				insertion_sort.c		\
 				list_manip.c			\
@@ -53,10 +55,12 @@ all: $(NAME_PS) $(NAME_CH)
 $(NAME_PS): $(OBJS_PS) $(LIBFT) push_swap.h
 	@printf "\e[36m Creating: \e[32m$(NAME_PS)\n"
 	@gcc $(OBJS_PS) $(LIBFT) -o $(NAME_PS)
+	@printf "\033[0m"
 
 $(NAME_CH): $(OBJS_CH) $(LIBPRINTF) $(LIBFT) push_swap.h
 	@printf "\e[36m Creating: \e[32m$(NAME_CH)\n"
 	@gcc $(OBJS_CH) $(LIBFT) -o $(NAME_CH)
+	@printf "\033[0m"
 
 $(LIBFT):
 	@make -C libft
@@ -65,6 +69,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@printf "\e[34m Compiling: \e[0m$< -> $@\n"
 	@mkdir -p $(dir $@)
 	@gcc $(FLAGS) -c $< -o $@
+	@printf "\033[0m"
 
 clean:
 	@printf "\e[34m Cleaning push_swap:	\e[0m$(OBJDIR)\e[0m\n"
@@ -72,6 +77,7 @@ clean:
 	@rm -f $(OBJ_CH) $@
 	@rm -rf $(OBJDIR)
 	@make clean -C libft
+	@printf "\033[0m"
 
 fclean: clean
 	@printf "\e[36m Removing: \e[0m"
@@ -81,6 +87,7 @@ fclean: clean
 	@rm -f $(NAME_PS) $@
 	@rm -f $(NAME_CH) $@
 	@rm -rf libft/libft.a
+	@printf "\033[0m"
 
 re: fclean all
 
