@@ -6,27 +6,19 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:37:08 by myener            #+#    #+#             */
-/*   Updated: 2019/11/24 18:08:07 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/28 22:55:58 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		same_data(t_pslist *curr, int fin)
+int	push_saver(t_pslist **src, t_pslist **dest, t_psflag *flag)
 {
-	int	i;
-
-	i = 0;
-	while (curr && i < fin)
-	{
-		if (!curr->next)
-			break ;
-		if (curr->data != curr->next->data)
-			return (0);
-		curr = curr->next;
-		i++;
-	}
-	return (1);
+	if (!(*src))
+		return (1);
+	pile_print_graph((*src), flag, 0);
+	pile_print_graph((*dest), flag, 1);
+	return (0);
 }
 
 int		push(t_pslist **src, t_pslist **dest, t_psflag *flag)
@@ -34,7 +26,7 @@ int		push(t_pslist **src, t_pslist **dest, t_psflag *flag)
 	t_pslist	*tmp;
 	t_pslist	*tmp_dest;
 
-	if (!(*src))
+	if (push_saver(src, dest, flag))
 		return (0);
 	tmp = (*src)->next;
 	(*src)->type = ((*src)->type == 'a' ? 'b' : 'a');
@@ -80,7 +72,7 @@ int		rot(t_pslist **head, int rot, t_psflag *f)
 			tmp->prev = tail;
 			tmp->next = NULL;
 			(*head)->prev = NULL;
-			rot--;
+			rot -= pile_print_graph((*head), f, 0);
 		}
 	return (1);
 }
@@ -109,7 +101,7 @@ int		rrot(t_pslist **head, int rot, t_psflag *f)
 			(*head) = (*head)->prev;
 			(*head)->prev = NULL;
 			tail->next = NULL;
-			rot--;
+			rot-= pile_print_graph((*head), f, 0);
 		}
 	return (1);
 }
@@ -130,5 +122,6 @@ int		swap(t_pslist *p1, t_pslist *p2, t_psflag *f)
 		(p1->type == 'a' ? "sa " : "sb "));
 	else
 		f->instruc = ft_strdup((p1->type == 'a' ? "sa " : "sb "));
+	pile_print_graph(p1, f, 0);
 	return (1);
 }

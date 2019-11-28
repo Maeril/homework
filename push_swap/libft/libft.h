@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 13:57:15 by myener            #+#    #+#             */
-/*   Updated: 2019/11/22 17:38:20 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/28 21:56:39 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ char			**ft_strsplit(char const *s, char c);
 char			*ft_strstr(const char *str, const char *find);
 char			*ft_strsub(const char *s, unsigned int start, size_t len);
 char			*ft_strtrim(const char *s);
+int				ft_tablen(char **tab);
 int				ft_tolower(int c);
 int				ft_toupper(int c);
 int				get_next_line(const int fd, char **line);

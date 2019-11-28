@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 19:21:03 by myener            #+#    #+#             */
-/*   Updated: 2019/11/28 12:39:39 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/28 22:40:02 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void		flag_init(t_psflag *flag)
 	flag->pivot = 0;
 	flag->ps = 0;
 	flag->t = 0;
+	flag->visual = 0;
 }
 
 int			max_min_checker(char **argv)

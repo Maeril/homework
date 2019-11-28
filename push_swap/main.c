@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:38:48 by myener            #+#    #+#             */
-/*   Updated: 2019/10/29 15:43:59 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/28 22:22:39 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ static int	bad_arg_check_saver(char *arg)
 			i++;
 		}
 	}
-	else if (arg[i] >= '0' && arg[i] <= '9')
+	else if ((arg[i] >= '0' && arg[i] <= '9') || arg[i] == ' ')
 		while (arg[i])
 		{
-			if (!(arg[i] >= '0' && arg[i] <= '9'))
+			if ((!(arg[i] >= '0' && arg[i] <= '9')) && arg[i] != ' ')
 				ps_output(1);
 			i++;
 		}
@@ -68,13 +68,15 @@ static char	**bad_arg_checker_special(char **tab)
 	return (tab);
 }
 
-static char	**bad_arg_checker(char **tab)
+static char	**bad_arg_checker(char **tab, t_psflag *flag)
 {
 	int		i;
 
-	i = 1;
 	if (!tab[2])
 		tab = bad_arg_checker_special(tab);
+	if ((flag->visual = (!(ft_strcmp(tab[1], "-v")))))
+		tab = visual_flag_remover(tab);
+	i = 1;
 	while (tab[i])
 	{
 		if ((tab[i][0] == '-' || tab[i][0] == '+')
@@ -98,10 +100,10 @@ int			main(int ac, char **av)
 	str = "/Users/myener/Desktop/homework/push_swap/push_swap";
 	if (!(ac >= 2))
 		return (0);
-	av = bad_arg_checker(av);
+	av = bad_arg_checker(av, &flag);
 	if ((flag.ch = (!ft_strcmp(av[0], "./checker")) && av[1]))
 		checker(list, &flag, av);
-	else if ((flag.ps = (!ft_strcmp(av[0], "./push_swap")
+	else if (((flag.ps = (!ft_strcmp(av[0], "./push_swap") || flag.visual)
 	|| !ft_strcmp(av[0], str))))
 		push_swap(list, &flag, av);
 	else if ((flag.ch = (!ft_strcmp(av[0], "./checker")) && !av[1]))

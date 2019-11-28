@@ -6,40 +6,27 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:49:20 by myener            #+#    #+#             */
-/*   Updated: 2019/11/27 19:22:54 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/28 22:36:47 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void			display_tab(char **tab, const char *name) // a supprimer: debug
-{
-	int i;
-
-	printf("\nContent of %s:\n", name);
-	i = 0;
-	while (tab[i])
-	{
-		ft_putstr(tab[i]);
-		i++;
-	}
-}
-
-t_pslist		*convertto_list(char **argv, t_pslist *list, int *nb)
+t_pslist		*convertto_list(char **av, t_pslist *list, int *nb, t_psflag *f)
 {
 	int			i;
 	t_pslist	*head;
 	t_pslist	*tmp;
 
-	i = 1;
+	i = f->visual ? 0 : 1;
 	*nb = 0;
-	list = node_fill(list, ft_atoll(argv[i]));
+	list = node_fill(list, ft_atoll(av[i]));
 	head = list;
 	tmp = list;
 	i++;
-	while (argv[i])
+	while (av[i])
 	{
-		list->next = node_fill(list->next, ft_atoll(argv[i]));
+		list->next = node_fill(list->next, ft_atoll(av[i]));
 		list = list->next;
 		list->prev = tmp;
 		tmp = list;
@@ -50,7 +37,7 @@ t_pslist		*convertto_list(char **argv, t_pslist *list, int *nb)
 	return (head);
 }
 
-static char		**append_return(char **in)
+static char			**append_return(char **in)
 {
 	int		i;
 	int		j;
@@ -66,11 +53,8 @@ static char		**append_return(char **in)
 		in[i] = ft_free_join(in[i], "\n");
 		i++;
 	}
-	// display_tab(in, "in"); // debug
 	if (in[0][1] == '[' && in[0][2] == '1' && in[0][3] == ';')
 		out = trim_comments(in, i);
-	// if (out != NULL)
-	// 	display_tab(out, "out"); // debug
 	return (out ? out : in);
 }
 
@@ -136,7 +120,7 @@ void			checker(t_pslist *list, t_psflag *flag, char **argv)
 	int		nb;
 	char	**instructions;
 
-	list = convertto_list(argv, list, &nb);
+	list = convertto_list(argv, list, &nb, flag);
 	if (max_min_checker(argv) || duplicate_finder(list))
 	{
 		list_free(list);

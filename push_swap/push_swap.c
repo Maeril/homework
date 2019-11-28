@@ -6,11 +6,28 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 13:52:32 by myener            #+#    #+#             */
-/*   Updated: 2019/10/28 14:58:27 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/28 22:47:57 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int		same_data(t_pslist *curr, int fin)
+{
+	int	i;
+
+	i = 0;
+	while (curr && i < fin)
+	{
+		if (!curr->next)
+			break ;
+		if (curr->data != curr->next->data)
+			return (0);
+		curr = curr->next;
+		i++;
+	}
+	return (1);
+}
 
 static int	pattern_match(char *s1, char *s2)
 {
@@ -58,7 +75,7 @@ char		**push_swap(t_pslist *list, t_psflag *flag, char **argv)
 	int			ret;
 	char		**output;
 
-	list = convertto_list(argv, list, &nb);
+	list = convertto_list(argv, list, &nb, flag);
 	((ret = duplicate_finder(list))) && flag->ps ? list_free(list) : 0;
 	ret && flag->ps ? ps_output(1) : 0;
 	i = check_list(list);
