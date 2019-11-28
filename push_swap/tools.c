@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 19:21:03 by myener            #+#    #+#             */
-/*   Updated: 2019/11/27 19:21:39 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/28 12:39:39 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void		ps_displayer(char **out)
 
 int			ps_output(int i)
 {
+	ft_putstr("\e[4m\033[1;37mResult\e[0m:\n\033[0m");
 	if (i == 1)
 	{
 		ft_putstr("\033[1;31m");

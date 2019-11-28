@@ -1,6 +1,15 @@
 {
-    "python.linting.pylintEnabled": true,
-    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.enabled": false,
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    // Controls if quick suggestions should show up while typing
+    "editor.quickSuggestions": false,
+
+    // Controls the delay in ms after which quick suggestions will show up.
+    "editor.quickSuggestionsDelay": 10,
+
+    // Enable word based suggestions
+    "editor.wordBasedSuggestions": false,
     "python.pythonPath": "/Users/myener/.brew/opt/python/bin/python3.7",
     "files.associations": {
         "lem_in.h": "c"
