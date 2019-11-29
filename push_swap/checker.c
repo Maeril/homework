@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:49:20 by myener            #+#    #+#             */
-/*   Updated: 2019/11/28 22:36:47 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/29 14:38:39 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_pslist		*convertto_list(char **av, t_pslist *list, int *nb, t_psflag *f)
 	return (head);
 }
 
-static char			**append_return(char **in)
+static char		**append_return(char **in, t_pslist *list)
 {
 	int		i;
 	int		j;
@@ -53,12 +53,19 @@ static char			**append_return(char **in)
 		in[i] = ft_free_join(in[i], "\n");
 		i++;
 	}
+	if (i == 0 && !check_list(list))
+	{
+		list_free(list);
+		in ? tab_free(in) : 0;
+		ps_output(3);
+		exit(0);
+	}
 	if (in[0][1] == '[' && in[0][2] == '1' && in[0][3] == ';')
 		out = trim_comments(in, i);
 	return (out ? out : in);
 }
 
-static char		**get_instruct(char **inst)
+static char		**get_instruct(char **inst, t_pslist *list)
 {
 	int		i;
 	char	*tmp;
@@ -82,8 +89,8 @@ static char		**get_instruct(char **inst)
 		i++;
 	}
 	inst = ft_strsplit(stock, '\n');
-	inst = append_return(inst);
 	ft_strdel(&stock);
+	inst = append_return(inst, list);
 	return (inst);
 }
 
@@ -128,7 +135,7 @@ void			checker(t_pslist *list, t_psflag *flag, char **argv)
 	}
 	instructions = NULL;
 	instructions_displayer(1, 0);
-	instructions = get_instruct(instructions);
+	instructions = get_instruct(instructions, list);
 	if (bad_instructions(instructions))
 	{
 		list_free(list);

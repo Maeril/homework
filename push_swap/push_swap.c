@@ -6,13 +6,13 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 13:52:32 by myener            #+#    #+#             */
-/*   Updated: 2019/11/28 22:47:57 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/29 12:48:02 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		same_data(t_pslist *curr, int fin)
+int			same_data(t_pslist *curr, int fin)
 {
 	int	i;
 

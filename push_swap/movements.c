@@ -6,13 +6,13 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:37:08 by myener            #+#    #+#             */
-/*   Updated: 2019/11/28 22:55:58 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/29 14:07:54 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	push_saver(t_pslist **src, t_pslist **dest, t_psflag *flag)
+int		push_saver(t_pslist **src, t_pslist **dest, t_psflag *flag)
 {
 	if (!(*src))
 		return (1);
@@ -72,7 +72,7 @@ int		rot(t_pslist **head, int rot, t_psflag *f)
 			tmp->prev = tail;
 			tmp->next = NULL;
 			(*head)->prev = NULL;
-			rot -= pile_print_graph((*head), f, 0);
+			rot -= f->t < 100 ? pile_print_graph((*head), f, 0) : 1;
 		}
 	return (1);
 }
@@ -101,7 +101,7 @@ int		rrot(t_pslist **head, int rot, t_psflag *f)
 			(*head) = (*head)->prev;
 			(*head)->prev = NULL;
 			tail->next = NULL;
-			rot-= pile_print_graph((*head), f, 0);
+			rot -= f->t < 100 ? pile_print_graph((*head), f, 0) : 1;
 		}
 	return (1);
 }

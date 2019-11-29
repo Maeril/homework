@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:53:33 by myener            #+#    #+#             */
-/*   Updated: 2019/11/28 22:43:36 by myener           ###   ########.fr       */
+/*   Updated: 2019/11/29 12:48:42 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct			s_pslist
 
 }						t_pslist;
 
-// char					**append_return(char **in);
 int						bad_instructions(char **instruc);
 void					checker(t_pslist *list, t_psflag *flag, char **argv);
 int						check_length(t_pslist *list);
@@ -55,11 +54,12 @@ void					flag_init(t_psflag *flag);
 char					**ft_spacesplit(char *str);
 int						incorrect_read(char **tab);
 t_pslist				*insertion_sort(t_pslist **h_a, int sz, t_psflag *f);
-void    				instructions_displayer(int code, int nb);
+void					instructions_displayer(int code, int nb);
 void					list_free(t_pslist *head);
 int						max_min_checker(char **argv);
 t_pslist				*node_fill(t_pslist *node, int data);
-int						pile_print_graph(t_pslist *head, t_psflag *flag, int nb);
+int						pile_print_graph(t_pslist *head, t_psflag *flag,
+											int nb);
 void					ps_displayer(char **out);
 t_pslist				*ps_quicksort(t_pslist **head_a, int deb,
 						int fin, t_psflag *flag);
@@ -75,7 +75,7 @@ int						rrot(t_pslist **head, int nb, t_psflag *flag);
 int						same_data(t_pslist *curr, int fin);
 int						swap(t_pslist *p1, t_pslist *p2, t_psflag *flag);
 void					tab_free(char **tab);
-char    				**trim_comments(char **in, int i);
+char					**trim_comments(char **in, int i);
 char					**visual_flag_remover(char **tab);
 
 #endif
