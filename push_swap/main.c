@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:38:48 by myener            #+#    #+#             */
-/*   Updated: 2019/11/28 22:22:39 by myener           ###   ########.fr       */
+/*   Updated: 2019/12/02 15:30:57 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ int			main(int ac, char **av)
 	str = "/Users/myener/Desktop/homework/push_swap/push_swap";
 	if (!(ac >= 2))
 		return (0);
+	if (((!ft_strcmp(av[1], "")) || (av[1][0] == ' ')) && !av[2])
+		ps_output(1);
 	av = bad_arg_checker(av, &flag);
 	if ((flag.ch = (!ft_strcmp(av[0], "./checker")) && av[1]))
 		checker(list, &flag, av);
