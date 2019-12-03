@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:49:20 by myener            #+#    #+#             */
-/*   Updated: 2019/11/29 14:38:39 by myener           ###   ########.fr       */
+/*   Updated: 2019/12/03 12:57:55 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ static char		**append_return(char **in, t_pslist *list)
 		in[i] = ft_free_join(in[i], "\n");
 		i++;
 	}
-	if (i == 0 && !check_list(list))
+	if (i == 0)
 	{
-		list_free(list);
 		in ? tab_free(in) : 0;
-		ps_output(3);
+		check_list(list) ? ps_output(2) : ps_output(3);
+		list_free(list);
 		exit(0);
 	}
 	if (in[0][1] == '[' && in[0][2] == '1' && in[0][3] == ';')
@@ -94,32 +94,33 @@ static char		**get_instruct(char **inst, t_pslist *list)
 	return (inst);
 }
 
-static t_pslist	*apply_instruct(char **in, t_pslist *h_a, t_psflag *f)
+static t_pslist	*apply_instruct(char **in, t_pslist *ha, t_psflag *f)
 {
 	int			i;
 	int			pa_pb;
-	t_pslist	*h_b;
+	t_pslist	*hb;
 
 	i = 0;
 	pa_pb = 0;
-	h_b = NULL;
+	hb = NULL;
 	while (in[i])
 	{
-		if (!h_b && (cmp(in[i], "rrr\n") || cmp(in[i], "rr\n")
-		|| cmp(in[i], "ss\n")))
+		if (!hb && (cmp(in[i], "rrr\n") || cmp(in[i], "rr\n")
+		|| cmp(in[i], "ss\n") || cmp(in[i], "rb\n")
+		|| cmp(in[i], "rrb\n") || cmp(in[i], "sb\n")))
 			break ;
-		cmp(in[i], "sa\n") || cmp(in[i], "ss\n") ? swap(h_a, h_a->next, f) : 0;
-		cmp(in[i], "sb\n") || cmp(in[i], "ss\n") ? swap(h_b, h_b->next, f) : 0;
-		pa_pb += (!(ft_strcmp(in[i], "pa\n"))) ? push(&h_b, &h_a, f) : 0;
-		pa_pb -= (!(ft_strcmp(in[i], "pb\n"))) ? push(&h_a, &h_b, f) : 0;
-		cmp(in[i], "ra\n") || cmp(in[i], "rr\n") ? rot(&h_a, 1, f) : 0;
-		cmp(in[i], "rb\n") || cmp(in[i], "rr\n") ? rot(&h_b, 1, f) : 0;
-		cmp(in[i], "rra\n") || cmp(in[i], "rrr\n") ? rrot(&h_a, 1, f) : 0;
-		cmp(in[i], "rrb\n") || cmp(in[i], "rrr\n") ? rrot(&h_b, 1, f) : 0;
+		cmp(in[i], "sa\n") || cmp(in[i], "ss\n") ? swap(ha, ha->next, f) : 0;
+		cmp(in[i], "sb\n") || cmp(in[i], "ss\n") ? swap(hb, hb->next, f) : 0;
+		pa_pb += (!(ft_strcmp(in[i], "pa\n"))) ? push(&hb, &ha, f) : 0;
+		pa_pb -= (!(ft_strcmp(in[i], "pb\n"))) ? push(&ha, &hb, f) : 0;
+		cmp(in[i], "ra\n") || cmp(in[i], "rr\n") ? rot(&ha, 1, f) : 0;
+		cmp(in[i], "rb\n") || cmp(in[i], "rr\n") ? rot(&hb, 1, f) : 0;
+		cmp(in[i], "rra\n") || cmp(in[i], "rrr\n") ? rrot(&ha, 1, f) : 0;
+		cmp(in[i], "rrb\n") || cmp(in[i], "rrr\n") ? rrot(&hb, 1, f) : 0;
 		i++;
 	}
 	pa_pb < 0 ? ps_output(2) : 0;
-	return (pa_pb < 0 ? NULL : h_a);
+	return (pa_pb < 0 ? NULL : ha);
 }
 
 void			checker(t_pslist *list, t_psflag *flag, char **argv)
