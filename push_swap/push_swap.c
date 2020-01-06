@@ -6,69 +6,49 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 13:52:32 by myener            #+#    #+#             */
-/*   Updated: 2019/11/29 12:48:02 by myener           ###   ########.fr       */
+/*   Updated: 2020/01/06 19:04:38 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			same_data(t_pslist *curr, int fin)
+static void		ps_displayer(char **out)
 {
 	int	i;
+	int	nb;
 
 	i = 0;
-	while (curr && i < fin)
+	nb = 0;
+	instructions_displayer(2, 0);
+	while (out[i])
 	{
-		if (!curr->next)
-			break ;
-		if (curr->data != curr->next->data)
-			return (0);
-		curr = curr->next;
-		i++;
-	}
-	return (1);
-}
-
-static int	pattern_match(char *s1, char *s2)
-{
-	if ((!ft_strcmp(s1, "rra") && !ft_strcmp(s2, "ra"))
-		|| (!ft_strcmp(s1, "ra") && !ft_strcmp(s2, "rra"))
-		|| (!ft_strcmp(s1, "pa") && !ft_strcmp(s2, "pb"))
-		|| (!ft_strcmp(s1, "pb") && !ft_strcmp(s2, "pa"))
-		|| (!ft_strcmp(s1, "sa") && !ft_strcmp(s2, "sa"))
-		|| (!ft_strcmp(s1, "sb") && !ft_strcmp(s2, "sb")))
-		return (1);
-	return (0);
-}
-
-static char	**papb_cleaner(char **tab)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (tab[i])
-	{
-		if (ft_strcmp(tab[i], "na"))
+		if (ft_strcmp(out[i], "na"))
 		{
-			j = i + 1;
-			while (tab[j] && !ft_strcmp(tab[j], "na"))
-				j++;
-			if (tab[j] && pattern_match(tab[i], tab[j]))
-			{
-				ft_bzero(tab[i], ft_strlen(tab[i]));
-				tab[i] = ft_free_join(tab[i], "na");
-				ft_bzero(tab[j], ft_strlen(tab[j]));
-				tab[j] = ft_free_join(tab[j], "na");
-				i -= (i > 0) ? 2 : 1;
-			}
+			ft_putendl(out[i]);
+			nb++;
 		}
+		free(out[i]);
 		i++;
 	}
-	return (tab);
+	instructions_displayer(3, nb);
 }
 
-char		**push_swap(t_pslist *list, t_psflag *flag, char **argv)
+static t_pslist	*push_swap_saver(int i, int nb, t_pslist *list, t_psflag *flag)
+{
+	if ((i = check_length(list)) == 0)
+	{
+		list_free(list);
+		exit(0);
+	}
+	flag->t = nb + 1;
+	if (i == 5)
+		insertion_sort(&list, 5, flag);
+	else
+		ps_quicksort(&list, 0, nb, flag);
+	return (list);
+}
+
+char			**push_swap(t_pslist *list, t_psflag *flag, char **argv)
 {
 	int			i;
 	int			nb;
@@ -86,8 +66,8 @@ char		**push_swap(t_pslist *list, t_psflag *flag, char **argv)
 		(i == 0 && flag->ps) ? exit(0) : 0;
 	}
 	output = flag->instruc ? ft_spacesplit(flag->instruc) : NULL;
-	output = output && ft_strlen(flag->instruc) > 4 ?
-	papb_cleaner(output) : output;
+	output && ft_strlen(flag->instruc) > 4 ? papb_cleaner(output) : 0;
+	output && ft_strlen(flag->instruc) > 4 ? rotate_cleaner(output, flag) : 0;
 	if (flag->ch)
 		return (flag->instruc ? output : NULL);
 	flag->ps ? ps_displayer(output) : 0;

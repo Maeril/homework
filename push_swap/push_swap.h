@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:53:33 by myener            #+#    #+#             */
-/*   Updated: 2019/11/29 12:48:42 by myener           ###   ########.fr       */
+/*   Updated: 2020/01/06 18:50:46 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void					instructions_displayer(int code, int nb);
 void					list_free(t_pslist *head);
 int						max_min_checker(char **argv);
 t_pslist				*node_fill(t_pslist *node, int data);
+void	   				papb_cleaner(char **tab);
 int						pile_print_graph(t_pslist *head, t_psflag *flag,
 											int nb);
-void					ps_displayer(char **out);
 t_pslist				*ps_quicksort(t_pslist **head_a, int deb,
 						int fin, t_psflag *flag);
 int						ps_output(int i);
@@ -68,9 +68,8 @@ int						push(t_pslist **src, t_pslist **dest,
 						t_psflag *flag);
 char					**push_swap(t_pslist *list, t_psflag *flag,
 						char **argv);
-t_pslist				*push_swap_saver(int i, int nb, t_pslist *list,
-						t_psflag *flag);
 int						rot(t_pslist **head, int nb, t_psflag *flag);
+void        			rotate_cleaner(char **tab, t_psflag *flag);
 int						rrot(t_pslist **head, int nb, t_psflag *flag);
 int						same_data(t_pslist *curr, int fin);
 int						swap(t_pslist *p1, t_pslist *p2, t_psflag *flag);

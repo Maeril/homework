@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/16 15:49:54 by myener            #+#    #+#              #
-#    Updated: 2019/11/27 17:20:24 by myener           ###   ########.fr        #
+#    Updated: 2020/01/06 18:50:41 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ OBJDIR	:=	./objs
 SRCS_NAME_PS =	bonus.c					\
 				checker.c				\
 				checker_vetting.c		\
+				cleaner.c				\
 				insertion_sort.c		\
 				list_manip.c			\
 				main.c					\
@@ -31,6 +32,7 @@ SRCS_NAME_PS =	bonus.c					\
 SRCS_NAME_CH =	bonus.c					\
 				checker.c				\
 				checker_vetting.c		\
+				cleaner.c				\
 				insertion_sort.c		\
 				list_manip.c			\
 				main.c					\

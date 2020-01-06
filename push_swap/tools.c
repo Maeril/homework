@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 19:21:03 by myener            #+#    #+#             */
-/*   Updated: 2019/11/28 22:40:02 by myener           ###   ########.fr       */
+/*   Updated: 2020/01/06 16:30:10 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,21 @@ int			max_min_checker(char **argv)
 	return (0);
 }
 
-void		ps_displayer(char **out)
+int			same_data(t_pslist *curr, int fin)
 {
 	int	i;
-	int	nb;
 
 	i = 0;
-	nb = 0;
-	instructions_displayer(2, 0);
-	while (out[i])
+	while (curr && i < fin)
 	{
-		if (ft_strcmp(out[i], "na"))
-		{
-			ft_putendl(out[i]);
-			nb++;
-		}
-		free(out[i]);
+		if (!curr->next)
+			break ;
+		if (curr->data != curr->next->data)
+			return (0);
+		curr = curr->next;
 		i++;
 	}
-	instructions_displayer(3, nb);
+	return (1);
 }
 
 int			ps_output(int i)
@@ -83,17 +79,4 @@ int			ps_output(int i)
 	return (0);
 }
 
-t_pslist	*push_swap_saver(int i, int nb, t_pslist *list, t_psflag *flag)
-{
-	if ((i = check_length(list)) == 0)
-	{
-		list_free(list);
-		exit(0);
-	}
-	flag->t = nb + 1;
-	if (i == 5)
-		insertion_sort(&list, 5, flag);
-	else
-		ps_quicksort(&list, 0, nb, flag);
-	return (list);
-}
+
