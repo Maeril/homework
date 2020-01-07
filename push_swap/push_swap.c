@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 13:52:32 by myener            #+#    #+#             */
-/*   Updated: 2020/01/06 19:04:38 by myener           ###   ########.fr       */
+/*   Updated: 2020/01/07 19:34:33 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,7 @@ char			**push_swap(t_pslist *list, t_psflag *flag, char **argv)
 		(i == 0 && flag->ps) ? exit(0) : 0;
 	}
 	output = flag->instruc ? ft_spacesplit(flag->instruc) : NULL;
-	output && ft_strlen(flag->instruc) > 4 ? papb_cleaner(output) : 0;
-	output && ft_strlen(flag->instruc) > 4 ? rotate_cleaner(output, flag) : 0;
+	output && ft_strlen(flag->instruc) > 4 ? papb_cleaner(output, flag) : 0;
 	if (flag->ch)
 		return (flag->instruc ? output : NULL);
 	flag->ps ? ps_displayer(output) : 0;

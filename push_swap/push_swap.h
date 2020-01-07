@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:53:33 by myener            #+#    #+#             */
-/*   Updated: 2020/01/06 18:50:46 by myener           ###   ########.fr       */
+/*   Updated: 2020/01/07 19:34:31 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 typedef struct			s_psflag
 {
 	int		ch;
-	int		ps;
-	int		pivot;
-	int		nr;
 	int		np;
+	int		nr;
+	int		pivot;
+	int		ps;
 	int		t;
 	int		visual;
 	char	*instruc;
@@ -58,7 +58,7 @@ void					instructions_displayer(int code, int nb);
 void					list_free(t_pslist *head);
 int						max_min_checker(char **argv);
 t_pslist				*node_fill(t_pslist *node, int data);
-void	   				papb_cleaner(char **tab);
+void					papb_cleaner(char **tab, t_psflag *flag);
 int						pile_print_graph(t_pslist *head, t_psflag *flag,
 											int nb);
 t_pslist				*ps_quicksort(t_pslist **head_a, int deb,
@@ -69,7 +69,6 @@ int						push(t_pslist **src, t_pslist **dest,
 char					**push_swap(t_pslist *list, t_psflag *flag,
 						char **argv);
 int						rot(t_pslist **head, int nb, t_psflag *flag);
-void        			rotate_cleaner(char **tab, t_psflag *flag);
 int						rrot(t_pslist **head, int nb, t_psflag *flag);
 int						same_data(t_pslist *curr, int fin);
 int						swap(t_pslist *p1, t_pslist *p2, t_psflag *flag);

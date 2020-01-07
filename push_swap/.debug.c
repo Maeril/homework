@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   .debug_pile_print.c                                :+:      :+:    :+:   */
+/*   .debug.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 21:54:55 by myener            #+#    #+#             */
-/*   Updated: 2019/10/23 15:45:39 by myener           ###   ########.fr       */
+/*   Updated: 2020/01/07 18:54:08 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,3 +22,17 @@ void	pile_print(t_pslist *curr)
 	}
 	printf("%d.\n", curr->data);
 }
+
+void    display_tab(char **tab, int index) // debug
+{
+    int     i;
+
+    i = index;
+    while (tab[i])
+    {
+        if(ft_strcmp(tab[i], "na"))
+            ft_putendl(tab[i]);
+        i++;
+    }
+}
+
