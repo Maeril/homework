@@ -6,11 +6,36 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 19:21:03 by myener            #+#    #+#             */
-/*   Updated: 2020/01/07 19:11:09 by myener           ###   ########.fr       */
+/*   Updated: 2020/01/08 20:52:26 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+t_pslist	*convertto_list(char **av, t_pslist *list, int *nb, t_psflag *f)
+{
+	int			i;
+	t_pslist	*head;
+	t_pslist	*tmp;
+
+	i = f->visual ? 0 : 1;
+	*nb = 0;
+	list = node_fill(list, ft_atoll(av[i]));
+	head = list;
+	tmp = list;
+	i++;
+	while (av[i])
+	{
+		list->next = node_fill(list->next, ft_atoll(av[i]));
+		list = list->next;
+		list->prev = tmp;
+		tmp = list;
+		i++;
+		(*nb)++;
+	}
+	list->next = NULL;
+	return (head);
+}
 
 void		flag_init(t_psflag *flag)
 {
@@ -32,7 +57,8 @@ int			max_min_checker(char **argv)
 	while (argv[i])
 	{
 		if (ft_atoll(argv[i]) > MAX_INT || ft_atoll(argv[i]) < MIN_INT
-			|| ft_strlen(argv[i]) > 10)
+			|| (ft_atoll(argv[i]) > 0 && ft_strlen(argv[i]) > 10)
+			|| (ft_atoll(argv[i]) < 0 && ft_strlen(argv[i]) > 11))
 			return (1);
 		i++;
 	}

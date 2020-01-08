@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:38:48 by myener            #+#    #+#             */
-/*   Updated: 2020/01/07 19:34:29 by myener           ###   ########.fr       */
+/*   Updated: 2020/01/08 20:27:10 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	bad_arg_check_saver(char *arg)
 	if (arg[i] == '-' || arg[i] == '+')
 	{
 		i++;
-		if (!arg[i] || (arg[i] == '0' && !arg[i + 1]))
+		if (!arg[i])
 			ps_output(1);
 		while (arg[i])
 		{

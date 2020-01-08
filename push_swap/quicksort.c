@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 17:11:10 by myener            #+#    #+#             */
-/*   Updated: 2019/11/29 14:03:32 by myener           ###   ########.fr       */
+/*   Updated: 2020/01/08 20:02:27 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,12 @@ static int	mean_calculator(t_pslist *head, int deb, int fin)
 	t_pslist	*curr;
 
 	curr = head;
-	s = 0;
-	while (s < deb)
-	{
+	s = -1;
+	while (++s < deb)
 		curr = curr->next;
-		s++;
-	}
 	tot = 0;
-	while (s <= fin)
-	{
-		tot += curr->data;
+	while (s++ <= fin && (tot += curr->data))
 		curr = curr->next;
-		s++;
-	}
 	return (tot / (fin - deb + 1));
 }
 
@@ -95,15 +88,12 @@ static void	ps_quicksort_saver(t_pslist **h_a, t_psflag *f, int deb, int fin)
 	f->nr = 0;
 	f->np = 0;
 	head_b = NULL;
-	i = deb;
-	while (i <= fin)
-	{
+	i = deb - 1;
+	while (++i <= fin)
 		if ((*h_a)->data <= f->pivot)
 			f->np += push(h_a, &head_b, f);
 		else
 			f->nr += rot(h_a, 1, f);
-		i++;
-	}
 	(fin != (f->t - 1) || deb != 0) ? rrot(h_a, f->nr, f) : 0;
 	while (head_b)
 		push(&head_b, h_a, f);
