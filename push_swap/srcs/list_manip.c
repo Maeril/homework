@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 16:05:48 by myener            #+#    #+#             */
-/*   Updated: 2019/11/28 21:54:13 by myener           ###   ########.fr       */
+/*   Updated: 2020/01/13 16:42:02 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void			list_free(t_pslist *head)
 	{
 		tmp = head;
 		head = head->next;
-		free(tmp);
+		tmp ? free(tmp) : 0;
 	}
 }
 

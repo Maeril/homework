@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:49:20 by myener            #+#    #+#             */
-/*   Updated: 2020/01/08 21:01:29 by myener           ###   ########.fr       */
+/*   Updated: 2020/01/13 20:18:32 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,35 +40,6 @@ static char		**append_return(char **in, t_pslist *list)
 	return (out ? out : in);
 }
 
-static char		**get_instruct(char **inst, t_pslist *list)
-{
-	int		i;
-	char	*tmp;
-	char	*line;
-	char	*stock;
-
-	i = 0;
-	stock = ft_strnew(1);
-	while (get_next_line(0, &line))
-	{
-		tmp = line;
-		stock = ft_free_join(stock, line);
-		stock = ft_free_join(stock, "\n");
-		free(tmp);
-		i++;
-	}
-	i = 0;
-	while (stock[i])
-	{
-		(stock[i] == '\n' && stock[i + 1] == '\n') ? ps_output(1) : 0;
-		i++;
-	}
-	inst = ft_strsplit(stock, '\n');
-	ft_strdel(&stock);
-	inst = append_return(inst, list);
-	return (inst);
-}
-
 static void		pile_size_checker(char **in, t_pslist *ha, t_psflag *f)
 {
 	int		i;
@@ -98,6 +69,13 @@ static void		pile_size_checker(char **in, t_pslist *ha, t_psflag *f)
 	}
 }
 
+static int		apply_instruct_saver(t_pslist *ha, t_pslist *hb)
+{
+	hb ? list_free(hb) : 0;
+	ha ? list_free(ha) : 0;
+	return (2);
+}
+
 static t_pslist	*apply_instruct(char **n, t_pslist *ha, t_psflag *f)
 {
 	int			i;
@@ -123,7 +101,7 @@ static t_pslist	*apply_instruct(char **n, t_pslist *ha, t_psflag *f)
 		cmp(n[i], "rrb\n") || cmp(n[i], "rrr\n") ? rrot(&hb, 1, f) : 0;
 		i++;
 	}
-	pa_pb < 0 ? ps_output(2) : 0;
+	(pa_pb < 0) ? ps_output(apply_instruct_saver(ha, hb)) : 0;
 	return (pa_pb < 0 ? NULL : ha);
 }
 

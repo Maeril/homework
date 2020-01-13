@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/23 19:21:03 by myener            #+#    #+#             */
-/*   Updated: 2020/01/08 20:52:26 by myener           ###   ########.fr       */
+/*   Updated: 2020/01/13 19:20:06 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,18 @@ t_pslist	*convertto_list(char **av, t_pslist *list, int *nb, t_psflag *f)
 	}
 	list->next = NULL;
 	return (head);
+}
+
+int			pattern_match(char *s1, char *s2)
+{
+	if ((!ft_strcmp(s1, "rra") && !ft_strcmp(s2, "ra"))
+		|| (!ft_strcmp(s1, "ra") && !ft_strcmp(s2, "rra"))
+		|| (!ft_strcmp(s1, "pa") && !ft_strcmp(s2, "pb"))
+		|| (!ft_strcmp(s1, "pb") && !ft_strcmp(s2, "pa"))
+		|| (!ft_strcmp(s1, "sa") && !ft_strcmp(s2, "sa"))
+		|| (!ft_strcmp(s1, "sb") && !ft_strcmp(s2, "sb")))
+		return (1);
+	return (0);
 }
 
 void		flag_init(t_psflag *flag)
@@ -80,27 +92,4 @@ int			same_data(t_pslist *curr, int fin)
 		i++;
 	}
 	return (1);
-}
-
-int			ps_output(int i)
-{
-	ft_putstr("\e[4m\033[1;37mResult\e[0m:\n\033[0m");
-	if (i == 1)
-	{
-		ft_putstr("\033[1;31m");
-		write(2, "Error\n", 6);
-		exit(0);
-	}
-	else if (i == 2)
-	{
-		ft_putstr("\033[1;33m");
-		write(1, "KO\n", 3);
-	}
-	else if (i == 3)
-	{
-		ft_putstr("\033[1;32m");
-		write(1, "OK\n", 3);
-	}
-	ft_putstr("\033[0m");
-	return (0);
 }

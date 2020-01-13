@@ -6,32 +6,11 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 13:52:32 by myener            #+#    #+#             */
-/*   Updated: 2020/01/07 19:34:33 by myener           ###   ########.fr       */
+/*   Updated: 2020/01/13 19:31:22 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static void		ps_displayer(char **out)
-{
-	int	i;
-	int	nb;
-
-	i = 0;
-	nb = 0;
-	instructions_displayer(2, 0);
-	while (out[i])
-	{
-		if (ft_strcmp(out[i], "na"))
-		{
-			ft_putendl(out[i]);
-			nb++;
-		}
-		free(out[i]);
-		i++;
-	}
-	instructions_displayer(3, nb);
-}
 
 static t_pslist	*push_swap_saver(int i, int nb, t_pslist *list, t_psflag *flag)
 {

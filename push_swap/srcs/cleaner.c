@@ -6,23 +6,11 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 16:26:59 by myener            #+#    #+#             */
-/*   Updated: 2020/01/07 19:36:23 by myener           ###   ########.fr       */
+/*   Updated: 2020/01/13 19:29:41 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int	pattern_match(char *s1, char *s2)
-{
-	if ((!ft_strcmp(s1, "rra") && !ft_strcmp(s2, "ra"))
-		|| (!ft_strcmp(s1, "ra") && !ft_strcmp(s2, "rra"))
-		|| (!ft_strcmp(s1, "pa") && !ft_strcmp(s2, "pb"))
-		|| (!ft_strcmp(s1, "pb") && !ft_strcmp(s2, "pa"))
-		|| (!ft_strcmp(s1, "sa") && !ft_strcmp(s2, "sa"))
-		|| (!ft_strcmp(s1, "sb") && !ft_strcmp(s2, "sb")))
-		return (1);
-	return (0);
-}
 
 static int	rotate_replacer(char **tab, char *str, int marker, t_psflag *flag)
 {
