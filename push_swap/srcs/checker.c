@@ -6,13 +6,13 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:49:20 by myener            #+#    #+#             */
-/*   Updated: 2020/01/13 20:18:32 by myener           ###   ########.fr       */
+/*   Updated: 2020/01/14 14:45:42 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static char		**append_return(char **in, t_pslist *list)
+char			**append_return(char **in, t_pslist *list)
 {
 	int		i;
 	int		j;

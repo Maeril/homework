@@ -6,7 +6,7 @@
 /*   By: myener <myener@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 15:53:33 by myener            #+#    #+#             */
-/*   Updated: 2020/01/13 19:46:08 by myener           ###   ########.fr       */
+/*   Updated: 2020/01/14 14:46:15 by myener           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct			s_pslist
 
 }						t_pslist;
 
+char					**append_return(char **in, t_pslist *list);
 int						bad_instructions(char **instruc);
 void					checker(t_pslist *list, t_psflag *flag, char **argv);
 int						check_length(t_pslist *list);
