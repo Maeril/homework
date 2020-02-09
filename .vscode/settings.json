@@ -10,7 +10,7 @@
 
     // Enable word based suggestions
     "editor.wordBasedSuggestions": false,
-    "python.pythonPath": "/Users/myener/.brew/opt/python/bin/python3.7",
+    "python.pythonPath": "/usr/bin/python",
     "files.associations": {
         "lem_in.h": "c"
     }
