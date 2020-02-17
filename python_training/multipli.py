@@ -1,25 +1,27 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    test3.py                                           :+:      :+:    :+:    #
+#    multipli.py                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/02/09 23:49:48 by myener            #+#    #+#              #
-#    Updated: 2020/02/17 01:39:42 by myener           ###   ########.fr        #
+#    Created: 2020/02/12 18:34:45 by myener            #+#    #+#              #
+#    Updated: 2020/02/17 01:57:30 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-import os, sys, string
+#!/usr/bin/python3.7
+# -*-coding:utf-8 -*
 
-def main():
-	pattern = string.join(sys.argv[1:])
-	filename = os.environ['HOME'] + '/.telbase'
-	prog = regex.compile(pattern, regex.casefold)
-	f = open(filename, 'r')
-	while 1:
-		line = f.readline()
-		if not line: break # End of file
-		if prog.search(line) >= 0:
-			print(string.strip(line))
-main()
+import os
+
+def table(nb, max):
+	i = 1 # perso je l'init a 1 comme on va demarrer la table à 1.
+	while i <= max:
+		print(i, "*", nb, "=", i * nb)
+		i += 1
+
+# test: si la fonction est executée seule et pas appelée, elle affiche uniquement
+# la table de 7.
+if __name__ == "__main__":
+	table(7)
