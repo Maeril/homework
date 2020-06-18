@@ -1,0 +1,4 @@
+1. pip3 list
+2. pip3 list show
+3. pip3 show numpy
+4. pip3 search tesseract
