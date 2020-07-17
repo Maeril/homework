@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 19:04:30 by myener            #+#    #+#              #
-#    Updated: 2020/03/10 20:22:55 by myener           ###   ########.fr        #
+#    Updated: 2020/07/13 23:12:40 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,12 @@ while somme_joueur > 0:
 	somme_joueur = int(somme_joueur)
 	print("Vous disposez actuellement de", somme_joueur, "euros.\n")
 	somme_misee = input("Quelle montant souhaitez-vous miser ? ")
-	somme_misee = int(somme_misee)
+	while True:
+		try:
+			somme_misee = int(somme_misee)
+			break
+		except ValueError:
+			somme_misee = input("Vous ne pouvez miser que des chiffres. Réessayez: ")
 	while somme_misee < 0:
 		somme_misee = input("Vous ne pouvez pas miser une somme négative. Réessayez: ")
 		somme_misee = int(somme_misee)
