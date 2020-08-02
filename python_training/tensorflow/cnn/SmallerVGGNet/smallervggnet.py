@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/31 22:24:52 by myener            #+#    #+#              #
-#    Updated: 2020/08/01 01:12:59 by myener           ###   ########.fr        #
+#    Updated: 2020/08/02 03:13:06 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ from tensorflow.keras import backend as K
 class SmallerVGGNet:
 	@staticmethod
 	def build(width, height, depth, classes):
-		model = Sequential
+		model = Sequential()
 		inputShape = (height, width, depth)
 		chanDim = -1
 		if K.image_data_format() == "channels_first":
