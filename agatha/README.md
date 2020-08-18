@@ -27,7 +27,7 @@ AGATHA intervenes in the checkout procedure as follows:
 *More advanced features could include:
 - "Bluff" fraudster-signaling feature: directly prompting the user to confirm the indicated produce type if the detected one differs past a certain threshold (i.e. client clearly has a huge, green lettuce in their bag but indicate it's a batch of carrots), in which case, should they persevere, store security can be alerted via text or a light signal.
 
-# Success criteria
+## Success criteria
 
 The criteria that must be met in order to consider AGATHA a success.
 
