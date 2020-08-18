@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/02 04:12:23 by myener            #+#    #+#              #
-#    Updated: 2020/08/02 18:00:21 by myener           ###   ########.fr        #
+#    Updated: 2020/08/18 21:47:09 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ import os
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-m", "--model", required=True,
-	help="path to trained model model")
+	help="path to trained model")
 ap.add_argument("-l", "--labelbin", required=True,
 	help="path to label binarizer")
 ap.add_argument("-i", "--image", required=True,

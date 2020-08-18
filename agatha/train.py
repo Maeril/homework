@@ -6,7 +6,7 @@
 #    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/01 01:13:34 by myener            #+#    #+#              #
-#    Updated: 2020/08/14 11:08:35 by myener           ###   ########.fr        #
+#    Updated: 2020/08/18 21:47:09 by myener           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,7 +107,7 @@ print("[INFO] serializing network...")
 model.save(args["model"], save_format="h5")
 # save the label binarizer to disk
 print("[INFO] serializing label binarizer...")
-f = open(args["labelbin"], "wb")
+f = open(args["labelbin"], "wb") #wb stands for "write binary"
 f.write(pickle.dumps(lb))
 f.close()
 
