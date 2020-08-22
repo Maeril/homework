@@ -1,0 +1,21 @@
+Exercise 10 - Question time!
+Are you able to clearly and simply explain:
+
+1 - Why do we concatenate a column of ones to the left of the x vector when we use the linear algebra trick?
+	> Because that way we turn the x vector into a matrix that we can then multiply to the theta vector
+	(since now they are compatible, as x is now (m * 2) & theta is (2 * 1) -> gives a (m * 1) vector)
+
+2 - Why does the cost function square the distances between the data points and their predicted values?
+	> Because if we don't, some values will be negative and when they will be compared to the predicted values
+	they might end up producing a zero, thus losing the value. Squaring them up ensure every value is positive,
+	so none can be lost by producing zero.
+
+3 - What does the cost function's output represent?
+	> It represents the accuracy of the model by outputting the variance between what was predicted and what was
+	actually obtained.
+
+4 - Toward which value do we want the cost function to tend? What would that mean?
+	> We want it to tend toward zero. That would mean the loss is minimal, and the model is extremely accurate.
+
+5 - Do you understand why are matrix multiplications are not commutative?
+	> Because they wouldn't output the same results ! (Except for instance they're square matrices filled with ones.)
