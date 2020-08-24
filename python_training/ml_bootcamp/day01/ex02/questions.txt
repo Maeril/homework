@@ -1,0 +1,27 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    questions.txt                                      :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: myener <myener@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/08/22 23:04:57 by myener            #+#    #+#              #
+#    Updated: 2020/08/22 23:09:54 by myener           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+Are you able to clearly and simply explain:
+
+1 - When we pre-process the training examples, why are we adding a column of ones to the left of the $x$ vector (or $X$ matrix) when we use the linear algebra trick?
+	So that we can multiply it to the theta, as its initial dimension (m * 1) isn't compatible to theta (2 * 1).
+	Thus it becomes: x (m * 2) theta (2 * 1), resulting in a matrix of dimensions (m * 1).
+
+2 - Why does the cost function square the distance between the data points and their predicted values?
+	To remove negatives before adding all the values up. If we don't, some values (ex. 9.01 & -9.01)
+	might produce a zero, thus losing the data (because 0 = empty in computer science).
+
+3 - What does the cost function value represent?
+	It represents the "loss" the model produced. It is the difference between what was predicted and the actual output (squared).
+
+4 - Toward which value would you like the cost function to tend to? What would it mean?
+	It should tend to zero. The closer to zero, the more accurate the model.
