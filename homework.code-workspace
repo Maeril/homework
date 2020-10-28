@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "../AGATHA"
+		},
+		{
+			"path": "../../prevision/rec-sys"
 		}
 	]
 }
